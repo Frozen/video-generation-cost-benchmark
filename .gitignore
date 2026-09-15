@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+private/
+ledger*.json
+ledger*.json.lock
+*.pem
+*.key
+*.safetensors
+*.pt
+*.ckpt
+videos/
+evaluation-output/

@@ -1,0 +1,44 @@
+{
+  "version": "0.4.0",
+  "status": "preflight_no_generations",
+  "task": "text-to-video",
+  "checked_on": "2026-09-15",
+  "budget_usd": "25.00",
+  "new_compute_threshold_usd": "22.50",
+  "allocation_usd": {"setup_generation": "18.00", "evaluation": "4.00", "storage_closeout_fees": "3.00"},
+  "latest_policy": "pending_confirmation_latest_release_vs_latest_open_weights",
+  "source": {
+    "repository": "https://github.com/Vchitect/VBench",
+    "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+    "file": "source/VBench_full_info.json",
+    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd"
+  },
+  "scenes": [
+    {"id": "S01", "source_index": 262, "prompt": "a person drinking coffee in a cafe", "source_prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24"},
+    {"id": "S05", "source_index": 823, "prompt": "kitchen", "source_prompt_sha256": "3171d89ad00530ffa19a244f040e9401a657903cbbbca724996b90a56df2c189"}
+  ],
+  "models": [
+    {"id": "H3", "candidate": "MiniMax H3 Base FL2VA", "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3", "revision": null, "execution_profile": null},
+    {"id": "LTX", "candidate": "LTX-2.5 distilled", "repository": "https://huggingface.co/Lightricks/LTX-2.5", "revision": null, "execution_profile": null},
+    {"id": "WAN", "candidate": "wan3.0-video", "repository": null, "revision": null, "execution_profile": null, "note": "Latest vendor API family; do not silently replace with open-weight Wan2.2."}
+  ],
+  "durations": [
+    {"id": "short", "target_seconds": 5, "native_shapes": null, "evaluation_mode": null},
+    {"id": "long", "target_seconds": 10, "native_shapes": null, "evaluation_mode": null}
+  ],
+  "seed": 42,
+  "sample_index": 0,
+  "order_per_model": [["S01", "short"], ["S01", "long"], ["S05", "long"], ["S05", "short"]],
+  "planned_attempts": 12,
+  "automatic_retries": 0,
+  "concurrency": 1,
+  "external_upscale_interpolate_crop": false,
+  "prompt_enhancement": false,
+  "evaluation": {
+    "source_commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+    "dimensions": ["subject_consistency", "background_consistency", "motion_smoothness", "dynamic_degree", "aesthetic_quality", "imaging_quality"],
+    "scope": "Custom-input technical pilot, every decodable file; not original per-dimension source groups or official VBench score.",
+    "partitions": ["model_id", "duration_id"],
+    "reuse_original_videos": true
+  }
+}

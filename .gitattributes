@@ -1,0 +1,2 @@
+# Preserve the exact upstream prompt README, including its original whitespace.
+source/PROMPTS_README.md -whitespace
