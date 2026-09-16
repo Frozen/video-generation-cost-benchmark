@@ -29,6 +29,9 @@ On 2026-09-15 the connected Runpod live public-video catalog returned 20 entries
 with no H3, LTX-2.5 or Wan 3.0 entry. This is a catalog observation, not a claim
 that self-hosting is impossible. No paid requests were made for this inspection.
 Model access, exact profiles, runtime pins and teardown must pass preflight.
+The [execution preflight](PREFLIGHT.md) records a verified CLI/documentation
+discrepancy: the tested Runpod CLI 2.14.0 has no automatic stop/termination flags.
+Do not treat a documentation example or a local ledger as an enforced lease limit.
 
 ## Files
 
@@ -36,6 +39,7 @@ Model access, exact profiles, runtime pins and teardown must pass preflight.
 - [suite.json](suite.json): exact prompts, planned attempts and unresolved profiles.
 - [pilot-plan.csv](pilot-plan.csv): the 12 scheduled attempts, all initially `not_run`.
 - [SOURCE.md](SOURCE.md): upstream attribution and verification.
+- [PREFLIGHT.md](PREFLIGHT.md): verified launch blockers and the next access steps.
 - [scripts/validate.py](scripts/validate.py): source, schedule and publication checks.
 - [scripts/budget.py](scripts/budget.py): fail-closed reservation ledger; not a provider spending cap.
 - [tests/test_budget.py](tests/test_budget.py): boundary and failure tests.
