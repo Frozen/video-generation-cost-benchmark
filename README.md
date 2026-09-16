@@ -18,6 +18,18 @@ queueing and any post-submission cold start. Apply the limit to each attempt;
 quality must also pass. Late results still contribute to costs, but not accepted
 output. These are pilot acceptance thresholds, not demonstrated performance or an SLA.
 
+The two verbatim prompts are S01 / index 262 (a person drinking coffee in a cafe)
+and S02 / index 29 (a tranquil bowl-on-counter scene). Version 0.6 replaces the
+unexecuted S05 / `kitchen` scene with S02; see [selection rationale](METHODOLOGY.md)
+and [source attribution](SOURCE.md).
+Blind human review records `prompt_match` as `pass`, `partial`, or `fail`, with
+scene-specific required elements and a short explanation. Only `pass` can count
+as accepted output, and visual quality, output profile and latency must pass too.
+Both durations use **VBench-Long / long_custom_input**, with actual duration at
+least 5.0 seconds for every file. Incompatible files are reported, not padded or
+silently evaluated with a different scorer. Short/long results remain separate;
+`dynamic_degree` measures motion, not whether a calm scene is better.
+
 ## Latest does not mean latest open weights
 
 Checked against primary sources on 2026-09-15:
@@ -27,6 +39,17 @@ Checked against primary sources on 2026-09-15:
 | H3 | MiniMax H3, Base FL2VA for text-to-video | [Official open release](https://www.minimax.io/news/minimax-h3-open-source); exact checkpoint revision is not frozen yet. |
 | LTX | LTX-2.5 distilled | [Official checkpoint](https://huggingface.co/Lightricks/LTX-2.5); fast open-weight configuration, not a claim about every LTX-2.5 API tier. |
 | Wan | Wan 3.0 video | [Current vendor API documentation](https://www.alibabacloud.com/help/en/model-studio/text-to-video-guide). Open T2V weights found in the [official organization](https://huggingface.co/Wan-AI) remain in the Wan 2.2 family. These are not interchangeable. |
+
+Access labels in the plan distinguish H3/LTX **self-host candidates** from the
+Wan 3.0 **vendor-API candidate**. [Wan 2.2 T2V open weights](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
+would be a separately named alternative, not another label for the same model.
+A proposed first/last-frame Wan workflow is outside the 12-attempt text-only pilot;
+its implementation, input preparation costs and comparison group need a separate decision.
+
+[H3 Max is a fal post-trained variant](https://fal.ai/learn/devs/introducing-h3-max-by-fal),
+not the Base FL2VA checkpoint above. Exact H3 execution and API-reference variants
+are still unresolved. An API reference is not an additional paid invocation unless
+it is explicitly scheduled and its cost reserved within the existing USD 25 cap.
 
 The interpretation of "latest" for Wan needs to be resolved before paid execution.
 Do not replace Wan 3.0 with Wan 2.2, H3 with Hailuo 2.x, or LTX-2.5 with an older
@@ -50,7 +73,7 @@ Do not treat a documentation example or a local ledger as an enforced lease limi
 - [scripts/validate.py](scripts/validate.py): source, schedule and publication checks.
 - [scripts/budget.py](scripts/budget.py): fail-closed reservation ledger; not a provider spending cap.
 - [tests/test_budget.py](tests/test_budget.py): boundary and failure tests.
-- [tests/test_protocol.py](tests/test_protocol.py): agreed latency-target consistency checks.
+- [tests/test_protocol.py](tests/test_protocol.py): scene, review, evaluator and latency consistency checks.
 
 Run offline checks (no GPU, credentials or paid APIs required):
 

@@ -56,6 +56,73 @@ class ProtocolTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             validate(self.suite)
 
+    def test_new_scene_is_verbatim_and_replaces_old_ids(self):
+        scene = self.suite["scenes"][1]
+        self.assertEqual(scene["id"], "S02")
+        self.assertEqual(scene["source_index"], 29)
+        self.assertEqual(scene["replaces_scene_id"], "S05")
+        self.assertEqual(scene["prompt"], "A tranquil tableau of a bowl on the kitchen counter")
+        rows = validate(self.suite)
+        self.assertEqual(sum(row["scene_id"] == "S02" for row in rows), 6)
+        self.assertFalse(any("S05" in row["run_id"] for row in rows))
+        self.suite["scenes"][1]["prompt"] += "."
+        with self.assertRaises(AssertionError):
+            validate(self.suite)
+
+    def test_missing_scene_rationale_or_requirements_rejected(self):
+        for field, value in (("rationale", ""), ("prompt_match_requirements", [])):
+            with self.subTest(field=field):
+                suite = copy.deepcopy(self.suite)
+                suite["scenes"][1][field] = value
+                with self.assertRaises(AssertionError):
+                    validate(suite)
+
+    def test_partial_or_unreviewed_cannot_be_declared_accepted(self):
+        changes = {
+            "accepted_labels": ["pass", "partial"],
+            "unreviewed_value": "pass",
+            "method": "automatic",
+            "evidence_required": False,
+        }
+        for field, value in changes.items():
+            with self.subTest(field=field):
+                suite = copy.deepcopy(self.suite)
+                suite["human_review"]["prompt_match"][field] = value
+                with self.assertRaises(AssertionError):
+                    validate(suite)
+
+    def test_both_durations_share_long_evaluator(self):
+        self.assertTrue(all(item["evaluation_mode"] == "long_custom_input" for item in self.suite["durations"]))
+        self.suite["durations"][0]["evaluation_mode"] = "custom_input"
+        with self.assertRaises(AssertionError):
+            validate(self.suite)
+
+    def test_evaluator_duration_guard_and_metric_meaning_cannot_drift(self):
+        changes = {
+            "minimum_actual_duration_seconds": 4,
+            "actual_duration_check": "trust_request_duration",
+            "incompatible_duration_policy": "pad_short_files",
+            "dynamic_degree_interpretation": "higher_is_better_quality",
+            "partitions": ["model_id"],
+        }
+        for field, value in changes.items():
+            with self.subTest(field=field):
+                suite = copy.deepcopy(self.suite)
+                suite["evaluation"][field] = value
+                with self.assertRaises(AssertionError):
+                    validate(suite)
+
+    def test_input_mode_and_candidate_access_remain_distinct(self):
+        rows = validate(self.suite)
+        self.assertEqual({row["input_mode"] for row in rows}, {"text_to_video"})
+        self.assertEqual({row["access_kind"] for row in rows if row["model_id"] == "WAN"}, {"vendor_api_candidate"})
+        for field, value in (("input_mode", "first_last_frame"), ("access_kind", "self_host_candidate")):
+            with self.subTest(field=field):
+                suite = copy.deepcopy(self.suite)
+                suite["models"][2][field] = value
+                with self.assertRaises(AssertionError):
+                    validate(suite)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -39,10 +39,18 @@ a field mentioned in another SDK is not proof that the provider enforces it.
   and configure it locally; do not paste it into an issue, this repository or chat.
 - The exact latest-model profiles, native output durations, runtime/checkpoint
   pins, bounded exposure and artifact export are not yet validated.
+- Both duration groups now require `VBench-Long / long_custom_input`, with every
+  actual file at least 5.0 seconds. Selecting that mode does not verify model
+  output shapes or make paid execution ready.
+- MiniMax H3 Base FL2VA and fal's H3 Max are distinct variants. The self-host
+  candidate and the API reference must be explicitly identified before comparing
+  costs; the current H3 row is not a verified H3 Max deployment.
 - The latest Wan candidate remains the vendor's [Wan 3.0 API](https://www.alibabacloud.com/help/en/model-studio/text-to-video-guide).
   Access to an additional provider is not established by funding Runpod.
   Wan 2.2 open weights are a different candidate and require an explicit scope
   decision, not a silent fallback.
+- A first/last-frame Wan setup remains outside the text-only schedule; it is not
+  an approved fourth configuration or an authorization for extra attempts.
 
 The next execution step requires the missing access and a verified bounded
 launch path. Until then, leave the 12 scheduled attempts as `not_run`, retain all

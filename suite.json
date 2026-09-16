@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "status": "preflight_no_generations",
   "task": "text-to-video",
   "checked_on": "2026-09-15",
@@ -24,31 +24,65 @@
     "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd"
   },
   "scenes": [
-    {"id": "S01", "source_index": 262, "prompt": "a person drinking coffee in a cafe", "source_prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24"},
-    {"id": "S05", "source_index": 823, "prompt": "kitchen", "source_prompt_sha256": "3171d89ad00530ffa19a244f040e9401a657903cbbbca724996b90a56df2c189"}
+    {
+      "id": "S01", "source_index": 262,
+      "prompt": "a person drinking coffee in a cafe",
+      "source_prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24",
+      "rationale": "Recognizable human action and interaction with a drinking vessel; complements the calm object scene.",
+      "prompt_match_requirements": ["A visible person", "Visible drinking action with a vessel, consistent with drinking coffee", "A recognizable cafe setting"]
+    },
+    {
+      "id": "S02", "source_index": 29,
+      "prompt": "A tranquil tableau of a bowl on the kitchen counter",
+      "source_prompt_sha256": "d8ac5ebe2e640798a7eb927bb124020dea4911c1adbdfaaddeecb9cf3665a6de",
+      "replaces_scene_id": "S05",
+      "rationale": "A specific object and spatial relation in a calm scene; replaces the open-ended kitchen prompt before any generation.",
+      "prompt_match_requirements": ["A recognizable bowl, not only a drinking cup", "The bowl is on a kitchen counter", "A calm tableau; static framing or gentle camera motion is allowed"]
+    }
   ],
   "models": [
-    {"id": "H3", "candidate": "MiniMax H3 Base FL2VA", "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3", "revision": null, "execution_profile": null},
-    {"id": "LTX", "candidate": "LTX-2.5 distilled", "repository": "https://huggingface.co/Lightricks/LTX-2.5", "revision": null, "execution_profile": null},
-    {"id": "WAN", "candidate": "wan3.0-video", "repository": null, "revision": null, "execution_profile": null, "note": "Latest vendor API family; do not silently replace with open-weight Wan2.2."}
+    {"id": "H3", "candidate": "MiniMax H3 Base FL2VA", "access_kind": "self_host_candidate", "input_mode": "text_to_video", "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3", "revision": null, "execution_profile": null, "note": "Base open-weight candidate is not H3 Max, the fal post-trained variant. Exact execution and API-reference variants remain unresolved."},
+    {"id": "LTX", "candidate": "LTX-2.5 distilled", "access_kind": "self_host_candidate", "input_mode": "text_to_video", "repository": "https://huggingface.co/Lightricks/LTX-2.5", "revision": null, "execution_profile": null},
+    {"id": "WAN", "candidate": "wan3.0-video", "access_kind": "vendor_api_candidate", "input_mode": "text_to_video", "repository": null, "revision": null, "execution_profile": null, "note": "Latest vendor API family; not open-weight Wan2.2 and not an approved first/last-frame configuration."}
   ],
   "durations": [
-    {"id": "short", "target_seconds": 5, "native_shapes": null, "evaluation_mode": null},
-    {"id": "long", "target_seconds": 10, "native_shapes": null, "evaluation_mode": null}
+    {"id": "short", "target_seconds": 5, "native_shapes": null, "evaluation_mode": "long_custom_input"},
+    {"id": "long", "target_seconds": 10, "native_shapes": null, "evaluation_mode": "long_custom_input"}
   ],
   "seed": 42,
   "sample_index": 0,
-  "order_per_model": [["S01", "short"], ["S01", "long"], ["S05", "long"], ["S05", "short"]],
+  "order_per_model": [["S01", "short"], ["S01", "long"], ["S02", "long"], ["S02", "short"]],
   "planned_attempts": 12,
   "automatic_retries": 0,
   "concurrency": 1,
   "external_upscale_interpolate_crop": false,
   "prompt_enhancement": false,
+  "human_review": {
+    "prompt_match": {
+      "labels": ["pass", "partial", "fail"],
+      "unreviewed_value": null,
+      "accepted_labels": ["pass"],
+      "method": "blind_manual",
+      "evidence_required": true,
+      "rubric": {
+        "pass": "All scene requirements are clearly met.",
+        "partial": "Some requirements are met, but at least one is absent or ambiguous.",
+        "fail": "No required elements are established, or the result depicts a fundamentally different scene/action."
+      }
+    },
+    "accept_requires": ["output_profile_valid", "prompt_match_pass", "visual_quality_pass", "latency_pass"]
+  },
   "evaluation": {
+    "family": "VBench-Long",
+    "mode": "long_custom_input",
+    "minimum_actual_duration_seconds": 5,
+    "actual_duration_check": "required_for_every_file_before_scoring",
+    "incompatible_duration_policy": "record_failure_no_padding_no_silent_evaluator_switch",
     "source_commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
     "dimensions": ["subject_consistency", "background_consistency", "motion_smoothness", "dynamic_degree", "aesthetic_quality", "imaging_quality"],
-    "scope": "Custom-input technical pilot, every decodable file; not original per-dimension source groups or official VBench score.",
+    "scope": "Custom-input technical pilot, every decodable duration-compatible file; not original per-dimension source groups or official VBench score.",
     "partitions": ["model_id", "duration_id"],
-    "reuse_original_videos": true
+    "reuse_original_videos": true,
+    "dynamic_degree_interpretation": "motion_amount_not_quality"
   }
 }

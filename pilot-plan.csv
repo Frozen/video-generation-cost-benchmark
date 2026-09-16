@@ -1,13 +1,13 @@
-run_id,model_id,scene_id,duration_id,target_seconds,seed,sample_index,prompt,status,output_path
-pilot_H3_S01_short_42_1,H3,S01,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/H3/short/a person drinking coffee in a cafe-0.mp4
-pilot_H3_S01_long_42_1,H3,S01,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/H3/long/a person drinking coffee in a cafe-0.mp4
-pilot_H3_S05_long_42_1,H3,S05,long,10,42,0,kitchen,not_run,videos/H3/long/kitchen-0.mp4
-pilot_H3_S05_short_42_1,H3,S05,short,5,42,0,kitchen,not_run,videos/H3/short/kitchen-0.mp4
-pilot_LTX_S01_short_42_1,LTX,S01,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/LTX/short/a person drinking coffee in a cafe-0.mp4
-pilot_LTX_S01_long_42_1,LTX,S01,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/LTX/long/a person drinking coffee in a cafe-0.mp4
-pilot_LTX_S05_long_42_1,LTX,S05,long,10,42,0,kitchen,not_run,videos/LTX/long/kitchen-0.mp4
-pilot_LTX_S05_short_42_1,LTX,S05,short,5,42,0,kitchen,not_run,videos/LTX/short/kitchen-0.mp4
-pilot_WAN_S01_short_42_1,WAN,S01,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/WAN/short/a person drinking coffee in a cafe-0.mp4
-pilot_WAN_S01_long_42_1,WAN,S01,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/WAN/long/a person drinking coffee in a cafe-0.mp4
-pilot_WAN_S05_long_42_1,WAN,S05,long,10,42,0,kitchen,not_run,videos/WAN/long/kitchen-0.mp4
-pilot_WAN_S05_short_42_1,WAN,S05,short,5,42,0,kitchen,not_run,videos/WAN/short/kitchen-0.mp4
+run_id,model_id,scene_id,candidate,access_kind,input_mode,duration_id,target_seconds,seed,sample_index,prompt,status,output_path
+pilot_H3_S01_short_42_1,H3,S01,MiniMax H3 Base FL2VA,self_host_candidate,text_to_video,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/H3/short/a person drinking coffee in a cafe-0.mp4
+pilot_H3_S01_long_42_1,H3,S01,MiniMax H3 Base FL2VA,self_host_candidate,text_to_video,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/H3/long/a person drinking coffee in a cafe-0.mp4
+pilot_H3_S02_long_42_1,H3,S02,MiniMax H3 Base FL2VA,self_host_candidate,text_to_video,long,10,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/H3/long/A tranquil tableau of a bowl on the kitchen counter-0.mp4
+pilot_H3_S02_short_42_1,H3,S02,MiniMax H3 Base FL2VA,self_host_candidate,text_to_video,short,5,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/H3/short/A tranquil tableau of a bowl on the kitchen counter-0.mp4
+pilot_LTX_S01_short_42_1,LTX,S01,LTX-2.5 distilled,self_host_candidate,text_to_video,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/LTX/short/a person drinking coffee in a cafe-0.mp4
+pilot_LTX_S01_long_42_1,LTX,S01,LTX-2.5 distilled,self_host_candidate,text_to_video,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/LTX/long/a person drinking coffee in a cafe-0.mp4
+pilot_LTX_S02_long_42_1,LTX,S02,LTX-2.5 distilled,self_host_candidate,text_to_video,long,10,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/LTX/long/A tranquil tableau of a bowl on the kitchen counter-0.mp4
+pilot_LTX_S02_short_42_1,LTX,S02,LTX-2.5 distilled,self_host_candidate,text_to_video,short,5,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/LTX/short/A tranquil tableau of a bowl on the kitchen counter-0.mp4
+pilot_WAN_S01_short_42_1,WAN,S01,wan3.0-video,vendor_api_candidate,text_to_video,short,5,42,0,a person drinking coffee in a cafe,not_run,videos/WAN/short/a person drinking coffee in a cafe-0.mp4
+pilot_WAN_S01_long_42_1,WAN,S01,wan3.0-video,vendor_api_candidate,text_to_video,long,10,42,0,a person drinking coffee in a cafe,not_run,videos/WAN/long/a person drinking coffee in a cafe-0.mp4
+pilot_WAN_S02_long_42_1,WAN,S02,wan3.0-video,vendor_api_candidate,text_to_video,long,10,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/WAN/long/A tranquil tableau of a bowl on the kitchen counter-0.mp4
+pilot_WAN_S02_short_42_1,WAN,S02,wan3.0-video,vendor_api_candidate,text_to_video,short,5,42,0,A tranquil tableau of a bowl on the kitchen counter,not_run,videos/WAN/short/A tranquil tableau of a bowl on the kitchen counter-0.mp4
