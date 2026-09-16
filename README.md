@@ -11,6 +11,13 @@ three models: **12 attempts**, four per model. All videos are reused for cost,
 latency, manual review and six VBench scorer checks. This is not an official VBench
 score, a leaderboard submission, or a statistically reliable quality ranking.
 
+**Agreed stage-one latency target: at most 3 seconds of total wait per second of
+video — 15 seconds for the planned 5-second clip and 30 seconds for the 10-second
+clip.** Measure from request submission to the fully downloaded video, including
+queueing and any post-submission cold start. Apply the limit to each attempt;
+quality must also pass. Late results still contribute to costs, but not accepted
+output. These are pilot acceptance thresholds, not demonstrated performance or an SLA.
+
 ## Latest does not mean latest open weights
 
 Checked against primary sources on 2026-09-15:
@@ -43,6 +50,7 @@ Do not treat a documentation example or a local ledger as an enforced lease limi
 - [scripts/validate.py](scripts/validate.py): source, schedule and publication checks.
 - [scripts/budget.py](scripts/budget.py): fail-closed reservation ledger; not a provider spending cap.
 - [tests/test_budget.py](tests/test_budget.py): boundary and failure tests.
+- [tests/test_protocol.py](tests/test_protocol.py): agreed latency-target consistency checks.
 
 Run offline checks (no GPU, credentials or paid APIs required):
 

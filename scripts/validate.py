@@ -44,6 +44,18 @@ def validate(suite):
     assert Decimal(suite["budget_usd"]) == Decimal("25.00")
     assert sum(map(Decimal, suite["allocation_usd"].values())) == Decimal("25.00")
     assert Decimal(suite["new_compute_threshold_usd"]) == Decimal("22.50")
+    assert suite["latency_target"] == {
+        "status": "agreed",
+        "stage": "pilot",
+        "max_wait_seconds_per_video_second": 3,
+        "measurement": "request_submission_to_download_complete",
+        "duration_basis": "planned_target_seconds",
+        "application": "each_attempt_including_cold_start_after_submission",
+        "comparison": "less_than_or_equal",
+        "limits_seconds": {"short": 15, "long": 30},
+    }, "stage-one latency target differs from agreed 1:3 end-to-end limits"
+    for duration in suite["durations"]:
+        assert suite["latency_target"]["limits_seconds"][duration["id"]] == 3 * duration["target_seconds"]
     assert suite["automatic_retries"] == 0 and suite["concurrency"] == 1
     assert suite["seed"] == 42 and suite["sample_index"] == 0
     assert len(suite["evaluation"]["dimensions"]) == 6
@@ -102,6 +114,7 @@ def main():
         parser.exit(1, "Protocol invalid: pilot-plan.csv differs from suite.json\n")
     pending = pending_gates(suite)
     print(json.dumps({"protocol_valid": True, "models": 3, "planned_attempts": len(rows),
+                      "latency_target": suite["latency_target"],
                       "paid_execution_ready": not pending, "pending_gates": pending}, indent=2))
     if args.ready and pending:
         raise SystemExit(2)

@@ -1,11 +1,21 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "status": "preflight_no_generations",
   "task": "text-to-video",
   "checked_on": "2026-09-15",
   "budget_usd": "25.00",
   "new_compute_threshold_usd": "22.50",
   "allocation_usd": {"setup_generation": "18.00", "evaluation": "4.00", "storage_closeout_fees": "3.00"},
+  "latency_target": {
+    "status": "agreed",
+    "stage": "pilot",
+    "max_wait_seconds_per_video_second": 3,
+    "measurement": "request_submission_to_download_complete",
+    "duration_basis": "planned_target_seconds",
+    "application": "each_attempt_including_cold_start_after_submission",
+    "comparison": "less_than_or_equal",
+    "limits_seconds": {"short": 15, "long": 30}
+  },
   "latest_policy": "pending_confirmation_latest_release_vs_latest_open_weights",
   "source": {
     "repository": "https://github.com/Vchitect/VBench",
