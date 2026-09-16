@@ -1,7 +1,7 @@
 # Video generation cost benchmark
 
 Reproducible, budget-capped pilot for **MiniMax H3, LTX and Wan** using unchanged
-official VBench prompts. [Методика тестирования на русском](METHODOLOGY.md).
+official VBench prompts. [Testing methodology](METHODOLOGY.md).
 
 **Status: preflight, no generation results yet. Total spending ceiling: USD 25,
 including setup, failed attempts, generation, evaluation and storage.**
