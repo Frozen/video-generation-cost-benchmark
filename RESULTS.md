@@ -1,5 +1,9 @@
 # First reference result: MiniMax H3 on fal.ai
 
+This page preserves the first standard H3 result. The subsequently approved
+[three-variant comparison](VARIANT_RESULTS.md) adds completed Max and Turbo samples;
+do not apply the standard H3 latency below to those accelerated variants.
+
 September 17, 2026. **One real API request completed; no self-host run yet.**
 This is a single observation, not an average, p95, throughput benchmark or SLA.
 
@@ -77,6 +81,7 @@ optimization or alternative GPUs are automatically authorized by this result.
 
 `python3 scripts/validate.py` validates the historical v0.8.1 paired planning
 contract, not this completed reference or self-host readiness.
-`python3 -m unittest discover -s tests -v` passes 56 offline tests.
+At the original publication, `python3 -m unittest discover -s tests -v` passed 56
+offline tests. The later variant revision adds further regression/result checks.
 `ffprobe` inspected media streams; `ffmpeg -v error -i video.mp4 -f null -`
 fully decoded the downloaded file without errors. `git diff --check` passed.

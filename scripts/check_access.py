@@ -6,8 +6,10 @@ from pathlib import Path
 import re
 import shlex
 import subprocess
+from urllib.parse import urlencode
 
 ENDPOINT = "minimax/h3/text-to-video"
+ENDPOINTS = (ENDPOINT, "minimax/h3-max/text-to-video", "minimax/h3-max-turbo/text-to-video")
 CHECKS = {
     "fal_pricing": ("fal", "https://api.fal.ai/v1/models/pricing?endpoint_id=minimax%2Fh3%2Ftext-to-video", "Key "),
     "fal_balance": ("fal", "https://api.fal.ai/v1/account/billing?expand=credits", "Key "),
@@ -43,8 +45,12 @@ def load_keys(path):
     return keys
 
 
-def check(name, key, run=subprocess.run):
+def check(name, key, run=subprocess.run, endpoint=ENDPOINT):
+    if endpoint not in ENDPOINTS:
+        raise ValueError("Endpoint is not in the reviewed comparison")
     provider, url, prefix = CHECKS[name]
+    if name == "fal_pricing":
+        url = "https://api.fal.ai/v1/models/pricing?" + urlencode({"endpoint_id": endpoint})
     result = {"check": name, "provider": provider}
     if not key:
         return dict(result, status="missing_key")
@@ -76,7 +82,7 @@ def check(name, key, run=subprocess.run):
     try:
         data = json.loads(body)
         if name == "fal_pricing":
-            prices = [item for item in data["prices"] if item["endpoint_id"] == ENDPOINT]
+            prices = [item for item in data["prices"] if item["endpoint_id"] == endpoint]
             if len(prices) != 1:
                 raise ValueError("Expected endpoint price missing")
             price = prices[0]

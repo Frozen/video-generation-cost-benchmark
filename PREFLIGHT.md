@@ -9,6 +9,9 @@ The operator subsequently confirmed funding on both services and authorized the
 single fal reference to proceed independently. [REFERENCE_RUN.md](REFERENCE_RUN.md)
 supersedes the whole-pair sequencing gate for that one API call only. Runpod gates
 remain required before renting a GPU; no switch to budget hardware was approved.
+The later approved [variant comparison](VARIANT_COMPARISON.md) added one Max and
+one Turbo API request; both are complete. There are now three outstanding USD 1
+reservations until invoice reconciliation, not USD 3 of confirmed expenditure.
 
 ## Launch checklist and ownership
 

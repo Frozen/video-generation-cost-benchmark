@@ -4,6 +4,9 @@ Planning baseline v0.8.1, September 17, 2026. **One fal reference is now complet
 self-host matching and execution readiness remain unverified.**
 The [execution addendum](REFERENCE_RUN.md) supersedes the earlier whole-pair
 sequencing gate for that one API call; [RESULTS.md](RESULTS.md) records the result.
+The later [variant comparison](VARIANT_RESULTS.md) also measures Max and Turbo as
+commercial alternatives. The original open-base / one-B300 self-host candidate
+remains unchanged; these are not claims of identical weights across variants.
 
 ## What we start with
 

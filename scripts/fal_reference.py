@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import time
 from urllib.parse import urlparse
@@ -21,6 +22,23 @@ SOURCE = "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-sl
 RUN_ID = "P01_FAL_5S_001"
 PARAMETERS = {"duration": 5, "resolution": "768P", "aspect_ratio": "16:9", "seed": 42,
               "prompt_expansion_mode": "disabled", "enable_safety_checker": True, "sync_mode": False}
+PROFILES = {
+    "h3": ("minimax/h3/text-to-video", "fal-p01", "P01_FAL_5S_001", "0.30", "0.06"),
+    "max": ("minimax/h3-max/text-to-video", "fal-max-p01", "P01_FAL_MAX_5S_001", "0.20", "0.04"),
+    "turbo": ("minimax/h3-max-turbo/text-to-video", "fal-turbo-p01", "P01_FAL_TURBO_5S_001", "0.10", "0.02"),
+}
+PROFILE = "h3"
+EXPECTED_COST = "0.30"
+RATE = "0.06"
+BASE_PAYLOAD_SHA = "7ae3a094032d307f0d419ca4e86120788ca36f6126416c75fde01834cb0de845"
+
+
+def select_profile(name):
+    """One explicitly selected variant per process, with a separate durable marker."""
+    global PROFILE, ENDPOINT, PRIVATE, RUN_ID, EXPECTED_COST, RATE
+    endpoint, directory, run_id, expected, rate = PROFILES[name]
+    PROFILE, ENDPOINT, PRIVATE = name, endpoint, ROOT / "private" / directory
+    RUN_ID, EXPECTED_COST, RATE = run_id, expected, rate
 
 
 def sha(data):
@@ -66,7 +84,7 @@ class PromptParser(HTMLParser):
 def allowed_queue(url):
     parsed = urlparse(url)
     return (parsed.scheme == "https" and parsed.netloc == "queue.fal.run"
-            and parsed.path.startswith("/minimax/h3/") and not parsed.fragment)
+            and parsed.path.startswith("/" + ENDPOINT.rsplit("/", 1)[0] + "/") and not parsed.fragment)
 
 
 def curl(url, *, key=None, payload=None, output=None, headers=None):
@@ -103,13 +121,21 @@ def prepare():
     PRIVATE.mkdir(parents=True, mode=0o700, exist_ok=True)
     if (PRIVATE / "payload.json").exists() or (PRIVATE / "state.json").exists():
         raise ValueError("Prepared input already exists; do not overwrite a frozen request")
-    parser = PromptParser()
-    parser.feed(curl(SOURCE))
-    prompt = "".join(parser.parts).strip()
-    if not prompt.startswith("A cinematic live-action cooking scene") or not prompt.endswith("dramatic cooking sounds."):
-        raise ValueError("Source prompt structure changed; review before paying")
-    payload = dict(PARAMETERS, prompt=prompt)
-    save(PRIVATE / "payload.json", payload)
+    if PROFILE == "h3":
+        parser = PromptParser()
+        parser.feed(curl(SOURCE))
+        prompt = "".join(parser.parts).strip()
+        if not prompt.startswith("A cinematic live-action cooking scene") or not prompt.endswith("dramatic cooking sounds."):
+            raise ValueError("Source prompt structure changed; review before paying")
+        payload = dict(PARAMETERS, prompt=prompt)
+        save(PRIVATE / "payload.json", payload)
+    else:
+        original = ROOT / "private" / "fal-p01" / "payload.json"
+        if sha(original.read_bytes()) != BASE_PAYLOAD_SHA:
+            raise ValueError("Original H3 request differs from the published hash")
+        payload = json.loads(original.read_bytes())
+        prompt = payload["prompt"]
+        shutil.copyfile(original, PRIVATE / "payload.json")
     metadata = {
         "run_id": RUN_ID, "endpoint": ENDPOINT, "parameters": PARAMETERS,
         "source_url": SOURCE, "author": "cocktail peanut",
@@ -118,9 +144,11 @@ def prepare():
         "prompt_sha256": sha(prompt.encode()),
         "payload_sha256": sha((PRIVATE / "payload.json").read_bytes()),
         "prompt_words": len(prompt.split()), "prompt_modified": False,
-        "expected_generation_usd": "0.30", "reservation_usd": "1.00",
+        "variant": PROFILE,
+        "expected_generation_usd": EXPECTED_COST, "reservation_usd": "1.00",
         "rate_source": "https://fal.ai/models/" + ENDPOINT,
-        "rate_usd_per_generated_second": "0.06",
+        "rate_usd_per_generated_second": RATE,
+        "price_note": "Dated endpoint price; Max/Turbo currently show 50% launch promotion through September 30. Reconcile billing separately.",
         "permission_record": "Collection About page offers prompts free to use; no standalone redistribution license verified. Full prompt remains private.",
         "scope": "One API reference only; no Runpod commitment, repetitions or longer clips.",
     }
@@ -188,7 +216,8 @@ def submit(key):
         raise ValueError("Submission marker exists; use collect, never submit again")
     manifest = json.loads((PRIVATE / "input-manifest.json").read_text())
     validate_payload((PRIVATE / "payload.json").read_bytes(), manifest)
-    if check("fal_pricing", key)["status"] != "ok":
+    pricing = check("fal_pricing", key, endpoint=ENDPOINT)
+    if pricing["status"] != "ok":
         raise ValueError("Read-only fal authentication check failed")
     if not LEDGER.exists():
         transact(LEDGER, "init")
@@ -196,7 +225,9 @@ def submit(key):
     transact(LEDGER, "reserve", RUN_ID, "1.00", "generation")
     state = {"run_id": RUN_ID, "status": "submission_started_do_not_retry",
              "submitted_epoch": time.time(), "actual_charge_usd": None,
-             "expected_generation_usd": "0.30", "billing_status": "unreconciled"}
+             "expected_generation_usd": EXPECTED_COST, "billing_status": "unreconciled",
+             "endpoint": ENDPOINT, "variant": PROFILE, "pricing_check": pricing,
+             "runner_sha256": sha(Path(__file__).read_bytes())}
     save(PRIVATE / "state.json", state)
     start = time.monotonic()
     response = json.loads(curl("https://queue.fal.run/" + ENDPOINT, key=key,
@@ -219,7 +250,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("prepare", "submit", "collect"))
     parser.add_argument("--env-file", type=Path)
+    parser.add_argument("--variant", choices=tuple(PROFILES), default="h3")
     args = parser.parse_args()
+    select_profile(args.variant)
     try:
         if args.action == "prepare":
             prepare()

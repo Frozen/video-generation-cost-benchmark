@@ -4,6 +4,9 @@ Planning baseline v0.8.1, September 17, 2026. **Baseline comparison only.**
 The [one-call execution addendum](REFERENCE_RUN.md) supersedes the requirement
 to finish self-host readiness before the first fal reference. That reference is
 now complete; see [RESULTS.md](RESULTS.md). Other spending and matching gates remain.
+The operator subsequently approved one Max and one Turbo API comparison under
+[VARIANT_COMPARISON.md](VARIANT_COMPARISON.md). These completed commercial alternatives
+do not silently substitute post-trained weights into the self-host baseline.
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 

@@ -1,0 +1,56 @@
+{
+  "run_id": "P01_FAL_TURBO_5S_001",
+  "submitted_at_utc": "2026-09-17T23:10:48Z",
+  "backend": "fal.ai",
+  "endpoint": "minimax/h3-max-turbo/text-to-video",
+  "submission_count": 1,
+  "automatic_retries": 0,
+  "result": "download_complete",
+  "runner_sha256": "581bc8bed2d83d1020d1c3d240c0fbcb9e476fc6cc5d831c879181c47155f8d7",
+  "request": {
+    "duration": 5, "resolution": "768P", "aspect_ratio": "16:9", "seed": 42,
+    "prompt_expansion_mode": "disabled", "enable_safety_checker": true, "sync_mode": false,
+    "input_assets": [], "prompt_modified": false,
+    "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+    "author": "cocktail peanut",
+    "prompt_sha256": "493ef9be797d7fbf6407589f08a76830078ba2dfd0d8eaf990d2209852f0de6a",
+    "payload_sha256": "7ae3a094032d307f0d419ca4e86120788ca36f6126416c75fde01834cb0de845"
+  },
+  "timing": {
+    "end_to_end_seconds": 9.121913750000001,
+    "clock": "monotonic", "boundary": "request_submission_to_download_complete",
+    "provider_reported_inference_seconds": 2.0850000381469727,
+    "provider_reported_denoising_seconds": 1.4968717010342516,
+    "first_observed_in_progress_seconds": 0.558,
+    "last_observed_in_progress_seconds": 0.558,
+    "first_observed_completed_seconds": 2.843,
+    "poll_sleep_seconds": 2, "target_seconds": 15, "latency_pass": true,
+    "cold_warm_status": "unknown"
+  },
+  "output": {
+    "public_artifact": "results/P01_FAL_TURBO_5S_001.mp4",
+    "width": 1344, "height": 768, "video_codec": "h264", "frames": 124, "fps": 24,
+    "video_duration_seconds": 5.166667, "container_duration_seconds": 5.184,
+    "audio_codec": "aac", "audio_sample_rate": 32000, "audio_channels": 2,
+    "bytes": 5195770,
+    "sha256": "f2d5f2f21389602b99f5935f1c1ca4aceaf1dc7fef541218f15cef87b379d4ff",
+    "full_decode_pass": true, "expanded_prompt_is_null": true,
+    "contract_review": "Same observed native bucket as H3: 1344x768 and 124 frames. Exact 16:9/5.000-second output is not claimed."
+  },
+  "cost": {
+    "currency": "USD", "published_768p_usd_per_output_second": "0.02",
+    "requested_duration_seconds": 5, "tariff_derived_generation_usd": "0.10",
+    "non_promotional_generation_usd": "0.20", "promotion_ends_as_listed": "2026-09-30",
+    "response_billable_units": "8.0", "authenticated_base_unit_price_usd": "0.0125",
+    "billable_units_times_base_price_usd": "0.10", "billing_events_http": 403,
+    "actual_charge_usd": null,
+    "billing_status": "Provider billable units corroborate promotional tariff; net charge not independently reconciled.",
+    "outstanding_reservation_usd": "1.00", "ledger_settled": false
+  },
+  "review": {
+    "blind_human_review": "pending", "prompt_match": null, "audio_quality": "unreviewed",
+    "informal_visual_check": "Extracted frames show a chef, cartoon onion transformation and the onion among vegetables. Complete temporal/prompt adherence and final gag remain unreviewed.",
+    "accepted_under_latency_gate": true, "accepted_output_unit_cost": null
+  },
+  "self_host": {"candidate": "1 x B300 with SGLang Diffusion", "provisioned": false, "measured": false}
+}

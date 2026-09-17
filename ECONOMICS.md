@@ -5,7 +5,38 @@ Do not import another worksheet's 10-second/1080p API price, RTX 5090 purchase
 cost or assumed render time into this comparison. Runpod rental and owned-hardware
 depreciation are different economic models.
 
-## What we can conclude now
+## Updated commercial reference: Max and Turbo measured
+
+The later [variant comparison](VARIANT_RESULTS.md) changes the competitive picture:
+H3 Max completed in **13.552 s** at a USD 0.20 promotional generation calculation;
+H3 Max Turbo in **9.122 s** at USD 0.10. Both met the 15 s wait gate, but full
+quality review remains pending. Listed non-promotional costs are USD 0.40 for Max
+and USD 0.20 for Turbo. Net invoice reconciliation remains unverified.
+
+Therefore USD 0.30 from standard H3 is not the only relevant commercial reference.
+For a service that can deliver acceptable quality, test our cost against **Turbo's
+USD 0.10 promotional and USD 0.20 non-promotional prices**, while retaining the same
+15-second customer wait limit. Do not mistake the different post-trained model
+for a verified replica of our open-base self-host candidate.
+
+With the same optimistic assumptions as below (USD 7.89/h, 100% acceptance, zero
+extra overhead), the economic price-parity thresholds become:
+
+| Workload utilization | GPU service seconds at USD 0.10 parity | GPU service seconds at USD 0.20 parity |
+|---|---:|---:|
+| 100% | 45.63 s | 91.25 s |
+| 75% | 34.22 s | 68.44 s |
+| 50% | 22.81 s | 45.63 s |
+| 25% | 11.41 s | 22.81 s |
+| 10% | 4.56 s | 9.13 s |
+
+These remain modeled thresholds, **not measured B300 times or an all-in cost**.
+Use `scripts/economics.py --gpu-hourly 7.89 --reference-price 0.10 --accepted-fraction 1`
+and repeat with `--reference-price 0.20` to reproduce them. All rental/runtime/quality
+inputs for our own deployment remain unmeasured. The original base-model reference
+and USD 0.30 scenarios below remain valid for that separate matched comparison.
+
+## Original standard H3 reference and unmeasured self-host candidate
 
 | Input | fal reference | Our selected self-host deployment |
 |---|---|---|

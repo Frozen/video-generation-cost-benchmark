@@ -3,12 +3,39 @@ from pathlib import Path
 import sys
 import unittest
 from unittest.mock import patch
+import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from fal_reference import PARAMETERS, PromptParser, allowed_queue, curl, sha, validate_payload
+import fal_reference
 
 
 class FalReferenceTests(unittest.TestCase):
+    def tearDown(self):
+        fal_reference.select_profile("h3")
+
+    def test_variants_have_isolated_markers_and_endpoints(self):
+        directories, ids = set(), set()
+        for variant in ("h3", "max", "turbo"):
+            fal_reference.select_profile(variant)
+            directories.add(fal_reference.PRIVATE)
+            ids.add(fal_reference.RUN_ID)
+            self.assertTrue(allowed_queue("https://queue.fal.run/" + fal_reference.ENDPOINT))
+            for other, settings in fal_reference.PROFILES.items():
+                if other != variant:
+                    self.assertFalse(allowed_queue("https://queue.fal.run/" + settings[0]))
+        self.assertEqual(len(directories), 3)
+        self.assertEqual(len(ids), 3)
+
+    def test_duplicate_submission_is_blocked_before_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)
+            (path / "state.json").write_text('{}')
+            with patch("fal_reference.PRIVATE", path), patch("fal_reference.curl") as request:
+                with self.assertRaises(ValueError):
+                    fal_reference.submit("fake-key")
+                request.assert_not_called()
+
     def test_source_extraction_ignores_scripts_and_related_prompts(self):
         parser = PromptParser()
         parser.feed('<script>Copy prompt</script><button>Copy prompt</button><p>Original text.</p><h2>You Might Also Like</h2><p>Other text</p>')

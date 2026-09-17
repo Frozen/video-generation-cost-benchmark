@@ -2,6 +2,11 @@
 
 Planning baseline v0.8.1, with the first fal measurement added on September 17.
 **One paid reference completed; no self-host performance claim reproduced.**
+Subsequent approved Max and Turbo samples are in [VARIANT_RESULTS.md](VARIANT_RESULTS.md):
+13.552 s and 9.122 s end-to-end, respectively, with provider denoising figures
+2.495 s and 1.497 s. These are one sample each, not independent GPU instrumentation
+or a full reproduction of the published benchmark. Current endpoint prices are
+promotional and differ from the broader marketing page; retain both scenarios.
 The selected reference is `minimax/h3/text-to-video`, native 768P, with expansion
 disabled. The self-host candidate is H3 Base FL2VA; implementation equivalence
 is unverified. [START_HERE.md](START_HERE.md) records the selected profile.

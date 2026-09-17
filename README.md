@@ -4,13 +4,18 @@
 the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
-**First reference completed: 102.644 s wait for a requested 5-second clip. Total cap: USD 25.**
+**Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
-[Results](RESULTS.md): one real fal request, USD 0.30 tariff/billable-unit calculation
-(invoice reconciliation pending), latency target failed, no self-host run yet.
+[Latest comparison](VARIANT_RESULTS.md): identical 5-second 768P requests, one
+sample each. H3: **102.644 s / USD 0.30**; Max: **13.552 s / USD 0.20**;
+Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculations,
+with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
+passed the latency gate; full quality review and self-host testing remain pending.
 
-[Watch/download the generated video (MP4, 2.6 MB)](results/P01_FAL_5S_001.mp4).
+Original videos: [H3](results/P01_FAL_5S_001.mp4),
+[H3 Max](results/P01_FAL_MAX_5S_001.mp4),
+[H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4).
 [Our economics model](ECONOMICS.md) separates measured results, missing self-host
 inputs and utilization scenarios; it does not assume fal latency is B300 runtime.
 
@@ -18,6 +23,9 @@ inputs and utilization scenarios; it does not assume fal latency is B300 runtime
 5-second fal reference before self-host readiness. It supersedes the sequencing
 gate below, not the USD 25 cap or the selected B300 candidate. The paired suite
 remains a planning contract. See that addendum for the active runner and status.
+The subsequently approved [variant addendum](VARIANT_COMPARISON.md) covers exactly
+one additional Max and one Turbo request, both now complete. It does not replace
+the open-base self-host candidate with fal's post-trained variants.
 
 ## Start here
 
