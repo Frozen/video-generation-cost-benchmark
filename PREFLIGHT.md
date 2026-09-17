@@ -1,5 +1,9 @@
 # Execution preflight
 
+**Latest self-host status:** [SELF_HOST_PREFLIGHT.md](SELF_HOST_PREFLIGHT.md).
+Replacement-key authentication succeeds; old HTTP 401 observations below are
+superseded. License applicability and an independent rental deadline remain open.
+
 Planning baseline v0.8.1, September 17, 2026. **One fal reference completed;
 self-host preflight remains open.** See [RESULTS.md](RESULTS.md).
 The USD 25 total cap remains unchanged. The active scope is one API-matched pair,
@@ -46,7 +50,7 @@ scope were frozen under the addendum; the self-host schedule remains unfrozen.
    A shared family name is not proof of implementation equivalence.
 2. Freeze realistic English requests, permitted input assets, payload mappings,
    output profiles and human acceptance criteria. The H3 discovery collection is
-   selected, but the exact request has not been frozen;
+   selected, and the exact API prompt is frozen in the execution addendum;
    do not fall back to the old VBench scenes. The selected request settings and
    first-test sequence are recorded in [START_HERE.md](START_HERE.md).
 3. Pin current prices and published claims. Quote both the API reference and

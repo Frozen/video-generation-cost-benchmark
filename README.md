@@ -13,6 +13,10 @@ Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculati
 with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
 passed the latency gate; full quality review and self-host testing remain pending.
 
+**Self-host update:** the replacement Runpod key works. No GPU has been rented.
+[Current preflight](SELF_HOST_PREFLIGHT.md) records the operator's personal-test
+declaration, outstanding license applicability and the unverified rental deadline.
+
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),
 [H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4).
