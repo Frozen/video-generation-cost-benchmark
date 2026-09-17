@@ -1,6 +1,7 @@
 # Published-claim verification register
 
-Version 0.8.1. **No claim below has been verified by a paid pilot run.**
+Planning baseline v0.8.1, with the first fal measurement added on September 17.
+**One paid reference completed; no self-host performance claim reproduced.**
 The selected reference is `minimax/h3/text-to-video`, native 768P, with expansion
 disabled. The self-host candidate is H3 Base FL2VA; implementation equivalence
 is unverified. [START_HERE.md](START_HERE.md) records the selected profile.
@@ -8,11 +9,19 @@ is unverified. [START_HERE.md](START_HERE.md) records the selected profile.
 | ID | Claim category | Conditions that must be captured | Current status |
 |---|---|---|---|
 | C01 | Hardware cost | GPU type/count, CPU/RAM/storage, region, billing unit, date, fees and credits | Runpod catalog recorded; actual allocation and bill not tested |
-| C02 | Interactive latency | Request/output profile, cold/warm, queueing, all pipeline stages and download boundary | Published SGLang base-model result recorded; our candidate not tested |
+| C02 | Interactive latency | Request/output profile, cold/warm, queueing, all pipeline stages and download boundary | fal reference measured at 102.644 s end-to-end, n=1; self-host candidate not tested |
 | C03 | Batch throughput | GPU count, batch size, concurrency, wall-clock window, accepted output and latency at load | Not tested; source/value pending |
 | C04 | Iterations/steps and optimization | Exact settings, runtime, measured speed/cost and quality trade-off | Not tested; source/value pending |
-| C05 | Additional pipelines | Prompt enhancement, conditioning, upscaling/interpolation, audio, encoding and delivery | API contract inspected; actual behavior and self-host matching not tested |
-| C06 | API price and service configuration | Exact fal.ai endpoint/tier, version/date, input/output contract and actual billed amount | Published 768p rate recorded; actual billing not tested |
+| C05 | Additional pipelines | Prompt enhancement, conditioning, upscaling/interpolation, audio, encoding and delivery | Output streams inspected; hidden pipeline and self-host matching unverified |
+| C06 | API price and service configuration | Exact fal.ai endpoint/tier, version/date, input/output contract and actual billed amount | USD 0.30 tariff calculation corroborated by billable units; final invoice reconciliation pending (403) |
+
+## First measured reference
+
+[RESULTS.md](RESULTS.md) separates our end-to-end observation, provider-reported
+inference timing, measured output properties and billing evidence. The first
+request failed our 15-second latency target. It does not reproduce the SGLang
+hardware claim or prove a general fal latency distribution. Original pre-run
+evidence below remains dated documentary context.
 
 ## Initial evidence recorded on September 17, 2026
 

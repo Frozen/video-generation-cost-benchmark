@@ -1,0 +1,8 @@
+utilization,gpu_hourly_usd,other_hourly_usd,extra_per_attempt_usd,assumed_accepted_fraction,reference_price_usd,self_host_service_seconds,cost_per_accepted_usd,reference_price_headroom_usd,break_even_service_seconds
+1,7.89,0,0,1,0.30,,,,136.882129
+0.75,7.89,0,0,1,0.30,,,,102.661597
+0.5,7.89,0,0,1,0.30,,,,68.441065
+0.25,7.89,0,0,1,0.30,,,,34.220532
+0.1,7.89,0,0,1,0.30,,,,13.688213
+0.05,7.89,0,0,1,0.30,,,,6.844106
+0.01,7.89,0,0,1,0.30,,,,1.368821

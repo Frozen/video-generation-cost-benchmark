@@ -1,7 +1,9 @@
 # First test: MiniMax H3 native 768P
 
-Version 0.8.1, September 17, 2026. **Reference selected; self-host matching and
-execution readiness are not yet verified. No paid test has been run.**
+Planning baseline v0.8.1, September 17, 2026. **One fal reference is now complete;
+self-host matching and execution readiness remain unverified.**
+The [execution addendum](REFERENCE_RUN.md) supersedes the earlier whole-pair
+sequencing gate for that one API call; [RESULTS.md](RESULTS.md) records the result.
 
 ## What we start with
 
@@ -11,7 +13,8 @@ one 5-second fal.ai output, then one 5-second self-host output. Choose a
 text-only scene that fits five seconds without changing a longer storyboard or
 requiring reference media. Freeze its exact text, source, attribution and reuse
 record first. The collection is a discovery source, not an official benchmark.
-The exact prompt is still pending. Optimizations and load tests require a later
+The first prompt is now frozen with provenance and hashes in the addendum/results.
+Optimizations and load tests require a later
 decision; unused budget does not authorize them.
 
 Comparison pair **P01** uses the fal.ai endpoint
@@ -131,7 +134,7 @@ on a paid Pod while still deciding which framework to use.
 | Safety checker | `enable_safety_checker: true` |
 | Delivery | `sync_mode: false`; measure until the final video is fully downloaded |
 | Batch/concurrency | 1 / 1 for the interactive baseline |
-| Prompt | One realistic English prompt, still to be selected and frozen with its source and hash |
+| Prompt | One English source prompt, frozen with provenance/hash in the execution addendum |
 
 The [API contract](https://fal.ai/models/minimax/h3/text-to-video/api) and
 [OpenAPI schema](https://fal.ai/api/openapi/queue/openapi.json?endpoint_id=minimax%2Fh3%2Ftext-to-video)
@@ -162,7 +165,10 @@ clip, and 30 seconds for a 10-second clip**, plus acceptable output and prompt
 adherence. Neither backend has demonstrated these limits in this pilot.
 VBench, Max variants, other families and unbounded load tests are outside this baseline.
 
-## First execution sequence
+## Original paired execution sequence
+
+The one-call addendum now permits and records the fal reference before Runpod
+readiness. The remaining requirements below still apply before self-host rental.
 
 1. Complete no-cost preflight: verify access, self-host feasibility, matching
    gaps, permitted prompt sources, current quotes, export and an independent

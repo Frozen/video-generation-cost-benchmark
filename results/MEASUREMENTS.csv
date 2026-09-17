@@ -1,0 +1,2 @@
+run_id,backend,endpoint,requested_seconds,requested_resolution,measured_width,measured_height,measured_video_seconds,measured_end_to_end_seconds,target_wait_seconds,latency_pass,provider_reported_inference_seconds,tariff_generation_usd,response_billable_units,base_unit_price_usd,actual_reconciled_charge_usd,billing_status,samples
+P01_FAL_5S_001,fal.ai,minimax/h3/text-to-video,5,768P,1344,768,5.166667,102.6437415,15,false,96.12800002098083,0.30,6.0,0.05,,billing_scope_denied,1

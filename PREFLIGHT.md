@@ -1,8 +1,14 @@
 # Execution preflight
 
-Version 0.8.1, September 17, 2026. **No paid pilot runs or generation results.**
+Planning baseline v0.8.1, September 17, 2026. **One fal reference completed;
+self-host preflight remains open.** See [RESULTS.md](RESULTS.md).
 The USD 25 total cap remains unchanged. The active scope is one API-matched pair,
 not the superseded three-model/12-attempt VBench experiment.
+
+The operator subsequently confirmed funding on both services and authorized the
+single fal reference to proceed independently. [REFERENCE_RUN.md](REFERENCE_RUN.md)
+supersedes the whole-pair sequencing gate for that one API call only. Runpod gates
+remain required before renting a GPU; no switch to budget hardware was approved.
 
 ## Launch checklist and ownership
 
@@ -24,10 +30,10 @@ permissions, balance or working inference. The template itself does not load key
 
 The initial comparison is two five-second outputs, fal.ai first and self-host
 second. Setup/warmup are separately recorded and charged. Optimization and load
-testing remain deferred, even if the budget has room. The exact prompt and
-executable schedule are not yet frozen.
+testing remain deferred, even if the budget has room. The API prompt and one-call
+scope were frozen under the addendum; the self-host schedule remains unfrozen.
 
-## Current requirements before any paid run
+## Requirements for the remaining paired/self-host work
 
 1. The reference is selected: `minimax/h3/text-to-video`, ordinary H3 at 768P.
    Verify the candidate MiniMax H3 Base FL2VA weights, license and workflow.
@@ -61,10 +67,47 @@ The current suite is deliberately a **planning-only contract**: the endpoint and
 baseline settings are selected, but requests and paid attempts are not scheduled.
 The validator reports reference and candidate selection separately from execution readiness;
 it does not independently verify credentials, provider controls or matching.
-The repository does not yet contain an execution runner. Filling placeholders
-or passing offline tests must not be mistaken for execution authorization.
+The separate reference runner implements the API-only addendum, not self-host
+deployment. Filling placeholders or passing offline tests is not authorization
+to rent hardware or submit additional generations.
 
 ## Prior access observations — not a new infrastructure check
+
+### September 17 credential preflight
+
+The operator supplied separate fal.ai and Runpod credentials. Read-only checks
+authenticated successfully against fal's pricing API. Its generic endpoint rate
+was USD 0.05 per billing second; this is **not** the selected 768P quote and does
+not replace the documented resolution-specific rate of USD 0.06/second.
+The account-billing read returned HTTP 403 (insufficient permission), so fal
+credit availability remains unverified. Do not mistake missing billing scope for
+an invalid inference key or assume that funding Runpod also funds fal.
+
+The supplied Runpod key returned HTTP 401 from both the hosted MCP service and
+the direct v2 Pod listing. The direct response reported an invalid or expired
+token. Replacement/rechecking is required; prior MCP OAuth success does not
+validate a newly supplied API key. No generation was submitted, resource created
+or credential published during these checks.
+
+Recheck with the read-only helper (requires Python 3 and curl):
+
+```bash
+python3 scripts/check_access.py --env-file /absolute/path/to/.env.local
+```
+
+`--provider fal` or `--provider runpod` restricts the checks. The helper accepts
+`FAL_KEY`/`FAL_API` and `RUNPOD_API_KEY`/`RUNPOD_API`; it never sources the file,
+prints key values, follows redirects, retries requests, provisions resources or
+submits inference. Keys travel only in HTTPS authorization headers; curl receives
+them through stdin rather than process arguments. Raw error bodies, account
+identity and resource IDs are suppressed. Balance amounts, when readable, are
+private operational data: do not commit the command's output.
+
+Exit code 0 means the selected primary access probes succeeded, **not** that all
+launch gates passed. In particular, inspect `fal_balance` separately. A valid key
+and passing offline tests do not establish funding or execution readiness.
+
+### Earlier observations
 
 On the earlier September 15–16 inspection, hosted Runpod MCP read-only Pod and
 network-volume listings worked and were empty; this was not a balance check.

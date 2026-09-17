@@ -5,10 +5,12 @@
 The v0.8.1 API-matched pilot uses realistic requests for the chosen H3 endpoint, not
 the earlier VBench subset. The selected discovery collection is
 [Awesome Video Prompts: MiniMax H3](https://awesomevideoprompts.com/en/models/minimaxh3).
-Choose an English text-only prompt whose action fits the initial five-second
-request without requiring reference media or contradicting an explicit longer
-storyboard. No specific prompt or input asset has been
-selected, copied into the active suite or verified for reuse yet.
+The first English text-only request is frozen in [REFERENCE_RUN.md](REFERENCE_RUN.md),
+with source/author and reuse notes. No input media is used, and no explicit longer
+duration is specified in its source text. Its fast comedy sequence may challenge
+five-second adherence, which remains a review question rather than an assumed pass.
+The full unchanged prompt remains private; [the result](results/P01_FAL_5S_001.json)
+records its SHA-256 and the serialized payload SHA-256.
 
 Before selection, record the exact source page, retrieval date, attribution and
 reuse/asset permissions. Record the relevant customer use case and why the request
