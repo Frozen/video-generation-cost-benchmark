@@ -1,81 +1,64 @@
-# Video generation cost benchmark
+# API-matched video generation cost benchmark
 
-Reproducible, budget-capped pilot for **MiniMax H3, LTX and Wan** using unchanged
-official VBench prompts. [Testing methodology](METHODOLOGY.md).
+**Objective:** determine whether a self-hosted open-weight deployment can deliver
+the service of a specific fal.ai endpoint at a lower fully accounted cost, with
+acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
-**Status: preflight, no generation results yet. Total spending ceiling: USD 25,
-including setup, failed attempts, generation, evaluation and storage.**
+**Version 0.7 — design/preflight only. No paid runs or results. Total cap: USD 25.**
+All public content is in English.
 
-The pilot targets two scenes × two durations (approximately 5 and 10 seconds) ×
-three models: **12 attempts**, four per model. All videos are reused for cost,
-latency, manual review and six VBench scorer checks. This is not an official VBench
-score, a leaderboard submission, or a statistically reliable quality ranking.
+## What changed
 
-**Agreed stage-one latency target: at most 3 seconds of total wait per second of
-video — 15 seconds for the planned 5-second clip and 30 seconds for the 10-second
-clip.** Measure from request submission to the fully downloaded video, including
-queueing and any post-submission cold start. Apply the limit to each attempt;
-quality must also pass. Late results still contribute to costs, but not accepted
-output. These are pilot acceptance thresholds, not demonstrated performance or an SLA.
+- Start with one matched pair: one exact fal.ai endpoint and one corresponding
+  self-hosted deployment. H3 is the first candidate to investigate; H3, LTX and
+  Wan remain candidate families, not three mandatory first-stage arms.
+- Match the request, model variant, output contract and additional pipeline
+  stages. Record differences and unknowns; do not claim an exact replica from
+  a shared model-family name.
+- Use frozen, realistic customer-style requests, with source attribution and
+  the same input assets on both backends.
+- Measure interactive latency and batch/load throughput separately, then assess
+  service cost and contribution under explicit utilization and selling-price assumptions.
+- Defer VBench. Keep blinded human review, prompt_match and output-contract checks.
+- Withdraw the old 12-attempt VBench schedule. The active CSV has a header and no
+  attempts until endpoint, requests, quotes and bounded execution are pinned.
 
-The two verbatim prompts are S01 / index 262 (a person drinking coffee in a cafe)
-and S02 / index 29 (a tranquil bowl-on-counter scene). Version 0.6 replaces the
-unexecuted S05 / `kitchen` scene with S02; see [selection rationale](METHODOLOGY.md)
-and [source attribution](SOURCE.md).
-Blind human review records `prompt_match` as `pass`, `partial`, or `fail`, with
-scene-specific required elements and a short explanation. Only `pass` can count
-as accepted output, and visual quality, output profile and latency must pass too.
-Both durations use **VBench-Long / long_custom_input**, with actual duration at
-least 5.0 seconds for every file. Incompatible files are reported, not padded or
-silently evaluated with a different scorer. Short/long results remain separate;
-`dynamic_degree` measures motion, not whether a calm scene is better.
+The [previous English protocol](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2)
+and its unexecuted schedule remain in Git history. Retained VBench source assets
+are historical provenance, not the active workload.
 
-## Latest does not mean latest open weights
+## First-stage constraints
 
-Checked against primary sources on 2026-09-15:
+The agreed interactive target remains **at most 3 seconds of end-to-end wait per
+planned second of video: 15 seconds for 5 seconds, 30 seconds for 10 seconds**.
+Measure request submission through final download, including queueing and any
+post-submission cold start. This is an acceptance target, not a measured SLA.
 
-| Family | Candidate | Release/access distinction |
-|---|---|---|
-| H3 | MiniMax H3, Base FL2VA for text-to-video | [Official open release](https://www.minimax.io/news/minimax-h3-open-source); exact checkpoint revision is not frozen yet. |
-| LTX | LTX-2.5 distilled | [Official checkpoint](https://huggingface.co/Lightricks/LTX-2.5); fast open-weight configuration, not a claim about every LTX-2.5 API tier. |
-| Wan | Wan 3.0 video | [Current vendor API documentation](https://www.alibabacloud.com/help/en/model-studio/text-to-video-guide). Open T2V weights found in the [official organization](https://huggingface.co/Wan-AI) remain in the Wan 2.2 family. These are not interchangeable. |
+Quality and prompt adherence must also pass. All failed and late attempts still
+count toward cost. High-throughput batch results do not demonstrate interactive
+latency. A high-end GPU or high utilization is a hypothesis, not proof of profit.
 
-Access labels in the plan distinguish H3/LTX **self-host candidates** from the
-Wan 3.0 **vendor-API candidate**. [Wan 2.2 T2V open weights](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
-would be a separately named alternative, not another label for the same model.
-A proposed first/last-frame Wan workflow is outside the 12-attempt text-only pilot;
-its implementation, input preparation costs and comparison group need a separate decision.
-
-[H3 Max is a fal post-trained variant](https://fal.ai/learn/devs/introducing-h3-max-by-fal),
-not the Base FL2VA checkpoint above. Exact H3 execution and API-reference variants
-are still unresolved. An API reference is not an additional paid invocation unless
-it is explicitly scheduled and its cost reserved within the existing USD 25 cap.
-
-The interpretation of "latest" for Wan needs to be resolved before paid execution.
-Do not replace Wan 3.0 with Wan 2.2, H3 with Hailuo 2.x, or LTX-2.5 with an older
-release simply because an endpoint is cheaper or already available.
-
-On 2026-09-15 the connected Runpod live public-video catalog returned 20 entries,
-with no H3, LTX-2.5 or Wan 3.0 entry. This is a catalog observation, not a claim
-that self-hosting is impossible. No paid requests were made for this inspection.
-Model access, exact profiles, runtime pins and teardown must pass preflight.
-The [execution preflight](PREFLIGHT.md) records a verified CLI/documentation
-discrepancy: the tested Runpod CLI 2.14.0 has no automatic stop/termination flags.
-Do not treat a documentation example or a local ledger as an enforced lease limit.
+The USD 25 cap covers both the API reference and self-host trial, setup, failures,
+optional bounded performance checks and closeout. The full attempt count is
+pending quotes; four attempts would cover one prompt at two durations on both
+backends, but that is not yet a funded schedule.
 
 ## Files
 
-- [METHODOLOGY.md](METHODOLOGY.md): preregistered design, costs, quality and stopping rules.
-- [suite.json](suite.json): exact prompts, planned attempts and unresolved profiles.
-- [pilot-plan.csv](pilot-plan.csv): the 12 scheduled attempts, all initially `not_run`.
-- [SOURCE.md](SOURCE.md): upstream attribution and verification.
-- [PREFLIGHT.md](PREFLIGHT.md): verified launch blockers and the next access steps.
-- [scripts/validate.py](scripts/validate.py): source, schedule and publication checks.
-- [scripts/budget.py](scripts/budget.py): fail-closed reservation ledger; not a provider spending cap.
-- [tests/test_budget.py](tests/test_budget.py): boundary and failure tests.
-- [tests/test_protocol.py](tests/test_protocol.py): scene, review, evaluator and latency consistency checks.
+- [METHODOLOGY.md](METHODOLOGY.md): matching, realistic requests, execution stages,
+  quality, latency, throughput, cost accounting and completion criteria.
+- [suite.json](suite.json): current planning contract and explicit unresolved choices.
+- [pilot-plan.csv](pilot-plan.csv): generated schedule, currently empty.
+- [CLAIMS.md](CLAIMS.md): published-claim verification checklist and evidence template.
+- [PREFLIGHT.md](PREFLIGHT.md): current launch requirements and dated prior observations.
+- [SOURCE.md](SOURCE.md): request-source policy and retained upstream attribution.
+- [scripts/validate.py](scripts/validate.py): offline checks for the current planning contract.
+- [scripts/budget.py](scripts/budget.py): unchanged fail-closed reservation ledger;
+  not a provider-enforced cap.
+- [tests/test_protocol.py](tests/test_protocol.py) and [tests/test_budget.py](tests/test_budget.py):
+  protocol and budget regression checks.
 
-Run offline checks (no GPU, credentials or paid APIs required):
+## Offline checks and publication
 
 ```bash
 python3 scripts/validate.py
@@ -83,20 +66,18 @@ python3 -m unittest discover -s tests -v
 git diff --check
 ```
 
-## Before any paid run
+Regenerate the schedule from the planning contract:
 
-Freeze all model profiles, confirm access, quote an upper bound including tax and
-storage, configure an independent provider-side stop/termination deadline, verify
-artifact export, and reserve the entire exposure in the local ledger. A reservation
-alone cannot stop a provider from charging. If bounded execution cannot be established,
-**do not provision a billable resource**.
+```bash
+python3 scripts/validate.py --plan > pilot-plan.csv
+```
 
-Ledger amounts round exposure upward to cents; keep precise provider billing as the
-authoritative cost record. Never settle a request to zero because a poll timed out:
-its reservation remains outstanding until its final state and charges are verified.
-`validate.py --ready` checks that preflight evidence fields have been filled; it cannot
-independently prove that a provider will enforce the declared limit.
+`python3 scripts/validate.py --ready` deliberately returns exit code 2 while
+the execution plan is not frozen. Passing offline checks does not establish
+provider access, matching equivalence, a price bound or a working stop mechanism.
+The repository currently contains planning/ledger helpers, not an execution runner.
 
-Do not commit credentials, account identifiers, raw billing exports, payment details,
-signed URLs or private logs. Publish only reviewed, redacted evidence and intentional
-video artifacts. Upstream materials retain their original [license](source/LICENSE).
+Do not provision a paid resource until the [preflight requirements](PREFLIGHT.md)
+are met and the whole commitment is reserved. No automatic retries or hidden
+spending expansion. Do not publish secrets, account/payment details, private
+conversations, raw private logs or signed URLs.

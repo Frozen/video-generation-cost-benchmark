@@ -1,11 +1,15 @@
 {
-  "version": "0.6.0",
-  "status": "preflight_no_generations",
-  "task": "text-to-video",
-  "checked_on": "2026-09-15",
+  "version": "0.7.0",
+  "status": "planning_only_no_generations",
+  "updated_on": "2026-09-17",
+  "objective": "api_matched_operator_economics",
   "budget_usd": "25.00",
   "new_compute_threshold_usd": "22.50",
-  "allocation_usd": {"setup_generation": "18.00", "evaluation": "4.00", "storage_closeout_fees": "3.00"},
+  "allocation_usd": {
+    "paired_setup_generation": "18.00",
+    "bounded_load_optimization": "4.00",
+    "storage_closeout_fees": "3.00"
+  },
   "latency_target": {
     "status": "agreed",
     "stage": "pilot",
@@ -14,75 +18,128 @@
     "duration_basis": "planned_target_seconds",
     "application": "each_attempt_including_cold_start_after_submission",
     "comparison": "less_than_or_equal",
-    "limits_seconds": {"short": 15, "long": 30}
+    "limits_seconds": {
+      "short": 15,
+      "long": 30
+    }
   },
-  "latest_policy": "pending_confirmation_latest_release_vs_latest_open_weights",
-  "source": {
-    "repository": "https://github.com/Vchitect/VBench",
-    "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
-    "file": "source/VBench_full_info.json",
-    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd"
+  "comparison": {
+    "pair_id": "P01",
+    "scope": "one_api_matched_pair",
+    "reference_provider": "fal.ai",
+    "candidate_families": [
+      "H3",
+      "LTX-2.5",
+      "Wan"
+    ],
+    "first_candidate_to_investigate": "H3",
+    "selection_status": "pending",
+    "endpoint_id": null,
+    "reference_profile": null,
+    "self_host_profile": null,
+    "matching_status": "pending",
+    "matching_evidence": [],
+    "unknown_provider_settings_policy": "record_unknown_do_not_claim_exact_replica"
   },
-  "scenes": [
+  "request_policy": {
+    "source_suggestions": [
+      "https://awesomevideoprompts.com/"
+    ],
+    "selection_status": "pending",
+    "realistic_customer_use_cases": true,
+    "identical_logical_request_per_pair": true,
+    "asset_hashes_required": true,
+    "source_and_reuse_permissions_required": true,
+    "freeze_before_generation": true,
+    "legacy_vbench_scenes_active": false
+  },
+  "durations": [
     {
-      "id": "S01", "source_index": 262,
-      "prompt": "a person drinking coffee in a cafe",
-      "source_prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24",
-      "rationale": "Recognizable human action and interaction with a drinking vessel; complements the calm object scene.",
-      "prompt_match_requirements": ["A visible person", "Visible drinking action with a vessel, consistent with drinking coffee", "A recognizable cafe setting"]
+      "id": "short",
+      "target_seconds": 5,
+      "native_profiles": null
     },
     {
-      "id": "S02", "source_index": 29,
-      "prompt": "A tranquil tableau of a bowl on the kitchen counter",
-      "source_prompt_sha256": "d8ac5ebe2e640798a7eb927bb124020dea4911c1adbdfaaddeecb9cf3665a6de",
-      "replaces_scene_id": "S05",
-      "rationale": "A specific object and spatial relation in a calm scene; replaces the open-ended kitchen prompt before any generation.",
-      "prompt_match_requirements": ["A recognizable bowl, not only a drinking cup", "The bowl is on a kitchen counter", "A calm tableau; static framing or gentle camera motion is allowed"]
+      "id": "long",
+      "target_seconds": 10,
+      "native_profiles": null
     }
   ],
-  "models": [
-    {"id": "H3", "candidate": "MiniMax H3 Base FL2VA", "access_kind": "self_host_candidate", "input_mode": "text_to_video", "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3", "revision": null, "execution_profile": null, "note": "Base open-weight candidate is not H3 Max, the fal post-trained variant. Exact execution and API-reference variants remain unresolved."},
-    {"id": "LTX", "candidate": "LTX-2.5 distilled", "access_kind": "self_host_candidate", "input_mode": "text_to_video", "repository": "https://huggingface.co/Lightricks/LTX-2.5", "revision": null, "execution_profile": null},
-    {"id": "WAN", "candidate": "wan3.0-video", "access_kind": "vendor_api_candidate", "input_mode": "text_to_video", "repository": null, "revision": null, "execution_profile": null, "note": "Latest vendor API family; not open-weight Wan2.2 and not an approved first/last-frame configuration."}
-  ],
-  "durations": [
-    {"id": "short", "target_seconds": 5, "native_shapes": null, "evaluation_mode": "long_custom_input"},
-    {"id": "long", "target_seconds": 10, "native_shapes": null, "evaluation_mode": "long_custom_input"}
-  ],
-  "seed": 42,
-  "sample_index": 0,
-  "order_per_model": [["S01", "short"], ["S01", "long"], ["S02", "long"], ["S02", "short"]],
-  "planned_attempts": 12,
+  "execution_plan_frozen": false,
+  "planned_attempts": 0,
+  "requests": [],
+  "attempts": [],
   "automatic_retries": 0,
-  "concurrency": 1,
-  "external_upscale_interpolate_crop": false,
-  "prompt_enhancement": false,
+  "measurement_policy": {
+    "interactive_batch_size": 1,
+    "interactive_concurrency": 1,
+    "load_tests": "separate_predeclared_bounded_configurations",
+    "latency_and_throughput_reported_separately": true,
+    "throughput_basis": "accepted_completions_per_wall_clock_interval",
+    "include_pipeline_and_delivery": true,
+    "provider_reported_measured_modeled_separate": true
+  },
   "human_review": {
     "prompt_match": {
-      "labels": ["pass", "partial", "fail"],
+      "labels": [
+        "pass",
+        "partial",
+        "fail"
+      ],
+      "accepted_labels": [
+        "pass"
+      ],
       "unreviewed_value": null,
-      "accepted_labels": ["pass"],
       "method": "blind_manual",
-      "evidence_required": true,
-      "rubric": {
-        "pass": "All scene requirements are clearly met.",
-        "partial": "Some requirements are met, but at least one is absent or ambiguous.",
-        "fail": "No required elements are established, or the result depicts a fundamentally different scene/action."
-      }
+      "evidence_required": true
     },
-    "accept_requires": ["output_profile_valid", "prompt_match_pass", "visual_quality_pass", "latency_pass"]
+    "compare_to_api_reference": true,
+    "accept_requires": [
+      "output_profile_valid",
+      "prompt_match_pass",
+      "visual_quality_pass",
+      "latency_pass"
+    ]
   },
   "evaluation": {
-    "family": "VBench-Long",
-    "mode": "long_custom_input",
-    "minimum_actual_duration_seconds": 5,
-    "actual_duration_check": "required_for_every_file_before_scoring",
-    "incompatible_duration_policy": "record_failure_no_padding_no_silent_evaluator_switch",
-    "source_commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
-    "dimensions": ["subject_consistency", "background_consistency", "motion_smoothness", "dynamic_degree", "aesthetic_quality", "imaging_quality"],
-    "scope": "Custom-input technical pilot, every decodable duration-compatible file; not original per-dimension source groups or official VBench score.",
-    "partitions": ["model_id", "duration_id"],
-    "reuse_original_videos": true,
-    "dynamic_degree_interpretation": "motion_amount_not_quality"
+    "vbench_status": "deferred",
+    "vbench_budget_usd": "0.00",
+    "mode": "blind_human_contract_comparison",
+    "minimum_duration_for_evaluator": null,
+    "reuse_outputs": true
+  },
+  "economics": {
+    "experiment_and_service_costs_separate": true,
+    "utilization_scenarios": [
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "scenario_status": "modeled_not_measured",
+    "utilization_definition": "fraction_of_billed_wall_time_serving_measured_workload",
+    "api_reference_price_is_guaranteed_revenue": false,
+    "api_benchmark_bill_in_recurring_self_host_cost": false,
+    "zero_accepted_output_unit_cost": "undefined",
+    "net_profit_claim": false
+  },
+  "pending_decisions": [
+    "Exact fal.ai endpoint, variant and reproducible self-host matching evidence",
+    "Realistic English requests, permitted assets, payload mappings and native output profiles",
+    "Current quotes, access, independent spending bounds and artifact export",
+    "Funded attempt count, order, repetitions and optional bounded load configurations",
+    "Reviewed executable-plan revision and execution runner"
+  ],
+  "supersedes": {
+    "version": "0.6.0",
+    "commit": "ee78f1f2ec20864139d4c0bda84e37e40938c4e2",
+    "planned_attempts": 12,
+    "executed_attempts": 0,
+    "legacy_vbench_source": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "file": "source/VBench_full_info.json",
+      "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd"
+    }
   }
 }

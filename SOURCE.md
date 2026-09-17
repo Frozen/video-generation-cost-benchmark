@@ -1,27 +1,39 @@
 # Sources and attribution
 
-The unmodified VBench metadata, prompt README and Apache-2.0 license in `source/`
+## Active request selection
+
+The v0.7 API-matched pilot uses realistic requests for the chosen endpoint, not
+the earlier VBench subset. [Awesome Video Prompts](https://awesomevideoprompts.com/)
+is a suggested discovery source. No specific prompt or input asset has been
+selected, copied into the active suite or verified for reuse yet.
+
+Before selection, record the exact source page, retrieval date, attribution and
+reuse/asset permissions. Record the relevant customer use case and why the request
+is representative; inclusion in a curated collection is not evidence of popularity.
+Freeze the final English prompt and input-asset hashes before paid runs, using
+the same logical request on the API and self-host sides.
+
+Provider documentation and published performance claims need their own source
+URLs, dates and conditions in [CLAIMS.md](CLAIMS.md). A cited provider claim is not
+an independently measured result. Do not publish private chat screenshots or quotes.
+
+## Retained VBench provenance — historical, not active
+
+The unmodified metadata, prompt README and Apache-2.0 license in `source/`
 come from [Vchitect/VBench at fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490](https://github.com/Vchitect/VBench/tree/fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490).
 
 `source/VBench_full_info.json` SHA-256:
 `5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd`.
 
-`suite.json` is a local derivative selecting two unchanged prompts. IDs S01/S02,
-sampling, cost limits and acceptance criteria are local additions, not official
-VBench requirements or an endorsement. Source indices are zero-based and meaningful
-only at the pinned commit; upstream entries have no independent official IDs.
+The previous v0.6 protocol selected unchanged prompts at zero-based indices 262
+(S01, coffee) and 29 (S02, bowl on a kitchen counter), replacing index 823
+(S05, kitchen) before any generation. Those local scene IDs, sampling choices
+and acceptance rules were not official VBench requirements. The old protocol and
+schedule are retained in [Git history](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2).
 
-VBench original metric assignments remain in the unmodified metadata. Applying all
-six custom-input scorers to both pilot scenes is a separate diagnostic protocol,
-not a claim to reproduce those assignments or the official full score.
+VBench is deferred in v0.7. Retaining its assets does not schedule a VBench run,
+require a 5-second evaluator boundary or imply official benchmark coverage.
 
-The selected indices are 262 (human drinking coffee) and 29 (bowl on a kitchen
-counter). Version 0.6 replaces the unexecuted S05 / index 823 (`kitchen`) with
-S02 / index 29, keeping the new prompt verbatim and preserving the old protocol in
-Git history. Index 29's original assignment is `temporal_flickering`; that scorer
-is not part of this six-dimension custom-input pilot. No official coverage claim
-is inferred from selecting a prompt from that source group.
-
-Model weights are not redistributed by this repository. Their vendors' licenses
-and access requirements must be checked before downloading or running them.
-Public visibility of locally authored material does not relicense third-party assets.
+Model weights are not redistributed. Check model licenses, service terms and
+input-asset permissions before running or publishing artifacts. Public visibility
+of locally authored material does not relicense third-party assets.

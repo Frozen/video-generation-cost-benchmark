@@ -1,8 +1,52 @@
 # Execution preflight
 
-Checked 2026-09-16. **No generation results; no paid resource was provisioned for
-this pilot.** The USD 25 total ceiling and the three-model objective are unchanged.
-This note is not a successful GPU deployment or a measured cost report.
+Version 0.7, September 17, 2026. **No paid pilot runs or generation results.**
+The USD 25 total cap remains unchanged. The active scope is one API-matched pair,
+not the superseded three-model/12-attempt VBench experiment.
+
+## Current requirements before any paid run
+
+1. Select the exact fal.ai endpoint/variant and corresponding self-host weights,
+   license and workflow. Document matched, different and unknown properties.
+   A shared family name is not proof of implementation equivalence.
+2. Freeze realistic English requests, permitted input assets, payload mappings,
+   output profiles and human acceptance criteria. The endpoint and requests
+   have not been selected; do not fall back to the old VBench scenes.
+3. Pin current prices and published claims. Quote both the API reference and
+   self-host work, including setup, failures, storage, fees and closeout.
+4. Verify access to both services without exposing credentials. Funding Runpod
+   does not establish fal.ai access. Do not assume any prior OAuth/API key works
+   for a new provider or interface.
+5. Establish an independent bound on GPU rental and a known bounded API price.
+   Verify download/export and final cancellation/billing behavior.
+6. Freeze the attempt count, short/long profiles, run order and upper-bound
+   exposure. Baseline batch/concurrency are 1; any load or optimization test
+   needs a separate bounded configuration and allocation.
+7. Publish the reviewed executable-plan revision and reserve the entire
+   commitment within USD 25 before launch.
+
+The 1:3 interactive target still means request submission through final download:
+15 seconds for a planned 5-second clip, 30 seconds for a 10-second clip.
+VBench and its 5-second evaluator boundary are not first-stage launch requirements.
+
+The current suite is deliberately a **planning-only contract**, with no selected
+endpoint, requests or scheduled attempts. The validator reports not ready;
+it does not independently verify credentials, provider controls or matching.
+The repository does not yet contain an execution runner. Filling placeholders
+or passing offline tests must not be mistaken for execution authorization.
+
+## Prior access observations — not a new infrastructure check
+
+On the earlier September 15–16 inspection, hosted Runpod MCP read-only Pod and
+network-volume listings worked and were empty; this was not a balance check.
+A separate CLI API key was not configured in the checked locations. MCP OAuth
+alone did not provide a CLI key. These are dated observations, not a fresh
+verification of current access or balances.
+
+The earlier public-video catalog inspection found no endpoint for the requested
+latest H3/LTX/Wan candidates. That observation does not select the new fal.ai
+reference or establish that self-hosting is impossible. Current access,
+availability and prices must be checked for the selected pair.
 
 ## Runpod CLI: documentation and executable disagree
 
@@ -29,30 +73,6 @@ that Runpod can never schedule deletion. A separate supported mechanism would
 need its own verification before it can satisfy the budget guard. In particular,
 a field mentioned in another SDK is not proof that the provider enforces it.
 
-## Access and launch requirements still open
-
-- Hosted Runpod MCP access works for read-only Pod and network-volume listing.
-  These listings were empty at inspection. They are not a billing balance check.
-- A separate CLI API key is not configured in the checked environment or normal
-  saved configuration locations. OAuth authentication of MCP alone does not give
-  the CLI a key. Obtain a key in [Runpod settings](https://console.runpod.io/user/settings)
-  and configure it locally; do not paste it into an issue, this repository or chat.
-- The exact latest-model profiles, native output durations, runtime/checkpoint
-  pins, bounded exposure and artifact export are not yet validated.
-- Both duration groups now require `VBench-Long / long_custom_input`, with every
-  actual file at least 5.0 seconds. Selecting that mode does not verify model
-  output shapes or make paid execution ready.
-- MiniMax H3 Base FL2VA and fal's H3 Max are distinct variants. The self-host
-  candidate and the API reference must be explicitly identified before comparing
-  costs; the current H3 row is not a verified H3 Max deployment.
-- The latest Wan candidate remains the vendor's [Wan 3.0 API](https://www.alibabacloud.com/help/en/model-studio/text-to-video-guide).
-  Access to an additional provider is not established by funding Runpod.
-  Wan 2.2 open weights are a different candidate and require an explicit scope
-  decision, not a silent fallback.
-- A first/last-frame Wan setup remains outside the text-only schedule; it is not
-  an approved fourth configuration or an authorization for extra attempts.
-
-The next execution step requires the missing access and a verified bounded
-launch path. Until then, leave the 12 scheduled attempts as `not_run`, retain all
-unresolved profile fields, and do not reserve or spend money on an unbounded Pod.
-Neither this preflight note nor the offline test suite completes the experiment.
+This CLI evidence is retained from the earlier preflight; it was not rerun as
+part of the methodology update. Revalidate the chosen launch mechanism before
+paid execution. Do not reserve or spend money on an unbounded Pod.

@@ -1,32 +1,140 @@
-# Video Generation Cost and Quality Testing Methodology
+# Testing Methodology: API-Matched Video Generation and Operator Economics
 
-Version 0.6, updated September 16, 2026. Public pilot protocol for H3 / LTX / Wan.
-The spending cap is **$25 in total**, not per model. No videos have been generated yet.
-This version supersedes the earlier two-model plan: the model count has increased
-to three, but the budget has not. The methodology is published before results.
-Parameters marked pending are not presented as approved or measured.
+Version 0.7, September 17, 2026. **Design/preflight only; no paid runs or results.**
+Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
+All published content is in English.
 
-## 1. Research questions
+## 1. Objective and scope change
 
-The objective is to find the cheapest tested configuration that produces acceptable
-video within the allowed wait time. Speed and quality are acceptance requirements;
-cost determines the choice among configurations that meet those requirements.
+The business objective is to maximize video operators' profit. The technical
+question is: **can we deliver the service of a specific fal.ai endpoint using a
+corresponding self-hosted open-weight deployment, at a lower fully accounted cost,
+with acceptable quality and response time?**
 
-1. What does each configuration cost per accepted video, including setup,
-   loading, failures, idle time, evaluation and storage?
-2. How do generation time and cost per output second differ between short and long clips?
-3. Do the outputs meet the technical requirements for human review and VBench
-   evaluation without generating them again?
+This replaces the v0.6 cross-model quality pilot. H3, LTX and Wan remain candidate
+families, not three mandatory arms of the first experiment. Start with **one
+matched pair: one fal.ai endpoint and one self-hosted deployment**. H3 is the
+initial candidate to investigate; the exact variant and endpoint are not selected.
 
-We compare configurations: model + version + deployment method + GPU/workflow.
-A managed API and a self-hosted GPU are different deployment options. When both
-are included, conclusions apply to those configurations, not to model weights
-in isolation. API latency is not evidence of single-GPU performance.
+The old 12-attempt schedule and VBench prompt subset are no longer active.
+The earlier English protocol is retained in [Git history](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2).
+The active schedule is empty until endpoint, realistic requests, profiles and
+cost bounds are pinned. Zero scheduled attempts means "not scheduled", not "complete".
 
-### Agreed stage-one target: at most 3 seconds of waiting per second of video
+VBench is **deferred**, with no first-stage automated VBench budget or requirement
+that every file be at least 5 seconds. Retain outputs for possible later analysis.
+Human review still checks that the service is usable and has not materially
+degraded relative to the matched API output; this is not a cross-model ranking.
 
-For the first stage, the fixed target is **1:3 — video duration : total wait time**.
-This is a pilot acceptance requirement, not measured performance or an SLA promise.
+High utilization, high-end GPUs and complex workflows are hypotheses to test,
+not assumptions of profitability or authorization to rent a particular GPU.
+
+## 2. Select and match a service, not just a model name
+
+First identify an exact fal.ai endpoint and its documented request/response
+contract, current price and published performance claims. Record source URLs,
+access dates, versions and the conditions attached to each claim in [CLAIMS.md](CLAIMS.md).
+
+Use this matching checklist before paying:
+
+| Property | Required comparison evidence |
+|---|---|
+| Model identity | Family, variant, checkpoint/revision, post-training, license and self-host access |
+| Endpoint and workflow | Exact endpoint ID/version, workflow stages and available source/runtime pins |
+| Inputs | Identical prompt text and input image/video/audio bytes; record hashes and payload mappings |
+| Output contract | Task type, requested duration, actual duration tolerance, dimensions/aspect ratio, fps, codec and audio |
+| Generation settings | Seed behavior, steps/iterations, sampler, guidance, precision and exposed controls |
+| Additional stages | Prompt rewriting, conditioning, interpolation, upscaling, audio, encoding and delivery |
+| Infrastructure | GPU type/count/VRAM, CPU/RAM, storage, region, runtime/container and hourly billing unit |
+| Service behavior | Cold/warm start, queueing, batching, concurrency, limits, errors and retry policy |
+| Price | Exact tier and billing unit, date, promotion/credit treatment, fees and per-request quote |
+
+Classify each property as matched, different, or unknown, with evidence. Different
+field names may be mapped explicitly; they do not justify changing the logical
+request. Where both interfaces expose the same seed semantics, use the same seed,
+but do not promise identical noise or pixel-identical outputs.
+
+Do not call a Base checkpoint equivalent to a Max/post-trained API variant merely
+because they share a family name. Likewise, Wan 2.2 and Wan 3.0 are not aliases.
+A first/last-frame workflow is eligible only as an explicitly identified service
+with the same input assets on both sides; it is not silently substituted for T2V.
+
+Undisclosed provider internals remain unknown. Distinguish request-contract
+matching from proven implementation equivalence. If the endpoint's weights or
+essential workflow cannot be reproduced, record an unmatched/partially matched
+comparison, not a verified replica. A different model/variant requires a newly
+named comparison pair and an explicit scope decision.
+
+## 3. Realistic, frozen customer requests
+
+Select representative requests for the chosen service, using realistic examples
+such as the suggested [Awesome Video Prompts collection](https://awesomevideoprompts.com/).
+The collection is a candidate source, not proof that a prompt is popular or
+representative of our customers. Document the use case and selection rationale.
+
+For every selected request, freeze before generation:
+
+- Request ID, original source URL, retrieval date and reuse/asset permissions.
+- Exact English prompt; save the final submitted text and its hash.
+- Input assets and hashes, task type, seed if supported and all output settings.
+- API payload and corresponding self-host payload, including explicit differences.
+- Required prompt elements and an acceptance checklist for visual/audio defects.
+
+Do not select prompts after seeing which backend handles them best. Preserve the
+chosen submitted text across backends. If prompt enhancement is part of the
+reference service, include it in the workflow, timing and cost; record the
+expanded prompt where available rather than silently disabling or rewriting it.
+
+Keep approximately 5- and 10-second duration targets when the selected endpoint
+supports them. Pin actual native profiles and tolerances before execution; do not
+pad, crop or interpolate just to make results look equivalent. The old VBench
+5-second evaluator boundary no longer determines the request design.
+
+Both sides receive the same logical request and the same assets. Preparing any
+required input assets counts toward experiment cost; production cost and customer
+latency include that preparation if the operator, rather than the customer,
+must provide it. Record this boundary explicitly.
+
+## 4. Staged execution within USD 25
+
+| Stage | Work | Exit evidence |
+|---|---|---|
+| A — specification | Inventory claims, select one endpoint, map the self-host deployment, freeze requests and quotes | Matching matrix and bounded executable plan |
+| B — paired smoke test | Run the same request once through each backend, with batch 1 and one request at a time | Downloaded outputs, actual charges, timings and human review |
+| C — interactive comparison | Cover supported short/long requests and explicitly budgeted repetitions on the same pair | Per-request end-to-end latency and accepted-output cost |
+| D — bounded performance checks | If funds remain, measure batching/concurrency and selected optimization changes | Measured throughput, latency, quality and cost per configuration |
+| E — economics and closeout | Reconcile charges, model utilization scenarios, export artifacts and stop test resources | Auditable cost summary and an honest coverage/limitations report |
+
+The two sides of a paired request are **two separately billed attempts**. A
+short/long pair on both backends would require four attempts for one prompt,
+before repetitions, load tests, failures or additional configurations. This is
+counting guidance, not a funded schedule or a new fixed attempt count.
+
+Freeze the exact attempt count, run order, per-stage budget, load-test size and
+maximum wall time in a new plan revision after quotes. Alternate or counterbalance
+backend order where feasible. Label cold starts and compilation; do not hide
+warm-up expense or mix warm and cold measurements.
+
+Baseline batch size is 1 and interactive concurrency is 1. Any increase in batch
+size or concurrency is a separate, bounded load configuration with its own ID,
+request count, timeout, price bound and approval. It is not an unlimited stress test.
+
+Reproduce the reference settings first. Then test a small, predeclared set of
+step counts or other optimizations if budget permits. Record each configuration
+and its quality/performance trade-off; "best tested" is not "globally optimal".
+Include all pipeline stages, not only denoising. Do not change weights/settings
+after review and present the result as the same baseline configuration.
+
+No automatic retries. Every additional attempt needs a new record and reservation.
+Preserve failures rather than replacing them with a successful rerun.
+If the remaining budget cannot cover both sides and safe closeout, do not start
+the pair. Unmeasured load/optimization claims remain unverified.
+
+## 5. Latency, throughput and acceptance
+
+### Interactive target: 1 second of video per at most 3 seconds of waiting
+
+The previously agreed first-stage target remains in force:
 
 | Planned video duration | Maximum end-to-end wait |
 |---|---:|
@@ -38,252 +146,163 @@ latency_limit_seconds = 3 × planned_video_seconds
 latency_pass = end_to_end_seconds <= latency_limit_seconds
 ```
 
-Measure from request submission to the fully downloaded video file, including
-queueing, preparation within the request, generation, encoding and downloading.
-Model inference time alone does not replace this measurement. Record initial
-environment setup before the request separately; a cold start after submission
-counts toward the wait. Label cold and warm requests separately, but apply the
-same threshold. Subsequent human review and VBench evaluation do not count toward
-the wait for the video; their costs remain within the total budget.
+Measure from request submission to the fully downloaded final video. Include
+queueing, post-submission cold start, request preparation, inference, extra
+pipeline stages, encoding and delivery. Record component timings where available;
+an unavailable component is unknown, not zero. Setup before the request is
+recorded separately but remains an expense.
 
-Apply the threshold to each attempt, not just the average. For the current plan,
-use the 15- and 30-second limits above and record actual native output duration
-separately. Do not increase the limit retroactively because the output is longer
-or startup is slow. Assess GPU choices and optimizations against this target
-while retaining the quality requirements.
+Apply the threshold per interactive attempt, not just to an average or denoising
+time. Keep the planned 15/30-second limits even if actual native duration differs
+slightly within an approved profile. Late files are marked latency_failed and
+excluded from accepted interactive output, but their costs remain included.
+Missing timing is not a pass. Also report API latency independently: an API
+reference can fail our target too; it does not reset that target.
 
-Record a threshold breach as `latency_failed`: even a visually acceptable clip
-then fails overall stage-one acceptance. Errors and missing measurements do not
-count as success. Retain all costs and generated files in the report. Exceeding
-the threshold does not mean the provider has stopped the job or stopped charging:
-verify completion or cancellation separately, without automatic retries.
+For throughput, measure completed and accepted clips per wall-clock interval,
+accepted video seconds per interval, batch size, concurrency, offered load,
+queueing and errors. Also report latency at that load. Include failures and
+idle gaps in the measurement window, and wait for or account for every submitted
+job at the cutoff. Do not obtain throughput by dividing one clip's duration by
+one inference measurement, or equate batch size with request concurrency.
 
-Published competitor timings provide context; they do not replace the agreed
-threshold. The specific reference API and a comparable profile for the cost
-comparison still need to be pinned. The $25 cap and independent rental limit
-remain in effect.
+Keep batch-service and interactive-service results separate. A high-throughput
+configuration that misses 15/30 seconds cannot be presented as meeting the
+interactive target. Any alternative batch-service latency requirement must be
+explicitly agreed. Small samples do not establish p95, stable capacity or an SLA.
 
-## 2. Models and selection policy
+### Lightweight human review, not VBench
 
-H3 means MiniMax H3. The self-hosted text-to-video candidate is Base FL2VA.
-LTX means LTX-2.5, with distilled as the candidate variant. For Wan, the latest
-verified API family is 3.0, while the open text-to-video weights found belong
-to the 2.2 family. See the [README](README.md) for sources and distinctions.
+Check full decoding, output-contract compliance, prompt_match (pass/partial/fail),
+visual quality and audio where the selected service includes it. Use the same
+predeclared checklist on both backends. Review blinded to backend and price,
+twice at 1× speed; unresolved disagreement requires a second reviewer and does
+not count as acceptance.
 
-Explicitly identify the family, variant, deployment method and input type:
+Record whether the self-host output has a material defect or missing capability
+relative to the API reference, with a short reason. Different composition alone
+is not a defect unless specified by the request. Both outputs may fail; API origin
+does not make an output automatically acceptable.
 
-| Pilot label | Current candidate | Deployment and input | Do not conflate with |
-|---|---|---|---|
-| H3 | MiniMax H3 Base FL2VA | Self-hosted, text | H3 Max by fal is a separate post-trained variant; its comparison role is unresolved |
-| LTX | LTX-2.5 distilled | Self-hosted, text | Other weight variants and API tiers without separate identification |
-| WAN | wan3.0-video | Vendor API, text | Wan 2.2 open weights and frame-conditioned workflows |
+Only prompt_match=pass, valid output, acceptable quality and passing interactive
+latency count toward accepted interactive output. Unreviewed values remain null.
+Retain partial/fail results and all their expenses. No VBench Total Score,
+cross-model quality ranking or statistical equivalence claim is made.
 
-Open weights alone do not make Wan 2.2 equivalent to Wan 3.0 or prove that it is
-cheaper. The proposed first/last-frame workflow remains outside these 12 attempts:
-it requires a separate configuration ID, a verified workflow and equivalent input
-conditions across the compared solutions. If input frames must also be generated,
-include their preparation in that workflow's cost and end-to-end wait. This
-workflow is not yet approved and does not authorize additional paid attempts.
+## 6. Verify published claims
 
-The choice between "latest release overall" and "latest open weights" must be
-explicit. Until it is resolved, do not substitute Wan 2.2 for 3.0. Likewise, do not
-silently substitute Hailuo for H3 or an older release for LTX-2.5.
+The research program covers published hardware cost, batch throughput, interactive
+latency, iteration/step choices and additional pipeline measurements relevant to
+each selected deployment. [CLAIMS.md](CLAIMS.md) records the verification checklist.
 
-Before execution, pin each model's repository and revision/commit, weight/workflow
-hashes, API version or model ID, GPU type and count, price and billing unit, region,
-container digest, libraries/driver, precision, steps/sampler/guidance,
-offload/tiling/compilation settings, all internal stages, encoder and prompt processing.
-For hidden API parameters, record "not disclosed by provider" rather than guessing.
-A funded Runpod balance does not establish access to another paid service.
+For each claim, retain the source, publication/access dates, original conditions,
+measurement boundary, reported value, reproduction setup and observed result.
+Separate provider-reported, independently measured and modeled values.
+Classify the result as supported under matched conditions, not reproduced,
+not comparable, or not tested. Do not call a mismatched resolution, workflow,
+GPU count or timing boundary a reproduction.
 
-## 3. Inputs and the 12-attempt schedule
+USD 25 funds an initial feasibility check, not verification of every claim across
+all models and hardware. Publish omissions explicitly. Later matched pairs or
+longer load tests need separately agreed scope and funding.
 
-Source: VBench, commit `fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490`.
-Submit prompts verbatim, without translation, enhancement, or added style or actions.
+## 7. Cost accounting and operator economics
 
-| Local ID | Zero-based source index | Prompt |
-|---|---:|---|
-| S01 | 262 | a person drinking coffee in a cafe |
-| S02 | 29 | A tranquil tableau of a bowl on the kitchen counter |
+Keep two views separate:
 
-S01 tests a recognizable human action and interaction with a drinking vessel.
-S02 adds a calm object scene with a specific object and spatial relationship.
-These cover two different scene types without requiring identical compositions.
-The alternative at index 259 (`a person washing the dishes`) is valid, but repeats
-the human–dishware interaction scenario, so it is not included in this small pilot.
-
-Before any generation, S05 / index 823 (`kitchen`) was replaced with S02 / index 29:
-the previous one-word prompt specified too few verifiable elements. The new prompt
-is preserved verbatim; its index, hash, new run IDs and filenames are recorded in
-the plan. The old scene ID is not reused, and Git retains the change history.
-
-For each model: S01 short, S01 long, S02 long, S02 short; seed 42,
-sample_index 0. Thus, 2 scenes × 2 durations × 3 models = 12 attempts.
-The target is 30 seconds of video per model and 90 seconds overall; actual durations
-come from the files. The schedule and identifiers are generated deterministically
-from suite.json.
-
-The targets are approximately 5 seconds for short and 10 seconds for long. The
-initially proposed self-hosted profile of 1280×736 at 24 fps is not claimed to work
-across all models: exact dimensions, fps, frame counts and actual durations must
-be fixed after checking the interfaces. If no common native profile exists,
-explicitly agree on and publish the differences. Do not crop, interpolate or
-stretch outputs to create an appearance of equivalence.
-Both native profiles must produce at least 5.0 seconds for the shared VBench-Long
-evaluator. Check actual file duration, not only the requested number of seconds.
-Choosing an evaluator neither increases the 15/30-second wait limits nor verifies
-compatibility of model profiles that have not yet been tested.
-
-Use one concurrent request, batch size 1 and zero automatic retries. Audio is not
-evaluated; if generation necessarily includes audio, its cost remains part of
-the model's cost. Within each model, short/long changes only frame count/duration.
-The same seed does not guarantee identical noise across models or bitwise reproducibility.
-
-Do not change model weights or the environment after inspecting output quality.
-Retain failed attempts in the report. A diagnostic retry requires a separate record
-and budget reservation; it does not replace the failure or allow selection of the
-"best take." Fix the model execution order before running.
-
-## 4. Measurements and retained artifacts
-
-For every attempt, record run_id, profile, seed, exact prompt, submission/receipt
-timestamps, queue delay if disclosed, generation and export times, cold/warm/unknown
-status, compilation, actual dimensions/fps/frame_count/duration, file SHA-256 and status.
-Also record end_to_end_seconds, latency_limit_seconds, the per-attempt latency result,
-prompt_match and a short explanation of the human review.
-Overall acceptance requires a valid output profile, prompt_match=pass, acceptable
-visual quality and a passing latency result. One short and one long clip per scene
-provide only a preliminary indication of scaling. Do not infer p95 latency, annual
-GPU capacity or a reliable ranking from this sample.
-
-File layout: `videos/<model>/<short|long>/<exact prompt>-0.mp4`. Preserve filenames
-and sample_index; different models and durations must not overwrite each other.
-Keep the original MP4 unchanged; VBench uses separate derived copies.
-
-Acceptance checks include complete decoding, conformity to the declared output
-profile, intact human/vessel appearance for S01, and a recognizable bowl with stable
-bowl/counter geometry for S02. A static S02 scene is not inherently defective;
-gentle camera motion is allowed. Do not penalize differences in color, interior
-or composition that the prompt does not specify.
-Record major defects lasting at least 0.5 seconds; do not add criteria after seeing
-results. Review each video twice at 1× speed without model names or prices. Refer
-disputes to a second reviewer; without agreement, the output is not accepted.
-Automatic decoding does not replace human acceptance; before review, the status
-is manual_review_pending.
-
-`prompt_match` is a separate human judgment of prompt adherence, not a VBench metric:
-
-| Label | Criterion |
-|---|---|
-| pass | All required scene elements are clearly present |
-| partial | Some elements are present, but at least one is absent or ambiguous |
-| fail | No required elements are established, or the result depicts a fundamentally different scene/action |
-
-S01 requires a visible person, a visible drinking action with a vessel consistent
-with drinking coffee, and a recognizable cafe setting. The drink's composition
-cannot reliably be established from pixels; no evidence beyond this visual
-criterion is required.
-S02 requires a recognizable bowl, not merely a drinking cup, positioned on a
-kitchen counter in a calm composition. These requirements are also pinned in suite.json.
-
-Before review, the value is null, not an automatic pass; disputes go to a second
-reviewer. Outputs marked `partial`, `fail` or not yet reviewed do not count as
-accepted output in cost calculations. Their costs and diagnostic scores remain
-in the report.
-
-## 5. VBench evaluation on the same files
-
-Use six diagnostic scorers: subject_consistency, background_consistency,
-motion_smoothness, dynamic_degree, aesthetic_quality and imaging_quality.
-Evaluate every decodable pilot file with a compatible duration in custom-input
-mode, including outputs rejected for prompt_match, quality or latency.
-Group results separately by model and duration: up to two source files per
-metric/group. These two scenes do not cover the original official prompt groups
-for every metric. This is a technical custom-input pilot, not an official
-source-mapped VBench score.
-
-The pinned [FAQ](https://github.com/Vchitect/VBench/blob/fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490/README-FAQ.md)
-recommends VBench-Long for durations of at least 5.0 seconds. Fix
-**VBench-Long / long_custom_input** for both profiles. Every file must have an
-actual duration of at least 5.0 seconds. Otherwise, record the incompatibility and
-the reason for the missing score; do not pad/stretch the file, silently switch
-evaluators or purchase an automatic retry. Pin the evaluator, weights,
-preprocessing and settings before execution and keep them identical across models
-within each comparison group. Do not pool short and long results or claim their
-scores are fully comparable merely because they share an evaluator.
-
-In the original VBench metadata, index 29 belongs to temporal_flickering, which
-is not among our six diagnostic scorers. Selecting this prompt does not add a
-seventh metric or turn this small custom-input pilot into an official evaluation
-covering every VBench dimension.
-
-Do not average the six metrics into a homemade Total Score. Higher dynamic_degree
-does not mean better quality for a still scene. Report decoding and evaluator
-failures separately from quality: no fabricated zeros and no hidden omissions.
-Derived evaluator segments do not count as additional generated videos.
-
-## 6. Cost accounting and the fixed spending cap
+1. **Experiment spending:** all money spent to conduct this pilot, capped at USD 25.
+2. **Service economics:** recurring self-host cost and potential contribution at a
+   stated selling price and utilization. This is a model, not observed profit.
 
 ```text
-C_total = C_setup + C_generation + C_evaluation + C_storage + C_other_required
-unit_cost = C_total / N_accepted
-cost_per_accepted_minute = C_total / (accepted_output_seconds / 60)
+C_experiment = C_API_reference + C_self_host_trial + C_shared_test + C_closeout
+C_experiment <= 25 USD
 ```
 
-N_accepted and accepted_output_seconds include only outputs that pass the output
-profile check, prompt_match=pass, human quality review and the latency threshold.
-Late outputs are excluded from accepted output, but not from C_total.
+Include setup, running-GPU downloads, warm-up, compilation, failures, idle rental,
+CPU/RAM, input preparation, extra pipelines, export, storage and required fees.
+Avoid double counting resources already included in the rental price.
+Reconcile quoted prices with actual bills. A deposit is not an experiment expense.
+Report credit/promotion subsidy separately from unsubsidized resource cost.
+Labor is outside the USD 25 infrastructure cap; disclose its treatment in any
+business model rather than claiming that infrastructure contribution is net profit.
 
-If there is no accepted output, unit cost is undefined. Include all paid failures,
-waiting time, model downloads while a GPU is running, cold starts, compilation,
-export and evaluation. An account balance or deposit is not itself an experiment
-expense. Show promotional credits separately: resource cost before subsidy and
-out-of-pocket cost after subsidy. Labor is outside the agreed $25 infrastructure budget.
+Do not charge the API benchmarking bill to each future self-hosted customer clip.
+Report trial all-in cost per accepted clip separately for each backend, allocating
+shared trial expenses by documented usage or an explicitly stated allocation.
+Zero accepted output means undefined unit cost, not a zero-cost success.
 
-The full cost of the three-model plan has not yet been measured. The earlier
-two-model estimate does not automatically apply to three models. The working
-allocation is up to $18 for setup and generation, $4 for evaluation and $3 for
-storage/export/shutdown and mandatory fees; all categories are within the $25 cap.
-Reallocation is allowed before committing expenditure; increasing the total cap is
-not. Allocate shared expenses according to measured execution time for the relevant
-worker. Indivisible shared costs are split equally across the three models under
-a rule fixed in advance and shown as a separate line item.
+For each fixed output/workflow/load profile, report these utilization scenarios
+as **estimates**, initially 25%, 50%, 75% and 100%:
 
-Before every paid action, reserve **the upper bound of the entire commitment**,
-including a potentially unfinished request, taxes, disks and closeout.
-Count already reserved jobs even if their charges have not yet appeared in billing.
-Do not schedule new compute beyond $22.50 of aggregate spending exposure;
-preserve the remainder for closeout. Do not pay an unknown price or start work
-whose completion and shutdown cannot fit within the remaining budget.
+```text
+R = measured accepted clips per busy hour at the stated load and service requirement
+u = assumed fraction of billed wall-clock time spent serving that measured workload
+Q(u) = u × R
+F = recurring fixed cost per billed hour, including idle rental
+v = variable cost per accepted clip not already included in F
+P_net = assumed net receipts per accepted clip after explicitly modeled deductions
 
-A rented GPU requires a verified independent stop/termination deadline that still
-works if the agent session is lost. An API requires a known price for a bounded
-request. Automatic account top-ups do not provide additional experiment budget.
-The ledger controls whether work may start; it is **not a provider-enforced guarantee**.
-If an infrastructure/provider-side bound cannot be established, paid execution is
-prohibited. A temporary loss of visibility does not mean a job has finished and
-does not justify retrying it.
+service_cost_per_accepted_clip(u) = F / Q(u) + v
+contribution_per_hour(u) = Q(u) × (P_net - v) - F
+break_even_utilization = F / (R × (P_net - v))
+```
 
-Stop after two consecutive technical failures, loss of cost control, an incompatible
-profile or approaching the budget cap. Verify export before closing temporary
-resources. Delete only this test's resources after saving the required files;
-leave unrelated resources untouched.
-If the full test does not fit, publish the incomplete coverage, do not exceed $25,
-and do not declare the objective complete. Neither stopping a Pod nor reaching
-a zero balance guarantees data preservation or the end of all storage charges.
+These simplified formulas require R > 0 and u > 0; break-even also requires
+P_net > v. A break-even utilization above 100% is not feasible under those
+assumptions. At zero accepted output, report losses and undefined unit cost.
+Here u is service workload utilization, not a GPU-monitor utilization percentage.
 
-## 7. Publication and completion
+Report setup amortization, startup/scale-down effects, capacity limits and any
+omitted overhead separately; add them to F or v once an allocation is specified.
+Different durations/profiles need separate calculations or an explicitly weighted
+request mix. Do not assume ideal linear scaling with GPUs or batches.
+The 100% scenario is an upper-bound scenario, not evidence of customer demand.
 
-Before execution, publish the methodology, prompt source, suite and protocol commit.
-After execution, publish retained original outputs/checksums, exact profiles and
-environment, attempt log, a redacted billing summary, six diagnostic metrics,
-human acceptance results, limitations and actual cost.
-Do not publish keys, payment details, personal account identifiers, private logs
-or temporary signed URLs.
+Use the matched API's dated price as a market reference, not guaranteed revenue
+or proof of customer willingness to pay. Show price headroom and contribution
+under explicit selling-price assumptions. Do not label this a net-profit forecast.
 
-Publication readiness and experiment completion are different states. Completion
-requires results for all three declared models, transparent recording of
-failures/missing results, quality evaluation, verified total spending of no more
-than $25, and no remaining paid compute or unapproved storage. Publishing the
-protocol alone does not complete the experiment.
-A larger run and the full VBench leaderboard evaluation are outside this budget.
+### Spending controls
+
+Working allocation: $18 for setup and the paired generation comparison, $4 for
+optional bounded load/optimization checks, and $3 for storage, export, shutdown
+and mandatory fees. The former VBench allocation is repurposed; VBench receives $0
+in this stage. Reallocation is allowed before commitments, never above $25.
+
+Reserve the upper bound of every commitment before spending, including outstanding
+requests, fees, storage and closeout. Do not schedule new compute beyond $22.50
+of aggregate exposure. Both paid API calls and self-host resources use the same
+budget ledger; performance checks are generation work, not free diagnostics.
+
+A rented GPU needs a verified independent stop/termination deadline that survives
+session loss; an API request needs a known bounded price. The local ledger is
+an admission check, not a provider spending cap. No unbounded rental, unknown-price
+request, automatic budget expansion or implicit retry is allowed.
+
+A latency timeout is not proof of provider cancellation or stopped billing.
+Verify final job state and charges. Stop after two consecutive technical failures,
+loss of cost control, incompatible output or budget exhaustion. Export and verify
+artifacts before closing only the test's resources; preserve unrelated resources.
+Report incomplete coverage rather than exceeding the cap.
+
+## 8. Deliverables and completion
+
+Publish the endpoint/self-host matching matrix, frozen requests and hashes,
+configuration pins, claim-verification register, per-attempt timings and charges,
+blinded quality review, measured throughput where available, utilization scenarios
+with assumptions, and a limitations/next-test recommendation.
+
+Keep original output files, pipeline intermediates needed for diagnosis, redacted
+request/response records and billing evidence. Use unique pair/configuration/
+request/attempt IDs so baselines, optimizations and failures cannot overwrite
+one another. Do not publish credentials, payment details, account identifiers,
+private conversations, private logs or signed URLs.
+
+Completion of the first stage means the agreed first matched-pair plan is accounted
+for, failures and omissions are explicit, required quality/cost/timing evidence is
+reported, total spending is verified at no more than USD 25, and no paid compute
+or unapproved storage remains. It does not require all three model families,
+a VBench run, proof of maximum profit or verification of every published claim.
+If matching or bounded access is impossible, publish a feasibility blocker, not
+a successful comparison. Publishing this methodology alone is not execution.

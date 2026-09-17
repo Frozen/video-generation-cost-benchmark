@@ -1,125 +1,147 @@
-"""Validate the public protocol offline. --ready additionally checks launch gates."""
+"""Validate the current planning-only protocol; never launch paid work."""
 
 import argparse
 import csv
 import hashlib
 import json
+from decimal import Decimal
 from pathlib import Path
 import re
-import sys
-from decimal import Decimal
 
 ROOT = Path(__file__).resolve().parents[1]
+PLAN_FIELDS = [
+    "run_id", "pair_id", "request_id", "backend", "phase", "configuration_id",
+    "duration_id", "target_seconds", "payload_sha256", "upper_bound_usd",
+    "status", "output_path",
+]
 UPSTREAM_HASHES = {
+    "source/VBench_full_info.json": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
     "source/LICENSE": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
     "source/PROMPTS_README.md": "7f90b414d60e4075e5c21685aaa046686e7a11ca52f36872353744b919b1198a",
 }
+LATENCY_TARGET = {
+    "status": "agreed",
+    "stage": "pilot",
+    "max_wait_seconds_per_video_second": 3,
+    "measurement": "request_submission_to_download_complete",
+    "duration_basis": "planned_target_seconds",
+    "application": "each_attempt_including_cold_start_after_submission",
+    "comparison": "less_than_or_equal",
+    "limits_seconds": {"short": 15, "long": 30},
+}
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
 
 
 def planned_rows(suite):
-    scenes = {scene["id"]: scene for scene in suite["scenes"]}
-    durations = {duration["id"]: duration for duration in suite["durations"]}
-    for model in suite["models"]:
-        for scene_id, duration_id in suite["order_per_model"]:
-            yield {"run_id": f"pilot_{model['id']}_{scene_id}_{duration_id}_42_1",
-                   "model_id": model["id"], "scene_id": scene_id,
-                   "candidate": model["candidate"], "access_kind": model["access_kind"],
-                   "input_mode": model["input_mode"],
-                   "duration_id": duration_id, "target_seconds": durations[duration_id]["target_seconds"],
-                   "seed": suite["seed"], "sample_index": suite["sample_index"],
-                   "prompt": scenes[scene_id]["prompt"], "status": "not_run",
-                   "output_path": f"videos/{model['id']}/{duration_id}/{scenes[scene_id]['prompt']}-0.mp4"}
+    return list(suite["attempts"])
 
 
 def validate(suite):
-    for name, expected_hash in UPSTREAM_HASHES.items():
-        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected_hash, name
-    raw = (ROOT / suite["source"]["file"]).read_bytes()
-    assert hashlib.sha256(raw).hexdigest() == suite["source"]["sha256"], "source hash mismatch"
-    upstream = json.loads(raw)
-    assert {model["id"] for model in suite["models"]} == {"H3", "LTX", "WAN"}
-    assert len(suite["models"]) == 3 and len(suite["scenes"]) == 2 and len(suite["durations"]) == 2
-    assert suite["task"] == "text-to-video"
-    expected_access = {"H3": "self_host_candidate", "LTX": "self_host_candidate", "WAN": "vendor_api_candidate"}
-    for model in suite["models"]:
-        assert model["input_mode"] == "text_to_video", "first/last-frame inputs require a separate protocol"
-        assert model["access_kind"] == expected_access[model["id"]], "candidate access label mismatch"
-    assert [(scene["id"], scene["source_index"]) for scene in suite["scenes"]] == [("S01", 262), ("S02", 29)]
-    for scene in suite["scenes"]:
-        assert upstream[scene["source_index"]]["prompt_en"] == scene["prompt"]
-        assert hashlib.sha256(scene["prompt"].encode()).hexdigest() == scene["source_prompt_sha256"]
-        assert not any(char in scene["prompt"] for char in ("/", "\\", "\n", "\r")), "unsafe filename"
-        assert isinstance(scene["rationale"], str) and scene["rationale"].strip(), "missing scene rationale"
-        requirements = scene["prompt_match_requirements"]
-        assert isinstance(requirements, list) and len(requirements) == 3
-        assert all(isinstance(item, str) and item.strip() for item in requirements)
+    require(suite["version"] == "0.7.0", "unsupported protocol revision")
+    require(suite["status"] == "planning_only_no_generations", "not a planning-only contract")
+    require(suite["objective"] == "api_matched_operator_economics", "wrong comparison objective")
+    require(Decimal(suite["budget_usd"]) == Decimal("25.00"), "total cap must remain USD 25")
+    require(Decimal(suite["new_compute_threshold_usd"]) == Decimal("22.50"), "closeout guard changed")
+    require(suite["allocation_usd"] == {
+        "paired_setup_generation": "18.00",
+        "bounded_load_optimization": "4.00",
+        "storage_closeout_fees": "3.00",
+    }, "allocation differs from the published plan")
+    require(suite["latency_target"] == LATENCY_TARGET, "agreed end-to-end 1:3 limits changed")
+    require([(d["id"], d["target_seconds"]) for d in suite["durations"]] ==
+            [("short", 5), ("long", 10)], "duration targets changed")
+    require(all(d["native_profiles"] is None for d in suite["durations"]),
+            "native profiles need a reviewed execution-plan revision")
+
+    pair = suite["comparison"]
+    require(pair["pair_id"] == "P01" and pair["scope"] == "one_api_matched_pair",
+            "first stage must not silently become a cross-model sweep")
+    require(pair["reference_provider"] == "fal.ai", "reference provider changed")
+    require(pair["candidate_families"] == ["H3", "LTX-2.5", "Wan"], "candidate scope changed")
+    require(pair["first_candidate_to_investigate"] == "H3", "initial candidate changed")
+    require(pair["selection_status"] == pair["matching_status"] == "pending",
+            "matching needs an evidence-backed plan revision")
+    require(all(pair[field] is None for field in
+                ("endpoint_id", "reference_profile", "self_host_profile")),
+            "deployment selection is not yet frozen")
+    require(pair["matching_evidence"] == [], "new matching evidence needs plan review")
+    require(pair["unknown_provider_settings_policy"] == "record_unknown_do_not_claim_exact_replica",
+            "unknown implementation details cannot establish equivalence")
+
+    policy = suite["request_policy"]
+    require(policy["selection_status"] == "pending", "request selection is not yet frozen")
+    for field in ("realistic_customer_use_cases", "identical_logical_request_per_pair",
+                  "asset_hashes_required", "source_and_reuse_permissions_required",
+                  "freeze_before_generation"):
+        require(policy[field] is True, "request policy missing: " + field)
+    require(policy["legacy_vbench_scenes_active"] is False, "old scenes must not remain active")
+    require(suite["execution_plan_frozen"] is False, "paid execution needs a new reviewed plan")
+    require(suite["planned_attempts"] == 0 and suite["requests"] == suite["attempts"] == [],
+            "unselected requests must not produce a funded schedule")
+    require(suite["automatic_retries"] == 0, "automatic retries are not authorized")
+
+    require(suite["measurement_policy"] == {
+        "interactive_batch_size": 1,
+        "interactive_concurrency": 1,
+        "load_tests": "separate_predeclared_bounded_configurations",
+        "latency_and_throughput_reported_separately": True,
+        "throughput_basis": "accepted_completions_per_wall_clock_interval",
+        "include_pipeline_and_delivery": True,
+        "provider_reported_measured_modeled_separate": True,
+    }, "interactive/load measurement boundaries changed")
     review = suite["human_review"]
-    match = review["prompt_match"]
-    assert match["labels"] == ["pass", "partial", "fail"]
-    assert match["accepted_labels"] == ["pass"] and match["unreviewed_value"] is None
-    assert match["method"] == "blind_manual" and match["evidence_required"] is True
-    assert set(match["rubric"]) == set(match["labels"])
-    assert all(isinstance(value, str) and value.strip() for value in match["rubric"].values())
-    assert review["accept_requires"] == ["output_profile_valid", "prompt_match_pass", "visual_quality_pass", "latency_pass"]
-    assert Decimal(suite["budget_usd"]) == Decimal("25.00")
-    assert sum(map(Decimal, suite["allocation_usd"].values())) == Decimal("25.00")
-    assert Decimal(suite["new_compute_threshold_usd"]) == Decimal("22.50")
-    assert suite["latency_target"] == {
-        "status": "agreed",
-        "stage": "pilot",
-        "max_wait_seconds_per_video_second": 3,
-        "measurement": "request_submission_to_download_complete",
-        "duration_basis": "planned_target_seconds",
-        "application": "each_attempt_including_cold_start_after_submission",
-        "comparison": "less_than_or_equal",
-        "limits_seconds": {"short": 15, "long": 30},
-    }, "stage-one latency target differs from agreed 1:3 end-to-end limits"
-    for duration in suite["durations"]:
-        assert suite["latency_target"]["limits_seconds"][duration["id"]] == 3 * duration["target_seconds"]
-        assert duration["evaluation_mode"] == "long_custom_input"
-    assert suite["automatic_retries"] == 0 and suite["concurrency"] == 1
-    assert suite["seed"] == 42 and suite["sample_index"] == 0
-    evaluation = suite["evaluation"]
-    assert evaluation["family"] == "VBench-Long" and evaluation["mode"] == "long_custom_input"
-    assert evaluation["minimum_actual_duration_seconds"] == 5
-    assert evaluation["actual_duration_check"] == "required_for_every_file_before_scoring"
-    assert evaluation["incompatible_duration_policy"] == "record_failure_no_padding_no_silent_evaluator_switch"
-    assert evaluation["dimensions"] == ["subject_consistency", "background_consistency", "motion_smoothness",
-                                        "dynamic_degree", "aesthetic_quality", "imaging_quality"]
-    assert evaluation["partitions"] == ["model_id", "duration_id"]
-    assert evaluation["dynamic_degree_interpretation"] == "motion_amount_not_quality"
-    assert evaluation["reuse_original_videos"] is True
-    rows = list(planned_rows(suite))
-    assert len(rows) == suite["planned_attempts"] == 12
-    assert len({row["run_id"] for row in rows}) == len({row["output_path"] for row in rows}) == 12
-    assert sum(row["target_seconds"] for row in rows) == 90
-    for model in suite["models"]:
-        assert len([row for row in rows if row["model_id"] == model["id"]]) == 4
-    for name in ("README.md", "METHODOLOGY.md", "SOURCE.md", "PREFLIGHT.md"):
+    require(review["prompt_match"] == {
+        "labels": ["pass", "partial", "fail"], "accepted_labels": ["pass"],
+        "unreviewed_value": None, "method": "blind_manual", "evidence_required": True,
+    }, "prompt-match acceptance weakened")
+    require(review["compare_to_api_reference"] is True, "missing API-relative quality review")
+    require(review["accept_requires"] == [
+        "output_profile_valid", "prompt_match_pass", "visual_quality_pass", "latency_pass",
+    ], "interactive acceptance requirements changed")
+    require(suite["evaluation"] == {
+        "vbench_status": "deferred", "vbench_budget_usd": "0.00",
+        "mode": "blind_human_contract_comparison", "minimum_duration_for_evaluator": None,
+        "reuse_outputs": True,
+    }, "VBench must remain outside this stage")
+    require(suite["economics"] == {
+        "experiment_and_service_costs_separate": True,
+        "utilization_scenarios": [0.25, 0.5, 0.75, 1.0],
+        "scenario_status": "modeled_not_measured",
+        "utilization_definition": "fraction_of_billed_wall_time_serving_measured_workload",
+        "api_reference_price_is_guaranteed_revenue": False,
+        "api_benchmark_bill_in_recurring_self_host_cost": False,
+        "zero_accepted_output_unit_cost": "undefined",
+        "net_profit_claim": False,
+    }, "cost or utilization interpretation changed")
+    decisions = suite["pending_decisions"]
+    require(isinstance(decisions, list) and len(decisions) == 5 and
+            all(isinstance(item, str) and item.strip() for item in decisions),
+            "missing unresolved execution decisions")
+
+    previous = suite["supersedes"]
+    require(previous["version"] == "0.6.0" and previous["planned_attempts"] == 12 and
+            previous["executed_attempts"] == 0, "legacy schedule history changed")
+    for name, expected in UPSTREAM_HASHES.items():
+        require(hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected,
+                "retained upstream asset changed: " + name)
+    for name in ("README.md", "METHODOLOGY.md", "SOURCE.md", "PREFLIGHT.md", "CLAIMS.md", "AGENTS.md"):
         text = (ROOT / name).read_text(encoding="utf-8")
-        assert not re.search(r"[ \t]+$", text, flags=re.M), f"trailing whitespace: {name}"
+        require(not re.search(r"[ \t]+$", text, flags=re.M), "trailing whitespace: " + name)
+        require(not re.search(r"[\u0400-\u04ff]", text), "non-English draft text: " + name)
         for target in re.findall(r"\]\(([^)]+)\)", text):
             if not target.startswith("https://"):
-                assert (ROOT / target.split("#")[0]).is_file(), f"broken local link: {target}"
-    return rows
+                require((ROOT / target.split("#")[0]).is_file(), "broken local link: " + target)
+    return planned_rows(suite)
 
 
 def pending_gates(suite):
-    pending = []
-    if suite["latest_policy"].startswith("pending"):
-        pending.append("latest-release vs latest-open-weights selection")
-    required = ("model_id", "revision_or_vendor_version", "workflow_hash_or_vendor_managed",
-                "runtime_pin", "pricing_quote", "exposure_bound_usd", "independent_stop_or_fixed_price",
-                "access_verified", "export_verified")
-    for model in suite["models"]:
-        profile = model["execution_profile"] or {}
-        for field in required:
-            if not profile.get(field):
-                pending.append(f"{model['id']}: {field}")
-    for duration in suite["durations"]:
-        if not duration["native_shapes"] or not duration["evaluation_mode"]:
-            pending.append(f"{duration['id']}: native output/evaluator profile")
-    return pending
+    # This revision is intentionally not an execution schema. A reviewed revision
+    # must define actual requests, evidence and a bounded runner before paid work.
+    return ["Current protocol is planning-only, not an executable paid-run plan"] + list(suite["pending_decisions"])
 
 
 def main():
@@ -127,26 +149,30 @@ def main():
     parser.add_argument("--ready", action="store_true")
     parser.add_argument("--plan", action="store_true", help="Print deterministic CSV; does not execute")
     args = parser.parse_args()
-    suite = json.loads((ROOT / "suite.json").read_text(encoding="utf-8"))
     try:
+        suite = json.loads((ROOT / "suite.json").read_text(encoding="utf-8"))
         rows = validate(suite)
-    except (AssertionError, ValueError, KeyError, OSError) as exc:
+        if args.plan:
+            import sys
+            writer = csv.DictWriter(sys.stdout, fieldnames=PLAN_FIELDS, lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+            return
+        with (ROOT / "pilot-plan.csv").open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            require(reader.fieldnames == PLAN_FIELDS, "pilot-plan.csv header differs from the contract")
+            require(list(reader) == rows, "pilot-plan.csv must not retain superseded attempts")
+    except (ValueError, KeyError, TypeError, OSError) as exc:
         parser.exit(1, f"Protocol invalid: {exc}\n")
-    if args.plan:
-        writer = csv.DictWriter(sys.stdout, fieldnames=list(rows[0]), lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(rows)
-        return
-    with (ROOT / "pilot-plan.csv").open(encoding="utf-8", newline="") as handle:
-        saved = list(csv.DictReader(handle))
-    expected = [{key: str(value) for key, value in row.items()} for row in rows]
-    if saved != expected:
-        parser.exit(1, "Protocol invalid: pilot-plan.csv differs from suite.json\n")
     pending = pending_gates(suite)
-    print(json.dumps({"protocol_valid": True, "models": 3, "planned_attempts": len(rows),
-                      "latency_target": suite["latency_target"],
-                      "paid_execution_ready": not pending, "pending_gates": pending}, indent=2))
-    if args.ready and pending:
+    print(json.dumps({
+        "protocol_valid": True, "version": suite["version"],
+        "comparison_scope": suite["comparison"]["scope"],
+        "endpoint_selected": False, "planned_attempts": len(rows),
+        "latency_target": suite["latency_target"], "vbench_status": "deferred",
+        "paid_execution_ready": False, "pending_gates": pending,
+    }, indent=2))
+    if args.ready:
         raise SystemExit(2)
 
 
