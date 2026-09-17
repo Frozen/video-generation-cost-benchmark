@@ -31,6 +31,27 @@ class ProtocolTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate(suite)
 
+    def test_baseline_scope_does_not_authorize_future_optimization(self):
+        for key, value in (("initial_prompt_count", 8), ("initial_target_seconds", 10),
+                           ("backend_order", ["self_host", "fal.ai"]),
+                           ("optimization_status", "enabled"),
+                           ("load_testing_status", "enabled")):
+            with self.subTest(key=key):
+                suite = copy.deepcopy(self.suite)
+                suite["current_scope"][key] = value
+                with self.assertRaises(ValueError):
+                    validate(suite)
+
+    def test_selected_h3_collection_does_not_freeze_an_actual_prompt(self):
+        self.assertEqual(self.suite["request_policy"]["source_suggestions"],
+                         ["https://awesomevideoprompts.com/en/models/minimaxh3"])
+        self.assertEqual(self.suite["request_policy"]["selection_status"], "pending")
+        self.assertEqual(self.suite["requests"], [])
+        suite = copy.deepcopy(self.suite)
+        suite["request_policy"]["source_suggestions"] = ["https://awesomevideoprompts.com/"]
+        with self.assertRaises(ValueError):
+            validate(suite)
+
     def test_agreed_end_to_end_latency_cannot_be_weakened(self):
         changes = {
             "measurement": "inference_only", "duration_basis": "actual_output_seconds",

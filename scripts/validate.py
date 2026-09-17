@@ -49,9 +49,16 @@ def planned_rows(suite):
 
 
 def validate(suite):
-    require(suite["version"] == "0.8.0", "unsupported protocol revision")
+    require(suite["version"] == "0.8.1", "unsupported protocol revision")
     require(suite["status"] == "planning_only_no_generations", "not a planning-only contract")
     require(suite["objective"] == "api_matched_operator_economics", "wrong comparison objective")
+    require(suite["current_scope"] == {
+        "stage": "baseline_comparison_only", "initial_prompt_count": 1,
+        "initial_target_seconds": 5, "backend_order": ["fal.ai", "self_host"],
+        "optimization_status": "deferred_requires_new_approval",
+        "load_testing_status": "deferred_requires_new_approval",
+        "long_clip_status": "deferred_until_first_pair_review",
+    }, "current baseline scope changed or deferred work was enabled")
     require(Decimal(suite["budget_usd"]) == Decimal("25.00"), "total cap must remain USD 25")
     require(Decimal(suite["new_compute_threshold_usd"]) == Decimal("22.50"), "closeout guard changed")
     require(suite["allocation_usd"] == {
@@ -119,6 +126,9 @@ def validate(suite):
                 "reference-only price calculation differs: " + label)
 
     policy = suite["request_policy"]
+    require(policy["source_suggestions"] == [
+        "https://awesomevideoprompts.com/en/models/minimaxh3",
+    ], "selected H3 prompt collection changed")
     require(policy["selection_status"] == "pending", "request selection is not yet frozen")
     for field in ("realistic_customer_use_cases", "identical_logical_request_per_pair",
                   "asset_hashes_required", "source_and_reuse_permissions_required",
@@ -215,6 +225,7 @@ def main():
     print(json.dumps({
         "protocol_valid": True, "version": suite["version"],
         "comparison_scope": suite["comparison"]["scope"],
+        "current_scope": suite["current_scope"],
         "endpoint_selected": suite["comparison"]["selection_status"] == "reference_selected",
         "endpoint_id": suite["comparison"]["endpoint_id"],
         "matching_status": suite["comparison"]["matching_status"],

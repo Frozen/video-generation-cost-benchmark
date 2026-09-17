@@ -1,9 +1,18 @@
 # First test: MiniMax H3 native 768P
 
-Version 0.8, September 17, 2026. **Reference selected; self-host matching and
+Version 0.8.1, September 17, 2026. **Reference selected; self-host matching and
 execution readiness are not yet verified. No paid test has been run.**
 
 ## What we start with
+
+The currently agreed work is the **baseline comparison only**: one English
+prompt from the [Awesome Video Prompts H3 collection](https://awesomevideoprompts.com/en/models/minimaxh3),
+one 5-second fal.ai output, then one 5-second self-host output. Choose a
+text-only scene that fits five seconds without changing a longer storyboard or
+requiring reference media. Freeze its exact text, source, attribution and reuse
+record first. The collection is a discovery source, not an official benchmark.
+The exact prompt is still pending. Optimizations and load tests require a later
+decision; unused budget does not authorize them.
 
 Comparison pair **P01** uses the fal.ai endpoint
 [`minimax/h3/text-to-video`](https://fal.ai/models/minimax/h3/text-to-video).
@@ -163,7 +172,8 @@ VBench, Max variants, other families and unbounded load tests are outside this b
 3. Reconcile both charges, review the outputs and inspect latency before expanding.
 4. If justified and within budget, repeat the same prompt at **10 seconds**
    on both backends: two more attempts.
-5. Only then consider separately budgeted repetitions, batching or optimization.
+5. Stop after the baseline work and report. Repetitions, batching and optimization
+   are future work requiring a new explicit decision and bounded plan.
 
 This is the intended sequence, **not a funded four-attempt schedule**. The active
 CSV remains empty until the prompt, self-host profile and upper-bound quotes are

@@ -1,8 +1,17 @@
 {
-  "version": "0.8.0",
+  "version": "0.8.1",
   "status": "planning_only_no_generations",
   "updated_on": "2026-09-17",
   "objective": "api_matched_operator_economics",
+  "current_scope": {
+    "stage": "baseline_comparison_only",
+    "initial_prompt_count": 1,
+    "initial_target_seconds": 5,
+    "backend_order": ["fal.ai", "self_host"],
+    "optimization_status": "deferred_requires_new_approval",
+    "load_testing_status": "deferred_requires_new_approval",
+    "long_clip_status": "deferred_until_first_pair_review"
+  },
   "budget_usd": "25.00",
   "new_compute_threshold_usd": "22.50",
   "allocation_usd": {
@@ -119,7 +128,7 @@
   },
   "request_policy": {
     "source_suggestions": [
-      "https://awesomevideoprompts.com/"
+      "https://awesomevideoprompts.com/en/models/minimaxh3"
     ],
     "selection_status": "pending",
     "realistic_customer_use_cases": true,
@@ -203,7 +212,7 @@
     "Pinned H3 Base FL2VA and SGLang versions, validated one-B300 host profile and API matching evidence",
     "Realistic English requests, permitted assets, payload mappings and native output profiles",
     "Current quotes, access, independent spending bounds and artifact export",
-    "Funded attempt count, order, repetitions and optional bounded load configurations",
+    "Funded two-attempt baseline and per-attempt upper bounds; later expansion remains deferred",
     "Reviewed executable-plan revision and execution runner"
   ],
   "supersedes": {

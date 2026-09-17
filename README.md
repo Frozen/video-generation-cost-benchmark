@@ -4,10 +4,18 @@
 the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
-**Version 0.8 — reference selected; no paid runs or results. Total cap: USD 25.**
+**Version 0.8.1 — baseline comparison only; no paid runs or results. Total cap: USD 25.**
 All public content is in English.
 
 ## Start here
+
+Current scope: one English prompt from the
+[Awesome Video Prompts H3 collection](https://awesomevideoprompts.com/en/models/minimaxh3),
+first through fal.ai and then through our deployment, targeting 5 seconds on
+each side. This means two comparison outputs, not two models or a full benchmark.
+The exact prompt is not frozen yet. Optimization and load testing are deferred;
+remaining budget is not permission to start them. Review the first pair before
+scheduling 10-second clips or repetitions.
 
 **First endpoint: `minimax/h3/text-to-video`, ordinary H3, not H3 Max.**
 The selected baseline is native **768P, 16:9, 5/10 seconds, seed 42**, with prompt
@@ -58,7 +66,8 @@ count toward cost. High-throughput batch results do not demonstrate interactive
 latency. A high-end GPU or high utilization is a hypothesis, not proof of profit.
 
 The USD 25 cap covers both the API reference and self-host trial, setup, failures,
-optional bounded performance checks and closeout. The full attempt count is
+closeout; the optimization allocation is parked while that stage is deferred.
+The full funded attempt count is
 pending quotes; four attempts would cover one prompt at two durations on both
 backends, but that is not yet a funded schedule.
 
@@ -71,6 +80,8 @@ backends, but that is not yet a funded schedule.
 - [pilot-plan.csv](pilot-plan.csv): generated schedule, currently empty.
 - [CLAIMS.md](CLAIMS.md): published-claim verification checklist and evidence template.
 - [PREFLIGHT.md](PREFLIGHT.md): current launch requirements and dated prior observations.
+- [.env.example](.env.example): empty credential template; real credentials belong
+  only in ignored `.env.local` or the process environment, never in Git or chat.
 - [SOURCE.md](SOURCE.md): request-source policy and retained upstream attribution.
 - [scripts/validate.py](scripts/validate.py): offline checks for the current planning contract.
 - [scripts/budget.py](scripts/budget.py): unchanged fail-closed reservation ledger;

@@ -1,6 +1,6 @@
 # Published-claim verification register
 
-Version 0.8. **No claim below has been verified by a paid pilot run.**
+Version 0.8.1. **No claim below has been verified by a paid pilot run.**
 The selected reference is `minimax/h3/text-to-video`, native 768P, with expansion
 disabled. The self-host candidate is H3 Base FL2VA; implementation equivalence
 is unverified. [START_HERE.md](START_HERE.md) records the selected profile.

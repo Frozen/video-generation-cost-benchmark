@@ -2,9 +2,12 @@
 
 ## Active request selection
 
-The v0.8 API-matched pilot uses realistic requests for the chosen H3 endpoint, not
-the earlier VBench subset. [Awesome Video Prompts](https://awesomevideoprompts.com/)
-is a suggested discovery source. No specific prompt or input asset has been
+The v0.8.1 API-matched pilot uses realistic requests for the chosen H3 endpoint, not
+the earlier VBench subset. The selected discovery collection is
+[Awesome Video Prompts: MiniMax H3](https://awesomevideoprompts.com/en/models/minimaxh3).
+Choose an English text-only prompt whose action fits the initial five-second
+request without requiring reference media or contradicting an explicit longer
+storyboard. No specific prompt or input asset has been
 selected, copied into the active suite or verified for reuse yet.
 
 Before selection, record the exact source page, retrieval date, attribution and

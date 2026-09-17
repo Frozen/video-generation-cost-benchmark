@@ -1,8 +1,31 @@
 # Execution preflight
 
-Version 0.8, September 17, 2026. **No paid pilot runs or generation results.**
+Version 0.8.1, September 17, 2026. **No paid pilot runs or generation results.**
 The USD 25 total cap remains unchanged. The active scope is one API-matched pair,
 not the superseded three-model/12-attempt VBench experiment.
+
+## Launch checklist and ownership
+
+The endpoint, GPU count/type, serving framework, latency target, total budget and
+first-pair sequence are documented. Selecting them is not a completed deployment.
+
+| Remaining item | Owner | Completion evidence |
+|---|---|---|
+| fal.ai account/key and usable credit | Operator supplies access; agent verifies it | Authenticated access and a bounded reference request price |
+| Runpod API key for CLI/SSH setup and programmatic lifecycle control | Operator supplies access; agent verifies it | Authenticated control-plane access and working SSH setup; MCP OAuth alone is not a CLI credential |
+| One English prompt from the selected H3 collection | Agent | Frozen text/hash, source/author, reuse record and five-second suitability |
+| Reproducible self-host deployment and test runner | Agent | Checkpoint/runtime/container pins, host requirements, payload mapping, output/timing capture |
+| Whole-pair cost reservation, independent rental deadline and export | Agent | Reviewed bounded execution plan, durable reservation and verified shutdown mechanism |
+
+Use [.env.example](.env.example) as a blank template; store real credentials in
+ignored `.env.local` or environment variables. Never paste keys into chat, commit
+them, or include them in public reports. Existence of a key is not proof of valid
+permissions, balance or working inference. The template itself does not load keys.
+
+The initial comparison is two five-second outputs, fal.ai first and self-host
+second. Setup/warmup are separately recorded and charged. Optimization and load
+testing remain deferred, even if the budget has room. The exact prompt and
+executable schedule are not yet frozen.
 
 ## Current requirements before any paid run
 
@@ -13,7 +36,8 @@ not the superseded three-model/12-attempt VBench experiment.
    Document matched, different and unknown properties.
    A shared family name is not proof of implementation equivalence.
 2. Freeze realistic English requests, permitted input assets, payload mappings,
-   output profiles and human acceptance criteria. Requests have not been selected;
+   output profiles and human acceptance criteria. The H3 discovery collection is
+   selected, but the exact request has not been frozen;
    do not fall back to the old VBench scenes. The selected request settings and
    first-test sequence are recorded in [START_HERE.md](START_HERE.md).
 3. Pin current prices and published claims. Quote both the API reference and

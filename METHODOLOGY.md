@@ -1,6 +1,6 @@
 # Testing Methodology: API-Matched Video Generation and Operator Economics
 
-Version 0.8, September 17, 2026. **Reference selected; no paid runs or results.**
+Version 0.8.1, September 17, 2026. **Baseline comparison only; no paid runs or results.**
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
@@ -102,12 +102,17 @@ must provide it. Record this boundary explicitly.
 
 ## 4. Staged execution within USD 25
 
+Current execution scope is the first baseline pair: one frozen English H3
+collection prompt, a 5-second fal.ai request, then the matching self-host request.
+Review the pair before any longer clips or repetitions. Stage D is deferred and
+requires a new explicit decision; it is not triggered by remaining budget.
+
 | Stage | Work | Exit evidence |
 |---|---|---|
 | A — specification | Inventory claims, select one endpoint, map the self-host deployment, freeze requests and quotes | Matching matrix and bounded executable plan |
 | B — paired smoke test | Run the same request once through each backend, with batch 1 and one request at a time | Downloaded outputs, actual charges, timings and human review |
 | C — interactive comparison | Cover supported short/long requests and explicitly budgeted repetitions on the same pair | Per-request end-to-end latency and accepted-output cost |
-| D — bounded performance checks | If funds remain, measure batching/concurrency and selected optimization changes | Measured throughput, latency, quality and cost per configuration |
+| D — future work, deferred | Only after a new explicit decision and bounded plan: batching/concurrency or optimization changes | Measured throughput, latency, quality and cost per configuration |
 | E — economics and closeout | Reconcile charges, model utilization scenarios, export artifacts and stop test resources | Auditable cost summary and an honest coverage/limitations report |
 
 The two sides of a paired request are **two separately billed attempts**. A
@@ -124,8 +129,8 @@ Baseline batch size is 1 and interactive concurrency is 1. Any increase in batch
 size or concurrency is a separate, bounded load configuration with its own ID,
 request count, timeout, price bound and approval. It is not an unlimited stress test.
 
-Reproduce the reference settings first. Then test a small, predeclared set of
-step counts or other optimizations if budget permits. Record each configuration
+Reproduce the reference settings first. A later, separately approved stage may
+test predeclared step counts or other optimizations. Record each configuration
 and its quality/performance trade-off; "best tested" is not "globally optimal".
 Include all pipeline stages, not only denoising. Do not change weights/settings
 after review and present the result as the same baseline configuration.
@@ -271,9 +276,10 @@ under explicit selling-price assumptions. Do not label this a net-profit forecas
 ### Spending controls
 
 Working allocation: $18 for setup and the paired generation comparison, $4 for
-optional bounded load/optimization checks, and $3 for storage, export, shutdown
+future bounded load/optimization checks, and $3 for storage, export, shutdown
 and mandatory fees. The former VBench allocation is repurposed; VBench receives $0
-in this stage. Reallocation is allowed before commitments, never above $25.
+in this stage. The $4 is parked and cannot be spent on deferred work without a
+new decision. Reallocation is allowed before commitments, never above $25.
 
 Reserve the upper bound of every commitment before spending, including outstanding
 requests, fees, storage and closeout. Do not schedule new compute beyond $22.50
