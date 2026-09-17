@@ -63,6 +63,61 @@ class ProtocolTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate(suite)
 
+    def test_selected_request_settings_cannot_silently_drift(self):
+        for key, value in (("resolution", "2K"), ("aspect_ratio", "9:16"),
+                           ("seed", 0), ("prompt_expansion_mode", "balanced"),
+                           ("enable_safety_checker", False), ("sync_mode", True),
+                           ("target_audio_url", "https://example.com/audio.wav")):
+            with self.subTest(key=key):
+                suite = copy.deepcopy(self.suite)
+                suite["comparison"]["reference_profile"]["parameters"][key] = value
+                with self.assertRaises(ValueError):
+                    validate(suite)
+
+    def test_documentation_is_not_runtime_verification(self):
+        suite = copy.deepcopy(self.suite)
+        suite["comparison"]["reference_profile"]["runtime_verified"] = True
+        with self.assertRaises(ValueError):
+            validate(suite)
+        suite = copy.deepcopy(self.suite)
+        suite["comparison"]["matching_evidence"][0]["status"] = "verified"
+        with self.assertRaises(ValueError):
+            validate(suite)
+
+    def test_hardware_and_runtime_are_selected_but_not_provisioned(self):
+        deployment = self.suite["comparison"]["self_host_candidate"]["deployment"]
+        self.assertEqual(deployment["gpu_type"], "NVIDIA B300 SXM6 AC")
+        self.assertEqual(deployment["gpu_count"], 1)
+        self.assertEqual(deployment["runtime"], "SGLang Diffusion")
+        self.assertEqual(deployment["status"], "proposed_not_provisioned")
+        self.assertIsNone(deployment["runtime_revision"])
+        self.assertIsNone(deployment["container_digest"])
+
+    def test_candidate_cannot_silently_expand_or_claim_sla(self):
+        for key, value in (("gpu_count", 8), ("gpu_type", "NVIDIA H100"),
+                           ("runtime", "ComfyUI"), ("status", "provisioned"),
+                           ("quantization", "fp8"), ("adapters", ["Turbo"]),
+                           ("purpose", "sla_validated")):
+            with self.subTest(key=key):
+                suite = copy.deepcopy(self.suite)
+                suite["comparison"]["self_host_candidate"]["deployment"][key] = value
+                with self.assertRaises(ValueError):
+                    validate(suite)
+
+    def test_price_references_are_not_all_in_bounds_or_paid_bills(self):
+        for key, value in (("status", "measured_charge"),
+                           ("usd_per_generated_second", "0.13"),
+                           ("derived_usd", {"short": "0.30", "long": "0.60", "one_of_each": "0.80"})):
+            with self.subTest(key=key):
+                suite = copy.deepcopy(self.suite)
+                suite["comparison"]["price_reference"][key] = value
+                with self.assertRaises(ValueError):
+                    validate(suite)
+        suite = copy.deepcopy(self.suite)
+        suite["comparison"]["self_host_candidate"]["deployment"]["catalog_reference"]["status"] = "all_in_quote"
+        with self.assertRaises(ValueError):
+            validate(suite)
+
     def test_no_implicit_schedule_retries_or_execution_switch(self):
         for key, value in (("planned_attempts", 12), ("attempts", [{"run_id": "old"}]),
                            ("execution_plan_frozen", True), ("automatic_retries", 1)):
@@ -126,6 +181,9 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2, result.stderr)
         report = json.loads(result.stdout)
         self.assertTrue(report["protocol_valid"])
+        self.assertTrue(report["endpoint_selected"])
+        self.assertEqual(report["endpoint_id"], "minimax/h3/text-to-video")
+        self.assertEqual(report["matching_status"], "unverified")
         self.assertFalse(report["paid_execution_ready"])
         self.assertEqual(report["planned_attempts"], 0)
         self.assertTrue(report["pending_gates"])

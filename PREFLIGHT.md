@@ -1,17 +1,21 @@
 # Execution preflight
 
-Version 0.7, September 17, 2026. **No paid pilot runs or generation results.**
+Version 0.8, September 17, 2026. **No paid pilot runs or generation results.**
 The USD 25 total cap remains unchanged. The active scope is one API-matched pair,
 not the superseded three-model/12-attempt VBench experiment.
 
 ## Current requirements before any paid run
 
-1. Select the exact fal.ai endpoint/variant and corresponding self-host weights,
-   license and workflow. Document matched, different and unknown properties.
+1. The reference is selected: `minimax/h3/text-to-video`, ordinary H3 at 768P.
+   Verify the candidate MiniMax H3 Base FL2VA weights, license and workflow.
+   The hardware/runtime candidate is 1 x B300 with SGLang Diffusion; exact
+   version pins, host allocation, capacity and implementation matching remain open.
+   Document matched, different and unknown properties.
    A shared family name is not proof of implementation equivalence.
 2. Freeze realistic English requests, permitted input assets, payload mappings,
-   output profiles and human acceptance criteria. The endpoint and requests
-   have not been selected; do not fall back to the old VBench scenes.
+   output profiles and human acceptance criteria. Requests have not been selected;
+   do not fall back to the old VBench scenes. The selected request settings and
+   first-test sequence are recorded in [START_HERE.md](START_HERE.md).
 3. Pin current prices and published claims. Quote both the API reference and
    self-host work, including setup, failures, storage, fees and closeout.
 4. Verify access to both services without exposing credentials. Funding Runpod
@@ -29,8 +33,9 @@ The 1:3 interactive target still means request submission through final download
 15 seconds for a planned 5-second clip, 30 seconds for a 10-second clip.
 VBench and its 5-second evaluator boundary are not first-stage launch requirements.
 
-The current suite is deliberately a **planning-only contract**, with no selected
-endpoint, requests or scheduled attempts. The validator reports not ready;
+The current suite is deliberately a **planning-only contract**: the endpoint and
+baseline settings are selected, but requests and paid attempts are not scheduled.
+The validator reports reference and candidate selection separately from execution readiness;
 it does not independently verify credentials, provider controls or matching.
 The repository does not yet contain an execution runner. Filling placeholders
 or passing offline tests must not be mistaken for execution authorization.

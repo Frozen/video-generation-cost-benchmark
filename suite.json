@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "status": "planning_only_no_generations",
   "updated_on": "2026-09-17",
   "objective": "api_matched_operator_economics",
@@ -33,13 +33,89 @@
       "Wan"
     ],
     "first_candidate_to_investigate": "H3",
-    "selection_status": "pending",
-    "endpoint_id": null,
-    "reference_profile": null,
+    "selection_status": "reference_selected",
+    "endpoint_id": "minimax/h3/text-to-video",
+    "reference_profile": {
+      "configuration_id": "P01_FAL_H3_768P_NOEXP_V1",
+      "task": "text_to_video",
+      "parameters": {
+        "resolution": "768P",
+        "aspect_ratio": "16:9",
+        "seed": 42,
+        "prompt_expansion_mode": "disabled",
+        "enable_safety_checker": true,
+        "sync_mode": false
+      },
+      "duration_seconds": [
+        5,
+        10
+      ],
+      "input_assets": "none",
+      "audio_policy": "native_generated_audio_no_target_audio_url",
+      "contract_url": "https://fal.ai/models/minimax/h3/text-to-video/api",
+      "checked_on": "2026-09-17",
+      "runtime_verified": false
+    },
     "self_host_profile": null,
-    "matching_status": "pending",
-    "matching_evidence": [],
-    "unknown_provider_settings_policy": "record_unknown_do_not_claim_exact_replica"
+    "matching_status": "unverified",
+    "matching_evidence": [
+      {
+        "kind": "provider_contract",
+        "source_url": "https://fal.ai/models/minimax/h3/text-to-video/api",
+        "checked_on": "2026-09-17",
+        "status": "documented_not_runtime_verified"
+      },
+      {
+        "kind": "self_host_candidate",
+        "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+        "checked_on": "2026-09-17",
+        "status": "candidate_not_verified_equivalent"
+      }
+    ],
+    "unknown_provider_settings_policy": "record_unknown_do_not_claim_exact_replica",
+    "self_host_candidate": {
+      "model": "MiniMax H3 Base FL2VA",
+      "repository": "https://huggingface.co/MiniMaxAI/MiniMax-H3",
+      "task": "t2va",
+      "revision": null,
+      "deployment": {
+        "provider": "Runpod",
+        "type": "gpu_pod",
+        "status": "proposed_not_provisioned",
+        "gpu_type": "NVIDIA B300 SXM6 AC",
+        "gpu_count": 1,
+        "gpu_memory_gb": 288,
+        "runtime": "SGLang Diffusion",
+        "runtime_revision": null,
+        "container_digest": null,
+        "purpose": "diagnostic_base_model_measurement_not_sla_validated",
+        "precision": "native_bf16_fp32",
+        "quantization": "none",
+        "adapters": [],
+        "catalog_reference": {
+          "cloud": "SECURE",
+          "product": "POD",
+          "gpu_count": 1,
+          "usd_per_hour": "7.89",
+          "availability": "LOW",
+          "checked_on": "2026-09-17",
+          "status": "catalog_not_reserved_or_all_in_quote"
+        }
+      },
+      "training_required": false
+    },
+    "price_reference": {
+      "usd_per_generated_second": "0.06",
+      "resolution": "768P",
+      "source_url": "https://fal.ai/models/minimax/h3/text-to-video",
+      "checked_on": "2026-09-17",
+      "status": "published_rate_not_measured_charge_or_spending_bound",
+      "derived_usd": {
+        "short": "0.30",
+        "long": "0.60",
+        "one_of_each": "0.90"
+      }
+    }
   },
   "request_policy": {
     "source_suggestions": [
@@ -124,7 +200,7 @@
     "net_profit_claim": false
   },
   "pending_decisions": [
-    "Exact fal.ai endpoint, variant and reproducible self-host matching evidence",
+    "Pinned H3 Base FL2VA and SGLang versions, validated one-B300 host profile and API matching evidence",
     "Realistic English requests, permitted assets, payload mappings and native output profiles",
     "Current quotes, access, independent spending bounds and artifact export",
     "Funded attempt count, order, repetitions and optional bounded load configurations",

@@ -29,6 +29,14 @@ LATENCY_TARGET = {
     "comparison": "less_than_or_equal",
     "limits_seconds": {"short": 15, "long": 30},
 }
+REFERENCE_ENDPOINT = "minimax/h3/text-to-video"
+REFERENCE_URL = "https://fal.ai/models/" + REFERENCE_ENDPOINT
+MODEL_URL = "https://huggingface.co/MiniMaxAI/MiniMax-H3"
+REFERENCE_PARAMETERS = {
+    "resolution": "768P", "aspect_ratio": "16:9", "seed": 42,
+    "prompt_expansion_mode": "disabled", "enable_safety_checker": True,
+    "sync_mode": False,
+}
 
 
 def require(condition, message):
@@ -41,7 +49,7 @@ def planned_rows(suite):
 
 
 def validate(suite):
-    require(suite["version"] == "0.7.0", "unsupported protocol revision")
+    require(suite["version"] == "0.8.0", "unsupported protocol revision")
     require(suite["status"] == "planning_only_no_generations", "not a planning-only contract")
     require(suite["objective"] == "api_matched_operator_economics", "wrong comparison objective")
     require(Decimal(suite["budget_usd"]) == Decimal("25.00"), "total cap must remain USD 25")
@@ -63,14 +71,52 @@ def validate(suite):
     require(pair["reference_provider"] == "fal.ai", "reference provider changed")
     require(pair["candidate_families"] == ["H3", "LTX-2.5", "Wan"], "candidate scope changed")
     require(pair["first_candidate_to_investigate"] == "H3", "initial candidate changed")
-    require(pair["selection_status"] == pair["matching_status"] == "pending",
-            "matching needs an evidence-backed plan revision")
-    require(all(pair[field] is None for field in
-                ("endpoint_id", "reference_profile", "self_host_profile")),
-            "deployment selection is not yet frozen")
-    require(pair["matching_evidence"] == [], "new matching evidence needs plan review")
+    require(pair["selection_status"] == "reference_selected" and
+            pair["endpoint_id"] == REFERENCE_ENDPOINT, "selected reference endpoint changed")
+    require(pair["matching_status"] == "unverified" and pair["self_host_profile"] is None,
+            "a candidate is not a verified self-host deployment")
+    require(pair["reference_profile"] == {
+        "configuration_id": "P01_FAL_H3_768P_NOEXP_V1", "task": "text_to_video",
+        "parameters": REFERENCE_PARAMETERS, "duration_seconds": [5, 10],
+        "input_assets": "none", "audio_policy": "native_generated_audio_no_target_audio_url",
+        "contract_url": REFERENCE_URL + "/api", "checked_on": "2026-09-17",
+        "runtime_verified": False,
+    }, "selected API profile changed or claimed runtime verification")
+    require(pair["matching_evidence"] == [
+        {"kind": "provider_contract", "source_url": REFERENCE_URL + "/api",
+         "checked_on": "2026-09-17", "status": "documented_not_runtime_verified"},
+        {"kind": "self_host_candidate", "source_url": MODEL_URL,
+         "checked_on": "2026-09-17", "status": "candidate_not_verified_equivalent"},
+    ], "documentary evidence must not become a claim of verified equivalence")
     require(pair["unknown_provider_settings_policy"] == "record_unknown_do_not_claim_exact_replica",
             "unknown implementation details cannot establish equivalence")
+    require(pair["self_host_candidate"] == {
+        "model": "MiniMax H3 Base FL2VA", "repository": MODEL_URL,
+        "task": "t2va", "revision": None, "training_required": False,
+        "deployment": {
+            "provider": "Runpod", "type": "gpu_pod", "status": "proposed_not_provisioned",
+            "gpu_type": "NVIDIA B300 SXM6 AC", "gpu_count": 1, "gpu_memory_gb": 288,
+            "runtime": "SGLang Diffusion", "runtime_revision": None, "container_digest": None,
+            "purpose": "diagnostic_base_model_measurement_not_sla_validated",
+            "precision": "native_bf16_fp32", "quantization": "none", "adapters": [],
+            "catalog_reference": {
+                "cloud": "SECURE", "product": "POD", "gpu_count": 1,
+                "usd_per_hour": "7.89", "availability": "LOW", "checked_on": "2026-09-17",
+                "status": "catalog_not_reserved_or_all_in_quote",
+            },
+        },
+    }, "selected diagnostic candidate changed; revise the plan before execution")
+    price = pair["price_reference"]
+    require(price == {
+        "usd_per_generated_second": "0.06", "resolution": "768P",
+        "source_url": REFERENCE_URL, "checked_on": "2026-09-17",
+        "status": "published_rate_not_measured_charge_or_spending_bound",
+        "derived_usd": {"short": "0.30", "long": "0.60", "one_of_each": "0.90"},
+    }, "dated API reference price changed or treated as a spending bound")
+    rate = Decimal(price["usd_per_generated_second"])
+    for label, seconds in (("short", 5), ("long", 10), ("one_of_each", 15)):
+        require(Decimal(price["derived_usd"][label]) == rate * seconds,
+                "reference-only price calculation differs: " + label)
 
     policy = suite["request_policy"]
     require(policy["selection_status"] == "pending", "request selection is not yet frozen")
@@ -128,7 +174,8 @@ def validate(suite):
     for name, expected in UPSTREAM_HASHES.items():
         require(hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected,
                 "retained upstream asset changed: " + name)
-    for name in ("README.md", "METHODOLOGY.md", "SOURCE.md", "PREFLIGHT.md", "CLAIMS.md", "AGENTS.md"):
+    for name in ("README.md", "START_HERE.md", "METHODOLOGY.md", "SOURCE.md",
+                 "PREFLIGHT.md", "CLAIMS.md", "AGENTS.md"):
         text = (ROOT / name).read_text(encoding="utf-8")
         require(not re.search(r"[ \t]+$", text, flags=re.M), "trailing whitespace: " + name)
         require(not re.search(r"[\u0400-\u04ff]", text), "non-English draft text: " + name)
@@ -168,7 +215,11 @@ def main():
     print(json.dumps({
         "protocol_valid": True, "version": suite["version"],
         "comparison_scope": suite["comparison"]["scope"],
-        "endpoint_selected": False, "planned_attempts": len(rows),
+        "endpoint_selected": suite["comparison"]["selection_status"] == "reference_selected",
+        "endpoint_id": suite["comparison"]["endpoint_id"],
+        "matching_status": suite["comparison"]["matching_status"],
+        "self_host_candidate": suite["comparison"]["self_host_candidate"]["deployment"],
+        "planned_attempts": len(rows),
         "latency_target": suite["latency_target"], "vbench_status": "deferred",
         "paid_execution_ready": False, "pending_gates": pending,
     }, indent=2))

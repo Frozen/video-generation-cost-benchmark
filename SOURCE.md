@@ -2,7 +2,7 @@
 
 ## Active request selection
 
-The v0.7 API-matched pilot uses realistic requests for the chosen endpoint, not
+The v0.8 API-matched pilot uses realistic requests for the chosen H3 endpoint, not
 the earlier VBench subset. [Awesome Video Prompts](https://awesomevideoprompts.com/)
 is a suggested discovery source. No specific prompt or input asset has been
 selected, copied into the active suite or verified for reuse yet.
@@ -31,7 +31,7 @@ The previous v0.6 protocol selected unchanged prompts at zero-based indices 262
 and acceptance rules were not official VBench requirements. The old protocol and
 schedule are retained in [Git history](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2).
 
-VBench is deferred in v0.7. Retaining its assets does not schedule a VBench run,
+VBench remains deferred since v0.7. Retaining its assets does not schedule a VBench run,
 require a 5-second evaluator boundary or imply official benchmark coverage.
 
 Model weights are not redistributed. Check model licenses, service terms and

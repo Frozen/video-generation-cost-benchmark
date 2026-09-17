@@ -1,6 +1,6 @@
 # Testing Methodology: API-Matched Video Generation and Operator Economics
 
-Version 0.7, September 17, 2026. **Design/preflight only; no paid runs or results.**
+Version 0.8, September 17, 2026. **Reference selected; no paid runs or results.**
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
@@ -13,12 +13,16 @@ with acceptable quality and response time?**
 
 This replaces the v0.6 cross-model quality pilot. H3, LTX and Wan remain candidate
 families, not three mandatory arms of the first experiment. Start with **one
-matched pair: one fal.ai endpoint and one self-hosted deployment**. H3 is the
-initial candidate to investigate; the exact variant and endpoint are not selected.
+matched pair: one fal.ai endpoint and one self-hosted deployment**. The selected
+reference is `minimax/h3/text-to-video`, native 768P, 16:9, 5/10 seconds, seed 42,
+with prompt expansion disabled. The self-host candidate is MiniMax H3 Base FL2VA,
+not H3 Max, on one B300 using SGLang Diffusion. See [START_HERE.md](START_HERE.md)
+for the diagnostic baseline, latency warning and first-test sequence.
+The self-host execution profile and matching evidence remain unverified.
 
 The old 12-attempt schedule and VBench prompt subset are no longer active.
 The earlier English protocol is retained in [Git history](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2).
-The active schedule is empty until endpoint, realistic requests, profiles and
+The active schedule is empty until realistic requests, self-host profiles and
 cost bounds are pinned. Zero scheduled attempts means "not scheduled", not "complete".
 
 VBench is **deferred**, with no first-stage automated VBench budget or requirement
@@ -31,8 +35,9 @@ not assumptions of profitability or authorization to rent a particular GPU.
 
 ## 2. Select and match a service, not just a model name
 
-First identify an exact fal.ai endpoint and its documented request/response
-contract, current price and published performance claims. Record source URLs,
+The first endpoint and exposed settings are selected in [START_HERE.md](START_HERE.md).
+Before execution, verify its contract, current price and relevant performance
+claims against the self-host candidate. Record source URLs,
 access dates, versions and the conditions attached to each claim in [CLAIMS.md](CLAIMS.md).
 
 Use this matching checklist before paying:
