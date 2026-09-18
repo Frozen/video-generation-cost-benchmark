@@ -130,12 +130,16 @@ the operator authorized an ephemeral-cache retry, which [produced both videos](A
 ## Videos available to watch
 
 There are **no eight-step or four-step videos from this attempt**. These links
-are earlier successful outputs, not substitutes for missing acceleration results:
+are YouTube copies of earlier successful outputs, not substitutes for missing
+acceleration results:
 
-- [Our base H3 on four H100 GPUs](results/P01_EN_RUNPOD_H100X4_5S_001.mp4)
-- [fal H3](results/P01_FAL_5S_001.mp4)
-- [fal H3 Max](results/P01_FAL_MAX_5S_001.mp4)
-- [fal H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4)
+- [Our base H3 on four H100 GPUs](https://www.youtube.com/watch?v=QH9OgSgDNsU)
+- [fal H3](https://www.youtube.com/watch?v=1X8fJc_-FJQ)
+- [fal H3 Max](https://www.youtube.com/watch?v=jUGvfw4__Y4)
+- [fal H3 Max Turbo](https://www.youtube.com/watch?v=PfTt3By6lpk)
+
+YouTube copies may be transcoded; unchanged original MP4s remain in the
+[results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results).
 
 ## Validation after the failure
 

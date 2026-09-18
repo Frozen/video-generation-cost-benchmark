@@ -3,8 +3,10 @@
 September 18, 2026. **One five-second request completed; the Pod was deleted
 and its absence verified. No paid resource remains running.**
 
-[Watch or download the original MP4 (0.59 MB)](results/P01_EN_RUNPOD_H100X4_5S_001.mp4).
-The public file is byte-identical to the download; no trimming or re-encoding.
+[Watch on YouTube](https://www.youtube.com/watch?v=QH9OgSgDNsU).
+The original MP4 (0.59 MB) in the
+[results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results) is byte-identical to the
+download, with no trimming or re-encoding. The YouTube copy may be transcoded.
 [Machine-readable evidence](results/P01_EN_RUNPOD_H100X4_5S_001.json) and
 [measurement CSV](results/SELF_HOST_MEASUREMENTS.csv).
 

@@ -14,11 +14,14 @@ Primary cost unit is **USD per requested video-second**, using the requested
 five-second duration consistently rather than the slightly longer native output.
 These are the tariffs recorded for the completed requests, not newly fetched quotes.
 
-| Variant and original video | Measured wait through download | 15 s latency gate | Recorded USD/video-second | Non-promotional USD/video-second |
+| Variant and YouTube video | Measured wait through download | 15 s latency gate | Recorded USD/video-second | Non-promotional USD/video-second |
 |---|---:|---|---:|---:|
-| [H3](results/P01_FAL_5S_001.mp4) | **102.644 s** | Fail | USD 0.06 | USD 0.06 |
-| [H3 Max](results/P01_FAL_MAX_5S_001.mp4) | **13.552 s** | Pass | USD 0.04 | USD 0.08 |
-| [H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4) | **9.122 s** | Pass | USD 0.02 | USD 0.04 |
+| [H3](https://www.youtube.com/watch?v=1X8fJc_-FJQ) | **102.644 s** | Fail | USD 0.06 | USD 0.06 |
+| [H3 Max](https://www.youtube.com/watch?v=jUGvfw4__Y4) | **13.552 s** | Pass | USD 0.04 | USD 0.08 |
+| [H3 Max Turbo](https://www.youtube.com/watch?v=PfTt3By6lpk) | **9.122 s** | Pass | USD 0.02 | USD 0.04 |
+
+YouTube copies may be transcoded. Original MP4s and measurement records remain
+unchanged in the [results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results).
 
 Five-second request totals remain USD 0.30, USD 0.20 and USD 0.10 respectively;
 changing the reporting unit does not change the charges.
