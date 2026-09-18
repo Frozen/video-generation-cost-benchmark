@@ -1,5 +1,8 @@
 # H3 acceleration trial: failed before producing a video
 
+Historical attempt 001. **The subsequent patched attempt 002 produced both
+videos:** [successful retry and measurements](ACCELERATION_RETRY_RESULTS.md).
+
 September 18, 2026. **No new video was produced. The Pod was deleted and an
 independent GET returned 404; the account's Pod list was empty.**
 [Machine-readable measurements](results/P01_RUNPOD_H100X4ACCEL_5S_001.json).
@@ -121,8 +124,8 @@ test; its patched version passed. This verifies the failing capability check,
 identify the patched runtime separately and prove a successful warmup and request.
 The completed lease journal is immutable evidence, not a retry target.
 
-Next: [prepare persistent model storage without GPUs](PRELOADED_MODELS.md), then
-approve a new bounded lease and run IDs after storage and runtime preflight.
+Subsequent work: [CPU-only storage preparation](PRELOADED_MODELS.md) failed;
+the operator authorized an ephemeral-cache retry, which [produced both videos](ACCELERATION_RETRY_RESULTS.md).
 
 ## Videos available to watch
 

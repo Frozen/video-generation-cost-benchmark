@@ -1,6 +1,6 @@
 """Run exactly two approved adapters on one existing, bounded H100 rental.
 
-No cloud creation. Every exit attempts verified deletion of this trial's Pod.
+No cloud creation. Failures can retain this Pod until its existing deadline.
 """
 
 import argparse
@@ -47,9 +47,14 @@ def transfer(connection, paths, upload):
 
 
 def main():
+    global LEASE
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--env-file", type=Path, required=True)
+    parser.add_argument("--attempt", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--keep-on-error", action="store_true",
+                        help="Retain this Pod for explicitly requested debugging until its existing deadline")
     args = parser.parse_args()
+    LEASE = ROOT / f"private/runpod-h100x4accel-p01-{args.attempt:03d}"
     state = json.loads((LEASE / "state.json").read_text())
     if state.get("status") != "created" or state.get("hardware") != "h100x4accel" or state.get("generation_submissions") != 0:
         raise RuntimeError("A fresh approved acceleration lease is required")
@@ -77,7 +82,8 @@ def main():
             time.sleep(5)
         else:
             raise TimeoutError("Pod startup exceeded the setup allowance")
-        transfer(connection, [ROOT / "scripts/h3_serve.py", ROOT / "scripts/h3_adapters.py"], True)
+        transfer(connection, [ROOT / "scripts/h3_serve.py", ROOT / "scripts/h3_adapters.py",
+                              ROOT / "scripts/h3_lora_compat.py"], True)
         preflight = remote(connection, "import subprocess;from pathlib import Path; r=subprocess.run(['/opt/sglang/bin/python','-c','import torch,diffusers,av;assert torch.cuda.device_count()==4;print(torch.__version__)'],capture_output=True,text=True);print(r.stdout);print(r.stderr);assert r.returncode==0; print(subprocess.check_output(['nvidia-smi','topo','-m'],text=True))")
         (LEASE / "hardware-preflight.txt").write_text(preflight)
         print("Pinned environment and four GPUs verified", flush=True)
@@ -85,13 +91,17 @@ def main():
         for recipe in ("larry8", "light4"):
             if time.time() >= state["deadline"] - 420:
                 raise TimeoutError("Insufficient time for the next adapter and safe export")
+            command = ["/opt/sglang/bin/python", "/root/benchmark/h3_serve.py", "--recipe", recipe]
+            if args.attempt == 2:
+                command.append("--lora-compat-fix")
             launch_code = ("import subprocess;from pathlib import Path;"
-                "p=subprocess.Popen(['/opt/sglang/bin/python','/root/benchmark/h3_serve.py','--recipe'," + repr(recipe) + "],"
+                "p=subprocess.Popen(" + repr(command) + ","
                 "stdin=subprocess.DEVNULL,stdout=open('/root/benchmark/service-" + recipe + ".log','ab'),stderr=subprocess.STDOUT,start_new_session=True);"
                 "Path('/root/benchmark/service-" + recipe + ".pid').write_text(str(p.pid));print(p.pid)")
             pid = int(remote(connection, launch_code).strip())
             print(json.dumps({"recipe": recipe, "service_pid": pid, "phase": "loading_and_warmup"}), flush=True)
             result = subprocess.run([sys.executable, str(ROOT / "scripts/h3_trial.py"), "--recipe", recipe,
+                "--attempt", str(args.attempt),
                 "--expected-pod-id", state["pod_id"], "--ssh-host", connection["host"], "--ssh-port", str(connection["port"]),
                 "--service-pid", str(pid)],
                 timeout=max(1, state["deadline"] - time.time() - 150))
@@ -109,20 +119,26 @@ def main():
             try:
                 transfer(connection, ["gpu-samples.csv"], False)
             except Exception:
-                print("GPU sample export unavailable; still terminating the Pod", flush=True)
-        for _ in range(3):
-            try:
-                if terminate(state["pod_id"], state["name"], key):
-                    current = json.loads((LEASE / "state.json").read_text())
-                    current.update(status="terminated", terminated_at=time.time(), both_adapters_downloaded=trial_ok)
-                    save(LEASE / "state.json", current)
-                    print("Pod deleted and absence verified", flush=True)
-                    break
-            except Exception:
-                pass
-            time.sleep(2)
+                print("GPU sample export unavailable; applying the selected retention policy", flush=True)
+        if not trial_ok and args.keep_on_error:
+            current = json.loads((LEASE / "state.json").read_text())
+            current.update(retained_for_debugging=True, last_runner_failure_at=time.time())
+            save(LEASE / "state.json", current)
+            print("Pod retained for debugging; original deadline remains armed", flush=True)
         else:
-            raise RuntimeError("Deletion not verified; independent deadline guard remains armed")
+            for _ in range(3):
+                try:
+                    if terminate(state["pod_id"], state["name"], key):
+                        current = json.loads((LEASE / "state.json").read_text())
+                        current.update(status="terminated", terminated_at=time.time(), both_adapters_downloaded=trial_ok)
+                        save(LEASE / "state.json", current)
+                        print("Pod deleted and absence verified", flush=True)
+                        break
+                except Exception:
+                    pass
+                time.sleep(2)
+            else:
+                raise RuntimeError("Deletion not verified; independent deadline guard remains armed")
 
 
 if __name__ == "__main__":

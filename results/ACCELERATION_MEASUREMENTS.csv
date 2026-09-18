@@ -1,0 +1,3 @@
+run_id,denoising_evaluations,end_to_end_seconds,runtime_inference_seconds,latency_pass,runtime_compute_usd_per_requested_video_second,quality_review,actual_charge_usd
+P01_EN_RUNPOD_H100X4_LARRY8_5S_002,8,21.872992499999953,13.751475425437093,false,0.01066503316328343434888888889,pending,
+P01_EN_RUNPOD_H100X4_LIGHT4_5S_002,4,13.74076633300001,7.646626319736242,true,0.005930383523528774351111111112,pending,

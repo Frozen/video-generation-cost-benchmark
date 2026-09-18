@@ -4,6 +4,21 @@
 were produced. Pod deleted.** [Failure, costs, telemetry and prepared fix](ACCELERATION_RESULTS.md).
 The scope below records the approved plan, not a completed two-video comparison.
 
+**Retry completed:** [attempt 002 results](ACCELERATION_RETRY_RESULTS.md) contain
+both videos, measured 21.873 s / 13.741 s end-to-end and approximately USD 3.50
+for the whole rental. The four-step request passed the 15-second target;
+quality review remains pending. The Pod was deleted after successful export.
+
+**Authorized retry:** attempt 002 enables the source-pinned LoRA compatibility
+workaround and the successful-warmup admission check. Keep the same AP-IN-1,
+four-H100 hardware and request profile; exactly one Larry8 and one Light4 user
+request, sequentially. Use new lease/output journals ending in `002`, a fresh
+USD 6 reservation and the same 24-minute deadline. This is an explicit operator-
+approved retry, not an automatic resubmission. Persistent-storage preparation
+must not block this functionality check; the operator authorized the ordinary
+ephemeral-cache path. With the USD 1.20 CPU/storage preparation holds, admission
+exposure is USD 22.20 including the new USD 6 GPU hold, within the USD 25 cap.
+
 Approved scope: exactly one P01_EN, 5-second, 768p, seed-42 request with each of
 two public adapters. This is a change of model weights, not fal Max/Turbo and not
 a claim of quality equivalence. No fal reruns, additional seeds or other models.
@@ -29,8 +44,11 @@ The live Secure Cloud quote is USD 3.49/GPU/hour, USD 13.96/hour for all four.
 The planned rental deadline is 24 minutes from before create; compute plus
 300 GB temporary disk is approximately USD 5.60 at that deadline. Reserve
 USD 6 including a teardown margin. Local and Pod-side guards are best-effort
-backstops, not a provider-enforced hard dollar cap. Delete immediately after
-export, or on failure; do not retain the rental for future models.
+backstops, not a provider-enforced hard dollar cap. Delete after successful
+export. For attempt 002 the operator requested in-place debugging: a failed
+runner retains this same Pod until its original deadline instead of immediately
+destroying its cache. The deadline is not extended, and no replacement rental
+or extra generation is automatically admitted. Do not retain it for future models.
 
 Prior spend is not fully invoiced. The verified-deleted first H100 lease had a
 USD 3.92 window estimate; its outstanding reservation is conservatively revised

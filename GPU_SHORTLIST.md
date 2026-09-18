@@ -1,11 +1,11 @@
 # GPU candidate shortlist
 
-Evidence through September 18, 2026, 03:24:48 UTC, reconciled against repository
-commit `94e51b7`. This is the working GPU inventory: recorded attempts and future
+Evidence through September 18, 2026, 04:12:06 UTC. The earlier reconciliation
+against commit `94e51b7` is extended by the completed adapter retry. This is the working GPU inventory: recorded attempts and future
 research proposals, with their evidence kept explicit. It does not schedule
-additional rentals. Both H100 rentals ended and their Pods were deleted;
+additional rentals. All three H100 rentals ended and their Pods were deleted;
 see the [base result](SELF_HOST_RESULTS.md) and the subsequent
-[adapter failure](ACCELERATION_RESULTS.md).
+[adapter failure](ACCELERATION_RESULTS.md) and [successful retry](ACCELERATION_RETRY_RESULTS.md).
 
 ## Decision we are trying to make
 
@@ -31,7 +31,7 @@ A100's form factor still needs selection before it becomes an exact configuratio
 | Configuration | Role in the shortlist | Current status |
 |---|---|---|
 | 1 x B300 288 GB | Original selected baseline | Two allocation rejections; no generation. [Attempts](RUNPOD_RETRY.md). |
-| 4 x H100 SXM, 80 GB each | Selected fallback; later reused for a separate adapter trial | Base: one P01_EN output in 83.462 s, latency failed. Later eight-evaluation adapter: software error, no output; four-step variant not started. Both Pods deleted. [Base](SELF_HOST_RESULTS.md), [adapter](ACCELERATION_RESULTS.md). |
+| 4 x H100 SXM, 80 GB each | Selected fallback; later reused for adapter trials | Base: 83.462 s. First adapter trial failed in software. Patched retry produced eight-step / four-step outputs in 21.873 s / 13.741 s; four-step latency passed, quality pending. All three Pods deleted. [Base](SELF_HOST_RESULTS.md), [retry](ACCELERATION_RETRY_RESULTS.md). |
 | 1 x RTX PRO 6000 Blackwell 96 GB | Exploratory cost/memory proposal | No local allocation or inference evidence |
 | 1 x H100 PCIe 80 GB | Exploratory single-GPU proposal | No local allocation or inference evidence |
 | 1 x A100 80 GB, PCIe or SXM still to be selected | Exploratory lower-price proposal | No local allocation or inference evidence |
@@ -57,6 +57,14 @@ iteration completed; LightX2V four-step was not started. This adds an execution
 attempt and a model profile, not another GPU type or a successful speed result.
 The failed rental estimate is USD 3.04 with no generated video-seconds; see
 [ACCELERATION_RESULTS.md](ACCELERATION_RESULTS.md). It is not a VRAM-failure result.
+
+The next explicitly authorized lease kept the same GPU configuration and applied
+the pinned compatibility fix. Both adapters completed: eight-step runtime
+13.751 s / end-to-end 21.873 s; four-step runtime 7.647 s / end-to-end 13.741 s.
+Compute-only estimates are USD 0.010665 / 0.005930 per requested video-second.
+The whole two-output rental was approximately USD 3.50; quality remains unaccepted.
+This tests two accelerated weight profiles on existing hardware, not another GPU
+type or a ranking of the five untested proposals. [Evidence](ACCELERATION_RETRY_RESULTS.md).
 
 Price and VRAM alone do not establish RTX PRO 6000 as the best-value candidate
 or determine an evaluation order. H200 is not a single-GPU memory upper bound:

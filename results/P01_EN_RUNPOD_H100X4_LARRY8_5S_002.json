@@ -1,0 +1,179 @@
+{
+  "run_id": "P01_EN_RUNPOD_H100X4_LARRY8_5S_002",
+  "lease_run_id": "P01_RUNPOD_H100X4ACCEL_5S_002",
+  "backend": "Runpod self-host",
+  "recipe": "larry8",
+  "result": "completed",
+  "submission_count": 1,
+  "automatic_generation_retries": 0,
+  "request": {
+    "model": "MiniMaxAI/MiniMax-H3",
+    "model_variant": "fl2va",
+    "task": "t2va",
+    "requested_seconds": 5,
+    "short_edge": 768,
+    "aspect_ratio": "16:9",
+    "seed": 42,
+    "num_inference_steps": 9,
+    "denoising_iterations_observed": 8,
+    "quality": "lossless",
+    "prompt_variant": "P01_EN",
+    "prompt_modified": true,
+    "source_prompt_sha256": "493ef9be797d7fbf6407589f08a76830078ba2dfd0d8eaf990d2209852f0de6a",
+    "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+    "canonical_payload_sha256": "58532bf2f1cffb4c0440e472fa60ec3bf50eb9374c63dac7c1d0719f985d5b00",
+    "language_instruction": "Any spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+    "exact_prompt_match_to_fal": false,
+    "safety_checker_equivalence_to_fal": "unverified"
+  },
+  "configuration": {
+    "region": "AP-IN-1",
+    "cloud": "SECURE",
+    "gpu_type": "NVIDIA H100 80GB HBM3",
+    "gpu_count": 4,
+    "gpu_memory_mib_each": 81559,
+    "topology": "pairwise NV18",
+    "host_memory_gib_provider_reported": 1006,
+    "vcpu_count_provider_reported": 112,
+    "disk_gb": 300,
+    "tp_size": 2,
+    "ulysses_degree": 2,
+    "encoder_parallel": "auto",
+    "torch_compile": false,
+    "quantization": "none",
+    "adapters": [
+      {
+        "repo": "larryvrh/MiniMax-H3-Turbo-Lora",
+        "revision": "43a74557ac3f6539db8e0f2a959d03feb7a81480",
+        "filename": "minimax_h3_turbo_v4_step600_ema.safetensors",
+        "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+        "bytes": 779849816,
+        "evaluations": 8,
+        "sigma_points": 9,
+        "alpha": null
+      }
+    ],
+    "model_revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+    "source_revision": "408d2334c34d387a36a26398dff9a8f004328344",
+    "container_digest": "sha256:6bcaa47db52f78ce0d67863b8b2431221b79bc23204a80cad757fa819d00e921",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.12.1",
+    "diffusers": "0.37.0",
+    "native_decoder_fp16_observed": true,
+    "runtime_patch": {
+      "id": "h3-lora-mxfp8-capability-v1",
+      "upstream_sha256": "2a61d5c8b0418eed72fd3443cc47b6a06ed8512f6c834b608aa4e3e55e7489fa",
+      "patched_sha256": "2a8a5c9b63d3ae8f0b4dfd66135c5988004dab4b304dc5601e9b467bf767a53c",
+      "gpu_validation": "warmup_and_request_completed"
+    },
+    "runtime_versions": {
+      "torch": "2.13.0+cu130",
+      "sglang": "0.0.0.dev1+g408d2334c",
+      "transformers": "5.12.1",
+      "diffusers": "0.37.0",
+      "av": "16.1.0",
+      "huggingface_hub": "1.31.0"
+    }
+  },
+  "timing": {
+    "end_to_end_seconds": 21.872992499999953,
+    "completion_observed_seconds": 17.94304779099997,
+    "submission_response_seconds": 1.0262247079999725,
+    "boundary": "request_submission_to_download_complete",
+    "target_seconds": 15,
+    "latency_pass": false,
+    "runtime_reported_inference_seconds": 13.751475425437093,
+    "cold_warm_status": "first_user_request_after_builtin_warmup",
+    "builtin_warmup_count": 1,
+    "last_completed_stages_seconds": {
+      "MiniMaxH3PartitionAdmissionStage": 0.0001,
+      "MiniMaxH3TextEncodingStage": 0.0771,
+      "MiniMaxH3VisualEncodingStage": 0.0,
+      "MiniMaxH3AudioEncodingStage": 0.0,
+      "MiniMaxH3LatentPreparationStage": 0.0281,
+      "MiniMaxH3TimestepPreparationStage": 0.0002,
+      "MiniMaxH3DenoisingStage": 11.0346,
+      "MiniMaxH3DecodingStage": 1.2963
+    },
+    "builtin_warmup_last_seconds": 46.28,
+    "builtin_warmup_logged_profile": "1344x768x124f, 2/50 steps"
+  },
+  "output": {
+    "bytes": 1115202,
+    "sha256": "2b8f554851a5bff957ab47174a1c3b37335d6f6559a6e4a86771a81877b6f3ed",
+    "width": 1344,
+    "height": 768,
+    "frames": 124,
+    "fps_fraction": "24/1",
+    "video_duration_seconds": 5.166667,
+    "container_duration_seconds": 5.175,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "audio_sample_rate": 32000,
+    "audio_channels": 2,
+    "full_decode_pass": true,
+    "reencoded_for_publication": false,
+    "public_artifact": "results/P01_EN_RUNPOD_H100X4_LARRY8_5S_002.mp4"
+  },
+  "cost": {
+    "primary_unit": "USD_per_requested_video_second",
+    "normalization_video_seconds": 5,
+    "aggregate_compute_hourly_usd": "13.96",
+    "runtime_compute_estimate_usd": "0.05332516581641717174444444444",
+    "runtime_compute_usd_per_video_second": "0.01066503316328343434888888889",
+    "scope": "runtime inference only; excludes setup, idle time, disk and failed earlier attempts",
+    "whole_lease_record": "results/P01_RUNPOD_H100X4ACCEL_5S_002.json",
+    "actual_charge_usd": null,
+    "ledger_settled": false,
+    "accepted_output_unit_cost": null
+  },
+  "gpu_telemetry": {
+    "interval": "submission_to_download; host/client UTC alignment assumed",
+    "sampled_not_continuous_peaks": true,
+    "per_gpu": {
+      "0": {
+        "sample_count": 22,
+        "used_mib_sampled_max": 68103.0,
+        "utilization_percent_sampled_max": 100.0,
+        "power_w_sampled_max": 707.41,
+        "utilization_percent_sampled_mean": 63.59090909090909,
+        "power_w_sampled_mean": 480.30818181818177
+      },
+      "1": {
+        "sample_count": 22,
+        "used_mib_sampled_max": 68101.0,
+        "utilization_percent_sampled_max": 100.0,
+        "power_w_sampled_max": 703.36,
+        "utilization_percent_sampled_mean": 63.63636363636363,
+        "power_w_sampled_mean": 477.1022727272728
+      },
+      "2": {
+        "sample_count": 22,
+        "used_mib_sampled_max": 67535.0,
+        "utilization_percent_sampled_max": 100.0,
+        "power_w_sampled_max": 702.86,
+        "utilization_percent_sampled_mean": 63.63636363636363,
+        "power_w_sampled_mean": 481.81999999999994
+      },
+      "3": {
+        "sample_count": 22,
+        "used_mib_sampled_max": 67535.0,
+        "utilization_percent_sampled_max": 100.0,
+        "power_w_sampled_max": 703.3,
+        "utilization_percent_sampled_mean": 63.63636363636363,
+        "power_w_sampled_mean": 478.4913636363637
+      }
+    }
+  },
+  "review": {
+    "blind_human_review": "pending",
+    "prompt_match": null,
+    "english_language_verified": false,
+    "audio_quality": "unreviewed",
+    "vbench_run": false
+  },
+  "evidence_sha256": {
+    "service_log": "fd4c246b6501475f44cde20ac76b216381d3b8a6ade0d143511a97804f0919b3",
+    "runtime_record": "3a1b245f100b6a68119c01833a8a12dd860a84b2c79914d3aaba1c61878d83c9"
+  }
+}

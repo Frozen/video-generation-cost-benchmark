@@ -7,13 +7,22 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 **Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
-[Latest acceleration attempt](ACCELERATION_RESULTS.md): the public eight-step
-H3 adapter failed on a SGLang LoRA compatibility error; the four-step variant
-was not started. **No new videos. Pod deleted. Failed-rental estimate: USD 3.04.**
-A pinned compatibility workaround passes offline tests but is not GPU-validated.
-[Preloaded storage preparation](PRELOADED_MODELS.md): S3 credentials are verified;
-the proposed CPU-only preload and bounded disk retention await confirmation.
-No storage or replacement GPU rental has been created. [Original plan](ACCELERATION_TRIAL.md).
+[Latest acceleration results](ACCELERATION_RETRY_RESULTS.md): **both public H3
+adapters produced videos after the pinned compatibility fix.**
+
+| Video | Request to download | Compute-only USD / requested video-second | 15 s target |
+|---|---:|---:|---|
+| [8 steps](results/P01_EN_RUNPOD_H100X4_LARRY8_5S_002.mp4) | 21.873 s | 0.010665 | Fail |
+| [4 steps](results/P01_EN_RUNPOD_H100X4_LIGHT4_5S_002.mp4) | 13.741 s | 0.005930 | Pass |
+
+Same four H100 SXM GPUs, P01_EN, seed 42, five-second 768p requests, sequentially.
+These are not fal Max/Turbo weights. **Quality review remains pending.** The
+whole two-clip rental, including preparation, idle time and temporary disk, is
+estimated at **USD 3.50**, or USD 0.35037 per requested video-second; invoice pending.
+Pod deleted after export; subsequent Pod and network-volume lists were empty.
+[Earlier failed rental](ACCELERATION_RESULTS.md): USD 3.04 estimate, retained in
+experiment accounting. [CPU-only storage preparation](PRELOADED_MODELS.md) also
+failed; no verified persistent cache remains. [Approved plan](ACCELERATION_TRIAL.md).
 
 [Latest comparison](VARIANT_RESULTS.md): identical 5-second 768P requests, one
 sample each. H3: **102.644 s wait / USD 0.06 per video-second**;

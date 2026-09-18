@@ -1,0 +1,44 @@
+{
+  "run_id": "P01_RUNPOD_H100X4ACCEL_5S_002",
+  "result": "two_videos_downloaded",
+  "submission_count": 2,
+  "configuration": {
+    "region": "AP-IN-1",
+    "gpu_count": 4,
+    "gpu": "H100 SXM",
+    "sequential": true
+  },
+  "runs": [
+    "P01_EN_RUNPOD_H100X4_LARRY8_5S_002",
+    "P01_EN_RUNPOD_H100X4_LIGHT4_5S_002"
+  ],
+  "timing": {
+    "allocation_to_verified_absence_seconds": 900.8528361320496,
+    "allocated_at_utc": "2026-09-18T03:57:05.185Z",
+    "verified_absent_at_utc": "2026-09-18T04:12:06.037836+00:00"
+  },
+  "cost": {
+    "aggregate_compute_hourly_usd": "13.96",
+    "window_compute_estimate_usd": "3.493307109000947893333333333",
+    "window_disk_estimate_usd": "0.01042653745523205555555555556",
+    "window_total_estimate_usd": "3.503733646456179948888888889",
+    "normalization_requested_video_seconds": 10,
+    "whole_window_usd_per_requested_video_second": "0.3503733646456179948888888889",
+    "scope": "this two-clip rental only; includes startup and idle time, excludes earlier failures and CPU preload",
+    "actual_charge_usd": null,
+    "ledger_settled": false,
+    "reservation_usd": "6.00",
+    "scoped_billing_record_count_at_closeout": 0
+  },
+  "cleanup": {
+    "pod_deleted": true,
+    "original_videos_and_logs_exported": true,
+    "persistent_volume_created": false,
+    "subsequent_get_status": 404,
+    "subsequent_account_pod_count": 0,
+    "subsequent_account_network_volume_count": 0
+  },
+  "evidence_sha256": {
+    "gpu_samples_csv": "c2dacc2b0445425efa1a32d9c1a9deb6618039ef89bb3f756e8645f4ef31f93a"
+  }
+}

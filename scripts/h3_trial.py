@@ -52,15 +52,20 @@ def main():
     global LEASE, OUTPUT, RUN_ID
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--recipe", choices=("base", *ADAPTERS), default="base")
+    parser.add_argument("--attempt", type=int, choices=(1, 2), default=1,
+                        help="Attempt 2 is the explicitly approved compatibility retry")
     parser.add_argument("--expected-pod-id", required=True)
     parser.add_argument("--ssh-host", required=True)
     parser.add_argument("--ssh-port", type=int, required=True)
     parser.add_argument("--service-pid", type=int)
     args = parser.parse_args()
     if args.recipe != "base":
-        LEASE = ROOT / "private/runpod-h100x4accel-p01-001"
-        OUTPUT = ROOT / ("private/h100-" + args.recipe + "-p01-en")
-        RUN_ID = "P01_EN_RUNPOD_H100X4_" + args.recipe.upper() + "_5S_001"
+        LEASE = ROOT / f"private/runpod-h100x4accel-p01-{args.attempt:03d}"
+        suffix = "" if args.attempt == 1 else f"-{args.attempt:03d}"
+        OUTPUT = ROOT / ("private/h100-" + args.recipe + "-p01-en" + suffix)
+        RUN_ID = "P01_EN_RUNPOD_H100X4_" + args.recipe.upper() + f"_5S_{args.attempt:03d}"
+    elif args.attempt != 1:
+        parser.error("No new base-model attempt is authorized")
     if not re.fullmatch(r"[A-Za-z0-9._-]+", args.ssh_host) or not 1 <= args.ssh_port <= 65535:
         parser.error("Invalid SSH address")
     if args.service_pid is not None and args.service_pid <= 1:
@@ -71,7 +76,7 @@ def main():
     expected_count = 1 if args.recipe == "light4" else 0
     if lease.get("generation_submissions") != expected_count:
         raise RuntimeError("A generation was already submitted or is uncertain; do not retry")
-    if args.recipe == "light4" and lease.get("generation_run_id") != "P01_EN_RUNPOD_H100X4_LARRY8_5S_001":
+    if args.recipe == "light4" and lease.get("generation_run_id") != f"P01_EN_RUNPOD_H100X4_LARRY8_5S_{args.attempt:03d}":
         raise RuntimeError("The approved eight-step predecessor is missing")
     original = json.loads((ROOT / "private/fal-p01/payload.json").read_text())["prompt"]
     payload = payload_from(original, args.recipe)

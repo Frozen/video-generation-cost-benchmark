@@ -73,7 +73,7 @@ def main():
         raise RuntimeError("Wrapper must retain its non-MXFP8 path")
     print("Pinned source verified; original AttributeError reproduced; patched probe passes.")
     print("Patched SHA-256: " + digest(replacement))
-    print("CPU-only capability test; full GPU generation remains unverified.")
+    print("CPU-only capability test; this command does not run GPU generation.")
 
 
 if __name__ == "__main__":

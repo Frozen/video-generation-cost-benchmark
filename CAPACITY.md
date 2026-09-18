@@ -9,6 +9,10 @@ without a video and was deleted; see [ACCELERATION_RESULTS.md](ACCELERATION_RESU
 [generation statistics](SELF_HOST_RESULTS.md) are separate from the allocation
 findings here. [Retry report](RUNPOD_RETRY.md). Earlier failures remain recorded.
 
+A third four-H100 allocation completed the patched eight-step and four-step
+requests, then was deleted at 04:12:06 UTC. [Results](ACCELERATION_RETRY_RESULTS.md).
+Separate CPU-only storage preparation failed and its Pod/volume were deleted.
+
 The claim is specific to one configuration, region and time. It does **not** mean
 that all B300s, all regions, or all Runpod GPUs were unavailable.
 
@@ -31,15 +35,17 @@ availability is a snapshot, not a reservation or a successful allocation.
 | A10 | 2026-09-18 02:11 UTC | Actual create: 4 x H100 SXM, AP-IN-1, CUDA 13.0, minimum 96 GiB RAM/GPU, 300 GB disk | Allocated at USD 13.96/hour; image initializing at 02:13 UTC; inference not run |
 | A11 | 2026-09-18 02:25–02:28 UTC | One P01_EN generation on the allocated H100 host, then export and deletion | MP4 downloaded in 83.462 s; latency failed; Pod absence verified at 02:28:13 UTC |
 | A12 | 2026-09-18 03:11–03:24 UTC | Separate allocation: 4 x H100 SXM, AP-IN-1, for an adapter trial | Allocation succeeded; eight-evaluation request failed on a LoRA compatibility error, no video; four-step variant not started; deletion verified at 03:24:48 UTC. [Evidence](ACCELERATION_RESULTS.md). |
+| A13 | 2026-09-18 03:51–03:55 UTC | CPU-only preload: two vCPUs, 8 GB RAM, EU-NL-1, 200 GB STANDARD volume | CPU/volume allocated; HF downloader killed with SIGKILL, cause unconfirmed. No verified cache; CPU and volume deletion verified. [Evidence](PRELOADED_MODELS.md). |
+| A14 | 2026-09-18 03:57–04:12 UTC | Approved patched retry: 4 x H100 SXM, AP-IN-1 | Both outputs downloaded, 21.873 s / 13.741 s end-to-end. Four-step latency passed; quality pending. Pod deletion verified. [Evidence](ACCELERATION_RETRY_RESULTS.md). |
 
 A06 does not erase A01. In particular, the later catalog query checks GPU count,
 country and CUDA; it does not prove that A01's full RAM/disk request can be
 allocated. A05 likewise does not establish an allocatable, correctly connected
 four-GPU host with all required host resources.
 
-We made **four actual allocation requests: two rejected B300 requests and two
-accepted four-H100 requests**. A01, A07, A10 and A12 record those allocations;
-A11 records the base generation and deletion. The other entries are read-only
+We made **five actual GPU allocation requests: two rejected B300 requests and three
+accepted four-H100 requests**. A01, A07, A10, A12 and A14 record those allocations;
+A13 is a separate accepted CPU allocation. A11 records the base generation and deletion. The other entries are read-only
 catalog observations. Together they cannot establish a
 provider-wide success rate, permanent shortage, expected wait time or SLA.
 The [GPU inventory](GPU_SHORTLIST.md) keeps these attempts separate from
