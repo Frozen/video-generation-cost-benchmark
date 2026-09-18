@@ -47,6 +47,15 @@ class AttemptTests(unittest.TestCase):
             with self.subTest(hardware=hardware, region=region), self.assertRaises(ValueError):
                 runpod_trial.configure_attempt(1, hardware, region)
 
+    def test_acceleration_trial_has_new_journal_and_24_minute_bound(self):
+        runpod_trial.configure_attempt(1, "h100x4accel", "AP-IN-1")
+        self.assertEqual(runpod_trial.PRIVATE.name, "runpod-h100x4accel-p01-001")
+        self.assertEqual(runpod_trial.RUN_ID, "P01_RUNPOD_H100X4ACCEL_5S_001")
+        profile = runpod_trial.PROFILES[runpod_trial.HARDWARE]
+        self.assertEqual(profile["seconds"], 1440)
+        self.assertEqual(profile["reservation"], "6.00")
+        self.assertEqual(profile["count"], 4)
+
     @patch("runpod_trial.api")
     @patch("runpod_trial.transact")
     @patch("runpod_trial.load_keys", return_value={"runpod": "offline-test-key"})

@@ -27,6 +27,24 @@ class PayloadTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             h3_trial.payload_from("Not the frozen source")
 
+    def test_adapters_preserve_request_except_sigma_points(self):
+        original = "Offline test scene."
+        with patch.object(h3_trial, "SOURCE_PROMPT_SHA256", hashlib.sha256(original.encode()).hexdigest()):
+            base = h3_trial.payload_from(original)
+            for recipe, points in (("larry8", 9), ("light4", 5)):
+                payload = h3_trial.payload_from(original, recipe)
+                self.assertEqual(payload, dict(base, num_inference_steps=points))
+                self.assertEqual(h3_trial.ADAPTERS[recipe]["evaluations"], points - 1)
+        self.assertEqual(h3_trial.ADAPTERS["light4"]["alpha"], 8)
+        self.assertNotEqual(h3_trial.ADAPTERS["larry8"]["repo"], h3_trial.ADAPTERS["light4"]["repo"])
+
+    def test_adapter_downloads_are_pinned_and_checksummed(self):
+        for adapter in h3_trial.ADAPTERS.values():
+            self.assertRegex(adapter["revision"], r"^[a-f0-9]{40}$")
+            self.assertRegex(adapter["sha256"], r"^[a-f0-9]{64}$")
+            self.assertTrue(adapter["filename"].endswith(".safetensors"))
+            self.assertGreater(adapter["bytes"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

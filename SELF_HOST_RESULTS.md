@@ -132,7 +132,10 @@ verified-absence timestamp: USD 3.910339 compute plus USD 0.011671 for 300 GB di
 using the published USD 0.10/GB/month tariff and a 30-day month approximation.
 This is a window-based estimate, **not an invoice or a proven billable duration**.
 The billing query returned zero records; that does not mean the rental was free.
-The USD 16 ledger reservation remains pending reconciliation. Dividing the
+The initial USD 16 ledger reservation was subsequently revised to USD 6 after
+another authenticated absence check, retaining over 50% margin above the window
+estimate; it remains reserved, not settled. See [the follow-up trial](ACCELERATION_TRIAL.md).
+Dividing the
 entire estimated rental by the only requested five seconds gives
 **USD 0.784402 per video-second** for this trial, not a steady-state serving cost.
 

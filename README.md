@@ -7,6 +7,9 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 **Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
+[Approved next trial](ACCELERATION_TRIAL.md): two public H3 acceleration adapters,
+eight and four denoiser evaluations, on one bounded four-H100 rental. Not fal Turbo.
+
 [Latest comparison](VARIANT_RESULTS.md): identical 5-second 768P requests, one
 sample each. H3: **102.644 s wait / USD 0.06 per video-second**;
 Max: **13.552 s / USD 0.04 per video-second**;

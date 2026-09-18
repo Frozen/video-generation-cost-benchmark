@@ -29,6 +29,9 @@ PROFILES = {
     "h100x4": {"gpu_id": "NVIDIA H100 80GB HBM3", "count": 4, "ram_per_gpu": 96,
                "seconds": 3600, "reservation": "16.00", "hourly": "13.96",
                "regions": ("AP-IN-1", "EUR-IS-3", "CA-MTL-1")},
+    "h100x4accel": {"gpu_id": "NVIDIA H100 80GB HBM3", "count": 4, "ram_per_gpu": 96,
+                    "seconds": 1440, "reservation": "6.00", "hourly": "13.96",
+                    "regions": ("AP-IN-1",)},
 }
 IMAGE = "lmsysorg/sglang@sha256:6bcaa47db52f78ce0d67863b8b2431221b79bc23204a80cad757fa819d00e921"
 MODEL_REVISION = "42ed227ee7df40d41602854ae760620d6eb651fe"

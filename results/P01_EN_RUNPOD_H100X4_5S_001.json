@@ -108,7 +108,9 @@
     "actual_charge_usd": null,
     "billing_record_count_at_first_check": 0,
     "billing_status": "pending; empty billing response is not a free rental",
-    "outstanding_reservation_usd": "16.00",
+    "initial_reservation_usd": "16.00",
+    "outstanding_reservation_usd": "6.00",
+    "reservation_revision_reason": "Verified deletion rechecked; retained over 50 percent margin above the whole-window estimate. Actual charge remains unverified.",
     "ledger_settled": false,
     "accepted_output_unit_cost": null
   },
