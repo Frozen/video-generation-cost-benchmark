@@ -9,8 +9,11 @@ English-requested P01_EN output on four H100 GPUs; the original result below is 
 September 17, 2026. **One real API request completed; no self-host run yet.**
 This is a single observation, not an average, p95, throughput benchmark or SLA.
 
-[Watch/download the original generated video (MP4, 2.6 MB)](results/P01_FAL_5S_001.mp4).
-Published with the operator's explicit approval; no trimming, resizing or re-encoding.
+[Watch on YouTube](https://www.youtube.com/watch?v=1X8fJc_-FJQ).
+Published with the operator's explicit approval. The original MP4 (2.6 MB) remains
+in the [results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results)
+without trimming, resizing or re-encoding; the YouTube copy
+may be transcoded.
 
 | Measurement | Published or planned | Observed |
 |---|---|---|

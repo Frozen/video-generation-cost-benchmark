@@ -7,6 +7,25 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 **Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
+## Watch the benchmark videos
+
+| Video | Watch on YouTube |
+|---|---|
+| 01 — H3 via fal | [Watch](https://www.youtube.com/watch?v=1X8fJc_-FJQ) |
+| 02 — H3 Max via fal | [Watch](https://www.youtube.com/watch?v=jUGvfw4__Y4) |
+| 03 — H3 Max Turbo via fal | [Watch](https://www.youtube.com/watch?v=PfTt3By6lpk) |
+| 04 — H3 Base on 4 x H100 SXM | [Watch](https://www.youtube.com/watch?v=QH9OgSgDNsU) |
+| 05 — H3 + Larry Turbo v4, 8 steps, 4 x H100 SXM | [Watch](https://www.youtube.com/watch?v=dvoLvC6WmSI) |
+| 06 — H3 + LightX2V, 4 steps, 4 x H100 SXM | [Watch](https://www.youtube.com/watch?v=eWXFFeDpqZM) |
+
+YouTube is for convenient playback and may transcode the videos. The unchanged
+original MP4s and measurement records remain in the
+[results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results).
+The fal samples use P01; self-hosted samples use the English-requested P01_EN
+variant. This is not an exact-prompt six-way comparison.
+
+## Latest results
+
 [LTX-2.5 result](LTX_RESULTS.md): **one H100 SXM successfully produced
 [video and audio](results/P01_EN_RUNPOD_H100_LTX25_5S_003.mp4).** Cold first request:
 76.163 s to downloaded video, 60.642 s pipeline processing, **USD 0.011758 per
@@ -21,8 +40,8 @@ adapters produced videos after the pinned compatibility fix.**
 
 | Video | Request to download | Compute-only USD / requested video-second | 15 s target |
 |---|---:|---:|---|
-| [8 steps](results/P01_EN_RUNPOD_H100X4_LARRY8_5S_002.mp4) | 21.873 s | 0.010665 | Fail |
-| [4 steps](results/P01_EN_RUNPOD_H100X4_LIGHT4_5S_002.mp4) | 13.741 s | 0.005930 | Pass |
+| [8 steps (YouTube)](https://www.youtube.com/watch?v=dvoLvC6WmSI) | 21.873 s | 0.010665 | Fail |
+| [4 steps (YouTube)](https://www.youtube.com/watch?v=eWXFFeDpqZM) | 13.741 s | 0.005930 | Pass |
 
 Same four H100 SXM GPUs, P01_EN, seed 42, five-second 768p requests, sequentially.
 These are not fal Max/Turbo weights. **Quality review remains pending.** The
@@ -42,7 +61,7 @@ with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
 passed the latency gate; full quality review and exact-pair validation remain pending.
 
 **Self-host completed, September 18:** H3 Base on **4 x H100 SXM in India**
-produced a [five-second video](results/P01_EN_RUNPOD_H100X4_5S_001.mp4) in
+produced a [five-second video (YouTube)](https://www.youtube.com/watch?v=QH9OgSgDNsU) in
 **83.462 s end-to-end**, failing the 15 s target. Compute-only estimate:
 **USD 0.06 per video-second** (USD 0.30 for this five-second request).
 The whole one-clip rental including setup and disk is approximately
@@ -58,10 +77,6 @@ rapid, hard-to-understand speech and cannot identify its language despite the
 English-only prompt; the language and cause are not established.
 Formal quality review and final invoice reconciliation remain pending.
 
-Original videos: [H3](results/P01_FAL_5S_001.mp4),
-[H3 Max](results/P01_FAL_MAX_5S_001.mp4),
-[H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4),
-[our H3 Base / 4 H100 / English-requested variant](results/P01_EN_RUNPOD_H100X4_5S_001.mp4).
 [Our economics model](ECONOMICS.md) separates measured results, missing self-host
 inputs and utilization scenarios; it does not assume fal latency is B300 runtime.
 

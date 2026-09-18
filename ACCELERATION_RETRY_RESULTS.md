@@ -4,8 +4,10 @@ September 18, 2026. **The pinned LoRA compatibility fix worked for both public
 adapters. Four-step H3 met the 15-second end-to-end target on this one request;
 eight-step H3 did not. Quality acceptance is still pending.**
 
-Watch the original files: [eight steps](results/P01_EN_RUNPOD_H100X4_LARRY8_5S_002.mp4)
-and [four steps](results/P01_EN_RUNPOD_H100X4_LIGHT4_5S_002.mp4).
+Watch on YouTube: [eight steps](https://www.youtube.com/watch?v=dvoLvC6WmSI)
+and [four steps](https://www.youtube.com/watch?v=eWXFFeDpqZM).
+YouTube copies may be transcoded; unchanged original MP4s remain in the
+[results directory](https://github.com/Frozen/video-generation-cost-benchmark/tree/main/results).
 Both requests used P01_EN, seed 42, five seconds, 768p, 16:9, native audio, and
 the same four H100 SXM GPUs in AP-IN-1. These are public H3 adapters, **not LTX
 and not fal's proprietary Max/Turbo weights**. [Approved configuration](ACCELERATION_TRIAL.md).
