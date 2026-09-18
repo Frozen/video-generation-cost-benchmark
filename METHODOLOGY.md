@@ -10,6 +10,11 @@ do not silently substitute post-trained weights into the self-host baseline.
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
+**Availability addendum:** the first B300 allocation failed before inference.
+[CAPACITY.md](CAPACITY.md) records the real failure, dated stock changes and the
+proposed H100 fallback. Capacity is part of deployment feasibility, not a missing
+performance number to omit. No alternative configuration has been rented.
+
 ## 1. Objective and scope change
 
 The business objective is to maximize video operators' profit. The technical
@@ -145,6 +150,32 @@ No automatic retries. Every additional attempt needs a new record and reservatio
 Preserve failures rather than replacing them with a successful rerun.
 If the remaining budget cannot cover both sides and safe closeout, do not start
 the pair. Unmeasured load/optimization claims remain unverified.
+
+### Capacity and unexecuted configurations
+
+Report every selected configuration that could not be tested, with its GPU
+type/count, cloud, region, CUDA and host-resource filters, check/attempt date,
+catalog status, actual allocation response where attempted, incurred charges
+and exact work that was not performed. Keep a dated observation register such
+as [CAPACITY.md](CAPACITY.md); a later successful allocation does not erase a
+prior rejection.
+
+Separate `catalog_unavailable`, `allocation_rejected_capacity`,
+`allocated_setup_failed`, `generation_failed`, `completed_latency_failed` and
+`completed_accepted`. A catalog lookup is not an allocation attempt, and a
+capacity rejection is not a model inference failure. Record missing performance
+and quality values as unmeasured/null, not zero. With no video, cost per video is
+undefined even if rejected allocation incurred no infrastructure charge.
+
+Capacity search/wait, allocation/boot, model setup and request-to-download
+latency are separate timing boundaries. A few stock checks do not establish
+long-run availability or a time-to-capacity SLA. An eligible catalog entry is
+not confirmation that the full requested machine can be allocated.
+
+Hardware alternatives must have separately named configurations and bounded
+plans. Keep the request and model unchanged where possible; explicitly identify
+any change of model, precision or output contract. A diagnostic result that
+misses the 15-second target remains useful evidence but does not pass acceptance.
 
 ## 5. Latency, throughput and acceptance
 

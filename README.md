@@ -19,6 +19,11 @@ generated, and incremental GPU/storage expense is USD 0. The replacement key
 works; this is not an authentication failure. Runtime/model pins and lifecycle
 helpers are prepared, but remote execution remains unverified.
 
+[Capacity is now tracked explicitly](CAPACITY.md): the failed allocation stays
+in the results even though a later catalog check again reports B300 stock. The
+proposed fallback is four H100 SXM GPUs with the same H3 Base request; neither
+configuration has been successfully allocated or tested by us.
+
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),
 [H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4).
@@ -105,6 +110,7 @@ backends, but that is not yet a funded schedule.
 - [START_HERE.md](START_HERE.md): selected H3 baseline, first-test sequence and measurements.
 - [RESULTS.md](RESULTS.md): the completed first reference and its limitations.
 - [RUNPOD_ATTEMPT.md](RUNPOD_ATTEMPT.md): rejected B300 allocation, cost and prepared artifacts.
+- [CAPACITY.md](CAPACITY.md): dated stock/allocatability evidence, untested coverage and proposed fallback.
 - [REFERENCE_RUN.md](REFERENCE_RUN.md): bounded one-call execution addendum.
 - [METHODOLOGY.md](METHODOLOGY.md): matching, realistic requests, execution stages,
   quality, latency, throughput, cost accounting and completion criteria.

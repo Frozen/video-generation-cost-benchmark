@@ -5,6 +5,11 @@ or inference submitted.** See the [attempt report](RUNPOD_ATTEMPT.md).
 The three [fal samples](VARIANT_RESULTS.md) are complete; do not rerun them.
 This is a readiness record, not a completed self-host benchmark.
 
+**September 18 UTC update:** the latest Iceland B300 catalog check is `LOW`
+again; four H100 SXM GPUs are also catalog-listed in EUR-IS-3. No new allocation
+was attempted. [CAPACITY.md](CAPACITY.md) records the history and bounded fallback
+proposal; the earlier failure must not be presented as permanent unavailability.
+
 ## Operator declaration and license clarification
 
 The operator states that this trial is being run personally, not on behalf of a
@@ -64,7 +69,9 @@ unverified because allocation failed. Container/source/model pins, the proposed
 384 GiB RAM / 300 GB disk request and the released USD 18 reservation are recorded
 in [RUNPOD_ATTEMPT.md](RUNPOD_ATTEMPT.md).
 
-Capacity is the observed immediate blocker. Verify remote shutdown control, SSH,
+Capacity caused the actual failed attempt; current catalog stock is not a
+reservation or evidence that the full host request can now be allocated.
+Verify remote shutdown control, SSH,
 the actual quote and export before inference on a future allocated Pod. Do not
 represent software timers as a provider-enforced cap, silently replace H3 Base
 with fal Max/Turbo, change the GPU plan or submit extra API requests.

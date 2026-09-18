@@ -2,6 +2,11 @@
 
 September 17, 2026. Attempt `P01_RUNPOD_B300_5S_001`.
 
+**Historical attempt; not a permanent no-stock claim.** The September 18 UTC
+follow-up again reports `LOW` for an Iceland B300. [CAPACITY.md](CAPACITY.md)
+preserves both observations and the proposed hardware fallback. No second
+allocation request has been submitted.
+
 **Outcome: no self-host measurement and no new video.** Runpod rejected the
 single provisioning request with HTTP 400 because the requested instance was
 unavailable. A subsequent Pod listing was empty. No model inference or additional

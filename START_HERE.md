@@ -8,6 +8,11 @@ The later [variant comparison](VARIANT_RESULTS.md) also measures Max and Turbo a
 commercial alternatives. The original open-base / one-B300 self-host candidate
 remains unchanged; these are not claims of identical weights across variants.
 
+The first allocation was rejected for capacity. [CAPACITY.md](CAPACITY.md)
+records this unexecuted coverage, later stock changes and a proposed four-H100
+fallback. Hardware selection is being reconsidered; no fallback has been rented
+and the original request, quality checks and latency target remain unchanged.
+
 ## What we start with
 
 The currently agreed work is the **baseline comparison only**: one English

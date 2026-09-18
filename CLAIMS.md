@@ -19,6 +19,7 @@ is unverified. [START_HERE.md](START_HERE.md) records the selected profile.
 | C04 | Iterations/steps and optimization | Exact settings, runtime, measured speed/cost and quality trade-off | Not tested; source/value pending |
 | C05 | Additional pipelines | Prompt enhancement, conditioning, upscaling/interpolation, audio, encoding and delivery | Output streams inspected; hidden pipeline and self-host matching unverified |
 | C06 | API price and service configuration | Exact fal.ai endpoint/tier, version/date, input/output contract and actual billed amount | USD 0.30 tariff calculation corroborated by billable units; final invoice reconciliation pending (403) |
+| C07 | Capacity and deployability | GPU type/count, cloud, region, CUDA/host filters, dated catalog checks, actual allocation outcome and setup status | One B300 allocation rejected for capacity; no inference. Later stock changed to LOW. See [CAPACITY.md](CAPACITY.md); no availability SLA inferred |
 
 ## First measured reference
 
