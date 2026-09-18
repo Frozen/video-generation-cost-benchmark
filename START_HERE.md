@@ -1,12 +1,13 @@
 # First test: MiniMax H3 native 768P
 
-Planning baseline v0.8.1, September 17, 2026. **One fal reference is now complete;
-self-host matching and execution readiness remain unverified.**
+Original planning baseline v0.8.1, September 17, 2026. The subsequent three fal
+references and one H100 self-host result are complete; exact pairing remains open.
 The [execution addendum](REFERENCE_RUN.md) supersedes the earlier whole-pair
 sequencing gate for that one API call; [RESULTS.md](RESULTS.md) records the result.
 The later [variant comparison](VARIANT_RESULTS.md) also measures Max and Turbo as
-commercial alternatives. The original open-base / one-B300 self-host candidate
-remains unchanged; these are not claims of identical weights across variants.
+commercial alternatives. The original open-base / one-B300 plan is preserved
+below; the completed hardware fallback is identified separately. These API
+comparisons do not establish identical weights across variants.
 
 Two B300 allocations were rejected for capacity. The operator then authorized
 another region/hardware fallback: **four H100 SXM GPUs in India were allocated**
@@ -33,10 +34,12 @@ Comparison pair **P01** uses the fal.ai endpoint
 The self-host candidate is **MiniMax H3 Base FL2VA**, task `t2va`, from the
 [official MiniMax-H3 release](https://huggingface.co/MiniMaxAI/MiniMax-H3).
 The release provides a [native 768p text-to-audio-video example](https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh).
-The first self-host candidate is one B300 running SGLang Diffusion, specified
+The original self-host candidate was one B300 running SGLang Diffusion, specified
 below. Checkpoint/runtime pins are recorded in the [allocation attempt](RUNPOD_ATTEMPT.md);
-license applicability and on-host validation remain open. The allocation failed
-for capacity; no self-host clip exists.
+both B300 allocations failed for capacity. The four-H100 fallback subsequently
+produced the [P01_EN clip](SELF_HOST_RESULTS.md). The
+[GPU inventory](GPU_SHORTLIST.md) records the attempted configurations and the
+separate, unranked future proposals.
 
 This deliberately selects ordinary H3, **not H3 Max or H3 Max Turbo**. It does
 not claim to reproduce fal's post-trained Max variant. Matching the endpoint's
@@ -59,16 +62,16 @@ Test client outside the serving deployments
 The Pod would run a pinned container/runtime, load the ready-made H3 Base FL2VA
 weights and perform inference. We are not training a model from scratch. The
 runtime generates video/audio, encodes the result and makes it downloadable.
-The candidate hardware and serving program are selected below; the exact image,
-host resources and secure access still need verification. No public unauthenticated
-inference service is required for the pilot.
+The original B300 proposal below was not runtime-validated. The H100 result
+records the subsequently verified image, host and access configuration. No public
+unauthenticated inference service is required for the pilot.
 
 The client submits requests and records evidence; the rented GPUs do the model
 computation. fal.ai charges for its API service; our trial pays for the GPU rental
 and associated resources, including setup and idle time. This is the economic
 comparison. A future autoscaling service is not part of the initial deployment.
 
-### First self-host configuration: selected for a baseline measurement
+### Original one-B300 configuration: allocation failed
 
 | Item | Selected candidate |
 |---|---|

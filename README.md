@@ -69,12 +69,13 @@ scheduling 10-second clips or repetitions.
 **First endpoint: `minimax/h3/text-to-video`, ordinary H3, not H3 Max.**
 The selected baseline is native **768P, 16:9, 5/10 seconds, seed 42**, with prompt
 expansion disabled, safety checking enabled and URL-based video delivery.
-The self-host candidate is **MiniMax H3 Base FL2VA on 1 x B300 (288 GB), using
+The original self-host candidate was **MiniMax H3 Base FL2VA on 1 x B300 (288 GB), using
 SGLang Diffusion**. The catalog rate checked September 17 is USD 7.89/hour for
-compute; that original candidate could not be allocated. The active fallback
-uses four H100 SXM GPUs as described above. Artifact pins are recorded in the
-[attempt report](RUNPOD_ATTEMPT.md); on-host feasibility and equivalence with the
-API have not yet been verified.
+compute; that candidate could not be allocated. The completed fallback used
+four H100 SXM GPUs as described above. Its [result](SELF_HOST_RESULTS.md) records
+the verified runtime and remaining API-equivalence gaps. The
+[GPU inventory](GPU_SHORTLIST.md) distinguishes both attempted configurations
+from untested hardware proposals; no ranked queue of future GPU tests is agreed.
 
 This is a diagnostic baseline, not a promised 15/30-second service. Published
 base-model results already warn of a latency gap; see the hardware rationale
@@ -82,9 +83,9 @@ and adverse evidence in [START_HERE.md](START_HERE.md).
 
 [START_HERE.md](START_HERE.md) fixes what we start with, what we measure and the
 sequence: one matched 5-second request, review, then a matched 10-second request
-if justified and funded. The API side is complete under the addendum; the self-host
-allocation failed despite the funded attempt. Selecting hardware does not
-establish available capacity or readiness.
+if justified and funded. The API side is complete under the addendum; two B300
+allocations failed and the H100 fallback completed one P01_EN clip. Exact-prompt
+pairing and quality review remain open.
 
 ## What changed
 
@@ -129,10 +130,13 @@ backends, but that is not yet a funded schedule.
 - [RESULTS.md](RESULTS.md): the completed first reference and its limitations.
 - [RUNPOD_ATTEMPT.md](RUNPOD_ATTEMPT.md): rejected B300 allocation, cost and prepared artifacts.
 - [CAPACITY.md](CAPACITY.md): dated stock/allocatability evidence, untested coverage and proposed fallback.
+- [GPU_SHORTLIST.md](GPU_SHORTLIST.md): reconciled GPU inventory, attempted configurations
+  and unranked research proposals with supporting evidence.
+- [SELF_HOST_RESULTS.md](SELF_HOST_RESULTS.md): completed four-H100 generation and rental economics.
 - [REFERENCE_RUN.md](REFERENCE_RUN.md): bounded one-call execution addendum.
 - [METHODOLOGY.md](METHODOLOGY.md): matching, realistic requests, execution stages,
   quality, latency, throughput, cost accounting and completion criteria.
-- [suite.json](suite.json): current planning contract and explicit unresolved choices.
+- [suite.json](suite.json): original v0.8.1 planning contract, not a live tracker of later attempts.
 - [pilot-plan.csv](pilot-plan.csv): generated schedule, currently empty.
 - [CLAIMS.md](CLAIMS.md): published-claim verification checklist and evidence template.
 - [PREFLIGHT.md](PREFLIGHT.md): current launch requirements and dated prior observations.
@@ -164,8 +168,9 @@ python3 scripts/validate.py --plan > pilot-plan.csv
 `python3 scripts/validate.py --ready` deliberately returns exit code 2 while
 the execution plan is not frozen. Passing offline checks does not establish
 provider access, matching equivalence, a price bound or a working stop mechanism.
-The separate [reference runner](scripts/fal_reference.py) implements only the
-single authorized API reference; no self-host runner is ready yet.
+The separate [reference runner](scripts/fal_reference.py) implements the API
+addendum. The completed H100 run used [h3_trial.py](scripts/h3_trial.py); its
+evidence is recorded in [SELF_HOST_RESULTS.md](SELF_HOST_RESULTS.md).
 
 Do not provision a paid resource until the [preflight requirements](PREFLIGHT.md)
 are met and the whole commitment is reserved. No automatic retries or hidden

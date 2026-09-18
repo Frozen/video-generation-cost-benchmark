@@ -36,10 +36,12 @@ This replaces the v0.6 cross-model quality pilot. H3, LTX and Wan remain candida
 families, not three mandatory arms of the first experiment. Start with **one
 matched pair: one fal.ai endpoint and one self-hosted deployment**. The selected
 reference is `minimax/h3/text-to-video`, native 768P, 16:9, 5/10 seconds, seed 42,
-with prompt expansion disabled. The self-host candidate is MiniMax H3 Base FL2VA,
-not H3 Max, on one B300 using SGLang Diffusion. See [START_HERE.md](START_HERE.md)
-for the diagnostic baseline, latency warning and first-test sequence.
-The self-host execution profile and matching evidence remain unverified.
+with prompt expansion disabled. The original self-host candidate was MiniMax H3
+Base FL2VA on one B300 using SGLang Diffusion. After capacity failures, four H100
+SXM GPUs executed the P01_EN fallback; [SELF_HOST_RESULTS.md](SELF_HOST_RESULTS.md)
+records its actual profile and the remaining matching gaps. See
+[GPU_SHORTLIST.md](GPU_SHORTLIST.md) for attempted hardware and future proposals,
+and [START_HERE.md](START_HERE.md) for the original diagnostic baseline.
 
 The old 12-attempt schedule and VBench prompt subset are no longer active.
 The earlier English protocol is retained in [Git history](https://github.com/Frozen/video-generation-cost-benchmark/tree/ee78f1f2ec20864139d4c0bda84e37e40938c4e2).
