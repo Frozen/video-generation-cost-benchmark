@@ -4,8 +4,9 @@ September 17, 2026. Attempt `P01_RUNPOD_B300_5S_001`.
 
 **Historical attempt; not a permanent no-stock claim.** The September 18 UTC
 follow-up again reports `LOW` for an Iceland B300. [CAPACITY.md](CAPACITY.md)
-preserves both observations and the proposed hardware fallback. No second
-allocation request has been submitted.
+preserves both observations. A separately authorized second B300 request was
+also rejected, and four H100 SXM GPUs were then allocated in India; see the
+[retry report](RUNPOD_RETRY.md). The original attempt below remains historical.
 
 **Outcome: no self-host measurement and no new video.** Runpod rejected the
 single provisioning request with HTTP 400 because the requested instance was
@@ -44,7 +45,8 @@ that a matching instance can be rented; the actual allocation request failed.
 
 The host RAM filter was considered as a possible unnecessary restriction, but
 the separate country-wide no-stock result gave no evidence that lowering it
-would permit deployment. No second create request was submitted. No GPU, model,
+would permit deployment. No second create request was submitted during this
+first attempt. No GPU, model,
 or region was silently substituted.
 
 - Incremental GPU/storage rental expense for this attempt: **USD 0**, based on

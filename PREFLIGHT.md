@@ -2,8 +2,9 @@
 
 **Latest self-host status:** [SELF_HOST_PREFLIGHT.md](SELF_HOST_PREFLIGHT.md).
 Replacement-key authentication succeeds; old HTTP 401 observations below are
-superseded. The [B300 allocation attempt](RUNPOD_ATTEMPT.md) failed for capacity:
-no Pod exists and no self-host measurement was obtained. Local and embedded
+superseded. Two B300 allocations failed for capacity; the authorized four-H100
+fallback in India has now been allocated and is initializing. No self-host
+measurement was obtained yet. [Live retry report](RUNPOD_RETRY.md). Local and embedded
 remote deadline code is prepared; remote verification and license applicability
 remain open.
 

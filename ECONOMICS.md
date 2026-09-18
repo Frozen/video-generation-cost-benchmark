@@ -58,6 +58,13 @@ request does not establish a typical latency, acceptance rate or business outcom
 
 ## Rental-cost formula
 
+For on-demand Pods, the hourly compute rate is unchanged whether the GPU is
+busy or idle. Setup and idle time consume the same paid rental window.
+[Runpod bills compute per second](https://docs.runpod.io/pods/pricing): the
+one-hour credit balance required to deploy is not a one-hour minimum charge.
+At the USD 7.89/hour catalog rate, ten minutes is USD 1.315 in compute before
+storage and any applicable fees. This is arithmetic, not our observed bill.
+
 For this initial single-request, no-batching workload:
 
 ```text

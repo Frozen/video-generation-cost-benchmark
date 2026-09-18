@@ -10,10 +10,11 @@ do not silently substitute post-trained weights into the self-host baseline.
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
-**Availability addendum:** the first B300 allocation failed before inference.
-[CAPACITY.md](CAPACITY.md) records the real failure, dated stock changes and the
-proposed H100 fallback. Capacity is part of deployment feasibility, not a missing
-performance number to omit. No alternative configuration has been rented.
+**Availability addendum:** two B300 allocations failed before inference. An
+explicitly authorized four-H100 fallback in India was allocated and is initializing;
+see [RUNPOD_RETRY.md](RUNPOD_RETRY.md). [CAPACITY.md](CAPACITY.md) records failures,
+dated stock and allocation success separately. Capacity is part of deployment
+feasibility, not a missing performance number to omit. No self-host video exists yet.
 
 ## 1. Objective and scope change
 

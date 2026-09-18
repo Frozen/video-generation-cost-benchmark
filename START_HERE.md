@@ -8,10 +8,11 @@ The later [variant comparison](VARIANT_RESULTS.md) also measures Max and Turbo a
 commercial alternatives. The original open-base / one-B300 self-host candidate
 remains unchanged; these are not claims of identical weights across variants.
 
-The first allocation was rejected for capacity. [CAPACITY.md](CAPACITY.md)
-records this unexecuted coverage, later stock changes and a proposed four-H100
-fallback. Hardware selection is being reconsidered; no fallback has been rented
-and the original request, quality checks and latency target remain unchanged.
+Two B300 allocations were rejected for capacity. The operator then authorized
+another region/hardware fallback: **four H100 SXM GPUs in India were allocated**
+and are initializing. [Live retry report](RUNPOD_RETRY.md). [CAPACITY.md](CAPACITY.md)
+retains the failures and catalog history. The original request, quality checks
+and latency target remain unchanged; no self-host generation has completed.
 
 ## What we start with
 
@@ -43,7 +44,8 @@ request contract is a starting point, not proof of identical weights or internal
 
 The proposed self-host test is a **Runpod GPU Pod**, not a Harmony validator,
 not video inference on the user's laptop, and not a resale call to another
-hosted video API. It has not been provisioned.
+hosted video API. The original B300 was not provisioned; the explicitly
+identified H100 fallback was allocated but is not yet inference-ready.
 
 ```text
 Test client outside the serving deployments

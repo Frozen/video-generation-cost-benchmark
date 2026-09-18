@@ -2,10 +2,10 @@
 
 Last updated September 18, 2026 (UTC).
 
-**The first self-host trial was not run because Runpod could not allocate the
-requested B300 configuration.** This is a deployment-feasibility finding, not a
-generation-speed or quality result. The failed allocation remains part of the
-experiment even if capacity becomes available later.
+**Two B300 allocation requests were rejected; a later four-H100 fallback in
+India was allocated.** The H100 image is initializing, not serving inference.
+These are deployment-feasibility findings, not generation-speed or quality
+results. [Live retry report](RUNPOD_RETRY.md). Earlier failures remain recorded.
 
 The claim is specific to one configuration, region and time. It does **not** mean
 that all B300s, all regions, or all Runpod GPUs were unavailable.
@@ -22,18 +22,25 @@ availability is a snapshot, not a reservation or a successful allocation.
 | A03 | 2026-09-18 | One B300, Secure Cloud, US, CUDA >= 13.0 | `LOW`, US-WA-2; USD 7.89/GPU-hour; not rented and not a license-cleared alternative |
 | A04 | 2026-09-18 | One B300, Community Cloud, all countries, CUDA >= 13.0 | `NONE`; listed USD 6.94/GPU-hour is not an available offer |
 | A05 | 2026-09-18 | Four H100 SXM GPUs, Secure Cloud, Iceland, CUDA >= 13.0 | `LOW`, EUR-IS-3; USD 3.49/GPU-hour, USD 13.96/hour for four; catalog only |
-| A06 | 2026-09-18, after A02/A05 | One B300, Secure Cloud, Iceland, CUDA >= 13.0 | Changed to `LOW`, EUR-IS-1, CUDA 13.0 available, USD 7.89/GPU-hour; no second create request submitted |
+| A06 | 2026-09-18, after A02/A05 | One B300, Secure Cloud, Iceland, CUDA >= 13.0 | Changed to `LOW`, EUR-IS-1, CUDA 13.0 available, USD 7.89/GPU-hour; catalog only at this checkpoint |
+| A07 | 2026-09-18 02:07 UTC | Second actual create: same B300/RAM/disk/region configuration as A01, after another Iceland `LOW` lookup | HTTP 400 capacity rejection; subsequent same-account Pod list empty; reservation settled at USD 0 |
+| A08 | 2026-09-18 02:09 UTC | One B300, Secure Cloud, global, CUDA >= 13.0 | `NONE`, CUDA 13.0 and 13.2 unavailable; no alternative region listed |
+| A09 | 2026-09-18 02:09 UTC | Four H100 SXM GPUs, Secure Cloud, Canada/India/Iceland, CUDA 13.0 | `LOW` in AP-IN-1 and EUR-IS-3; USD 13.96/hour aggregate compute |
+| A10 | 2026-09-18 02:11 UTC | Actual create: 4 x H100 SXM, AP-IN-1, CUDA 13.0, minimum 96 GiB RAM/GPU, 300 GB disk | Allocated at USD 13.96/hour; image initializing at 02:13 UTC; inference not run |
 
 A06 does not erase A01. In particular, the later catalog query checks GPU count,
 country and CUDA; it does not prove that A01's full RAM/disk request can be
 allocated. A05 likewise does not establish an allocatable, correctly connected
 four-GPU host with all required host resources.
 
-We made **one actual allocation request**, not six failed rental attempts. The
-remaining entries are read-only catalog observations. They cannot establish a
+We made **three actual allocation requests: two rejected B300 requests and one
+accepted H100 request**. The remaining entries are read-only catalog observations. They cannot establish a
 provider-wide success rate, permanent shortage, expected wait time or SLA.
 
 ## Coverage and cost of the failed attempt
+
+This section concerns the first B300 attempt; the second rejection and ongoing
+H100 rental have separate journals in [RUNPOD_RETRY.md](RUNPOD_RETRY.md).
 
 - Allocation: attempted, rejected for capacity.
 - GPU boot, model loading and inference: not run.
@@ -53,10 +60,15 @@ capacity-wait-duration measurement was collected for A01.
 
 ## Proposed next attempt: flexible hardware, unchanged comparison
 
+**Update:** the operator selected the H100 fallback after the second B300
+rejection and global no-stock check. It has been allocated in India with the
+USD 16 / one-hour bound below. The proposal rationale is retained for history.
+
 The operator requested reconsideration of the test conditions after the shortage.
 The recommendation is to remove the assumption that only one particular GPU
 configuration is worth testing, while retaining identifiable configurations and
-bounded execution. **This is a proposal, not a paid launch or a reserved offer.**
+bounded execution. **The table below was a proposal; A10 records its subsequent
+H100 allocation, not a completed generation.**
 
 | Candidate | Why consider it | Catalog compute rate | Proposed maximum rental | Proposed full-attempt reservation |
 |---|---|---:|---:|---:|

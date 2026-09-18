@@ -13,16 +13,15 @@ Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculati
 with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
 passed the latency gate; full quality review and self-host testing remain pending.
 
-**Self-host update:** [the B300 allocation attempt](RUNPOD_ATTEMPT.md) was rejected
-by Runpod for unavailable capacity. No Pod was created, no additional video was
-generated, and incremental GPU/storage expense is USD 0. The replacement key
-works; this is not an authentication failure. Runtime/model pins and lifecycle
-helpers are prepared, but remote execution remains unverified.
+**Self-host update, September 18 at 02:13 UTC:** two B300 allocation requests
+were rejected. The authorized **4 x H100 SXM fallback in India was allocated**
+at USD 13.96/hour and is initializing its image. No self-host video exists yet.
+[Retry and live status](RUNPOD_RETRY.md). The two rejected B300 attempts incurred
+no rental expense; the H100 rental has a USD 16 reservation and one-hour deadline.
 
-[Capacity is now tracked explicitly](CAPACITY.md): the failed allocation stays
-in the results even though a later catalog check again reports B300 stock. The
-proposed fallback is four H100 SXM GPUs with the same H3 Base request; neither
-configuration has been successfully allocated or tested by us.
+[Capacity is tracked explicitly](CAPACITY.md): failed allocations, changing
+catalog stock and successful provisioning are separate observations. Model
+loading, actual generation, quality and end-to-end latency remain unverified.
 
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),
@@ -54,7 +53,8 @@ The selected baseline is native **768P, 16:9, 5/10 seconds, seed 42**, with prom
 expansion disabled, safety checking enabled and URL-based video delivery.
 The self-host candidate is **MiniMax H3 Base FL2VA on 1 x B300 (288 GB), using
 SGLang Diffusion**. The catalog rate checked September 17 is USD 7.89/hour for
-compute; no Pod has been created. Artifact pins are recorded in the
+compute; that original candidate could not be allocated. The active fallback
+uses four H100 SXM GPUs as described above. Artifact pins are recorded in the
 [attempt report](RUNPOD_ATTEMPT.md); on-host feasibility and equivalence with the
 API have not yet been verified.
 

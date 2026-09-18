@@ -5,10 +5,12 @@ or inference submitted.** See the [attempt report](RUNPOD_ATTEMPT.md).
 The three [fal samples](VARIANT_RESULTS.md) are complete; do not rerun them.
 This is a readiness record, not a completed self-host benchmark.
 
-**September 18 UTC update:** the latest Iceland B300 catalog check is `LOW`
-again; four H100 SXM GPUs are also catalog-listed in EUR-IS-3. No new allocation
-was attempted. [CAPACITY.md](CAPACITY.md) records the history and bounded fallback
-proposal; the earlier failure must not be presented as permanent unavailability.
+**September 18, 02:13 UTC update:** a second B300 allocation was rejected. After
+a global B300 `NONE` check, the authorized four-H100 fallback was allocated in
+AP-IN-1 (India), USD 13.96/hour, with a one-hour deadline and USD 16 reservation.
+The image is initializing; remote guards and inference are not verified.
+[Live retry report](RUNPOD_RETRY.md); [capacity history](CAPACITY.md).
+The September 17 preflight and declaration below remain historical context.
 
 ## Operator declaration and license clarification
 

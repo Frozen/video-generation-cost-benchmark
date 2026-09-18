@@ -1,4 +1,4 @@
-"""One bounded B300 rental. No inference submission or automatic provision retry."""
+"""One explicit bounded rental. No inference submission or automatic retry."""
 
 import argparse
 import base64
@@ -19,9 +19,36 @@ ROOT = Path(__file__).resolve().parents[1]
 PRIVATE = ROOT / "private" / "runpod-p01"
 STATE = PRIVATE / "state.json"
 RUN_ID = "P01_RUNPOD_B300_5S_001"
+ATTEMPT = 1
+HARDWARE = "b300"
+REGION = "EUR-IS-1"
+PROFILES = {
+    "b300": {"gpu_id": "NVIDIA B300 SXM6 AC", "count": 1, "ram_per_gpu": 384,
+             "seconds": 7200, "reservation": "18.00", "hourly": "7.89",
+             "regions": ("EUR-IS-1",)},
+    "h100x4": {"gpu_id": "NVIDIA H100 80GB HBM3", "count": 4, "ram_per_gpu": 96,
+               "seconds": 3600, "reservation": "16.00", "hourly": "13.96",
+               "regions": ("AP-IN-1", "EUR-IS-3", "CA-MTL-1")},
+}
 IMAGE = "lmsysorg/sglang@sha256:6bcaa47db52f78ce0d67863b8b2431221b79bc23204a80cad757fa819d00e921"
 MODEL_REVISION = "42ed227ee7df40d41602854ae760620d6eb651fe"
 SOURCE_REVISION = "408d2334c34d387a36a26398dff9a8f004328344"
+
+
+def configure_attempt(attempt, hardware="b300", region="EUR-IS-1"):
+    """Select an explicit journal; never erase or implicitly retry an attempt."""
+    if type(attempt) is not int or not 1 <= attempt <= 999:
+        raise ValueError("attempt must be an integer from 1 to 999")
+    if hardware not in PROFILES or region not in PROFILES[hardware]["regions"]:
+        raise ValueError("hardware/region is outside the reviewed profiles")
+    global PRIVATE, STATE, RUN_ID, ATTEMPT, HARDWARE, REGION
+    ATTEMPT = attempt
+    HARDWARE, REGION = hardware, region
+    suffix = "" if attempt == 1 else f"-{attempt:03d}"
+    directory = "runpod-p01" + suffix if hardware == "b300" else f"runpod-{hardware}-p01-{attempt:03d}"
+    PRIVATE = ROOT / "private" / directory
+    STATE = PRIVATE / "state.json"
+    RUN_ID = f"P01_RUNPOD_{hardware.upper()}_5S_{attempt:03d}"
 
 
 def save(path, data):
@@ -79,20 +106,23 @@ def launch(env_file):
         raise ValueError("Runpod credential missing")
     PRIVATE.mkdir(mode=0o700, exist_ok=False)
     # The reservation is an admission bound, never represented as actual spend.
-    transact(ROOT / "private" / "ledger.json", "reserve", RUN_ID, "18.00", "generation")
+    profile = PROFILES[HARDWARE]
+    transact(ROOT / "private" / "ledger.json", "reserve", RUN_ID, profile["reservation"], "generation")
     now = time.time()
-    state = {"run_id": RUN_ID, "name": "h3-b300-p01-" + secrets.token_hex(6),
-             "status": "armed", "started_at": now, "deadline": now + 7200,
-             "reservation_usd": "18.00", "image": IMAGE,
+    state = {"run_id": RUN_ID, "name": "h3-" + HARDWARE + "-p01-" + secrets.token_hex(6),
+             "status": "armed", "started_at": now, "deadline": now + profile["seconds"],
+             "reservation_usd": profile["reservation"], "image": IMAGE,
              "model_revision": MODEL_REVISION, "source_revision": SOURCE_REVISION,
-             "region": "EUR-IS-1", "generation_submissions": 0}
+             "region": REGION, "hardware": HARDWARE,
+             "catalog_compute_hourly_usd": profile["hourly"], "generation_submissions": 0}
     save(STATE, state)
     ssh_key = PRIVATE / "id_ed25519"
     subprocess.run(["ssh-keygen", "-q", "-t", "ed25519", "-N", "", "-f", str(ssh_key)], check=True)
     public_key = ssh_key.with_suffix(".pub").read_text().strip()
     with open(PRIVATE / "guard.log", "ab") as out:
         subprocess.Popen(["/usr/bin/caffeinate", "-ims", sys.executable, str(Path(__file__).resolve()),
-                          "guard", "--env-file", str(env_file)],
+                          "guard", "--env-file", str(env_file), "--attempt", str(ATTEMPT),
+                          "--hardware", HARDWARE, "--region", REGION],
                          stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT,
                          start_new_session=True, close_fds=True)
     for _ in range(50):
@@ -105,9 +135,9 @@ def launch(env_file):
     code = "import base64;exec(compile(base64.b64decode(" + repr(remote) + "),'<benchmark-guard>','exec'))"
     payload = {"name": state["name"], "image": IMAGE,
         "args": "python3 -u -c " + shlex.quote(code),
-        "disk": 300, "cloud": "SECURE", "dataCenterIds": ["EUR-IS-1"],
-        "gpu": {"id": "NVIDIA B300 SXM6 AC", "count": 1,
-                "minRamPerGpu": 384, "allowedCudaVersions": ["13.0"]},
+        "disk": 300, "cloud": "SECURE", "dataCenterIds": [REGION],
+        "gpu": {"id": profile["gpu_id"], "count": profile["count"],
+                "minRamPerGpu": profile["ram_per_gpu"], "allowedCudaVersions": ["13.0"]},
         "ports": ["22/tcp"], "startSsh": False, "startJupyter": False,
         "env": {"PUBLIC_KEY": public_key, "BENCHMARK_DEADLINE": str(state["deadline"]),
                 "BENCHMARK_NAME": state["name"]}}
@@ -139,7 +169,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("launch", "guard", "status", "terminate"))
     parser.add_argument("--env-file", type=Path, required=True)
+    parser.add_argument("--attempt", type=int, default=1,
+                        help="Explicit authorized attempt number; existing journals are refused")
+    parser.add_argument("--hardware", choices=tuple(PROFILES), default="b300")
+    parser.add_argument("--region", default="EUR-IS-1")
     args = parser.parse_args()
+    configure_attempt(args.attempt, args.hardware, args.region)
     if args.action == "launch":
         return launch(args.env_file)
     if args.action == "guard":
