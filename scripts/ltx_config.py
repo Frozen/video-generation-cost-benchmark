@@ -4,7 +4,7 @@ MODEL = "Lightricks/LTX-2.5"
 REVISION = "5e6e71018ee1756ed329b697a7b4aedc934dfce9"
 SOURCE = "a95ab856bf29407b6b066ede0abe1846050db56c"
 IMAGE = "runpod/pytorch@sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851"
-RUN_ID = "P01_EN_RUNPOD_H100_LTX25_5S_001"
+RUN_ID = "P01_EN_RUNPOD_H100_LTX25_5S_003"
 PROMPT_SHA256 = "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7"
 FILES = {
     "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors":

@@ -1,7 +1,38 @@
 # LTX-2.5: self-hosted smoke test
 
-Status checked September 18, 2026, approximately 04:39 UTC: **not launched**.
-No LTX video or timing result exists. No GPU or network volume is running.
+Status checked September 18, 2026, approximately 04:57 UTC: **no generation**.
+Attempt 002 allocated one H100, but session auto-review blocked the credential
+transfer before setup. The empty Pod was deleted and a subsequent GET returned
+404. No HF token was transmitted, model downloaded or inference submitted.
+The 70.162-second allocation-to-verified-deletion window estimates **USD 0.069**
+including temporary disk; the provider charge is pending and its reservation
+remains held. No LTX video or latency measurement exists. Continuing requires
+explicit operator approval to transfer the HF read token over SSH to the new
+Runpod Pod solely for downloading the approved weights, then remove that token.
+
+### Safer credential path prepared afterward
+
+The HF account token does **not** have to be sent to the Pod. A local
+authenticated weight HEAD request returned an official signed CDN object URL
+valid for one hour. A separate HEAD against that URL, with no HF Authorization
+header, returned HTTP 200. The account token is absent from that URL.
+
+The revised runner authenticates only from the operator's local machine and
+passes file-scoped temporary URLs for the six pinned weights over SSH stdin.
+It checks the exact CDN host, object size, SHA-256 ETag and expiry before
+transfer. The worker receives no HF account token; it deletes the mode-0600
+link file after download and verifies all six hashes. Signed links themselves
+are sensitive bearer credentials for those files: never log or publish them.
+This narrows exposure from an account credential to specific approved model
+objects, but still requires confirmation before another paid allocation.
+
+The operator subsequently instructed us to proceed with the measurement.
+Attempt 003 uses the file-scoped link path above; the HF account credential
+stays local. Preserve attempts 001/002 as failed preparation history. Following
+verified deletion, attempt 002's reservation was revised from USD 4 to USD 0.25,
+over three times its observed USD 0.06856 window estimate; it is **not** settled
+at an estimated charge. Attempt 003 reserves its own USD 4 within the unchanged
+total cap and retains the one-hour deadline.
 
 ## Access resolved and launch contract pinned
 
@@ -35,6 +66,23 @@ also measure processing through completed MP4 encoding and individual stages.
 This is a cold first-request diagnostic, not an equal-warmth latency comparison
 against the already warmed H3 service. No successful GPU execution is claimed
 by the offline checks.
+
+Allocation attempt 001 (CA-MTL-1, CUDA >= 13.2, 128 GB minimum host RAM) was
+rejected with HTTP 400: no instances available. A subsequent Pod list was empty;
+the USD 4 reservation was settled at zero because no Pod was allocated. The
+catalog still advertised LOW stock. Attempt 002 retains one H100, the same
+driver floor and price bound, but relaxes host RAM to the vendor-recommended
+64 GB minimum. It has its own journal and reservation; this is an explicit
+capacity retry, not a repeated inference request. No alternative GPU is selected.
+
+Attempt 002 succeeded with 64 GB minimum host RAM at the quoted USD 3.49/hour.
+Its provider allocation timestamp was 04:55:57.838 UTC. The runner command was
+rejected by session auto-review before execution; the requested transfer used
+SSH stdin and a mode-0600 temporary token file, not Pod environment metadata or
+process arguments. The review requires additional operator approval for that
+credential destination. At 04:57:08 UTC deletion was independently verified.
+This is a session-permission blocker, not an LTX inference or Runpod runtime
+failure. No more paid resource is launched while that approval is missing.
 
 ## Scope
 

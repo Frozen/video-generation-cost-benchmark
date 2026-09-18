@@ -8,8 +8,10 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 All public content is in English.
 
 [Next: LTX-2.5 preflight](LTX_PREFLIGHT.md). One H100 SXM is the selected first
-candidate. **Hugging Face access is verified; the bounded launch is prepared.**
-No LTX result exists yet. Reconciled usage charges
+candidate. **Hugging Face access is verified; generation has not started.**
+One H100 was allocated, but session auto-review blocked credential transfer
+before setup. The empty Pod was deleted (404 verified); explicit transfer
+approval is needed before another rental. No LTX result exists yet. Reconciled usage charges
 for two closed H3 leases free budget within the unchanged USD 25 cap; other
 unreported charges remain reserved.
 

@@ -8,6 +8,8 @@ from pathlib import Path
 import subprocess
 import time
 import traceback
+from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import parse_qs, urlparse
 
 from ltx_config import FILES, FPS, FRAMES, HEIGHT, MODEL, REVISION, RUN_ID, SOURCE, WIDTH, validate_prompt
 
@@ -32,6 +34,30 @@ def digest(path):
     return h.hexdigest()
 
 
+def download_file(item):
+    """Fetch one authorized object; never receives the HF account token."""
+    name, url = item
+    if name not in FILES:
+        raise ValueError("Unreviewed weight file")
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.hostname != "us.aws.cdn.hf.co":
+        raise ValueError("Unreviewed download destination")
+    if not parse_qs(parsed.query).get("Signature"):
+        raise ValueError("Expected temporary signed object URL")
+    path = MODELS / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".download")
+    # URL is a file-scoped temporary credential: stdin only, never argv or logs.
+    config = "url = " + json.dumps(url) + "\n"
+    r = subprocess.run(["curl", "-q", "--config", "-", "--fail", "--silent", "--show-error",
+                        "--proto", "=https", "--max-redirs", "0", "--connect-timeout", "20",
+                        "--max-time", "900", "--output", str(temporary)],
+                       input=config, text=True, capture_output=True, timeout=910)
+    if r.returncode:
+        raise RuntimeError("Object download failed for " + name + "; curl exit " + str(r.returncode))
+    os.replace(temporary, path)
+
+
 def prepare():
     started = time.time()
     save("prepare-status.json", {"phase": "installing", "started_at": started})
@@ -45,14 +71,18 @@ def prepare():
     with (BASE / "dependencies.txt").open("w") as out:
         subprocess.run(["uv", "pip", "freeze", "--python", python], stdout=out, check=True)
     save("prepare-status.json", {"phase": "downloading", "started_at": started, "download_started_at": time.time()})
-    token_path = BASE / "hf-token"
-    env["HF_TOKEN"] = token_path.read_text().strip()
+    links_path = BASE / "download-links.json"
+    links = json.loads(links_path.read_text())
+    if set(links) != set(FILES):
+        raise ValueError("Download links do not match the reviewed six-file manifest")
     downloaded_at = time.monotonic()
-    subprocess.run([str(SRC / ".venv/bin/hf"), "download", MODEL, *FILES, "--revision", REVISION,
-                    "--local-dir", str(MODELS), "--max-workers", "4"], env=env, check=True)
+    try:
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            list(pool.map(download_file, links.items()))
+    finally:
+        links_path.unlink()
     download_seconds = time.monotonic() - downloaded_at
-    del env["HF_TOKEN"]
-    token_path.unlink()
+    del links
     save("prepare-status.json", {"phase": "hash_verification", "started_at": started,
                                 "download_seconds": download_seconds})
     verified = []

@@ -4,6 +4,9 @@ import importlib.util
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
+import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import ltx_config as config
@@ -45,3 +48,24 @@ class LTXTests(unittest.TestCase):
     def test_new_identity_does_not_reuse_h3(self):
         self.assertIn('LTX25', config.RUN_ID)
         self.assertNotIn('h100x4', str(ltx_trial.LEASE))
+
+    def test_download_links_are_file_scoped_without_account_token(self):
+        def reply(command, **kwargs):
+            name = command[-1].split(config.REVISION + '/', 1)[1]
+            size, sha = config.FILES[name]
+            self.assertIn('Authorization: Bearer hf_test_only', kwargs['input'])
+            self.assertNotIn('hf_test_only', ' '.join(command))
+            url = 'https://us.aws.cdn.hf.co/object?Signature=test&Expires=' + str(int(time.time()) + 3600)
+            return SimpleNamespace(returncode=0, stdout='HTTP/2 302\nlocation: '+url+'\nx-linked-size: '+str(size)+'\nx-linked-etag: "'+sha+'"\n')
+        with patch.object(ltx_trial, 'load_keys', return_value={'hf': 'hf_test_only'}), \
+                patch.object(ltx_trial.subprocess, 'run', side_effect=reply):
+            links = ltx_trial.download_links(Path('/not/read'))
+        self.assertEqual(set(links), set(config.FILES))
+        self.assertNotIn('hf_test_only', str(links))
+
+    def test_untrusted_download_redirect_is_refused(self):
+        with patch.object(ltx_trial, 'load_keys', return_value={'hf': 'hf_test_only'}), \
+                patch.object(ltx_trial.subprocess, 'run', return_value=SimpleNamespace(
+                    returncode=0, stdout='HTTP/2 302\nlocation: https://untrusted.example/file\n')):
+            with self.assertRaises(ValueError):
+                ltx_trial.download_links(Path('/not/read'))

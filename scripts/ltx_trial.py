@@ -15,17 +15,47 @@ import time
 from budget import transact
 from check_access import load_keys
 from h3_trial import payload_from
-from ltx_config import HF_ALIASES, HOURLY, IMAGE, MAX_LEASE_SECONDS, REGION, RESERVATION, RUN_ID, SOURCE, validate_prompt
+from ltx_config import FILES, HF_ALIASES, HOURLY, IMAGE, MAX_LEASE_SECONDS, MODEL, REGION, RESERVATION, REVISION, RUN_ID, SOURCE, validate_prompt
 from runpod_deadline import terminate
 from runpod_trial import api, save
 
 ROOT = Path(__file__).resolve().parents[1]
-LEASE = ROOT / "private/ltx-h100-p01-001"
+LEASE = ROOT / ("private/ltx-h100-p01-" + RUN_ID.rsplit("_", 1)[1])
 STATE = LEASE / "state.json"
 
 
 def read_state():
     return json.loads(STATE.read_text())
+
+
+def download_links(env_file):
+    """Authorize locally; only file-scoped expiring links leave this machine."""
+    from urllib.parse import urlparse, parse_qs
+    token = load_keys(env_file, HF_ALIASES)["hf"]
+    if not token or any(c.isspace() or ord(c) < 32 or ord(c) > 126 for c in token):
+        raise ValueError("HF credential missing or invalid")
+    config = "header = " + json.dumps("Authorization: Bearer " + token) + "\n"
+    links = {}
+    for name, (size, sha) in FILES.items():
+        url = "https://huggingface.co/" + MODEL + "/resolve/" + REVISION + "/" + name
+        r = subprocess.run(["curl", "-q", "--config", "-", "--head", "--silent", "--show-error",
+                            "--proto", "=https", "--max-time", "30", url],
+                           input=config, capture_output=True, text=True, timeout=35)
+        if r.returncode:
+            raise RuntimeError("Local weight authorization failed")
+        headers = {s.split(":", 1)[0].lower(): s.split(":", 1)[1].strip()
+                   for s in r.stdout.splitlines() if ":" in s}
+        link = headers.get("location", "")
+        parsed = urlparse(link)
+        query = parse_qs(parsed.query)
+        if (parsed.scheme != "https" or parsed.hostname != "us.aws.cdn.hf.co" or token in link
+                or headers.get("x-linked-size") != str(size)
+                or headers.get("x-linked-etag", "").strip('"') != sha
+                or not query.get("Signature")
+                or int(query.get("Expires", [0])[0]) < time.time() + 1800):
+            raise ValueError("Unverified or insufficiently long-lived object link")
+        links[name] = link
+    return links
 
 
 def arm(env_file):
@@ -63,7 +93,7 @@ def arm(env_file):
     code = "import base64;exec(compile(base64.b64decode(" + repr(remote) + "),'<guard>','exec'))"
     payload = {"name": state["name"], "image": IMAGE, "args": "python3 -u -c " + shlex.quote(code),
         "disk": 200, "cloud": "SECURE", "dataCenterIds": [REGION],
-        "gpu": {"id": "NVIDIA H100 80GB HBM3", "count": 1, "minRamPerGpu": 128, "minCudaVersion": "13.2"},
+        "gpu": {"id": "NVIDIA H100 80GB HBM3", "count": 1, "minRamPerGpu": 64, "minCudaVersion": "13.2"},
         "ports": ["22/tcp"], "startSsh": False, "startJupyter": False,
         "env": {"PUBLIC_KEY": ssh_key.with_suffix(".pub").read_text().strip(),
                 "BENCHMARK_DEADLINE": str(state["deadline"]), "BENCHMARK_NAME": state["name"]}}
@@ -214,10 +244,10 @@ def run(env_file):
     transfer(connection, [ROOT / "scripts/ltx_config.py", ROOT / "scripts/ltx_worker.py",
                           ROOT / "private/ltx-source.tar.gz", LEASE / "request.json"], True)
     remote(connection, "import subprocess;subprocess.run(['tar','-xzf','/root/benchmark/ltx-source.tar.gz','-C','/root/benchmark'],check=True)")
-    token = load_keys(env_file, HF_ALIASES)["hf"]
-    remote(connection, "import sys,os;from pathlib import Path;p=Path('/root/benchmark/hf-token');"
-           "fd=os.open(p,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600);os.write(fd,sys.stdin.buffer.read());os.close(fd)", token)
-    del token
+    links = download_links(env_file)
+    remote(connection, "import sys,os;from pathlib import Path;p=Path('/root/benchmark/download-links.json');"
+           "fd=os.open(p,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600);os.write(fd,sys.stdin.buffer.read());os.close(fd)", json.dumps(links))
+    del links
     remote(connection, "import subprocess;subprocess.Popen(['nvidia-smi','--query-gpu=timestamp,index,name,memory.used,utilization.gpu,power.draw','--format=csv','--loop=1','--filename=/root/benchmark/gpu-samples.csv'],stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)")
     state.update(prepare_started_at=time.time())
     save(STATE, state)
