@@ -10,6 +10,13 @@ do not silently substitute post-trained weights into the self-host baseline.
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
+**Cost reporting unit:** use USD per requested second of generated video as the
+primary metric. Retain per-request and whole-experiment totals separately. For
+these five-second requests, divide the relevant cost by 5; do not divide by GPU
+processing time or silently switch to native aligned output duration. Keep
+compute-only, full-rental and provider-tariff figures explicitly distinguished.
+Cost per accepted video-second remains undefined when no output passes the gates.
+
 **Availability addendum:** two B300 allocations failed before inference. An
 explicitly authorized four-H100 fallback in India completed one request and was
 deleted; see [SELF_HOST_RESULTS.md](SELF_HOST_RESULTS.md). [CAPACITY.md](CAPACITY.md) records failures,

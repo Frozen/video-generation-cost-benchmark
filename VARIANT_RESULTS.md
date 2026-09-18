@@ -10,11 +10,18 @@ All three used identical payload bytes: the same unchanged source prompt, reques
 reference media. Execution was sequential: H3, then Turbo, then Max. This is not
 a repeated, randomized performance benchmark or a quality-equivalence claim.
 
-| Variant and original video | Measured wait through download | 15 s latency gate | Current generation-cost calculation | Listed non-promotional cost |
+Primary cost unit is **USD per requested video-second**, using the requested
+five-second duration consistently rather than the slightly longer native output.
+These are the tariffs recorded for the completed requests, not newly fetched quotes.
+
+| Variant and original video | Measured wait through download | 15 s latency gate | Recorded USD/video-second | Non-promotional USD/video-second |
 |---|---:|---|---:|---:|
-| [H3](results/P01_FAL_5S_001.mp4) | **102.644 s** | Fail | USD 0.30 | USD 0.30 |
-| [H3 Max](results/P01_FAL_MAX_5S_001.mp4) | **13.552 s** | Pass | USD 0.20 | USD 0.40 |
-| [H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4) | **9.122 s** | Pass | USD 0.10 | USD 0.20 |
+| [H3](results/P01_FAL_5S_001.mp4) | **102.644 s** | Fail | USD 0.06 | USD 0.06 |
+| [H3 Max](results/P01_FAL_MAX_5S_001.mp4) | **13.552 s** | Pass | USD 0.04 | USD 0.08 |
+| [H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4) | **9.122 s** | Pass | USD 0.02 | USD 0.04 |
+
+Five-second request totals remain USD 0.30, USD 0.20 and USD 0.10 respectively;
+changing the reporting unit does not change the charges.
 
 Current costs are endpoint tariffs corroborated by returned billable units and
 authenticated base-unit prices, not independently reconciled net invoice amounts.

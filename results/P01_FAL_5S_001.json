@@ -57,6 +57,8 @@
     "published_768p_usd_per_output_second": "0.06",
     "requested_duration_seconds": 5,
     "tariff_derived_generation_usd": "0.30",
+    "primary_unit": "USD_per_requested_video_second",
+    "tariff_usd_per_video_second": "0.06",
     "response_billable_units": "6.0",
     "authenticated_base_unit_price_usd": "0.05",
     "billable_units_times_base_price_usd": "0.30",

@@ -40,6 +40,7 @@
   "cost": {
     "currency": "USD", "published_768p_usd_per_output_second": "0.04",
     "requested_duration_seconds": 5, "tariff_derived_generation_usd": "0.20",
+    "primary_unit": "USD_per_requested_video_second", "tariff_usd_per_video_second": "0.04",
     "non_promotional_generation_usd": "0.40", "promotion_ends_as_listed": "2026-09-30",
     "response_billable_units": "8.0", "authenticated_base_unit_price_usd": "0.025",
     "billable_units_times_base_price_usd": "0.20", "billing_events_http": 403,

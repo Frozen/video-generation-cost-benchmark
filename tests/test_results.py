@@ -46,6 +46,13 @@ class ResultTests(unittest.TestCase):
             self.assertEqual(record["review"]["blind_human_review"], "pending")
             self.assertIsNone(record["review"]["prompt_match"])
 
+    def test_api_costs_are_normalized_by_requested_video_duration(self):
+        for record in self.records():
+            cost = record["cost"]
+            self.assertEqual(cost["primary_unit"], "USD_per_requested_video_second")
+            self.assertEqual(Decimal(cost["tariff_usd_per_video_second"]) * cost["requested_duration_seconds"],
+                             Decimal(cost["tariff_derived_generation_usd"]))
+
     def test_measurement_csv_matches_json(self):
         with (ROOT / "results" / "MEASUREMENTS.csv").open() as stream:
             rows = {r["run_id"]: r for r in csv.DictReader(stream)}
@@ -80,6 +87,20 @@ class SelfHostResultTests(unittest.TestCase):
         self.assertFalse(r["request"]["exact_prompt_match_to_fal"])
         self.assertNotEqual(r["request"]["prompt_sha256"], r["request"]["source_prompt_sha256"])
         self.assertFalse(r["review"]["english_language_verified"])
+        self.assertEqual(r["review"]["operator_reported_speech_language"], "unidentified")
+        self.assertEqual(r["review"]["language_compliance"], "unconfirmed")
+        self.assertFalse(r["review"]["independent_transcription_performed"])
+
+    def test_self_host_cost_per_second_keeps_cost_scopes_separate(self):
+        r = self.record()
+        cost = r["cost"]
+        seconds = Decimal(str(cost["normalization_video_seconds"]))
+        self.assertEqual(seconds, r["request"]["requested_seconds"])
+        self.assertEqual(cost["primary_unit"], "USD_per_requested_video_second")
+        compute = Decimal(cost["request_window_compute_estimate_usd"]) / seconds
+        total = (Decimal(cost["whole_window_compute_estimate_usd"]) + Decimal(cost["whole_window_disk_estimate_usd"])) / seconds
+        self.assertLess(abs(compute - Decimal(cost["request_window_compute_usd_per_video_second"])), Decimal("1e-12"))
+        self.assertLess(abs(total - Decimal(cost["whole_window_usd_per_video_second"])), Decimal("1e-12"))
 
     def test_latency_failure_and_verified_cleanup(self):
         r = self.record()
@@ -99,6 +120,8 @@ class SelfHostResultTests(unittest.TestCase):
         self.assertEqual(float(rows[0]["measured_end_to_end_seconds"]), r["timing"]["end_to_end_seconds"])
         self.assertEqual(rows[0]["exact_prompt_match_to_fal"], "false")
         self.assertEqual(rows[0]["actual_reconciled_charge_usd"], "")
+        self.assertEqual(rows[0]["request_window_compute_usd_per_video_second"], r["cost"]["request_window_compute_usd_per_video_second"])
+        self.assertEqual(rows[0]["whole_window_usd_per_video_second"], r["cost"]["whole_window_usd_per_video_second"])
 
 
 if __name__ == "__main__":

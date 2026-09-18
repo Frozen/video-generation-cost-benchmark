@@ -8,23 +8,29 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 All public content is in English.
 
 [Latest comparison](VARIANT_RESULTS.md): identical 5-second 768P requests, one
-sample each. H3: **102.644 s / USD 0.30**; Max: **13.552 s / USD 0.20**;
-Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculations,
+sample each. H3: **102.644 s wait / USD 0.06 per video-second**;
+Max: **13.552 s / USD 0.04 per video-second**;
+Turbo: **9.122 s / USD 0.02 per video-second**. Cost normalization uses the
+requested five-second duration, not GPU runtime. Prices are recorded tariff/billable-unit calculations,
 with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
 passed the latency gate; full quality review and exact-pair validation remain pending.
 
 **Self-host completed, September 18:** H3 Base on **4 x H100 SXM in India**
 produced a [five-second video](results/P01_EN_RUNPOD_H100X4_5S_001.mp4) in
-**83.462 s end-to-end**, failing the 15 s target. Compute-only estimate: USD 0.30;
-whole rental including setup and disk: approximately USD 3.92, invoice pending.
+**83.462 s end-to-end**, failing the 15 s target. Compute-only estimate:
+**USD 0.06 per video-second** (USD 0.30 for this five-second request).
+The whole one-clip rental including setup and disk is approximately
+**USD 0.78 per video-second**, USD 3.92 total, invoice pending.
 **Pod deleted; no servers running.** [Full statistics](SELF_HOST_RESULTS.md).
 The operator requested English-only speech/text, so this is the explicit
 P01_EN prompt variant, not an exact-prompt replay of the existing fal samples.
 
 [Capacity is tracked explicitly](CAPACITY.md): failed allocations, changing
 catalog stock and successful provisioning are separate observations. Two B300
-requests were rejected before the H100 fallback succeeded. Quality, speech
-language and final invoice reconciliation remain pending.
+requests were rejected before the H100 fallback succeeded. The operator reports
+rapid, hard-to-understand speech and cannot identify its language despite the
+English-only prompt; the language and cause are not established.
+Formal quality review and final invoice reconciliation remain pending.
 
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),

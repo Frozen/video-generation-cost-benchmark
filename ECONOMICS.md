@@ -7,8 +7,12 @@ depreciation are different economic models.
 
 **Measured fallback update, September 18:** one H3 Base request on four H100 SXM
 GPUs completed in 83.462 s, after startup warmup, and failed the 15 s latency gate.
-The request-window compute estimate is USD 0.300003; the whole allocation-window
-estimate including temporary disk is USD 3.92. These are not reconciled charges.
+The primary reporting unit is **USD per requested video-second**. Request-window
+compute is USD 0.060001/video-second (USD 0.300003 for the five-second request).
+The whole allocation-window estimate including temporary disk is
+USD 0.784402/video-second for this one-clip trial, USD 3.92 total.
+These are not reconciled charges. Per-clip formulas below remain useful
+intermediate calculations; divide by requested duration for the headline metric.
 The English-only instruction makes it a distinct P01_EN request, not an exact
 paired replay. [Full measured inputs and utilization scenarios](SELF_HOST_RESULTS.md).
 The B300 scenarios below remain historical and unmeasured; do not substitute

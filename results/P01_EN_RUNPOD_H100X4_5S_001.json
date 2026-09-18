@@ -96,6 +96,10 @@
   },
   "cost": {
     "currency": "USD",
+    "primary_unit": "USD_per_requested_video_second",
+    "normalization_video_seconds": 5,
+    "request_window_compute_usd_per_video_second": "0.0600005965633442",
+    "whole_window_usd_per_video_second": "0.784402115287494",
     "aggregate_compute_hourly_usd": "13.96",
     "request_window_compute_estimate_usd": "0.300002982816721",
     "whole_window_compute_estimate_usd": "3.910339315348202",
@@ -113,6 +117,10 @@
     "prompt_match": null,
     "audio_quality": "unreviewed",
     "english_language_verified": false,
+    "operator_reported_speech_language": "unidentified",
+    "operator_reported_intelligibility": "rapid speech; two listeners could not identify the language",
+    "language_compliance": "unconfirmed",
+    "independent_transcription_performed": false,
     "informal_visual_check": "Five frames show chef, kitchen, stretched cartoon onion and vegetables with eyes; not a blinded temporal or audio review.",
     "vbench_run": false
   },

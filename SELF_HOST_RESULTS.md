@@ -10,6 +10,11 @@ The public file is byte-identical to the download; no trimming or re-encoding.
 
 ## Outcome
 
+**Primary cost unit: USD per requested second of generated video.** Divide
+the five-second request cost by 5, not by its 77.365-second processing time.
+The native 124-frame output is slightly longer; we retain the requested-duration
+basis consistently across self-host and fal rather than mixing denominators.
+
 | Measurement | Observed |
 |---|---:|
 | Request through completed local download | **83.462 s** |
@@ -18,19 +23,23 @@ The public file is byte-identical to the download; no trimming or re-encoding.
 | Denoising stage | 74.620 s |
 | Decoding stage | 1.308 s |
 | Automatic startup warmup | 46.74 s, separate from the measured request |
-| Request-window compute estimate | **USD 0.300003**, before setup/storage/idle time |
+| Request-window compute estimate per video-second | **USD 0.060001**, before setup/storage/idle time |
+| Request-window compute total, five-second request | USD 0.300003 |
 | Allocation-to-verified-deletion window | 16 min 48.397 s |
-| Whole-rental window estimate | **USD 3.92**, compute plus temporary disk |
+| Whole-rental estimate per video-second, this one-clip trial | **USD 0.784402**, including setup and temporary disk |
+| Whole-rental total | USD 3.92 |
 | Actual provider charge | Not reconciled; billing returned no records yet |
 
 This configuration did **not** meet the customer wait target. Even the optimistic
-compute-only estimate is about the standard fal H3 tariff of USD 0.30, before
+compute-only estimate is about the standard fal H3 tariff of **USD 0.06 per
+video-second** (USD 0.30 per five-second request), before
 adding setup, storage, paid idle time and failed/low-quality outputs. It does not
 establish a cheaper service than the already measured fal Max/Turbo alternatives.
 
 One observation is not an average, p95, throughput test or profitability result.
 There are zero accepted outputs under the latency gate, so **cost per accepted
-output is undefined**, not USD 0.30. The whole experiment's tariff/window estimate
+output, or per accepted video-second, is undefined**, not USD 0.06 per second.
+The whole experiment's tariff/window estimate
 is approximately USD 4.52 including the earlier USD 0.60 fal calculation; neither
 provider's final invoice has been reconciled.
 
@@ -46,7 +55,15 @@ Original prompt hash: `493ef9be797d7fbf6407589f08a76830078ba2dfd0d8eaf990d220985
 Modified prompt hash: `9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7`.
 No fal request was rerun. This is a related-scene diagnostic, **not an exact-prompt
 paired comparison or proof that the deployments are equivalent**. English was
-requested; speech language and audio quality have not yet been verified by review.
+requested; **the operator and a second listener report rapid, hard-to-understand
+speech and could not identify its language**. The initial impression of Spanish
+was explicitly withdrawn as uncertain; it is not a confirmed language label.
+Inspection of the submitted payload confirms that both the source prompt and
+the added instruction are English, with no specified spoken dialogue. The
+English-language requirement is therefore not confirmed, and intelligibility
+is a reported concern. No independent transcription or causal diagnosis has
+been performed. Do not label the clip as
+verified English merely because the request asked for it.
 
 ## Actual configuration
 
@@ -105,25 +122,30 @@ independently verified, so it must not be presented as the sum across four cards
 The request-window compute estimate uses the runtime's measured processing
 interval, not the client download time:
 
-`13.96 * 77.36466605588794 / 3600 = USD 0.300003`.
+`(13.96 * 77.36466605588794 / 3600) / 5 = USD 0.060001 per video-second`.
+
+The corresponding five-second request total is USD 0.300003. Neither value
+includes setup, idle time or storage.
 
 The allocation window estimate uses the provider's `startedAt` through our
 verified-absence timestamp: USD 3.910339 compute plus USD 0.011671 for 300 GB disk,
 using the published USD 0.10/GB/month tariff and a 30-day month approximation.
 This is a window-based estimate, **not an invoice or a proven billable duration**.
 The billing query returned zero records; that does not mean the rental was free.
-The USD 16 ledger reservation remains pending reconciliation.
+The USD 16 ledger reservation remains pending reconciliation. Dividing the
+entire estimated rental by the only requested five seconds gives
+**USD 0.784402 per video-second** for this trial, not a steady-state serving cost.
 
 Assuming the same per-request processing time, no batching, no failures and no
-other overhead, the compute-only cost per completed output would be:
+other overhead, the compute-only cost per requested video-second would be:
 
-| Workload utilization | Compute-only scenario |
+| Workload utilization | Compute-only USD/video-second scenario |
 |---|---:|
-| 100% | USD 0.30 |
-| 75% | USD 0.40 |
-| 50% | USD 0.60 |
-| 25% | USD 1.20 |
-| 10% | USD 3.00 |
+| 100% | USD 0.06 |
+| 75% | USD 0.08 |
+| 50% | USD 0.12 |
+| 25% | USD 0.24 |
+| 10% | USD 0.60 |
 
 These are modeled utilization scenarios, not a load test or accepted-output costs.
 Hourly Pod price is unchanged during idle time; lower utilization spreads the
@@ -140,8 +162,8 @@ Its smaller file size than fal is not proof of equal compression or quality.
 
 Five extracted frames show the kitchen, chef, stretched cartoon onion and eyes
 on vegetables. This is an informal visual check, not blind human evaluation.
-Full temporal quality, prompt adherence, speech language and audio review remain
-pending. No VBench was run. One short built-in warmup and one full user generation
+The operator reports unclear speech of an unidentified language; formal temporal quality, prompt adherence
+and independent audio review remain pending. No VBench was run. One short built-in warmup and one full user generation
 occurred; only the user generation is a published benchmark clip.
 
 ## Next-run preparation, before renting more GPUs
