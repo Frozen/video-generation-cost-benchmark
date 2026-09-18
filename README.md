@@ -11,21 +11,25 @@ All public content is in English.
 sample each. H3: **102.644 s / USD 0.30**; Max: **13.552 s / USD 0.20**;
 Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculations,
 with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
-passed the latency gate; full quality review and self-host testing remain pending.
+passed the latency gate; full quality review and exact-pair validation remain pending.
 
-**Self-host update, September 18 at 02:13 UTC:** two B300 allocation requests
-were rejected. The authorized **4 x H100 SXM fallback in India was allocated**
-at USD 13.96/hour and is initializing its image. No self-host video exists yet.
-[Retry and live status](RUNPOD_RETRY.md). The two rejected B300 attempts incurred
-no rental expense; the H100 rental has a USD 16 reservation and one-hour deadline.
+**Self-host completed, September 18:** H3 Base on **4 x H100 SXM in India**
+produced a [five-second video](results/P01_EN_RUNPOD_H100X4_5S_001.mp4) in
+**83.462 s end-to-end**, failing the 15 s target. Compute-only estimate: USD 0.30;
+whole rental including setup and disk: approximately USD 3.92, invoice pending.
+**Pod deleted; no servers running.** [Full statistics](SELF_HOST_RESULTS.md).
+The operator requested English-only speech/text, so this is the explicit
+P01_EN prompt variant, not an exact-prompt replay of the existing fal samples.
 
 [Capacity is tracked explicitly](CAPACITY.md): failed allocations, changing
-catalog stock and successful provisioning are separate observations. Model
-loading, actual generation, quality and end-to-end latency remain unverified.
+catalog stock and successful provisioning are separate observations. Two B300
+requests were rejected before the H100 fallback succeeded. Quality, speech
+language and final invoice reconciliation remain pending.
 
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),
-[H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4).
+[H3 Max Turbo](results/P01_FAL_TURBO_5S_001.mp4),
+[our H3 Base / 4 H100 / English-requested variant](results/P01_EN_RUNPOD_H100X4_5S_001.mp4).
 [Our economics model](ECONOMICS.md) separates measured results, missing self-host
 inputs and utilization scenarios; it does not assume fal latency is B300 runtime.
 

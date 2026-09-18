@@ -3,10 +3,10 @@
 **Latest self-host status:** [SELF_HOST_PREFLIGHT.md](SELF_HOST_PREFLIGHT.md).
 Replacement-key authentication succeeds; old HTTP 401 observations below are
 superseded. Two B300 allocations failed for capacity; the authorized four-H100
-fallback in India has now been allocated and is initializing. No self-host
-measurement was obtained yet. [Live retry report](RUNPOD_RETRY.md). Local and embedded
-remote deadline code is prepared; remote verification and license applicability
-remain open.
+fallback in India completed one P01_EN request and was deleted. End-to-end wait
+was 83.462 s, failing the latency gate. [Result](SELF_HOST_RESULTS.md). Local and embedded
+remote guards and SSH were verified on that Pod; timed-deletion behavior was not
+exercised because we terminated early. License applicability remains as recorded.
 
 Planning baseline v0.8.1, September 17, 2026. **One fal reference completed;
 self-host preflight remains open.** See [RESULTS.md](RESULTS.md).

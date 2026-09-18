@@ -5,6 +5,11 @@ or inference submitted.** See the [attempt report](RUNPOD_ATTEMPT.md).
 The three [fal samples](VARIANT_RESULTS.md) are complete; do not rerun them.
 This is a readiness record, not a completed self-host benchmark.
 
+**Final September 18 update:** the H100 fallback completed one P01_EN request
+in 83.462 s and was deleted at 02:28:13 UTC. SSH, the remote guard and real
+generation were verified; latency failed. [Statistics](SELF_HOST_RESULTS.md).
+The dated preflight observations below are historical, not the current resource state.
+
 **September 18, 02:13 UTC update:** a second B300 allocation was rejected. After
 a global B300 `NONE` check, the authorized four-H100 fallback was allocated in
 AP-IN-1 (India), USD 13.96/hour, with a one-hour deadline and USD 16 reservation.

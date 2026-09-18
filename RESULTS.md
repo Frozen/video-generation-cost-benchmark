@@ -3,6 +3,8 @@
 This page preserves the first standard H3 result. The subsequently approved
 [three-variant comparison](VARIANT_RESULTS.md) adds completed Max and Turbo samples;
 do not apply the standard H3 latency below to those accelerated variants.
+The later [self-host result](SELF_HOST_RESULTS.md) adds one explicitly
+English-requested P01_EN output on four H100 GPUs; the original result below is historical.
 
 September 17, 2026. **One real API request completed; no self-host run yet.**
 This is a single observation, not an average, p95, throughput benchmark or SLA.

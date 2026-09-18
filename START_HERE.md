@@ -10,9 +10,11 @@ remains unchanged; these are not claims of identical weights across variants.
 
 Two B300 allocations were rejected for capacity. The operator then authorized
 another region/hardware fallback: **four H100 SXM GPUs in India were allocated**
-and are initializing. [Live retry report](RUNPOD_RETRY.md). [CAPACITY.md](CAPACITY.md)
+and completed one five-second output. [Result and video](SELF_HOST_RESULTS.md). [CAPACITY.md](CAPACITY.md)
 retains the failures and catalog history. The original request, quality checks
-and latency target remain unchanged; no self-host generation has completed.
+and latency target were retained. A later operator-requested English-only
+instruction creates the explicit P01_EN variant; it is not an exact-prompt pair.
+The 83.462 s result failed latency; the Pod has been deleted.
 
 ## What we start with
 
@@ -45,7 +47,7 @@ request contract is a starting point, not proof of identical weights or internal
 The proposed self-host test is a **Runpod GPU Pod**, not a Harmony validator,
 not video inference on the user's laptop, and not a resale call to another
 hosted video API. The original B300 was not provisioned; the explicitly
-identified H100 fallback was allocated but is not yet inference-ready.
+identified H100 fallback completed one request and has since been deleted.
 
 ```text
 Test client outside the serving deployments

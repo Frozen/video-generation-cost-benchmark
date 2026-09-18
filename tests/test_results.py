@@ -56,5 +56,50 @@ class ResultTests(unittest.TestCase):
             self.assertEqual(row["tariff_generation_usd"], record["cost"]["tariff_derived_generation_usd"])
 
 
+class SelfHostResultTests(unittest.TestCase):
+    def record(self):
+        return json.loads((ROOT / "results/P01_EN_RUNPOD_H100X4_5S_001.json").read_text())
+
+    def test_original_video_integrity(self):
+        output = self.record()["output"]
+        content = (ROOT / output["public_artifact"]).read_bytes()
+        self.assertEqual(len(content), output["bytes"])
+        self.assertEqual(hashlib.sha256(content).hexdigest(), output["sha256"])
+        self.assertFalse(output["reencoded_for_publication"])
+
+    def test_cost_estimate_matches_processing_interval_not_full_bill(self):
+        r = self.record()
+        expected = Decimal(str(r["timing"]["runtime_reported_inference_seconds"])) * Decimal("13.96") / 3600
+        self.assertLess(abs(expected - Decimal(r["cost"]["request_window_compute_estimate_usd"])), Decimal("0.000000001"))
+        self.assertIsNone(r["cost"]["actual_charge_usd"])
+        self.assertFalse(r["cost"]["ledger_settled"])
+
+    def test_language_change_is_not_an_exact_paired_prompt(self):
+        r = self.record()
+        self.assertTrue(r["request"]["prompt_modified"])
+        self.assertFalse(r["request"]["exact_prompt_match_to_fal"])
+        self.assertNotEqual(r["request"]["prompt_sha256"], r["request"]["source_prompt_sha256"])
+        self.assertFalse(r["review"]["english_language_verified"])
+
+    def test_latency_failure_and_verified_cleanup(self):
+        r = self.record()
+        self.assertGreater(r["timing"]["end_to_end_seconds"], r["timing"]["target_seconds"])
+        self.assertFalse(r["timing"]["latency_pass"])
+        self.assertIsNone(r["cost"]["accepted_output_unit_cost"])
+        self.assertEqual(r["submission_count"], 1)
+        self.assertEqual(r["timing"]["builtin_warmup_count"], 1)
+        self.assertTrue(r["cleanup"]["pod_deleted"])
+
+    def test_separate_csv_preserves_comparison_scope(self):
+        r = self.record()
+        with (ROOT / "results/SELF_HOST_MEASUREMENTS.csv").open() as stream:
+            rows = list(csv.DictReader(stream))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["run_id"], r["run_id"])
+        self.assertEqual(float(rows[0]["measured_end_to_end_seconds"]), r["timing"]["end_to_end_seconds"])
+        self.assertEqual(rows[0]["exact_prompt_match_to_fal"], "false")
+        self.assertEqual(rows[0]["actual_reconciled_charge_usd"], "")
+
+
 if __name__ == "__main__":
     unittest.main()

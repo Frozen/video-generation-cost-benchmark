@@ -3,9 +3,9 @@
 Last updated September 18, 2026 (UTC).
 
 **Two B300 allocation requests were rejected; a later four-H100 fallback in
-India was allocated.** The H100 image is initializing, not serving inference.
-These are deployment-feasibility findings, not generation-speed or quality
-results. [Live retry report](RUNPOD_RETRY.md). Earlier failures remain recorded.
+India was allocated and completed one request.** It was then deleted. The
+[generation statistics](SELF_HOST_RESULTS.md) are separate from the allocation
+findings here. [Retry report](RUNPOD_RETRY.md). Earlier failures remain recorded.
 
 The claim is specific to one configuration, region and time. It does **not** mean
 that all B300s, all regions, or all Runpod GPUs were unavailable.
@@ -27,6 +27,7 @@ availability is a snapshot, not a reservation or a successful allocation.
 | A08 | 2026-09-18 02:09 UTC | One B300, Secure Cloud, global, CUDA >= 13.0 | `NONE`, CUDA 13.0 and 13.2 unavailable; no alternative region listed |
 | A09 | 2026-09-18 02:09 UTC | Four H100 SXM GPUs, Secure Cloud, Canada/India/Iceland, CUDA 13.0 | `LOW` in AP-IN-1 and EUR-IS-3; USD 13.96/hour aggregate compute |
 | A10 | 2026-09-18 02:11 UTC | Actual create: 4 x H100 SXM, AP-IN-1, CUDA 13.0, minimum 96 GiB RAM/GPU, 300 GB disk | Allocated at USD 13.96/hour; image initializing at 02:13 UTC; inference not run |
+| A11 | 2026-09-18 02:25–02:28 UTC | One P01_EN generation on the allocated H100 host, then export and deletion | MP4 downloaded in 83.462 s; latency failed; Pod absence verified at 02:28:13 UTC |
 
 A06 does not erase A01. In particular, the later catalog query checks GPU count,
 country and CUDA; it does not prove that A01's full RAM/disk request can be

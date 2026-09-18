@@ -2,6 +2,10 @@
 
 Planning baseline v0.8.1, with the first fal measurement added on September 17.
 **One paid reference completed; no self-host performance claim reproduced.**
+Historical heading above: the subsequent four-H100 fallback now has one real
+measurement, 83.462 s through download, on the operator-modified P01_EN prompt.
+[Full statistics](SELF_HOST_RESULTS.md). This is not an exact-prompt reproduction
+of fal or a repeated validation of upstream performance claims.
 Subsequent approved Max and Turbo samples are in [VARIANT_RESULTS.md](VARIANT_RESULTS.md):
 13.552 s and 9.122 s end-to-end, respectively, with provider denoising figures
 2.495 s and 1.497 s. These are one sample each, not independent GPU instrumentation
@@ -13,13 +17,13 @@ is unverified. [START_HERE.md](START_HERE.md) records the selected profile.
 
 | ID | Claim category | Conditions that must be captured | Current status |
 |---|---|---|---|
-| C01 | Hardware cost | GPU type/count, CPU/RAM/storage, region, billing unit, date, fees and credits | Runpod catalog recorded; actual allocation and bill not tested |
-| C02 | Interactive latency | Request/output profile, cold/warm, queueing, all pipeline stages and download boundary | fal reference measured at 102.644 s end-to-end, n=1; self-host candidate not tested |
+| C01 | Hardware cost | GPU type/count, CPU/RAM/storage, region, billing unit, date, fees and credits | H100 allocation confirmed at USD 13.96/hour; actual bill pending; B300 not allocated |
+| C02 | Interactive latency | Request/output profile, cold/warm, queueing, all pipeline stages and download boundary | fal H3 102.644 s; self-host H100 P01_EN 83.462 s, first user request after warmup; one observation each, different prompt instruction |
 | C03 | Batch throughput | GPU count, batch size, concurrency, wall-clock window, accepted output and latency at load | Not tested; source/value pending |
-| C04 | Iterations/steps and optimization | Exact settings, runtime, measured speed/cost and quality trade-off | Not tested; source/value pending |
+| C04 | Iterations/steps and optimization | Exact settings, runtime, measured speed/cost and quality trade-off | Native 50-point/49-iteration H100 request measured; no controlled step-count or optimization comparison |
 | C05 | Additional pipelines | Prompt enhancement, conditioning, upscaling/interpolation, audio, encoding and delivery | Output streams inspected; hidden pipeline and self-host matching unverified |
 | C06 | API price and service configuration | Exact fal.ai endpoint/tier, version/date, input/output contract and actual billed amount | USD 0.30 tariff calculation corroborated by billable units; final invoice reconciliation pending (403) |
-| C07 | Capacity and deployability | GPU type/count, cloud, region, CUDA/host filters, dated catalog checks, actual allocation outcome and setup status | Two B300 allocations rejected; four H100 SXM GPUs allocated in India, image initializing. No inference yet. See [CAPACITY.md](CAPACITY.md); no availability SLA inferred |
+| C07 | Capacity and deployability | GPU type/count, cloud, region, CUDA/host filters, dated catalog checks, actual allocation outcome and setup status | Two B300 allocations rejected; four H100 SXM GPUs in India completed one request and were deleted. See [CAPACITY.md](CAPACITY.md); no availability SLA inferred |
 
 ## First measured reference
 

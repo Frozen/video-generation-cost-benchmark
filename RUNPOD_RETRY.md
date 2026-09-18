@@ -4,6 +4,13 @@ September 18, 2026 (UTC). The operator authorized another B300 attempt, then
 another region and alternative GPUs if the original hardware remained unavailable.
 The USD 25 total experiment cap and the frozen P01 request remain unchanged.
 
+**Final update:** one explicitly modified **P01_EN** user request completed on
+the H100 fallback in 83.462 s end-to-end. The later English-only instruction
+supersedes the unchanged-prompt plan below; it was requested by the operator,
+not silently introduced. [Statistics and original video](SELF_HOST_RESULTS.md).
+The Pod was deleted and absence verified at **02:28:13 UTC**. Rental-window
+estimate: USD 3.92 including disk; actual charge remains pending reconciliation.
+
 ## Second B300 allocation: rejected
 
 Attempt `P01_RUNPOD_B300_5S_002` was prepared at 02:07:25 UTC using the same
@@ -57,6 +64,8 @@ a provider-enforced spending cap. A failed readiness check requires termination;
 an ambiguous allocation requires reconciliation before any retry.
 
 ## Live checkpoint at 02:13 UTC: H100 allocated, image initializing
+
+Historical checkpoint, superseded by the completed result linked above.
 
 The H100 creation request succeeded at **02:11:25 UTC** in AP-IN-1. The
 provider confirmed four H100 SXM GPUs, CUDA 13.0, USD 13.96/hour compute,

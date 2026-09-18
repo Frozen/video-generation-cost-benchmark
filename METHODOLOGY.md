@@ -11,10 +11,12 @@ Total spending cap: **USD 25 across the entire pilot**, not per model or backend
 All published content is in English.
 
 **Availability addendum:** two B300 allocations failed before inference. An
-explicitly authorized four-H100 fallback in India was allocated and is initializing;
-see [RUNPOD_RETRY.md](RUNPOD_RETRY.md). [CAPACITY.md](CAPACITY.md) records failures,
+explicitly authorized four-H100 fallback in India completed one request and was
+deleted; see [SELF_HOST_RESULTS.md](SELF_HOST_RESULTS.md). [CAPACITY.md](CAPACITY.md) records failures,
 dated stock and allocation success separately. Capacity is part of deployment
-feasibility, not a missing performance number to omit. No self-host video exists yet.
+feasibility, not a missing performance number to omit. The operator subsequently
+requested English-only speech/text; the resulting P01_EN prompt is explicitly
+distinct from the fal requests, so this result is not an exact-prompt matched pair.
 
 ## 1. Objective and scope change
 

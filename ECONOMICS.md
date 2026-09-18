@@ -5,6 +5,16 @@ Do not import another worksheet's 10-second/1080p API price, RTX 5090 purchase
 cost or assumed render time into this comparison. Runpod rental and owned-hardware
 depreciation are different economic models.
 
+**Measured fallback update, September 18:** one H3 Base request on four H100 SXM
+GPUs completed in 83.462 s, after startup warmup, and failed the 15 s latency gate.
+The request-window compute estimate is USD 0.300003; the whole allocation-window
+estimate including temporary disk is USD 3.92. These are not reconciled charges.
+The English-only instruction makes it a distinct P01_EN request, not an exact
+paired replay. [Full measured inputs and utilization scenarios](SELF_HOST_RESULTS.md).
+The B300 scenarios below remain historical and unmeasured; do not substitute
+the four-H100 runtime into the one-B300 hourly rate. GPU utilization at a sampled
+instant is different from the fraction of paid wall time spent serving requests.
+
 ## Updated commercial reference: Max and Turbo measured
 
 The later [variant comparison](VARIANT_RESULTS.md) changes the competitive picture:

@@ -1,5 +1,9 @@
 # Measured fal comparison: H3, H3 Max and H3 Max Turbo
 
+The later [self-host result and video](SELF_HOST_RESULTS.md) use four H100 GPUs
+and the operator-modified P01_EN prompt. The three identical fal requests below
+remain their own comparison; do not silently add the modified prompt to that set.
+
 September 17, 2026. **Three completed requests, one per variant. No self-host run.**
 All three used identical payload bytes: the same unchanged source prompt, requested
 5 seconds, 768P, 16:9, seed 42, disabled expansion, enabled safety checker and no
