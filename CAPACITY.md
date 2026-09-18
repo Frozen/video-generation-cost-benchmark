@@ -3,7 +3,9 @@
 Last updated September 18, 2026 (UTC).
 
 **Two B300 allocation requests were rejected; a later four-H100 fallback in
-India was allocated and completed one request.** It was then deleted. The
+India was allocated and completed one request.** It was then deleted. A second
+four-H100 lease for an adapter trial also allocated, but failed in software
+without a video and was deleted; see [ACCELERATION_RESULTS.md](ACCELERATION_RESULTS.md). The
 [generation statistics](SELF_HOST_RESULTS.md) are separate from the allocation
 findings here. [Retry report](RUNPOD_RETRY.md). Earlier failures remain recorded.
 
@@ -28,19 +30,24 @@ availability is a snapshot, not a reservation or a successful allocation.
 | A09 | 2026-09-18 02:09 UTC | Four H100 SXM GPUs, Secure Cloud, Canada/India/Iceland, CUDA 13.0 | `LOW` in AP-IN-1 and EUR-IS-3; USD 13.96/hour aggregate compute |
 | A10 | 2026-09-18 02:11 UTC | Actual create: 4 x H100 SXM, AP-IN-1, CUDA 13.0, minimum 96 GiB RAM/GPU, 300 GB disk | Allocated at USD 13.96/hour; image initializing at 02:13 UTC; inference not run |
 | A11 | 2026-09-18 02:25–02:28 UTC | One P01_EN generation on the allocated H100 host, then export and deletion | MP4 downloaded in 83.462 s; latency failed; Pod absence verified at 02:28:13 UTC |
+| A12 | 2026-09-18 03:11–03:24 UTC | Separate allocation: 4 x H100 SXM, AP-IN-1, for an adapter trial | Allocation succeeded; eight-evaluation request failed on a LoRA compatibility error, no video; four-step variant not started; deletion verified at 03:24:48 UTC. [Evidence](ACCELERATION_RESULTS.md). |
 
 A06 does not erase A01. In particular, the later catalog query checks GPU count,
 country and CUDA; it does not prove that A01's full RAM/disk request can be
 allocated. A05 likewise does not establish an allocatable, correctly connected
 four-GPU host with all required host resources.
 
-We made **three actual allocation requests: two rejected B300 requests and one
-accepted H100 request**. The remaining entries are read-only catalog observations. They cannot establish a
+We made **four actual allocation requests: two rejected B300 requests and two
+accepted four-H100 requests**. A01, A07, A10 and A12 record those allocations;
+A11 records the base generation and deletion. The other entries are read-only
+catalog observations. Together they cannot establish a
 provider-wide success rate, permanent shortage, expected wait time or SLA.
+The [GPU inventory](GPU_SHORTLIST.md) keeps these attempts separate from
+unranked future hardware proposals.
 
 ## Coverage and cost of the failed attempt
 
-This section concerns the first B300 attempt; the second rejection and ongoing
+This section concerns the first B300 attempt; the second rejection and completed
 H100 rental have separate journals in [RUNPOD_RETRY.md](RUNPOD_RETRY.md).
 
 - Allocation: attempted, rejected for capacity.
@@ -59,11 +66,13 @@ that the model cannot meet the latency target. Record time spent looking for
 capacity separately from model setup and request-to-download latency. No reliable
 capacity-wait-duration measurement was collected for A01.
 
-## Proposed next attempt: flexible hardware, unchanged comparison
+## Historical fallback proposal: flexible hardware, unchanged comparison
 
 **Update:** the operator selected the H100 fallback after the second B300
-rejection and global no-stock check. It has been allocated in India with the
-USD 16 / one-hour bound below. The proposal rationale is retained for history.
+rejection and global no-stock check. It completed one P01_EN request and was
+deleted; billing reconciliation remains pending. The proposal and its original
+USD 16 / one-hour bound below are retained for history. The later P01_EN language
+instruction superseded the unchanged-prompt requirement in this proposal.
 
 The operator requested reconsideration of the test conditions after the shortage.
 The recommendation is to remove the assumption that only one particular GPU
