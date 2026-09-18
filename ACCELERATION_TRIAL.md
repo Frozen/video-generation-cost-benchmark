@@ -1,5 +1,9 @@
 # H3 acceleration trial: two adapters, one H100 rental
 
+**Executed September 18: first adapter failed, second was not started; no videos
+were produced. Pod deleted.** [Failure, costs, telemetry and prepared fix](ACCELERATION_RESULTS.md).
+The scope below records the approved plan, not a completed two-video comparison.
+
 Approved scope: exactly one P01_EN, 5-second, 768p, seed-42 request with each of
 two public adapters. This is a change of model weights, not fal Max/Turbo and not
 a claim of quality equivalence. No fal reruns, additional seeds or other models.

@@ -7,8 +7,13 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 **Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
-[Approved next trial](ACCELERATION_TRIAL.md): two public H3 acceleration adapters,
-eight and four denoiser evaluations, on one bounded four-H100 rental. Not fal Turbo.
+[Latest acceleration attempt](ACCELERATION_RESULTS.md): the public eight-step
+H3 adapter failed on a SGLang LoRA compatibility error; the four-step variant
+was not started. **No new videos. Pod deleted. Failed-rental estimate: USD 3.04.**
+A pinned compatibility workaround passes offline tests but is not GPU-validated.
+[Preloaded storage preparation](PRELOADED_MODELS.md): S3 credentials are verified;
+the proposed CPU-only preload and bounded disk retention await confirmation.
+No storage or replacement GPU rental has been created. [Original plan](ACCELERATION_TRIAL.md).
 
 [Latest comparison](VARIANT_RESULTS.md): identical 5-second 768P requests, one
 sample each. H3: **102.644 s wait / USD 0.06 per video-second**;

@@ -1,0 +1,161 @@
+{
+  "lease_run_id": "P01_RUNPOD_H100X4ACCEL_5S_001",
+  "executed_benchmark_commit": "15a64fab545804051580b8cebc77dd25cae34695",
+  "outcome": "failed_no_video",
+  "configuration": {
+    "gpu_count": 4,
+    "gpu_type": "NVIDIA H100 80GB HBM3",
+    "region": "AP-IN-1",
+    "tp_size": 2,
+    "ulysses_degree": 2,
+    "disk_gb": 300,
+    "network_volume": false,
+    "source_revision": "408d2334c34d387a36a26398dff9a8f004328344",
+    "model_revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+    "runtime_patch": null,
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "sglang": "0.0.0.dev1+g408d2334c",
+      "transformers": "5.12.1",
+      "diffusers": "0.37.0",
+      "av": "16.1.0",
+      "huggingface_hub": "1.31.0"
+    }
+  },
+  "request": {
+    "requested_seconds": 5,
+    "short_edge": 768,
+    "aspect_ratio": "16:9",
+    "task": "t2va",
+    "seed": 42,
+    "prompt_variant": "P01_EN",
+    "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7"
+  },
+  "attempts": [
+    {
+      "run_id": "P01_EN_RUNPOD_H100X4_LARRY8_5S_001",
+      "recipe": "larry8",
+      "adapter": {
+        "repo": "larryvrh/MiniMax-H3-Turbo-Lora",
+        "revision": "43a74557ac3f6539db8e0f2a959d03feb7a81480",
+        "filename": "minimax_h3_turbo_v4_step600_ema.safetensors",
+        "sha256": "5f3a626cd72c93a8b9318d6760c510bc5092d2ab13aaba1f932c5bab07a416d3",
+        "bytes": 779849816,
+        "evaluations": 8,
+        "sigma_points": 9,
+        "alpha": null
+      },
+      "checksum_verified": true,
+      "submission_count": 1,
+      "result": "generation_failed",
+      "error": "RowParallelLinearWithLoRA object has no attribute quant_method",
+      "end_to_end_seconds": null,
+      "runtime_inference_seconds": null,
+      "output": null
+    },
+    {
+      "run_id": "P01_EN_RUNPOD_H100X4_LIGHT4_5S_001",
+      "recipe": "light4",
+      "adapter": {
+        "repo": "lightx2v/Minimax-h3-Turbo",
+        "revision": "3ec17a324ced54151364f24f8b5fb6bf7e26414f",
+        "filename": "minimax_h3_fl2v_turbo_4step_v0.1.safetensors",
+        "sha256": "5ff4a12c8b4599fec716e1b15a45e504e0d1129111896bdcde5ac4a15e395b29",
+        "bytes": 1383677888,
+        "evaluations": 4,
+        "sigma_points": 5,
+        "alpha": 8
+      },
+      "checksum_verified": false,
+      "submission_count": 0,
+      "result": "not_started_after_predecessor_failure",
+      "end_to_end_seconds": null,
+      "runtime_inference_seconds": null,
+      "output": null
+    }
+  ],
+  "timing": {
+    "allocated_at_utc": "2026-09-18T03:11:47.214Z",
+    "service_wrapper_started_at_utc": "2026-09-18T03:19:56.844136+00:00",
+    "model_download_started_utc": "2026-09-18T03:21:25Z",
+    "model_download_finished_utc": "2026-09-18T03:22:59Z",
+    "model_download_seconds_log_precision": 94,
+    "builtin_warmup_status": "failed",
+    "builtin_warmup_attempts": 1,
+    "builtin_warmup_elapsed_seconds_log_precision": 13.7,
+    "http_health_returned_200_despite_warmup_failure": true,
+    "submitted_at_utc": "2026-09-18T03:24:26.924814+00:00",
+    "failure_logged_at_utc": "2026-09-18T03:24:28Z",
+    "verified_absent_at_utc": "2026-09-18T03:24:48.342637+00:00",
+    "allocation_to_verified_absence_seconds": 781.1286370754242,
+    "allocation_to_submission_seconds": 759.710813999176
+  },
+  "gpu_telemetry": {
+    "start_utc": "2026-09-18T03:19:47.809Z",
+    "last_complete_sample_utc": "2026-09-18T03:24:35.074Z",
+    "sample_interval_seconds": 1,
+    "incomplete_trailing_rows_omitted": 1,
+    "scope": "sampled setup, failed warmup and failed request; excludes image pull and is not serving utilization",
+    "per_gpu": {
+      "0": {
+        "sample_count": 288,
+        "used_mib_sampled_max": 63049,
+        "utilization_percent_sampled_max": 73,
+        "power_w_sampled_max": 203.11,
+        "utilization_percent_sampled_mean": 1.9270833333333333,
+        "power_w_sampled_mean": 110.32607638888899
+      },
+      "1": {
+        "sample_count": 288,
+        "used_mib_sampled_max": 63113,
+        "utilization_percent_sampled_max": 16,
+        "power_w_sampled_max": 197.37,
+        "utilization_percent_sampled_mean": 1.7013888888888888,
+        "power_w_sampled_mean": 108.13944444444444
+      },
+      "2": {
+        "sample_count": 288,
+        "used_mib_sampled_max": 62857,
+        "utilization_percent_sampled_max": 25,
+        "power_w_sampled_max": 197.77,
+        "utilization_percent_sampled_mean": 1.6944444444444444,
+        "power_w_sampled_mean": 107.81798611111108
+      },
+      "3": {
+        "sample_count": 288,
+        "used_mib_sampled_max": 61967,
+        "utilization_percent_sampled_max": 16,
+        "power_w_sampled_max": 204.49,
+        "utilization_percent_sampled_mean": 1.65625,
+        "power_w_sampled_mean": 114.10690972222223
+      }
+    }
+  },
+  "cost": {
+    "currency": "USD",
+    "aggregate_gpu_hourly_usd": "13.96",
+    "window_compute_estimate_usd": "3.029043270436922731111111111",
+    "window_disk_estimate_usd": "0.009040840706891483796296296296",
+    "window_total_estimate_usd": "3.038084111143814214907407407",
+    "disk_basis": "300 GB at USD 0.10/GB/month; 30-day month",
+    "failed_spend_per_requested_second_usd": "0.6076168222287628429814814814",
+    "successful_generated_seconds": 0,
+    "cost_per_successful_video_second_usd": null,
+    "actual_charge_usd": null,
+    "billing_records_at_first_check": 0,
+    "ledger_settled": false,
+    "reservation_usd": "6.00"
+  },
+  "cleanup": {
+    "pod_deleted": true,
+    "subsequent_get_status": 404,
+    "subsequent_account_pod_list_empty": true,
+    "logs_and_gpu_samples_exported": true,
+    "persistent_volume_created": false
+  },
+  "evidence_sha256": {
+    "service-larry8.log": "8eabda6903db0234c87c33900ba3b3627e6df04e4581c63974f5d6aae2934f5a",
+    "gpu-samples.csv": "40c09bca59eb0c30c19435436c5af535b74a22d264f8bcd9ed7bd04881d893d2",
+    "hardware-preflight.txt": "74b5a3b695972c44e149d0a8f0e37c638581b979f6d044207d64ef224264b057"
+  }
+}

@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shlex
 import subprocess
 import time
 from urllib.error import HTTPError, URLError
@@ -37,6 +38,14 @@ def payload_from(original, recipe="base"):
 def get_json(route, timeout=15):
     with urlopen(BASE + route, timeout=timeout) as response:
         return json.load(response)
+
+
+def require_successful_warmup(log):
+    """HTTP 200 health alone did not detect the observed failed warmup."""
+    if "Synthetic server warmup failed" in log or re.search(r"server warmup req .*processing failed", log):
+        raise RuntimeError("Startup warmup failed; refusing a user generation")
+    if not re.search(r"server warmup req .*last=[0-9.]+s", log):
+        raise RuntimeError("Successful warmup evidence missing; refusing a user generation")
 
 
 def main():
@@ -107,6 +116,16 @@ def main():
             time.sleep(10)
         else:
             raise TimeoutError("Setup consumed the rental window; no generation submitted")
+
+        if args.recipe != "base":
+            read_log = shlex.join(["python3", "-c", "from pathlib import Path;print(Path(" +
+                repr("/root/benchmark/service-" + args.recipe + ".log") + ").read_text(errors='replace'))"])
+            probe = subprocess.run(["ssh", "-i", str(LEASE / "id_ed25519"),
+                "-o", "BatchMode=yes", "-o", "ConnectTimeout=5", "-o", "StrictHostKeyChecking=accept-new",
+                "-o", "UserKnownHostsFile=" + str(LEASE / "known_hosts"),
+                "-p", str(args.ssh_port), "root@" + args.ssh_host, read_log],
+                capture_output=True, text=True, timeout=20, check=True)
+            require_successful_warmup(probe.stdout)
 
         # Durable write BEFORE POST: any uncertain transport outcome forbids resubmission.
         lease["generation_submissions"] = expected_count + 1

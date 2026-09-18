@@ -23,7 +23,11 @@ ROOT = Path("/root/benchmark")
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--recipe", choices=("base", *ADAPTERS), default="base")
+    parser.add_argument("--lora-compat-fix", action="store_true",
+                        help="Opt in to the pinned H3 LoRA capability-probe workaround")
     args = parser.parse_args()
+    if args.lora_compat_fix and args.recipe == "base":
+        parser.error("The LoRA compatibility patch is for adapter trials only")
     guard = json.loads((ROOT / "guard-ready.json").read_text())
     minimum_remaining = 600 if args.recipe == "base" else 240
     if not guard.get("read_own_pod_verified") or guard["deadline"] - time.time() < minimum_remaining:
@@ -44,6 +48,10 @@ def main():
     record = {"source_revision": actual, "model_revision": REVISION, "versions": versions,
               "service_launch_at": time.time(), "python": sys.executable,
               "guard_deadline": guard["deadline"]}
+    if args.lora_compat_fix:
+        from h3_lora_compat import apply_to
+        record["runtime_patch"] = apply_to(Path(
+            "/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/models/dits/minimax_h3.py"))
     command = ["/opt/sglang/bin/sglang", "serve", "--model-path", "MiniMaxAI/MiniMax-H3",
                "--revision", REVISION, "--model-variant", "fl2va", "--num-gpus", "4",
                "--tp-size", "2", "--ulysses-degree", "2", "--encoder-parallel", "auto",

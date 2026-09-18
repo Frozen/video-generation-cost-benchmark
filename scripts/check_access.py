@@ -18,10 +18,11 @@ CHECKS = {
 ALIASES = {"fal": ("FAL_KEY", "FAL_API"), "runpod": ("RUNPOD_API_KEY", "RUNPOD_API")}
 
 
-def load_keys(path):
+def load_keys(path, aliases=None):
     """Parse literal assignments, without sourcing a shell or expanding values."""
+    aliases = ALIASES if aliases is None else aliases
     values = {}
-    names = {name for aliases in ALIASES.values() for name in aliases}
+    names = {name for options in aliases.values() for name in options}
     for line in path.read_text().splitlines():
         match = re.fullmatch(r"\s*(?:export\s+)?([A-Za-z_][A-Za-z_0-9]*)\s*=\s*(.*?)\s*", line)
         if not match or match[1] not in names:
@@ -37,8 +38,8 @@ def load_keys(path):
             raise ValueError("Credential must be a single literal value")
         values[name] = parts[0] if parts else ""
     keys = {}
-    for provider, aliases in ALIASES.items():
-        candidates = {values[name] for name in aliases if values.get(name)}
+    for provider, options in aliases.items():
+        candidates = {values[name] for name in options if values.get(name)}
         if len(candidates) > 1:
             raise ValueError("Conflicting credential aliases")
         keys[provider] = next(iter(candidates), "")
