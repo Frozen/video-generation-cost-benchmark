@@ -1,14 +1,21 @@
 # LTX-2.5: self-hosted smoke test
 
-Status checked September 18, 2026, approximately 04:57 UTC: **no generation**.
-Attempt 002 allocated one H100, but session auto-review blocked the credential
-transfer before setup. The empty Pod was deleted and a subsequent GET returned
-404. No HF token was transmitted, model downloaded or inference submitted.
-The 70.162-second allocation-to-verified-deletion window estimates **USD 0.069**
-including temporary disk; the provider charge is pending and its reservation
-remains held. No LTX video or latency measurement exists. Continuing requires
-explicit operator approval to transfer the HF read token over SSH to the new
-Runpod Pod solely for downloading the approved weights, then remove that token.
+**Completed:** [attempt 003 produced a validated video](LTX_RESULTS.md), then
+the Pod was deleted and its absence verified. The sections below preserve the
+launch contract and preparation history; they are not the current live status.
+
+Attempt 003 was allocated September 18, 2026 at **05:06:44.834 UTC**: one H100
+SXM in CA-MTL-1, quoted USD 3.49/hour. The operator explicitly approved using
+the supplied credentials and proceeding. Preparation is in progress; no LTX
+video or latency result is claimed until artifact export and validation.
+The HF account token stays local, with only file-scoped download links sent
+to the Pod. Both shutdown guards are armed within the USD 4 reservation.
+
+Earlier attempt 002 allocated one H100, but session auto-review blocked the
+credential transfer before setup. That empty Pod was deleted (GET 404).
+No HF token was transmitted, model downloaded or inference submitted then.
+Its 70.162-second allocation-to-verified-deletion window estimates USD 0.069
+including disk; this failed-preparation cost is retained, not erased.
 
 ### Safer credential path prepared afterward
 
@@ -24,7 +31,7 @@ transfer. The worker receives no HF account token; it deletes the mode-0600
 link file after download and verifies all six hashes. Signed links themselves
 are sensitive bearer credentials for those files: never log or publish them.
 This narrows exposure from an account credential to specific approved model
-objects, but still requires confirmation before another paid allocation.
+objects. The operator subsequently approved proceeding, as recorded below.
 
 The operator subsequently instructed us to proceed with the measurement.
 Attempt 003 uses the file-scoped link path above; the HF account credential
@@ -56,8 +63,9 @@ explicit part of this first rental. Freeze the installed dependency versions
 and retain the setup cost; do not call the environment fully prebuilt for LTX.
 
 A refreshed one-H100 Secure/CUDA-13.2 catalog read found `LOW` availability in
-**CA-MTL-1** at USD 3.49/hour. Request 200 GB temporary disk and at least 128 GB
-system RAM. No persistent volume is part of this attempt.
+**CA-MTL-1** at USD 3.49/hour. Attempt 003 requests 200 GB temporary disk and
+at least 64 GB system RAM after the 128 GB capacity rejection below.
+No persistent volume is part of this attempt.
 
 **No warmup or additional output is scheduled.** The first native Python
 pipeline request includes its lazy per-stage weight loading, initialization
@@ -82,7 +90,8 @@ SSH stdin and a mode-0600 temporary token file, not Pod environment metadata or
 process arguments. The review requires additional operator approval for that
 credential destination. At 04:57:08 UTC deletion was independently verified.
 This is a session-permission blocker, not an LTX inference or Runpod runtime
-failure. No more paid resource is launched while that approval is missing.
+failure. Attempt 003 follows the subsequent explicit approval and uses the
+narrower credential path rather than repeating that rejected transfer.
 
 ## Scope
 
@@ -167,8 +176,8 @@ with USD 2.50 separately protected for closeout. This is not the account balance
 
 Target a **USD 4 maximum additional reservation** for this single-GPU smoke
 test, including preparation and storage, with a lease deadline of no more than
-one hour and verified local/remote shutdown guards. No LTX reservation or
-allocation has been made. Do not consume closeout headroom or silently add API
+one hour and verified local/remote shutdown guards. Attempt 003 now has its own
+reservation and allocation. Do not consume closeout headroom or silently add API
 calls, replicas, retries, persistent storage, or another GPU.
 
 ## Remaining launch checks

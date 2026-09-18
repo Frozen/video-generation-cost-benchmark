@@ -1,0 +1,2 @@
+run_id,end_to_end_seconds,processing_seconds,requested_video_seconds,gpu_usd_per_requested_video_second,lease_total_usd_estimate,quality_accepted
+P01_EN_RUNPOD_H100_LTX25_5S_003,76.16252099999997,60.641775763826445,5,0.011757766523097462,0.782058019546815,pending

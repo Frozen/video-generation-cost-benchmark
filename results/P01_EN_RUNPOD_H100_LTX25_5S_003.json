@@ -1,0 +1,165 @@
+{
+  "run_id": "P01_EN_RUNPOD_H100_LTX25_5S_003",
+  "model": "Lightricks/LTX-2.5",
+  "model_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+  "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+  "container_image": "runpod/pytorch@sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851",
+  "prompt_variant": "P01_EN",
+  "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+  "requested_video_seconds": 5,
+  "native_video_seconds": 5.041667,
+  "runtime": {
+    "phase": "completed",
+    "run_id": "P01_EN_RUNPOD_H100_LTX25_5S_003",
+    "completed_at": 1789708788.6419365,
+    "processing_seconds": 60.641775763826445,
+    "script_seconds": 65.56377202784643,
+    "pipeline_return_seconds": 50.62900102487765,
+    "lazy_video_decode_and_encode_seconds": 10.012774738948792,
+    "stages_including_weight_loading": [
+      {
+        "stage": "prompt_encoder",
+        "seconds": 17.327047114027664
+      },
+      {
+        "stage": "stage",
+        "seconds": 15.253774194978178
+      },
+      {
+        "stage": "upsampler",
+        "seconds": 0.784329563844949
+      },
+      {
+        "stage": "stage",
+        "seconds": 14.929492149036378
+      },
+      {
+        "stage": "audio_decoder",
+        "seconds": 1.4108995001297444
+      }
+    ],
+    "warmup_requests": 0,
+    "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+    "model_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+    "torch": "2.13.0+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "gpu_count": 1,
+    "peak_allocated_bytes": 42101509120,
+    "peak_reserved_bytes": 46537900032,
+    "stage_1_sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "stage_2_sigmas": [
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "width": 1344,
+    "height": 768,
+    "frames": 121,
+    "fps": 24,
+    "seed": 42,
+    "precision": "BF16",
+    "quantization": null,
+    "compile": false,
+    "offload": "none",
+    "diffvae_mode": "chunked_eager",
+    "prompt_enhancement": false,
+    "output_bytes": 2433325,
+    "output_sha256": "18eaa1565c677ba8b43960f0b2bb71220bba81acca59775e9c0bc0ec42b197ca"
+  },
+  "preparation": {
+    "download_seconds": 543.977109907195,
+    "verified_files": [
+      {
+        "file": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+        "bytes": 42018190584,
+        "sha256": "31eb3cad89b9e54e99dd3baf286f70825ac4f6c660a70d9184d895be76d7bff4"
+      },
+      {
+        "file": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+        "bytes": 26263858182,
+        "sha256": "ef7243612fdae7a75cb4d5cee9433e81380675fb6c213bd98ae74a9cd16561d1"
+      },
+      {
+        "file": "vae/ltx-2.5-video-vae-bf16.safetensors",
+        "bytes": 1472223346,
+        "sha256": "847e14ca7f3355debca0cea4eaa24ac0fbcdf0061da054ac89ca638a869ddba3"
+      },
+      {
+        "file": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+        "bytes": 364866540,
+        "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5"
+      },
+      {
+        "file": "model_patches/ltx-2.5-duration-head-bf16.safetensors",
+        "bytes": 3843690,
+        "sha256": "2ec71e4206ed365d015f00c05a48caccfb0ee862986809d06ae376c09f5d9190"
+      },
+      {
+        "file": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+        "bytes": 995778752,
+        "sha256": "eb5a71fe4068ee87ccdb1c3aa635e547ca76bd2d30ae20ae889f2c325c0677e8"
+      }
+    ]
+  },
+  "preparation_seconds": 669.2995960712433,
+  "allocation_to_ready_seconds": 711.3247327804565,
+  "client_end_to_end_seconds": 76.16252099999997,
+  "latency_target_seconds": 15,
+  "latency_target_pass": false,
+  "sampled_gpu_peak_used_mib": 45083.0,
+  "gpu_sample_count": 744,
+  "incomplete_gpu_samples_excluded": 1,
+  "cost": {
+    "hourly_gpu_usd": 3.49,
+    "processing_gpu_usd": 0.05878883261548731,
+    "processing_gpu_usd_per_requested_video_second": 0.011757766523097462,
+    "processing_boundary": "First pipeline call through encoded MP4, including lazy weight loads; no warmup",
+    "lease_window_seconds": 800.3373289108276,
+    "lease_window_gpu_usd_estimate": 0.775882577194108,
+    "temporary_disk_usd_estimate": 0.006175442352707003,
+    "lease_window_total_usd_estimate": 0.782058019546815,
+    "lease_window_usd_per_requested_video_second_estimate": 0.15641160390936298,
+    "provider_actual_charge_usd": null,
+    "provider_actual_charge_status": "Pending reconciliation; window estimate is not an invoice"
+  },
+  "quality_acceptance": "Pending human motion/audio review; no VBench run",
+  "full_decode_verified": true,
+  "pod_absence_verified": true,
+  "artifact": {
+    "path": "results/P01_EN_RUNPOD_H100_LTX25_5S_003.mp4",
+    "bytes": 2433325,
+    "sha256": "18eaa1565c677ba8b43960f0b2bb71220bba81acca59775e9c0bc0ec42b197ca"
+  },
+  "streams": [
+    {
+      "codec_type": "video",
+      "codec_name": "h264",
+      "width": 1344,
+      "height": 768,
+      "nb_frames": "121",
+      "r_frame_rate": "24/1",
+      "duration": "5.041667"
+    },
+    {
+      "codec_type": "audio",
+      "codec_name": "aac",
+      "nb_frames": "236",
+      "r_frame_rate": "0/0",
+      "duration": "5.010000",
+      "sample_rate": "48000",
+      "channels": 2
+    }
+  ]
+}

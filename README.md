@@ -7,13 +7,14 @@ acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 **Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
 All public content is in English.
 
-[Next: LTX-2.5 preflight](LTX_PREFLIGHT.md). One H100 SXM is the selected first
-candidate. **Hugging Face access is verified; generation has not started.**
-One H100 was allocated, but session auto-review blocked credential transfer
-before setup. The empty Pod was deleted (404 verified); explicit transfer
-approval is needed before another rental. No LTX result exists yet. Reconciled usage charges
-for two closed H3 leases free budget within the unchanged USD 25 cap; other
-unreported charges remain reserved.
+[LTX-2.5 result](LTX_RESULTS.md): **one H100 SXM successfully produced
+[video and audio](results/P01_EN_RUNPOD_H100_LTX25_5S_003.mp4).** Cold first request:
+76.163 s to downloaded video, 60.642 s pipeline processing, **USD 0.011758 per
+requested video-second for processing only**. The whole rental including setup
+and disk is approximately **USD 0.78**, pending billing reconciliation. The
+15-second target failed; quality review remains pending. Pod deleted and absence
+verified. This is not an equal-warmth comparison against the H3 service below.
+[Launch contract and failed preparation history](LTX_PREFLIGHT.md).
 
 [Latest acceleration results](ACCELERATION_RETRY_RESULTS.md): **both public H3
 adapters produced videos after the pinned compatibility fix.**
