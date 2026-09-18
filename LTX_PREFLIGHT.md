@@ -3,6 +3,39 @@
 Status checked September 18, 2026, approximately 04:39 UTC: **not launched**.
 No LTX video or timing result exists. No GPU or network volume is running.
 
+## Access resolved and launch contract pinned
+
+The operator subsequently accepted the model gate and supplied a read token
+under the existing name `FACE_API`. Authenticated HEAD requests to all six
+selected files returned HTTP 302 with the expected object sizes and SHA-256
+ETags. Credentials are not published or passed in process arguments.
+
+The launch code is now in [ltx_trial.py](scripts/ltx_trial.py) and the on-Pod
+[worker](scripts/ltx_worker.py); [ltx_config.py](scripts/ltx_config.py) pins the
+model manifest, native source and container. The source commit is
+`a95ab856bf29407b6b066ede0abe1846050db56c`; the official PyTorch image's linux/amd64
+digest is `sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851`.
+
+Native code uses an **8-step first stage plus a 3-step refinement stage**,
+ancestral stage-1 sampling and deterministic stage 2. DiffVAE uses the native
+`chunked_eager` mode with the recommended NATTEN wheel. The current upstream
+dependency configuration selects PyTorch 2.13/CUDA 13.2, so it cannot simply
+reuse the template's preinstalled torch 2.8. Dependency installation is an
+explicit part of this first rental. Freeze the installed dependency versions
+and retain the setup cost; do not call the environment fully prebuilt for LTX.
+
+A refreshed one-H100 Secure/CUDA-13.2 catalog read found `LOW` availability in
+**CA-MTL-1** at USD 3.49/hour. Request 200 GB temporary disk and at least 128 GB
+system RAM. No persistent volume is part of this attempt.
+
+**No warmup or additional output is scheduled.** The first native Python
+pipeline request includes its lazy per-stage weight loading, initialization
+and first-use kernel costs. Measure client launch through completed download;
+also measure processing through completed MP4 encoding and individual stages.
+This is a cold first-request diagnostic, not an equal-warmth latency comparison
+against the already warmed H3 service. No successful GPU execution is claimed
+by the offline checks.
+
 ## Scope
 
 The operator requested an LTX-2.5 test on the same GPU family, a results report,
@@ -35,7 +68,7 @@ paid lease window. Separate compute-only USD/video-second from whole-rental
 USD/video-second. Preserve failure costs. Shut down and verify resource absence
 after export, or at the bounded deadline if the attempt cannot complete.
 
-## Verified access blocker
+## Initial access blocker (resolved above)
 
 The official model metadata is public, but its weight downloads are gated:
 
