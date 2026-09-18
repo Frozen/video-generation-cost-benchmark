@@ -58,7 +58,7 @@ def download_links(env_file):
     return links
 
 
-def arm(env_file):
+def arm(env_file, guard_script=None):
     if LEASE.exists():
         raise ValueError("Existing lease journal; no implicit retry")
     if not load_keys(env_file, HF_ALIASES)["hf"] or not load_keys(env_file)["runpod"]:
@@ -80,7 +80,7 @@ def arm(env_file):
     ssh_key = LEASE / "id_ed25519"
     subprocess.run(["ssh-keygen", "-q", "-t", "ed25519", "-N", "", "-f", str(ssh_key)], check=True)
     with (LEASE / "guard.log").open("ab") as out:
-        p = subprocess.Popen(["/usr/bin/caffeinate", "-ims", sys.executable, str(Path(__file__).resolve()),
+        p = subprocess.Popen(["/usr/bin/caffeinate", "-ims", sys.executable, str(guard_script or Path(__file__).resolve()),
                               "guard", "--env-file", str(env_file)], stdin=subprocess.DEVNULL,
                              stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
     for _ in range(50):
@@ -222,7 +222,7 @@ def close(env_file):
         raise RuntimeError("Deletion not yet verified; guard remains armed")
 
 
-def run(env_file):
+def prepare_lease(env_file, extra_uploads=()):
     state = read_state()
     if state.get("status") != "created" or state.get("prepare_started_at") or state["generation_submissions"]:
         raise ValueError("Fresh attached lease required; use existing handles after interruption")
@@ -242,7 +242,7 @@ def run(env_file):
         raise TimeoutError("Startup consumed setup allowance")
     save(LEASE / "connection.json", connection)
     transfer(connection, [ROOT / "scripts/ltx_config.py", ROOT / "scripts/ltx_worker.py",
-                          ROOT / "private/ltx-source.tar.gz", LEASE / "request.json"], True)
+                          ROOT / "private/ltx-source.tar.gz", LEASE / "request.json", *extra_uploads], True)
     remote(connection, "import subprocess;subprocess.run(['tar','-xzf','/root/benchmark/ltx-source.tar.gz','-C','/root/benchmark'],check=True)")
     links = download_links(env_file)
     remote(connection, "import sys,os;from pathlib import Path;p=Path('/root/benchmark/download-links.json');"
@@ -255,6 +255,11 @@ def run(env_file):
     save(STATE, state)
     wait_phase(connection, "prepare", "ready", state["deadline"] - 900)
     transfer(connection, ["prepare-status.json", "dependencies.txt", "prepare.log"], False)
+    return connection, state
+
+
+def run(env_file):
+    connection, state = prepare_lease(env_file)
     # Durable client claim BEFORE spawning; a lost response never authorizes another request.
     state.update(generation_submissions=1, submitted_at=time.time())
     save(STATE, state)
