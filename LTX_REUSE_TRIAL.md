@@ -1,5 +1,9 @@
 # LTX-2.5: warm baseline versus resident-transformer experiment
 
+**Completed:** [results, originals and full rental accounting](LTX_REUSE_RESULTS.md).
+Both measured requests and both technical warmups were exported. The Pod was
+deleted and absence verified. The following is the approved pre-run contract.
+
 Approved September 18, 2026 after the first cold LTX result. This is a separate
 experiment, not a retrospective change to previous numbers. H3 is accepted as
 already warmed; do not rerun H3. Its logs confirm successful built-in synthetic

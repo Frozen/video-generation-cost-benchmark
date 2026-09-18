@@ -1,0 +1,61 @@
+{
+  "run_id": "P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001",
+  "case_order": [
+    "BASE_WARMUP",
+    "BASE_WARM",
+    "REUSE_WARMUP",
+    "REUSE_WARM"
+  ],
+  "measured_output_count": 2,
+  "technical_warmup_count": 2,
+  "requested_measured_output_seconds": 10,
+  "lease_window_seconds": 1207.405632019043,
+  "lease_window_total_usd_estimate": 1.179829083633423,
+  "whole_experiment_usd_per_measured_video_second_estimate": 0.11798290836334231,
+  "provider_actual_charge_usd": null,
+  "provider_actual_charge_status": "Pending; rental window is an estimate",
+  "download_seconds": 838.1085401079617,
+  "prepare_seconds": 947.1337010860443,
+  "measured_processing_speedup": 1.6303990896217906,
+  "measured_end_to_end_speedup": 1.584366252312531,
+  "measured_decoded_video_equal": true,
+  "measured_decoded_audio_equal": false,
+  "warmup_processing_gpu_usd": 0.08857719290219378,
+  "measured_processing_gpu_usd": 0.07266434938500752,
+  "quality_acceptance": "Pending; equal hashes are not proof of acceptable quality",
+  "pod_absence_verified": true,
+  "cases": [
+    {
+      "case": "BASE_WARMUP",
+      "warmup": true,
+      "processing_seconds": 56.20033460203558,
+      "end_to_end_seconds": 62.87918383400006,
+      "gpu_usd_per_requested_video_second": 0.010896620431172456,
+      "build_count": 2
+    },
+    {
+      "case": "BASE_WARM",
+      "warmup": false,
+      "processing_seconds": 46.45909458003007,
+      "end_to_end_seconds": 55.432152290999966,
+      "gpu_usd_per_requested_video_second": 0.009007902226905829,
+      "build_count": 2
+    },
+    {
+      "case": "REUSE_WARMUP",
+      "warmup": true,
+      "processing_seconds": 35.168689595069736,
+      "end_to_end_seconds": 44.29606750000016,
+      "gpu_usd_per_requested_video_second": 0.0068188181492663,
+      "build_count": 1
+    },
+    {
+      "case": "REUSE_WARM",
+      "warmup": false,
+      "processing_seconds": 28.495535158086568,
+      "end_to_end_seconds": 34.98695595799995,
+      "gpu_usd_per_requested_video_second": 0.005524967650095674,
+      "build_count": 0
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "run_id": "P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001_BASE_WARMUP",
+  "lease_run_id": "P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001",
+  "model": "Lightricks/LTX-2.5",
+  "runtime": {
+    "run_id": "P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001",
+    "case": "BASE_WARMUP",
+    "mode": "baseline",
+    "warmup": true,
+    "processing_seconds": 56.20033460203558,
+    "pipeline_return_seconds": 46.15012274985202,
+    "lazy_video_decode_and_encode_seconds": 10.050211852183565,
+    "stages_including_weight_loading": [
+      {
+        "stage": "prompt_encoder",
+        "seconds": 16.61891658999957
+      },
+      {
+        "stage": "stage",
+        "seconds": 13.058838251046836
+      },
+      {
+        "stage": "upsampler",
+        "seconds": 0.8178656760137528
+      },
+      {
+        "stage": "stage",
+        "seconds": 13.41079712798819
+      },
+      {
+        "stage": "audio_decoder",
+        "seconds": 1.3725465841125697
+      }
+    ],
+    "transformer_build_seconds": [
+      10.195552584948018,
+      8.92573600099422
+    ],
+    "transformer_build_count": 2,
+    "resident_total_build_count": null,
+    "peak_allocated_bytes": 42101509120,
+    "peak_reserved_bytes": 46537900032,
+    "torch": "2.13.0+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+    "model_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+    "width": 1344,
+    "height": 768,
+    "frames": 121,
+    "fps": 24,
+    "seed": 42,
+    "stage_1_sigmas": [
+      1.0,
+      0.725,
+      0.0
+    ],
+    "stage_2_sigmas": [
+      0.909375,
+      0.421875,
+      0.0
+    ],
+    "precision": "BF16",
+    "compile": false,
+    "quantization": null,
+    "prompt_enhancement": false,
+    "output_cache": false,
+    "embedding_cache": false,
+    "diffvae_mode": "chunked_eager",
+    "output_bytes": 4830932,
+    "resolved_tiling": "TileSizeConfig(frames=DimensionSizeConfig(tile_size=128, overlap=40), height=DimensionSizeConfig(tile_size=768, overlap=160), width=DimensionSizeConfig(tile_size=1344, overlap=160))",
+    "output_sha256": "184ca13d3a8e24a1e7c53f1eb233e25d7721eb737da1de9ae23ad86d21446768",
+    "completed_at": 1789710669.2246099
+  },
+  "requested_video_seconds": 5,
+  "native_video_seconds": 5.041667,
+  "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+  "prompt_variant": "P01_EN",
+  "container_image": "runpod/pytorch@sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851",
+  "client_end_to_end_seconds": 62.87918383400006,
+  "latency_target_seconds": null,
+  "latency_pass": null,
+  "cost": {
+    "hourly_gpu_usd": 3.49,
+    "processing_gpu_usd": 0.05448310215586228,
+    "processing_gpu_usd_per_requested_video_second": 0.010896620431172456,
+    "boundary": "Pipeline call through encoded MP4 only; excludes setup, warmup, idle, storage and download"
+  },
+  "artifact": "results/P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001_BASE_WARMUP.mp4",
+  "decoded_stream_sha256": {
+    "video": "29d7a7fdfd55af71ffc2ac80be159111b271e6ee0339a0b774d81c0ba2dd3593",
+    "audio": "3eeddb149c3e2b049f83a60a55dec2cf17d0b5b907de231c2ba20bb0ebcc8151"
+  },
+  "full_decode_verified": true,
+  "quality_acceptance": "Not applicable: technical warmup"
+}

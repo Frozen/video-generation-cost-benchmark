@@ -1,5 +1,11 @@
 # LTX-2.5: first single-H100 result
 
+**Historical cold request.** The subsequent approved
+[warm baseline versus resident-transformer experiment](LTX_REUSE_RESULTS.md)
+is now complete. Its measurements are separate; the cold numbers below are
+unchanged. Statements below about optimization not yet being started describe
+the status at the time of this first report.
+
 September 18, 2026. **The official LTX-2.5 distilled BF16 pipeline successfully
 generated video and audio on one H100 SXM 80 GB.** This is one cold first request,
 not a warmed service or a production throughput benchmark.

@@ -26,6 +26,24 @@ variant. This is not an exact-prompt six-way comparison.
 
 ## Latest results
 
+[Warmed LTX-2.5 comparison](LTX_REUSE_RESULTS.md): **retaining transformer weights
+on one H100 reduced processing from 46.459 to 28.496 s (1.63x)**, with identical
+decoded video frames for this pair; decoded audio differs and quality review is
+pending. Same prompt, seed, BF16 weights and full 8 + 3 schedule, with short
+technical warmup before each mode.
+
+| Five-second video | Request to download | Processing-only USD / requested video-second | 15 s target |
+|---|---:|---:|---|
+| [Ordinary warm LTX](results/P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001_BASE_WARM.mp4) | 55.432 s | 0.009008 | Fail |
+| [Resident warm LTX](results/P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001_REUSE_WARM.mp4) | 34.987 s | 0.005525 | Fail |
+
+Whole rental, including preparation, both warmups and temporary disk:
+**USD 1.18 estimate**, invoice pending. All four originals exported; Pod deleted
+and absence independently verified. H3 logs also confirm short built-in warmup;
+the [report](LTX_REUSE_RESULTS.md#comparison-with-our-warmed-h3-measurements)
+compares the warmed samples while disclosing hardware and pipeline differences.
+No additional paid tests are scheduled.
+
 [LTX-2.5 result](LTX_RESULTS.md): **one H100 SXM successfully produced
 [video and audio](results/P01_EN_RUNPOD_H100_LTX25_5S_003.mp4).** Cold first request:
 76.163 s to downloaded video, 60.642 s pipeline processing, **USD 0.011758 per

@@ -10,6 +10,21 @@ do not silently substitute post-trained weights into the self-host baseline.
 Total spending cap: **USD 25 across the entire pilot**, not per model or backend.
 All published content is in English.
 
+**Warm-comparison addendum, September 18:** the operator accepts the completed
+H3 measurements as warmed: raw logs verify successful built-in short synthetic
+warmup before the user requests. The new [LTX reuse experiment](LTX_REUSE_TRIAL.md)
+also uses short technical warmup before each measured configuration, not a full
+generation that would give it a different warmup advantage. Compare warmed
+measurements with warmed measurements; retain the first cold LTX result separately.
+Both LTX modes share one H100 and unchanged request settings. H3's four GPUs,
+native frame count and different warmup implementation remain disclosed; these
+are approximately comparable service conditions, not identical model internals.
+Start the measured timer only after readiness/warmup and stop after complete
+download. Keep all setup/warmup charges in whole-experiment accounting. Nothing
+is retrospectively subtracted from the historical request measurements.
+The [completed comparison and originals](LTX_REUSE_RESULTS.md) retain the cold
+baseline separately and report the observed image/audio differences.
+
 **Cost reporting unit:** use USD per requested second of generated video as the
 primary metric. Retain per-request and whole-experiment totals separately. For
 these five-second requests, divide the relevant cost by 5; do not divide by GPU
