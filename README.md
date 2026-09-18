@@ -13,9 +13,11 @@ Turbo: **9.122 s / USD 0.10**. Prices are current tariff/billable-unit calculati
 with promotions for Max/Turbo and invoice reconciliation pending. Max and Turbo
 passed the latency gate; full quality review and self-host testing remain pending.
 
-**Self-host update:** the replacement Runpod key works. No GPU has been rented.
-[Current preflight](SELF_HOST_PREFLIGHT.md) records the operator's personal-test
-declaration, outstanding license applicability and the unverified rental deadline.
+**Self-host update:** [the B300 allocation attempt](RUNPOD_ATTEMPT.md) was rejected
+by Runpod for unavailable capacity. No Pod was created, no additional video was
+generated, and incremental GPU/storage expense is USD 0. The replacement key
+works; this is not an authentication failure. Runtime/model pins and lifecycle
+helpers are prepared, but remote execution remains unverified.
 
 Original videos: [H3](results/P01_FAL_5S_001.mp4),
 [H3 Max](results/P01_FAL_MAX_5S_001.mp4),
@@ -47,8 +49,9 @@ The selected baseline is native **768P, 16:9, 5/10 seconds, seed 42**, with prom
 expansion disabled, safety checking enabled and URL-based video delivery.
 The self-host candidate is **MiniMax H3 Base FL2VA on 1 x B300 (288 GB), using
 SGLang Diffusion**. The catalog rate checked September 17 is USD 7.89/hour for
-compute; no Pod has been created. Exact weights/runtime pins, on-host feasibility
-and equivalence with the API have not yet been verified.
+compute; no Pod has been created. Artifact pins are recorded in the
+[attempt report](RUNPOD_ATTEMPT.md); on-host feasibility and equivalence with the
+API have not yet been verified.
 
 This is a diagnostic baseline, not a promised 15/30-second service. Published
 base-model results already warn of a latency gap; see the hardware rationale
@@ -57,7 +60,8 @@ and adverse evidence in [START_HERE.md](START_HERE.md).
 [START_HERE.md](START_HERE.md) fixes what we start with, what we measure and the
 sequence: one matched 5-second request, review, then a matched 10-second request
 if justified and funded. The API side is complete under the addendum; the self-host
-schedule is not funded or ready. Selecting hardware does not establish readiness.
+allocation failed despite the funded attempt. Selecting hardware does not
+establish available capacity or readiness.
 
 ## What changed
 
@@ -100,6 +104,7 @@ backends, but that is not yet a funded schedule.
 
 - [START_HERE.md](START_HERE.md): selected H3 baseline, first-test sequence and measurements.
 - [RESULTS.md](RESULTS.md): the completed first reference and its limitations.
+- [RUNPOD_ATTEMPT.md](RUNPOD_ATTEMPT.md): rejected B300 allocation, cost and prepared artifacts.
 - [REFERENCE_RUN.md](REFERENCE_RUN.md): bounded one-call execution addendum.
 - [METHODOLOGY.md](METHODOLOGY.md): matching, realistic requests, execution stages,
   quality, latency, throughput, cost accounting and completion criteria.

@@ -2,7 +2,10 @@
 
 **Latest self-host status:** [SELF_HOST_PREFLIGHT.md](SELF_HOST_PREFLIGHT.md).
 Replacement-key authentication succeeds; old HTTP 401 observations below are
-superseded. License applicability and an independent rental deadline remain open.
+superseded. The [B300 allocation attempt](RUNPOD_ATTEMPT.md) failed for capacity:
+no Pod exists and no self-host measurement was obtained. Local and embedded
+remote deadline code is prepared; remote verification and license applicability
+remain open.
 
 Planning baseline v0.8.1, September 17, 2026. **One fal reference completed;
 self-host preflight remains open.** See [RESULTS.md](RESULTS.md).

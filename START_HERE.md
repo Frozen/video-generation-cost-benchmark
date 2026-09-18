@@ -26,7 +26,9 @@ The self-host candidate is **MiniMax H3 Base FL2VA**, task `t2va`, from the
 [official MiniMax-H3 release](https://huggingface.co/MiniMaxAI/MiniMax-H3).
 The release provides a [native 768p text-to-audio-video example](https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/scripts/readme/reproducible-768p-t2va-request.sh).
 The first self-host candidate is one B300 running SGLang Diffusion, specified
-below. Checkpoint/runtime pins, license review and on-host validation remain open.
+below. Checkpoint/runtime pins are recorded in the [allocation attempt](RUNPOD_ATTEMPT.md);
+license applicability and on-host validation remain open. The allocation failed
+for capacity; no self-host clip exists.
 
 This deliberately selects ordinary H3, **not H3 Max or H3 Max Turbo**. It does
 not claim to reproduce fal's post-trained Max variant. Matching the endpoint's
@@ -62,7 +64,7 @@ comparison. A future autoscaling service is not part of the initial deployment.
 | Item | Selected candidate |
 |---|---|
 | Compute | One Runpod Secure Cloud GPU Pod, **1 x NVIDIA B300 SXM6 AC**, 288 GB GPU memory |
-| Serving program | **SGLang Diffusion**, `sglang serve`; version/container digest must be pinned before launch |
+| Serving program | **SGLang Diffusion**, `sglang serve`; source/container pins in [RUNPOD_ATTEMPT.md](RUNPOD_ATTEMPT.md), runtime not yet verified |
 | Model | Official MiniMax H3 Base FL2VA, `t2va`; no Turbo, FastH3, VDN, adapters or replacement encoder |
 | Baseline math | Native BF16/FP32, eager execution, no added quantization or approximate caching; 50-point schedule |
 | Host requirements | Proposed 384 GiB-class RAM and 300 GB working disk; verify actual allocation and complete storage quote before renting |
@@ -78,7 +80,9 @@ The September 17 Runpod MCP catalog read (`SECURE`, `POD`, count 1) returned:
 | H200 SXM (`NVIDIA H200`) | 141 GB | 4.59 | LOW |
 
 These are live catalog observations, not reserved capacity or an all-in quote.
-B300 was available in `EU-NL-1`, `EUR-IS-1` and `US-WA-2`; no region is booked.
+The broad catalog listed `LOW` for `EU-NL-1`, `EUR-IS-1` and `US-WA-2`; this did
+not establish allocatable stock. The subsequent EUR-IS-1 allocation was rejected,
+and the country-filtered query returned `NONE`. No region is booked.
 At the listed rate, 30 minutes of one B300 is USD 3.945 in compute alone. Setup,
 downloads and idle time are billed too. This is not a claim that setup or the
 test will finish in 30 minutes. Storage, API calls, fees and shutdown reserve
