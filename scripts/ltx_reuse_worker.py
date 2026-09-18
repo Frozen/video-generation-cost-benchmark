@@ -114,6 +114,7 @@ def serve():
                 "precision": "BF16", "compile": False, "quantization": None,
                 "prompt_enhancement": False, "output_cache": False, "embedding_cache": False,
                 "diffvae_mode": "chunked_eager", "output_bytes": path.stat().st_size,
+                "resolved_tiling": repr(output.tiling_config),
                 "output_sha256": digest(path), "completed_at": time.time()}
             save(output_id(case) + ".json", result)
             save("reuse-service-status.json", {"phase": "completed", "case": case, "at": time.time()})
