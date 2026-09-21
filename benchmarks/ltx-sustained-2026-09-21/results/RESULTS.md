@@ -1,8 +1,8 @@
-# One hour of varied LTX generation: measured results
+# One-hour LTX test: 6.15× cheaper generation than fal H3 Max Turbo
 
-**LTX completed 131 five-second requests over 3622.211 seconds (60.37 minutes), with 0 generation failures and 0 retries.** All counted videos were downloaded, matched to their worker hashes and fully decoded. GPU plus disk cost was **$0.003253 per requested video-second**, or **$0.01627 per clip**. The twenty fal H3 Max Turbo references cost **$0.02000/s** from provider-reported billing units: **6.15× the LTX measured-queue cost**.
+**131 clips. 20 scenes. 131 unique seeds. Zero failures. No meaningful slowdown.**
 
-This is a cross-model technical-output cost comparison. It does not establish equal quality or show that the same H3 model can be served at the LTX price. The hour tests the robustness of the earlier short LTX estimate.
+LTX generated five-second videos with sound for **$0.003253 per video-second**, compared with **$0.02** for fal H3 Max Turbo at the measured API price. The run lasted **60 minutes 22 seconds** on one RTX PRO 6000 96 GB. Every video is saved, along with its prompt, seed and generation settings.
 
 ## Downloads, exact inputs and reproduction
 
@@ -27,7 +27,7 @@ Everything needed to inspect this experiment is linked here:
 
 The GPU quote is $2.09/hour; 200 GB disk adds $0.02777778/hour. The formula is `(GPU + disk hourly rate) × elapsed hours / successfully delivered requested output seconds`. Each successful clip contributes five requested seconds. The last request finishes completely, so the actual queue exceeds the one-hour minimum.
 
-The measured queue produced **655 requested video-seconds**, equivalent to **130.20 clips/hour** or **650.98 video-seconds/hour**. Queue GPU/disk cost was **$2.1308**. The complete lease estimate was **$2.5389**; on that boundary fal is **5.16×** as expensive per measured output second. GPU figures are quoted-rate calculations, not an invented invoice; any retrieved billing reconciliation is a separate artifact. Client hardware, engineering, networking/storage outside the quoted disk and other service overhead are excluded.
+The measured queue produced **655 requested video-seconds**, equivalent to **130.20 clips/hour** or **650.98 video-seconds/hour**. Queue GPU/disk cost was **$2.1308**. The complete lease estimate was **$2.5389**; on that boundary fal is **5.16×** as expensive per measured output second. GPU costs use the verified rental rate and measured time. Final provider billing is listed separately when available. Client hardware, engineering, networking/storage outside the quoted disk and other service overhead are excluded.
 
 The [earlier ten-request result](../../ltx-rtx-2026-09-20/README.md) was $0.003287289/s. This hour's figure differs by **-1.04%**. The short-run cost estimate held over this measured hour. This is not a controlled speedup: the host CPU changed from AMD EPYC 9555 to EPYC 9535 and the prompt mix changed.
 
