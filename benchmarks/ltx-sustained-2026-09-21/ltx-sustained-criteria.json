@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "audio_required": true,
+  "selection": "All first-cycle pairs, chosen before any output; no best-of selection.",
+  "review_dimensions": [
+    "required content/actions",
+    "visual coherence",
+    "audio relevance",
+    "speech/music synchronization when requested"
+  ],
+  "grades": [
+    "pass",
+    "partial",
+    "fail"
+  ],
+  "technical_pass_is_not_quality_acceptance": true,
+  "blinding": "Randomize LTX/fal left-right positions and mask model names in the review form; publish identity mapping separately.",
+  "per_scene": {
+    "P01_EN": [
+      "chef and kitchen",
+      "onion or vegetables animate",
+      "comedic cooking sound"
+    ],
+    "P02_TURTLE": [
+      "turtle surfaces",
+      "sunrise water",
+      "breath and water sound"
+    ],
+    "P03_ALLEY": [
+      "child from behind",
+      "coastal alley and visible sea",
+      "coastal ambience"
+    ],
+    "P_COFFEE": [
+      "milk poured into coffee",
+      "stable hands and cup",
+      "cafe or pouring sound"
+    ],
+    "P_PORTRAIT": [
+      "mechanic and bicycle workshop",
+      "requested English sentence",
+      "speech synchronized with mouth"
+    ],
+    "P_SKATE": [
+      "one rider and skateboard",
+      "jump and landing",
+      "wheel and landing sounds"
+    ],
+    "P_DOG": [
+      "dog leaves water",
+      "dog shakes wet coat",
+      "water sounds"
+    ],
+    "P_PERFUME": [
+      "glass perfume bottle",
+      "slow rotation",
+      "coherent reflections"
+    ],
+    "P_WATERFALL": [
+      "forest stream and waterfall",
+      "forward camera glide",
+      "water and forest ambience"
+    ],
+    "P_POTTERY": [
+      "hands shaping spinning clay",
+      "bowl remains coherent",
+      "wheel or clay sounds"
+    ],
+    "P_SIGN": [
+      "legible OPEN sign",
+      "person leaves bakery",
+      "door bell or street ambience"
+    ],
+    "P_REEF": [
+      "blue fish school and striped fish",
+      "opposing motion",
+      "underwater ambience"
+    ],
+    "P_CAR": [
+      "red car on wet road",
+      "coherent moving wheels",
+      "engine or tire sounds"
+    ],
+    "P_DANCE": [
+      "full body dancer",
+      "turn and balanced ending",
+      "footfall or breath sounds"
+    ],
+    "P_DRONE": [
+      "stone bridge over river",
+      "rising viewpoint",
+      "river or bird sounds"
+    ],
+    "P_FIRE": [
+      "campfire in snow",
+      "smoke or sparks move",
+      "fire crackling"
+    ],
+    "P_GUITAR": [
+      "musician visibly plays guitar",
+      "coherent hands and instrument",
+      "matching guitar audio"
+    ],
+    "P_CLAY": [
+      "clay fox and blue butterfly",
+      "fox follows butterfly",
+      "matching playful sounds"
+    ],
+    "P_GEARS": [
+      "three meshed brass gears",
+      "consistent opposite rotation",
+      "mechanical ticking"
+    ],
+    "P_RAIN": [
+      "person with transparent umbrella",
+      "rain and head movement",
+      "rain sound"
+    ]
+  }
+}

@@ -282,3 +282,7 @@ Do not provision a paid resource until the [preflight requirements](PREFLIGHT.md
 are met and the whole commitment is reserved. No automatic retries or hidden
 spending expansion. Do not publish secrets, account/payment details, private
 conversations, raw private logs or signed URLs.
+
+## One-hour validation (preregistered)
+
+[Protocol, frozen inputs and code](benchmarks/ltx-sustained-2026-09-21/README.md) for one hour of LTX and twenty paired fal H3 Max Turbo references. Results pending.

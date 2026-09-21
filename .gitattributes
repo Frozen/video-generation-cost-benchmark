@@ -7,3 +7,4 @@ benchmarks/ltx-rtx-2026-09-20/** -text
 # Keep exported Vast evidence byte-identical, including the CSV writer's CRLF.
 results/*VAST* -text
 results/*VAST*.csv whitespace=cr-at-eol
+benchmarks/ltx-sustained-2026-09-21/** -text
