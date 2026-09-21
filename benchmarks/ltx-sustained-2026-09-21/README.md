@@ -1,6 +1,6 @@
 # Preregistered one-hour LTX and twenty fal H3 Max Turbo pairs
 
-Status: protocol frozen before allocation or inference; results pending.
+Status: preregistration published before allocation or inference. The LTX hour is running; [all twenty fal references are complete](results/FAL_RESULTS.md). [Reproduction instructions](REPRODUCE.md).
 
 This experiment tests the robustness of the earlier short LTX cost measurement. It does not establish that LTX and fal H3 Max Turbo are the same model or provide equal quality.
 

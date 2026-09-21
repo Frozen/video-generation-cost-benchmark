@@ -50,6 +50,7 @@ def export(private, proposal, destination):
                'generation_failures': sum(r['status'] == 'provider_failed' for r in rows),
                'controller_errors': 1,
                'controller_error_note': 'Initial HTTP 202 IN_PROGRESS observation rejection; original request resumed without resubmission.',
+               'all_observed_submit_to_download_seconds_including_controller_error': distribution([r['submit_to_download_seconds'] for r in rows if r['status'] == 'download_complete']),
                'uninterrupted_submit_to_completion_seconds': distribution([r['submit_to_completion_seconds'] for r in uninterrupted]),
                'uninterrupted_submit_to_download_seconds': distribution([r['submit_to_download_seconds'] for r in uninterrupted]),
                'observation_gap_pairs_excluded_from_latency': [r['pair_id'] for r in rows if r['timing_clock'] != 'monotonic'],

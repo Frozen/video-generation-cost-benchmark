@@ -6,8 +6,10 @@ For the nineteen requests with uninterrupted client observation, median submissi
 
 All twenty native outputs are 1344 × 768, 124 frames at 24 fps, with audio. Video-stream duration is 5.166667 seconds and audio duration 5.184 seconds. Inputs requested five seconds, which is the cost normalization used here. The LTX profile requests 121 frames; outputs are not trimmed to conceal that difference.
 
-[Raw allowlisted attempts](fal-attempts.json) retain input hashes, seeds, provider request IDs, queue observations, measured latency, billable units and artifact hashes. Credentials and signed URLs are excluded. [Machine summary](fal-summary.json) is reproducible with the included exporter. Original videos will be attached to the completed benchmark release with the LTX pairs.
+[Raw allowlisted attempts](fal-attempts.json) retain input hashes, seeds, provider request IDs, queue observations, measured latency, billable units and artifact hashes. Credentials and signed URLs are excluded. [Machine summary](fal-summary.json) is reproducible with the included exporter. [All twenty original fal videos](https://github.com/Frozen/video-generation-cost-benchmark/releases/download/ltx-sustained-2026-09-21/fal-twenty-original-videos-20260921.zip) (118,806,517 bytes; SHA-256 `7c5bced55c26a4b4c50278cbb005bfe231955426acf4197d4ffd640565b85672`).
 
 ![Observed client latency](fal-client-latency.png)
 
 The LTX hour is still running. No cross-model quality parity or final cost ratio is concluded here.
+
+Including the client polling interruption, all twenty observed download latencies have mean **9.972 seconds**, nearest-rank p95 **8.714 seconds** and maximum **78.730 seconds**. The full distribution is retained alongside the nineteen uninterrupted requests; the controller error is not erased.

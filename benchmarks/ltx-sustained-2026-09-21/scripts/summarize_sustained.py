@@ -95,6 +95,7 @@ def analyze(manifest, events, delivery, plan, folder=None):
                  stop_reason=closed['stop_reason'], queue_seconds=seconds, delivery_window_seconds=delivery['window_seconds'],
                  attempted=len(starts), failed=sum(r['outcome']=='request_failed' for r in rows),
                  unresolved=sum(r['outcome'] in ('request_unresolved','missing') for r in rows),
+                 encoded_but_not_validated_delivery=sum(r['outcome']=='artifact_ready' and not r['technically_delivered'] for r in rows),
                  retries=sum(r['retry_of'] is not None for r in rows), technically_delivered=len(success),
                  duplicate_successful_artifact_hashes=len(hashes)-len(set(hashes)),
                  requested_successful_output_seconds=output_seconds,

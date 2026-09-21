@@ -1,5 +1,5 @@
 {
-  "README.md": "e35a9c5b87f59f3b14c8c75bb3933bb8c36e333c3efadf45645ae18e1845f193",
+  "README.md": "5bed303dc88ed914c0de4e0deaeb75d9ec77f8b5f80bf091a4c2c1521d4ba4dd",
   "ltx-sustained-criteria.json": "55d9cb5addac2f18d7b4e1911dfae6d1c2ee09630cfb6c7f43893fdc8e3fcdcd",
   "ltx-sustained-plan.json": "22230aa13e78a91d5d6575b1b9299ea8b9feb8f7cf874d77ec7a4d5c177222d9",
   "ltx-sustained-proposal.json": "d65ecbaf9049587f92db6faf1a7c1da6e8ed2c337fabd9241cb6001cd9758f62",
@@ -28,13 +28,15 @@
   "tests/test_sustained_control.py": "e97c02365d76e67c24cadadf89401801ecb76df910004519175ad3e8a41c91e5",
   "tests/test_sustained_queue.py": "389f06ab069b06a810c949972ed1d085fb1be08008283d320259a337cfc85bcd",
   "DEVIATIONS.md": "12267964dc84406837562e449feb8f6beff0d2f0f289bfc71bf0ded402a74fd7",
-  "results/fal-summary.json": "e998dc1fa78e5b4e2a628844ec09493a665087f8fbc976d59daad8d9ea4c1cda",
+  "results/fal-summary.json": "00f9fd07faf928aba04630b37ce9ad6e07f9b77961e60cf0a1749539fc704f40",
   "results/fal-client-latency.png": "2ad37dcea88e2a50cca8af061a6fb062a3df31a0b93c4cc34570b97488a9c490",
-  "results/FAL_RESULTS.md": "043e0b5b4ae3d35b9a9a1584213cfb0f9860f195b94e11da02edea5cc218e7de",
+  "results/FAL_RESULTS.md": "b696bb8c2160cfd33d9d054b8e0881298df2ff2f5cffd7cf073355c2e8b54b89",
   "results/fal-client-latency.svg": "6f20fe3dd9049439fb9ae02a41d405a6bc56f4b81189e909b88dcf06777e8891",
   "results/fal-attempts.json": "c8d7a622683ac2db5c501b8912dec96e9d6c17ab9c604daf3a99e0262eb8ced7",
-  "scripts/summarize_sustained.py": "09cbcb4f452ccadbaadcbaacb5ca6c27ddb8af4913b302800c7acba69fbddcf9",
-  "scripts/export_fal_evidence.py": "74532bcc4ab8d9969f28b6669c5a5a1baa33e7f61a03ef51a8e33df812711d22",
+  "scripts/summarize_sustained.py": "7bfea395f321da59e38303f6b2f9fea482aec76ae948f0cf1ffde87d2c27cf1d",
+  "scripts/export_fal_evidence.py": "1b9c96e144ff3d4a3cae6298773560fc2ae18e8698cbdf605705d3a9375584c2",
   "scripts/build_review.py": "30afc64de170e95cb3dc4d4f32288b59e02d5bf38cea2cefd101fbb92b51829b",
-  "scripts/plot_sustained.py": "7a1fee54eeabc6f9c6e595c297f9147488bd05cf5ed95fc0da89c09698286da8"
+  "scripts/plot_sustained.py": "7a1fee54eeabc6f9c6e595c297f9147488bd05cf5ed95fc0da89c09698286da8",
+  "REPRODUCE.md": "9017c8e617f0f1a44a502d30a6103fb203636ff8c6a1436f1fed872ddc18700f",
+  "tests/test_sustained_analysis.py": "c08ce15998113662ea31096fa64b95cc0a252c14f1fb99449798064cdb3b16df"
 }
