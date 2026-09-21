@@ -1,0 +1,8 @@
+{
+  "phase": "ready",
+  "started_at": 1789954354.720958,
+  "ready_at": 1789954828.6382852,
+  "download_seconds": 366.1260098563507,
+  "verified_files": 6,
+  "dependency_lock_sha256": "dd5d9b68281ab8536e245cffe236388f4ed73c872442705718e3f3baf3a46bf1"
+}

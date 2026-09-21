@@ -52,9 +52,18 @@ def render(root):
     fs=json.loads((root/'fal-summary.json').read_text())
     ltx=float(summary['cost_usd_per_technically_delivered_requested_second'])
     fal_cost=float(fs['provider_reported_cost_usd'])/(fs['downloaded']*5)
-    fig,ax=plt.subplots(figsize=(7,4.5));bars=ax.bar(['Self-hosted LTX\nGPU + disk, measured queue','fal H3 Max Turbo\nprovider-reported units'],[ltx,fal_cost],color=['#3266a8','#c87621'])
-    for bar,value in zip(bars,[ltx,fal_cost]):ax.text(bar.get_x()+bar.get_width()/2,value,f'${value:.5f}',ha='center',va='bottom')
-    ax.set(ylabel='USD / requested output second',title='Different models · technical delivery cost',ylim=(0,max(ltx,fal_cost)*1.3));ax.grid(axis='y',alpha=.2)
+    labels=['Self-hosted LTX\nGPU + disk, measured queue']
+    costs=[ltx];colors=['#3266a8']
+    lifecycle_path=root/'lifecycle-costs.json'
+    if lifecycle_path.exists():
+        lifecycle=json.loads(lifecycle_path.read_text())
+        labels.append('Self-hosted LTX\nfull lease, including setup')
+        costs.append(float(lifecycle['full_lease_usd_per_measured_requested_second_estimate']))
+        colors.append('#6598ca')
+    labels.append('fal H3 Max Turbo\nprovider-reported units');costs.append(fal_cost);colors.append('#c87621')
+    fig,ax=plt.subplots(figsize=(9,4.8));bars=ax.bar(labels,costs,color=colors)
+    for bar,value in zip(bars,costs):ax.text(bar.get_x()+bar.get_width()/2,value,f'${value:.5f}',ha='center',va='bottom')
+    ax.set(ylabel='USD / requested output second',title='Different models · technical delivery cost',ylim=(0,max(costs)*1.3));ax.grid(axis='y',alpha=.2)
     fig.text(.08,.012,'No quality parity established. LTX excludes service overhead; fal price is promotional through Sep 30.',fontsize=8)
     fig.tight_layout(rect=(0,.06,1,1));save(fig,root,'cross-model-cost')
 

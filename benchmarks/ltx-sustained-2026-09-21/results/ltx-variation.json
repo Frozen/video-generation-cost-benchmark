@@ -1,0 +1,122 @@
+{
+  "run_id": "LTX25_SUSTAINED_RTX6000_001",
+  "ten_minute_bins": [
+    {
+      "request_start_minute_from": 0.0,
+      "request_start_minute_to": 10.0,
+      "completed_attempts": 22,
+      "processing_seconds": {
+        "count": 22,
+        "mean": 27.572654899823565,
+        "stddev_population": 0.15229180234009293,
+        "min": 27.3809283929877,
+        "max": 27.92509098397568,
+        "p50": 27.531407593283802,
+        "p90": 27.873315983917564,
+        "p95": 27.912066829856485,
+        "p99": 27.92509098397568,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    {
+      "request_start_minute_from": 10.0,
+      "request_start_minute_to": 20.0,
+      "completed_attempts": 22,
+      "processing_seconds": {
+        "count": 22,
+        "mean": 27.61022644388405,
+        "stddev_population": 0.20922368241869868,
+        "min": 27.424103529192507,
+        "max": 28.26559000182897,
+        "p50": 27.535764460917562,
+        "p90": 27.816341667901725,
+        "p95": 28.09741312265396,
+        "p99": 28.26559000182897,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    {
+      "request_start_minute_from": 20.0,
+      "request_start_minute_to": 30.0,
+      "completed_attempts": 22,
+      "processing_seconds": {
+        "count": 22,
+        "mean": 27.679030815054748,
+        "stddev_population": 0.1410624481280593,
+        "min": 27.493002312257886,
+        "max": 28.1043367581442,
+        "p50": 27.634386281017214,
+        "p90": 27.818503320682794,
+        "p95": 27.96671248273924,
+        "p99": 28.1043367581442,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    {
+      "request_start_minute_from": 30.0,
+      "request_start_minute_to": 40.0,
+      "completed_attempts": 21,
+      "processing_seconds": {
+        "count": 21,
+        "mean": 27.73424320009404,
+        "stddev_population": 0.21395029231321142,
+        "min": 27.46708292607218,
+        "max": 28.240619133692235,
+        "p50": 27.70374926039949,
+        "p90": 28.110301279928535,
+        "p95": 28.153973903041333,
+        "p99": 28.240619133692235,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    {
+      "request_start_minute_from": 40.0,
+      "request_start_minute_to": 50.0,
+      "completed_attempts": 22,
+      "processing_seconds": {
+        "count": 22,
+        "mean": 27.67771620536223,
+        "stddev_population": 0.18019998756316252,
+        "min": 27.46753862919286,
+        "max": 28.310507349669933,
+        "p50": 27.632999456953257,
+        "p90": 27.83582603512332,
+        "p95": 27.861792190931737,
+        "p99": 28.310507349669933,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    {
+      "request_start_minute_from": 50.0,
+      "request_start_minute_to": 60.0,
+      "completed_attempts": 22,
+      "processing_seconds": {
+        "count": 22,
+        "mean": 27.625920563153077,
+        "stddev_population": 0.15657316434932583,
+        "min": 27.440125353634357,
+        "max": 28.044628569390625,
+        "p50": 27.576637918595225,
+        "p90": 27.87359012570232,
+        "p95": 28.012926835101098,
+        "p99": 28.044628569390625,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    }
+  ],
+  "bin_assignment": "Request start relative to queue start; finish the whole last request. Descriptive processing latency, not throughput estimated from an incomplete bin.",
+  "first_to_last_bin_mean_change_percent": 0.19318293259402708,
+  "observed_primary_seed_count": 131,
+  "observed_distinct_primary_seeds": 131,
+  "worker_process_ids": [
+    1144
+  ],
+  "transformer_forward_counts": [
+    11
+  ],
+  "resident_total_build_counts": [
+    1
+  ],
+  "causal_claim": null,
+  "limitation": "One host and one hour. Prompt mix, host behavior and sampling can change latencies; this is not an estimate of fleet reliability or a production SLA."
+}

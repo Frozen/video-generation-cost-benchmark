@@ -1,0 +1,32 @@
+{
+  "run_id": "LTX25_SUSTAINED_RTX6000_001",
+  "pod_id": "c80v7yuv1wjixt",
+  "provider_started_at_utc": "2026-09-21T01:31:56.527Z",
+  "queue_started_at_utc": "2026-09-21T01:43:18.694103+00:00",
+  "queue_finished_at_utc": "2026-09-21T02:43:40.905172+00:00",
+  "pod_absence_verified_at_utc": "2026-09-21T02:43:52.305675+00:00",
+  "provider_start_to_verified_absence_seconds": 4315.778675079346,
+  "before_measured_queue_seconds": 682.1671025753021,
+  "after_measured_queue_seconds": 11.400503396987915,
+  "queue_seconds_monotonic": 3622.211086807307,
+  "gpu_plus_disk_hourly_usd": "2.117777777777777777777777778",
+  "full_lease_gpu_plus_disk_usd_estimate": "2.538850047747294282716049383",
+  "full_lease_usd_per_measured_requested_second_estimate": "0.003876106943125640126284044860",
+  "provider_actual_charge_usd": null,
+  "provider_actual_charge_status": "Separate billing evidence required; this is elapsed time times the quoted rate.",
+  "scope": "Includes preparation, warmup, measured work, export and teardown through verified absence; warmup outputs excluded from denominator. Excludes client computer, engineering and service overhead.",
+  "provider_allocation_observation": {
+    "id": "c80v7yuv1wjixt",
+    "name": "ltx-price-d6194cfc8ae0",
+    "status": "RUNNING",
+    "startedAt": "2026-09-21T01:31:56.527Z",
+    "cost": 2.09,
+    "dataCenterId": "EUR-IS-1",
+    "gpu": {
+      "count": 1,
+      "id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "memory": 188,
+      "vcpuCount": 32
+    }
+  }
+}

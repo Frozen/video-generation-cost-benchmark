@@ -29,6 +29,11 @@ def summarize(path, events):
     summary={'timestamp_zone':'UTC, verified on the measured container','samples':len(measured),
              'incomplete_final_csv_record_excluded':incomplete_final_record,
              'first_sample_epoch':measured[0]['epoch'],'last_sample_epoch':measured[-1]['epoch'],
+             'measured_queue_seconds':end-start,
+             'first_sample_after_window_start_seconds':measured[0]['epoch']-start,
+             'window_end_after_last_sample_seconds':end-measured[-1]['epoch'],
+             'sampled_timestamp_span_fraction':(measured[-1]['epoch']-measured[0]['epoch'])/(end-start),
+             'coverage_note':'Raw CSV copied before teardown ends with a partial buffered record. The absent final telemetry tail is not reconstructed; generation timings cover the full queue.',
              'interpretation':'nvidia-smi one-second samples; continuously backlogged queue does not imply 100% GPU utilization'}
     for key in ('utilization','memory_mib','power_watts'):
         values=[r[key] for r in measured]

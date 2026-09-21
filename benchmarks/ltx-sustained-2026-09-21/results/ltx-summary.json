@@ -1,0 +1,370 @@
+{
+  "run_id": "LTX25_SUSTAINED_RTX6000_001_RESIDENT",
+  "complete_hour": true,
+  "stop_reason": "target_duration_reached",
+  "queue_seconds": 3622.211086807307,
+  "delivery_window_seconds": 3623.8958337920485,
+  "attempted": 131,
+  "failed": 0,
+  "unresolved": 0,
+  "encoded_but_not_validated_delivery": 0,
+  "retries": 0,
+  "technically_delivered": 131,
+  "duplicate_successful_artifact_hashes": 0,
+  "requested_successful_output_seconds": 655,
+  "gpu_plus_disk_hourly_usd": "2.117777777777777777777777778",
+  "queue_cost_usd": "2.130843929461335537654320988",
+  "cost_usd_per_technically_delivered_requested_second": "0.003253196838872267996418810669",
+  "delivery_cost_usd_per_requested_second": "0.003254709951563304326170954670",
+  "clips_per_hour": 130.19671926841738,
+  "output_seconds_per_hour": 650.983596342087,
+  "successful_processing_seconds": {
+    "count": 131,
+    "mean": 27.649322012229646,
+    "stddev_population": 0.1851268077353157,
+    "min": 27.3809283929877,
+    "max": 28.310507349669933,
+    "p50": 27.603297347202897,
+    "p90": 27.87359012570232,
+    "p95": 28.09741312265396,
+    "p99": 28.26559000182897,
+    "percentile_method": "nearest rank; descriptive, not an SLA"
+  },
+  "all_attempt_processing_seconds": {
+    "count": 131,
+    "mean": 27.649322012229646,
+    "stddev_population": 0.1851268077353157,
+    "min": 27.3809283929877,
+    "max": 28.310507349669933,
+    "p50": 27.603297347202897,
+    "p90": 27.87359012570232,
+    "p95": 28.09741312265396,
+    "p99": 28.26559000182897,
+    "percentile_method": "nearest rank; descriptive, not an SLA"
+  },
+  "per_scene": {
+    "P01_EN": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.728551793455456,
+        "stddev_population": 0.18318430088580243,
+        "min": 27.561554254963994,
+        "max": 28.1043367581442,
+        "p50": 27.668486308306456,
+        "p90": 28.1043367581442,
+        "p95": 28.1043367581442,
+        "p99": 28.1043367581442,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P02_TURTLE": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.662429510538157,
+        "stddev_population": 0.10952886362965941,
+        "min": 27.480934659950435,
+        "max": 27.818503320682794,
+        "p50": 27.63104088883847,
+        "p90": 27.818503320682794,
+        "p95": 27.818503320682794,
+        "p99": 27.818503320682794,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P03_ALLEY": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.596136184542306,
+        "stddev_population": 0.08484380564753945,
+        "min": 27.486475956160575,
+        "max": 27.70374926039949,
+        "p50": 27.633509843610227,
+        "p90": 27.70374926039949,
+        "p95": 27.70374926039949,
+        "p99": 27.70374926039949,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_CAR": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.738133400944726,
+        "stddev_population": 0.21845227970255,
+        "min": 27.424103529192507,
+        "max": 28.044628569390625,
+        "p50": 27.741317990235984,
+        "p90": 28.044628569390625,
+        "p95": 28.044628569390625,
+        "p99": 28.044628569390625,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_CLAY": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.67114415951073,
+        "stddev_population": 0.18467500983704913,
+        "min": 27.436498627997935,
+        "max": 27.912066829856485,
+        "p50": 27.617439503315836,
+        "p90": 27.912066829856485,
+        "p95": 27.912066829856485,
+        "p99": 27.912066829856485,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_COFFEE": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.58229305812468,
+        "stddev_population": 0.1469361486905852,
+        "min": 27.462287972215563,
+        "max": 27.87359012570232,
+        "p50": 27.46708292607218,
+        "p90": 27.87359012570232,
+        "p95": 27.87359012570232,
+        "p99": 27.87359012570232,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_DANCE": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.68772426846304,
+        "stddev_population": 0.1869294276772453,
+        "min": 27.48145265877247,
+        "max": 27.96671248273924,
+        "p50": 27.630869095679373,
+        "p90": 27.96671248273924,
+        "p95": 27.96671248273924,
+        "p99": 27.96671248273924,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_DOG": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.767144962834816,
+        "stddev_population": 0.20162968181567226,
+        "min": 27.471003069076687,
+        "max": 28.153973903041333,
+        "p50": 27.71132069826126,
+        "p90": 28.153973903041333,
+        "p95": 28.153973903041333,
+        "p99": 28.153973903041333,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_DRONE": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.587363258868987,
+        "stddev_population": 0.11163052668259685,
+        "min": 27.3809283929877,
+        "max": 27.761863762978464,
+        "p50": 27.614166461396962,
+        "p90": 27.761863762978464,
+        "p95": 27.761863762978464,
+        "p99": 27.761863762978464,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_FIRE": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.540716310098237,
+        "stddev_population": 0.04472504706411946,
+        "min": 27.44985629292205,
+        "max": 27.599050723947585,
+        "p50": 27.535548612009734,
+        "p90": 27.599050723947585,
+        "p95": 27.599050723947585,
+        "p99": 27.599050723947585,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_GEARS": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.560383854633464,
+        "stddev_population": 0.09313102372730381,
+        "min": 27.450346946250647,
+        "max": 27.68147791735828,
+        "p50": 27.539933551568538,
+        "p90": 27.68147791735828,
+        "p95": 27.68147791735828,
+        "p99": 27.68147791735828,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_GUITAR": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.579884635750204,
+        "stddev_population": 0.08505054536976768,
+        "min": 27.477260796818882,
+        "max": 27.743613524828106,
+        "p50": 27.563263161107898,
+        "p90": 27.743613524828106,
+        "p95": 27.743613524828106,
+        "p99": 27.743613524828106,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_PERFUME": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.663154723277938,
+        "stddev_population": 0.29352774254660197,
+        "min": 27.450791029259562,
+        "max": 28.310507349669933,
+        "p50": 27.533350428100675,
+        "p90": 28.310507349669933,
+        "p95": 28.310507349669933,
+        "p99": 28.310507349669933,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_PORTRAIT": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.61763107768881,
+        "stddev_population": 0.12266568176599627,
+        "min": 27.44717414584011,
+        "max": 27.832318571861833,
+        "p50": 27.583107424899936,
+        "p90": 27.832318571861833,
+        "p95": 27.832318571861833,
+        "p99": 27.832318571861833,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_POTTERY": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.74462343705818,
+        "stddev_population": 0.20957597884949,
+        "min": 27.543495719786733,
+        "max": 28.110301279928535,
+        "p50": 27.638924966100603,
+        "p90": 28.110301279928535,
+        "p95": 28.110301279928535,
+        "p99": 28.110301279928535,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_RAIN": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.669262670579233,
+        "stddev_population": 0.24546110246033495,
+        "min": 27.44634439377114,
+        "max": 28.240619133692235,
+        "p50": 27.632999456953257,
+        "p90": 28.240619133692235,
+        "p95": 28.240619133692235,
+        "p99": 28.240619133692235,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_REEF": {
+      "attempts": 7,
+      "technically_delivered": 7,
+      "processing_seconds": {
+        "count": 7,
+        "mean": 27.658711761834898,
+        "stddev_population": 0.251810183843597,
+        "min": 27.45241899881512,
+        "max": 28.26559000182897,
+        "p50": 27.576637918595225,
+        "p90": 28.26559000182897,
+        "p95": 28.26559000182897,
+        "p99": 28.26559000182897,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_SIGN": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.53999887701745,
+        "stddev_population": 0.0768351442209099,
+        "min": 27.421653313096613,
+        "max": 27.634386281017214,
+        "p50": 27.535764460917562,
+        "p90": 27.634386281017214,
+        "p95": 27.634386281017214,
+        "p99": 27.634386281017214,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_SKATE": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.64878539174485,
+        "stddev_population": 0.1152858405368127,
+        "min": 27.474130056798458,
+        "max": 27.816341667901725,
+        "p50": 27.6224671038799,
+        "p90": 27.816341667901725,
+        "p95": 27.816341667901725,
+        "p99": 27.816341667901725,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    },
+    "P_WATERFALL": {
+      "attempts": 6,
+      "technically_delivered": 6,
+      "processing_seconds": {
+        "count": 6,
+        "mean": 27.76044327300042,
+        "stddev_population": 0.18747846763926446,
+        "min": 27.59793203510344,
+        "max": 28.09741312265396,
+        "p50": 27.631690849084407,
+        "p90": 28.09741312265396,
+        "p95": 28.09741312265396,
+        "p99": 28.09741312265396,
+        "percentile_method": "nearest rank; descriptive, not an SLA"
+      }
+    }
+  },
+  "human_quality_accepted": null,
+  "quality_adjusted_unit_cost_usd": null,
+  "cost_scope": "GPU and disk only; startup, warmup and export in separate full-lease accounting; no quality parity claim"
+}

@@ -77,3 +77,21 @@ python3.12 -B scripts/summarize_sustained.py \
 The analyzer verifies frozen input identities, sequential execution, fresh transformer forwards, resident-weight reuse, receipt hashes and the original video hashes before calculating cost. Cost includes failed attempt time and divides only by successfully delivered technical output. It never fills in human quality acceptance.
 
 Open the separate quality archive's `review.html` locally to compare the twenty preselected pairs. Export ratings before reading `IDENTITY_KEY.json`. All original clips retain their native frame count, duration and audio; no trimming, normalization or best-of selection is applied. The review is prepared for human assessment, not proof that the two models have equal quality.
+
+
+The full evidence archive also includes allowlisted lifecycle inputs and raw telemetry. Recompute these using the same extracted tree:
+
+```sh
+python3.12 -B scripts/summarize_lifecycle.py \
+  --lease /path/to/evidence/ltx \
+  --plan ltx-sustained-plan.json \
+  --results /tmp/recomputed-ltx
+python3.12 -B scripts/analyze_telemetry.py \
+  --csv /path/to/evidence/ltx/raw/gpu-samples.csv \
+  --events /path/to/evidence/ltx/resident-delivery/events.jsonl \
+  --output /tmp/recomputed-ltx
+```
+
+`state.json` and `allocation-observation.json` in the evidence contain only the fields needed for this accounting; SSH connection metadata and credentials are excluded. Full-lease cost remains a quoted-rate estimate unless independently reconciled with final provider billing.
+
+For figures, install `analysis-requirements.txt` in a separate local environment, copy the public `fal-attempts.json` and `fal-summary.json` into the recomputed output directory, and run `python scripts/plot_sustained.py /tmp/recomputed-ltx`. Figures do not change the inference environment. `scripts/write_final_report.py` renders the report from those final JSON measurements.

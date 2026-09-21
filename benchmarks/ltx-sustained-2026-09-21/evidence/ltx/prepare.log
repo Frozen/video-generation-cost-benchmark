@@ -1,0 +1,141 @@
+Using CPython 3.12.3 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+   Building ltx-core @ file:///root/benchmark/ltx-source/packages/ltx-core
+   Building ltx-pipelines @ file:///root/benchmark/ltx-source/packages/ltx-pipelines
+warning: `build_system.requires = ["uv-build>=0.9.8,<0.10.0"]` does not contain the current uv version 0.12.17
+      Built ltx-pipelines @ file:///root/benchmark/ltx-source/packages/ltx-pipelines
+      Built ltx-core @ file:///root/benchmark/ltx-source/packages/ltx-core
+Downloading torch (505.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading networkx (2.0MiB)
+Downloading torchvision (7.5MiB)
+Downloading nvidia-nvshmem-cu13 (57.6MiB)
+Downloading numpy (15.9MiB)
+Downloading nvidia-cuda-runtime (2.2MiB)
+Downloading nvidia-cudnn-cu13 (527.5MiB)
+Downloading scipy (33.7MiB)
+Downloading pillow (6.6MiB)
+Downloading pygments (1.2MiB)
+Downloading sympy (6.0MiB)
+Downloading nvidia-nvjitlink (40.5MiB)
+Downloading nvidia-cufile (1.3MiB)
+Downloading triton (188.6MiB)
+Downloading transformers (11.1MiB)
+Downloading openimageio (6.6MiB)
+Downloading nvidia-cuda-cupti (11.4MiB)
+Downloading nvidia-cuda-nvrtc (44.8MiB)
+Downloading nvidia-cufft (208.1MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading nvidia-curand (57.1MiB)
+Downloading nvidia-nccl-cu13 (196.4MiB)
+Downloading cuda-bindings (6.8MiB)
+Downloading av (34.1MiB)
+Downloading tokenizers (3.1MiB)
+Downloading nvidia-cusolver (216.9MiB)
+Downloading nvidia-cublas (386.1MiB)
+Downloading nvidia-cusparse (143.9MiB)
+ Downloaded torchvision
+Downloading torchaudio (1.7MiB)
+ Downloaded pygments
+ Downloaded nvidia-cufile
+ Downloaded torchaudio
+ Downloaded networkx
+ Downloaded nvidia-cuda-runtime
+ Downloaded tokenizers
+ Downloaded hf-xet
+ Downloaded sympy
+ Downloaded pillow
+ Downloaded openimageio
+ Downloaded cuda-bindings
+ Downloaded transformers
+ Downloaded nvidia-cuda-cupti
+ Downloaded numpy
+ Downloaded scipy
+ Downloaded av
+ Downloaded nvidia-nvjitlink
+ Downloaded nvidia-cuda-nvrtc
+ Downloaded nvidia-curand
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded torch
+ Downloaded nvidia-cusparse
+ Downloaded nvidia-cusparselt-cu13
+ Downloaded triton
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cufft
+ Downloaded nvidia-cusolver
+ Downloaded nvidia-cublas
+ Downloaded nvidia-cudnn-cu13
+Prepared 65 packages in 52.64s
+Installed 65 packages in 600ms
+ + accelerate==1.15.0
+ + annotated-doc==0.0.5
+ + anyio==4.15.1
+ + av==18.1.0
+ + certifi==2026.7.22
+ + click==8.5.0
+ + cloudpickle==3.1.2
+ + cuda-bindings==13.4.2
+ + cuda-pathfinder==1.8.2
+ + cuda-toolkit==13.2.1
+ + einops==0.8.2
+ + filelock==3.32.7
+ + fsspec==2026.9.0
+ + h11==0.16.0
+ + hf-xet==1.6.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + huggingface-hub==1.32.0
+ + idna==3.20
+ + jinja2==3.1.6
+ + ltx-core==1.3.0 (from file:///root/benchmark/ltx-source/packages/ltx-core)
+ + ltx-pipelines==1.3.0 (from file:///root/benchmark/ltx-source/packages/ltx-pipelines)
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + mdurl==0.1.2
+ + mpmath==1.3.0
+ + networkx==3.6.1
+ + numpy==2.5.3
+ + nvidia-cublas==13.4.0.1
+ + nvidia-cuda-cupti==13.2.75
+ + nvidia-cuda-nvrtc==13.2.78
+ + nvidia-cuda-runtime==13.2.75
+ + nvidia-cudnn-cu13==9.24.0.43
+ + nvidia-cufft==12.2.0.46
+ + nvidia-cufile==1.17.1.22
+ + nvidia-curand==10.4.2.55
+ + nvidia-cusolver==12.2.0.1
+ + nvidia-cusparse==12.7.10.1
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-nccl-cu13==2.29.7
+ + nvidia-nvjitlink==13.4.92
+ + nvidia-nvshmem-cu13==3.4.5
+ + nvidia-nvtx==13.2.75
+ + openimageio==3.1.17.0
+ + packaging==26.3
+ + pillow==12.3.0
+ + psutil==7.2.2
+ + pygments==2.21.0
+ + pyyaml==6.0.3
+ + regex==2026.9.10
+ + rich==15.0.0
+ + safetensors==0.8.0
+ + scipy==1.18.1
+ + setuptools==84.0.0
+ + shellingham==1.5.4
+ + sympy==1.14.0
+ + tokenizers==0.22.2
+ + torch==2.13.0+cu132
+ + torchaudio==2.11.0+cu132
+ + torchvision==0.28.0+cu132
+ + tqdm==4.70.1
+ + transformers==5.14.1
+ + triton==3.7.1
+ + typer==0.27.2
+ + typing-extensions==4.16.0
+Using Python 3.12.3 environment at: benchmark/ltx-source/.venv
+Resolved 1 package in 1ms
+Prepared 1 package in 202ms
+Installed 1 package in 58ms
+ + natten==0.21.7+torch2130cu132 (from file:///root/benchmark/natten-0.21.7+torch2130cu132-cp312-cp312-linux_x86_64.whl)
+Native NATTEN GPU probe passed (12, 0)
+Using Python 3.12.3 environment at: benchmark/ltx-source/.venv

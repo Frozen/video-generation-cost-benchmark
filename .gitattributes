@@ -8,3 +8,6 @@ benchmarks/ltx-rtx-2026-09-20/** -text
 results/*VAST* -text
 results/*VAST*.csv whitespace=cr-at-eol
 benchmarks/ltx-sustained-2026-09-21/** -text
+
+# Preserve intentional trailing spaces inside verbatim multiline benchmark prompts.
+benchmarks/ltx-sustained-2026-09-21/results/VIDEO_CATALOG.csv whitespace=-blank-at-eol

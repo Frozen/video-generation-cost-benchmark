@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "query": {
+      "bucketSize": "hour",
+      "endTime": "2026-09-21T03:00:00Z",
+      "podId": "c80v7yuv1wjixt",
+      "startTime": "2026-09-21T01:00:00Z"
+    },
+    "recordCount": 1,
+    "totals": {
+      "cpuAmount": 0,
+      "diskAmount": 0.0069444444961845875,
+      "gpuAmount": 0.6165412813425064,
+      "totalAmount": 0.623485725838691
+    },
+    "uniquePodCount": 1
+  },
+  "records": [
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.0069444444961845875,
+      "endTime": "2026-09-21T02:00:00Z",
+      "gpuAmount": 0.6165412813425064,
+      "podId": "c80v7yuv1wjixt",
+      "startTime": "2026-09-21T01:00:00Z",
+      "totalAmount": 0.623485725838691
+    }
+  ],
+  "reconciliation_status": "Incomplete provider billing snapshot: only the 01:00–02:00 bucket is returned; the 02:00–03:00 usage is absent. Do not settle the reservation or treat this subtotal as full experiment cost.",
+  "observed_after_verified_pod_deletion": true
+}

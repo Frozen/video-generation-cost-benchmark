@@ -1,0 +1,5 @@
+{"action": "prepare", "phase": "installing"}
+{"action": "prepare", "phase": "downloading"}
+{"action": "prepare", "phase": "verifying"}
+{"mode": "resident", "delivered": 131, "window_seconds": 3623.8958337920485}
+Pod deleted and absence verified

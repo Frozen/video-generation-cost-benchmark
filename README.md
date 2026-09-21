@@ -285,4 +285,4 @@ conversations, raw private logs or signed URLs.
 
 ## One-hour validation (preregistered)
 
-[Protocol, frozen inputs and code](benchmarks/ltx-sustained-2026-09-21/README.md) for one hour of LTX and twenty paired fal H3 Max Turbo references. Results pending.
+[Completed one-hour results, raw logs and reproduction](benchmarks/ltx-sustained-2026-09-21/README.md): 131 LTX clips across twenty scenes, zero observed generation failures/retries, $0.003253 per requested video-second for the measured GPU/disk queue. Twenty paired fal H3 Max Turbo references cost $0.02/s. This is a cross-model cost comparison; human quality parity is unmeasured. All original videos and replay inputs are included in the evidence release.

@@ -1,6 +1,8 @@
 # Preregistered one-hour LTX and twenty fal H3 Max Turbo pairs
 
-Status: preregistration published before allocation or inference. The LTX hour is running; [all twenty fal references are complete](results/FAL_RESULTS.md). [Reproduction instructions](REPRODUCE.md) · [Warmup, seeds and caching controls](WARMUP_AND_SEEDS.md).
+Status: **completed**. [Full measured results](results/RESULTS.md): 131 LTX clips over 60 minutes 22 seconds, zero observed generation failures or retries; $0.003253 per requested video-second for the measured GPU/disk queue. All twenty fal references also completed ($0.02/s from provider billing units). This is a cross-model cost comparison, with human quality acceptance still unassigned.
+
+[Download all 153 original videos, seeds and evidence](results/ARTIFACTS.md) · [Twenty-pair quality review](results/QUALITY_REVIEW.md) · [Raw LTX logs](evidence/ltx). The full evidence archive includes 131 measured LTX videos, 20 fal videos and two warmups, plus a searchable `videos.html`, CSV/JSON catalog and per-video replay inputs. [Reproduction instructions](REPRODUCE.md) · [Warmup, seeds and caching controls](WARMUP_AND_SEEDS.md).
 
 This experiment tests the robustness of the earlier short LTX cost measurement. It does not establish that LTX and fal H3 Max Turbo are the same model or provide equal quality.
 
@@ -43,4 +45,6 @@ python3.12 -B -m unittest discover -s tests -p 'test_sustained_*.py'
 python3.12 -B scripts/ltx_sustained_trial.py check --plan ltx-sustained-plan.json
 ```
 
-Actual provisioning requires your own provider keys, private budget ledger and the plan's hash-pinned preparation archive/wheel. Do not run an unguarded GPU job or reuse an existing run journal. Source-preparation and complete execution steps, observed environment, raw measurements and downloadable videos will be added with the results. Until then this directory is a preregistration, not a completed benchmark.
+Actual provisioning requires your own provider keys, private budget ledger and the plan's hash-pinned preparation archive/wheel. Do not run an unguarded GPU job or reuse an existing run journal. See [REPRODUCE.md](REPRODUCE.md) for preparation, guarded execution and free offline recomputation. The immutable preregistration remains available at commit `7e14d9e`; the final report preserves the registered inputs and discloses observation errors and telemetry limits.
+
+Validation: `python3.12 -B -m unittest discover -s tests -p 'test_sustained_*.py'` passed all 17 tests; `python3.12 -B scripts/ltx_sustained_trial.py check --plan ltx-sustained-plan.json` passed. All 131 measured LTX outputs and 20 API outputs passed full audio/video decoding and profile checks; both warmups were verified separately. Archive and protocol hash inventories permit independent byte verification.

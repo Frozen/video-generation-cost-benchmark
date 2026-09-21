@@ -1,0 +1,32 @@
+{
+  "timestamp_zone": "UTC, verified on the measured container",
+  "samples": 3591,
+  "incomplete_final_csv_record_excluded": 1,
+  "first_sample_epoch": 1789954999.51,
+  "last_sample_epoch": 1789958591.05,
+  "measured_queue_seconds": 3622.2110691070557,
+  "first_sample_after_window_start_seconds": 0.8158974647521973,
+  "window_end_after_last_sample_seconds": 29.85517168045044,
+  "sampled_timestamp_span_fraction": 0.9915325008509889,
+  "coverage_note": "Raw CSV copied before teardown ends with a partial buffered record. The absent final telemetry tail is not reconstructed; generation timings cover the full queue.",
+  "interpretation": "nvidia-smi one-second samples; continuously backlogged queue does not imply 100% GPU utilization",
+  "utilization": {
+    "mean": 73.51796157059314,
+    "min": 0.0,
+    "max": 100.0
+  },
+  "memory_mib": {
+    "mean": 48167.461152882206,
+    "min": 38681.0,
+    "max": 63454.0
+  },
+  "power_watts": {
+    "mean": 438.4692007797271,
+    "min": 92.35,
+    "max": 604.49
+  },
+  "sampling_gap_seconds": {
+    "mean": 1.0004289693487056,
+    "max": 1.2780001163482666
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "cpu_model": "AMD EPYC 9535 64-Core Processor",
+  "visible_cpu_count": 256,
+  "kernel": "6.8.0-137-generic",
+  "gpu": "name, driver_version, memory.total [MiB], power.limit [W]\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 595.91.07, 97887 MiB, 600.00 W\n",
+  "cgroup": {
+    "cpu.max": "2720000 100000",
+    "memory.max": "187999997952"
+  },
+  "clock_timezone": {
+    "tzname": [
+      "UTC",
+      "UTC"
+    ],
+    "timezone_offset_seconds": 0
+  }
+}
