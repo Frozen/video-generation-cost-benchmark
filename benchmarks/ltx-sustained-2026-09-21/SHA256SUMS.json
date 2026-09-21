@@ -7,7 +7,7 @@
   "scripts/budget.py": "965c69988d055b47462539c444f5866f3225f0cc91c0f679655bb8512c0d5b1e",
   "scripts/check_access.py": "c641d742a2c27a3db6b489418b4b4e564a49014560ff2e5a27beddabb733aac0",
   "scripts/fal_reference.py": "581bc8bed2d83d1020d1c3d240c0fbcb9e476fc6cc5d831c879181c47155f8d7",
-  "scripts/fal_sustained.py": "a40ee34d00460a1d179f4e4a6c746e6e0f607309561528f44fcc02de1a1ebbd7",
+  "scripts/fal_sustained.py": "02b75ff116f3fa97114fed945316bf8fe55ec7cbef7f2225d0553e0e42f9748a",
   "scripts/h3_adapters.py": "8ef6c60b5a442efe5ee0c5fc7aa33ea4db07e92980707a98bd9b5a6bd286824c",
   "scripts/h3_trial.py": "4f60e288191ac6827d2c209aa1340100c94fcfb891c993a3b82048055a1faab9",
   "scripts/load_window.py": "614912df9ada252216b7c5754f64c2792166883d0d8e704764557c448e1631ba",
@@ -25,6 +25,7 @@
   "scripts/sustained_collect.py": "1b433e39e93c6fd913f030a5e087b2b92580ac59a193492a90113da268dc416c",
   "scripts/sustained_queue.py": "39e371b7023df393e097cc4c1ec8cbaabb5a378cb5d2bca43f4d63cd8418a27a",
   "scripts/wan_smoke.py": "755dd88fa79ec2e6d6468ba4f342574cab2873a33b82acb04097077995eb5e09",
-  "tests/test_sustained_control.py": "92d74717a94992d3b2aca421aee60983fa4d544216f61303a4cdad0dabfc924d",
-  "tests/test_sustained_queue.py": "389f06ab069b06a810c949972ed1d085fb1be08008283d320259a337cfc85bcd"
+  "tests/test_sustained_control.py": "e97c02365d76e67c24cadadf89401801ecb76df910004519175ad3e8a41c91e5",
+  "tests/test_sustained_queue.py": "389f06ab069b06a810c949972ed1d085fb1be08008283d320259a337cfc85bcd",
+  "DEVIATIONS.md": "12267964dc84406837562e449feb8f6beff0d2f0f289bfc71bf0ded402a74fd7"
 }

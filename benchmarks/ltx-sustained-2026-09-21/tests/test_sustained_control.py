@@ -30,6 +30,18 @@ class ControlTests(unittest.TestCase):
                     fal.collect(folder, 'dummy')
                 network.assert_not_called()
 
+    def test_accepted_in_progress_status_keeps_polling(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            state = dict(status='submitted', submitted_epoch=0,
+                         queue=dict(status_url='status', response_url='response'))
+            (folder / 'state.json').write_text(json.dumps(state))
+            replies = [(202, dict(status='IN_PROGRESS')), (200, dict(status='COMPLETED', error='known failure'))]
+            with patch.object(fal, 'request', side_effect=replies) as network, patch.object(fal.time, 'sleep'):
+                self.assertEqual(fal.collect(folder, 'dummy')['status'], 'provider_failed')
+                self.assertEqual(network.call_count, 2)
+                self.assertTrue(all('payload' not in c.kwargs for c in network.call_args_list))
+
     def test_completed_request_never_posts_again(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)

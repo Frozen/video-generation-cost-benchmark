@@ -55,6 +55,8 @@ def payload_for(item, settings):
 
 def collect(folder, key, monotonic_start=None):
     state = json.loads((folder / "state.json").read_text())
+    if state.get("submission_http") in (401, 402, 403):
+        raise RuntimeError("Original authorization/payment rejection remains unresolved")
     if state["status"] in ("download_complete", "provider_failed", "rejected"):
         return state
     queue = state.get("queue")
@@ -63,7 +65,7 @@ def collect(folder, key, monotonic_start=None):
     deadline = time.monotonic() + 1200
     while time.monotonic() < deadline:
         code, status = request(queue["status_url"], key, folder, "status")
-        if code != 200:
+        if code not in (200, 202):
             raise RuntimeError("Queue observation failed; resume the same request")
         state.setdefault("events", []).append({"epoch": time.time(), "status": status.get("status")})
         save(folder / "state.json", state)
