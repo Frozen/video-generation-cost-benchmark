@@ -34,7 +34,6 @@ verified_outputs: 10
 worker_window_seconds: 279.40231636958197
 mean_processing_seconds: 27.939381914958357
 gpu_plus_disk_usd_per_video_second: 0.0032872889814840934
-h3_max_published_price_divided_by_our_cost: 12.168081426763226
 h3_max_turbo_published_price_divided_by_our_cost: 6.084040713381613
 ```
 
@@ -56,10 +55,14 @@ Evidence links:
 
 On September 20, the endpoint pages displayed these promotional 768p prices:
 
-| Endpoint | USD per output video-second | Published price / our warmed GPU + disk estimate |
-|---|---:|---:|
-| [H3 Max](https://fal.ai/models/minimax/h3-max/text-to-video) | 0.04 | 12.17 |
-| [H3 Max Turbo](https://fal.ai/models/minimax/h3-max-turbo/text-to-video) | 0.02 | 6.08 |
+| Endpoint | USD per output video-second |
+|---|---:|
+| [H3 Max](https://fal.ai/models/minimax/h3-max/text-to-video) | 0.04 |
+| [H3 Max Turbo](https://fal.ai/models/minimax/h3-max-turbo/text-to-video) | 0.02 |
+
+The public cost comparison is **up to 6× lower generation cost than fal H3 Max
+Turbo**. The later [one-hour test](../ltx-sustained-2026-09-21/results/RESULTS.md)
+extends the measurement to 131 clips across 20 scenes.
 
 Both pages stated a September 30 promotion end date. These are time-sensitive
 public tariffs, not verified account invoices. [Recorded references](evidence/prices.json).

@@ -4,6 +4,12 @@
 the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
+**LTX-2.5: up to 6× lower generation cost than fal H3 Max Turbo.**
+The [one-hour test](benchmarks/ltx-sustained-2026-09-21/results/RESULTS.md)
+produced 131 five-second clips across 20 scenes: $0.003253 per video-second
+for the warmed GPU/disk queue, compared with the measured fal price of $0.02.
+All videos, prompts, seeds and logs are public.
+
 **Original API reference pilot: H3, H3 Max and H3 Max Turbo completed under a USD 25 cap.**
 **Verda's ordinary tariff gives an estimated 13.5% lower warmed-queue cost**
 than the matched [Runpod ten-request queue](benchmarks/ltx-rtx-2026-09-20/README.md),

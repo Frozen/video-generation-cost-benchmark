@@ -1,4 +1,4 @@
-# One-hour LTX test: 6.15× cheaper generation than fal H3 Max Turbo
+# One-hour LTX test: up to 6× lower generation cost than fal H3 Max Turbo
 
 **131 clips. 20 scenes. 131 unique seeds. Zero failures. No meaningful slowdown.**
 
@@ -29,7 +29,7 @@ The GPU quote is $2.09/hour; 200 GB disk adds $0.02777778/hour. The formula is `
 
 The measured queue produced **655 requested video-seconds**, equivalent to **130.20 clips/hour** or **650.98 video-seconds/hour**. Queue GPU/disk cost was **$2.1308**. The complete lease estimate was **$2.5389**; on that boundary fal is **5.16×** as expensive per measured output second. GPU costs use the verified rental rate and measured time. Provider-reported charges are reconciled below. Client hardware, engineering, networking/storage outside the quoted disk and other service overhead are excluded.
 
-**Total experiment spend: $4.54.** The [billing reconciliation](runpod-billing-reconciled.json), retrieved on 2026-09-21 at 10:10 UTC, records **$2.535394 for the complete Runpod lease**, including setup, warmups, measured generation, export and temporary disk, plus **$2.00 for twenty fal clips**. Both Runpod hourly usage buckets are present. This updates the total spend; the measured-queue estimate and 6.15× comparison above keep their original scope. The original archive and partial billing snapshot are preserved unchanged.
+**Total experiment spend: $4.54.** The [billing reconciliation](runpod-billing-reconciled.json), retrieved on 2026-09-21 at 10:10 UTC, records **$2.535394 for the complete Runpod lease**, including setup, warmups, measured generation, export and temporary disk, plus **$2.00 for twenty fal clips**. Both Runpod hourly usage buckets are present. This updates the total spend; the measured-queue estimate and cost comparison above keep their original scope. The original archive and partial billing snapshot are preserved unchanged.
 
 The [earlier ten-request result](../../ltx-rtx-2026-09-20/README.md) was $0.003287289/s. This hour's figure differs by **-1.04%**. The short-run cost estimate held over this measured hour. This is not a controlled speedup: the host CPU changed from AMD EPYC 9555 to EPYC 9535 and the prompt mix changed.
 

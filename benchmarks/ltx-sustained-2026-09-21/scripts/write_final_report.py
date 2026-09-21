@@ -23,7 +23,7 @@ def render(root):
     d=s['successful_processing_seconds']
     bins='\n'.join(f"| {b['request_start_minute_from']:.0f}–{b['request_start_minute_to']:.0f} | {b['completed_attempts']} | {b['processing_seconds']['mean']:.3f} | {b['processing_seconds']['max']:.3f} |" for b in v['ten_minute_bins'])
     scenes='\n'.join(f"| {name} | {p['attempts']} | {p['technically_delivered']} | {p['processing_seconds']['mean']:.3f} | {p['processing_seconds']['max']:.3f} |" for name,p in s['per_scene'].items())
-    return f'''# One-hour LTX test: {fal/unit:.2f}× cheaper generation than fal H3 Max Turbo
+    return f'''# One-hour LTX test: up to {int(fal/unit)}× lower generation cost than fal H3 Max Turbo
 
 **{s['technically_delivered']} clips. 20 scenes. {v['observed_distinct_primary_seeds']} unique seeds. Zero failures. No meaningful slowdown.**
 
@@ -54,7 +54,7 @@ The GPU quote is $2.09/hour; 200 GB disk adds $0.02777778/hour. The formula is `
 
 The measured queue produced **{s['requested_successful_output_seconds']} requested video-seconds**, equivalent to **{s['clips_per_hour']:.2f} clips/hour** or **{s['output_seconds_per_hour']:.2f} video-seconds/hour**. Queue GPU/disk cost was **${Decimal(s['queue_cost_usd']):.4f}**. The complete lease estimate was **${Decimal(l['full_lease_gpu_plus_disk_usd_estimate']):.4f}**; on that boundary fal is **{fal/full:.2f}×** as expensive per measured output second. GPU costs use the verified rental rate and measured time. Provider-reported charges are reconciled below. Client hardware, engineering, networking/storage outside the quoted disk and other service overhead are excluded.
 
-**Total experiment spend: ${Decimal(billing['combined_provider_reported_usd']):.2f}.** The [billing reconciliation](runpod-billing-reconciled.json), retrieved on 2026-09-21 at 10:10 UTC, records **${Decimal(str(billing['metadata']['totals']['totalAmount'])):.6f} for the complete Runpod lease**, including setup, warmups, measured generation, export and temporary disk, plus **${Decimal(billing['fal_provider_reported_usd']):.2f} for twenty fal clips**. Both Runpod hourly usage buckets are present. This updates the total spend; the measured-queue estimate and 6.15× comparison above keep their original scope. The original archive and partial billing snapshot are preserved unchanged.
+**Total experiment spend: ${Decimal(billing['combined_provider_reported_usd']):.2f}.** The [billing reconciliation](runpod-billing-reconciled.json), retrieved on 2026-09-21 at 10:10 UTC, records **${Decimal(str(billing['metadata']['totals']['totalAmount'])):.6f} for the complete Runpod lease**, including setup, warmups, measured generation, export and temporary disk, plus **${Decimal(billing['fal_provider_reported_usd']):.2f} for twenty fal clips**. Both Runpod hourly usage buckets are present. This updates the total spend; the measured-queue estimate and cost comparison above keep their original scope. The original archive and partial billing snapshot are preserved unchanged.
 
 The [earlier ten-request result](../../ltx-rtx-2026-09-20/README.md) was $0.003287289/s. This hour's figure differs by **{(unit/old-1)*100:+.2f}%**. The short-run cost estimate held over this measured hour. This is not a controlled speedup: the host CPU changed from AMD EPYC 9555 to EPYC 9535 and the prompt mix changed.
 
