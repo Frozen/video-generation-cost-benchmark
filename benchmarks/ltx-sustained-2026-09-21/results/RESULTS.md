@@ -4,6 +4,18 @@
 
 This is a cross-model technical-output cost comparison. It does not establish equal quality or show that the same H3 model can be served at the LTX price. The hour tests the robustness of the earlier short LTX estimate.
 
+## Downloads, exact inputs and reproduction
+
+Everything needed to inspect this experiment is linked here:
+
+- **[Download all 153 original videos and complete evidence (487 MB)](https://github.com/Frozen/video-generation-cost-benchmark/releases/download/ltx-sustained-2026-09-21/ltx-sustained-evidence-20260921.zip).** Includes 131 measured LTX clips, twenty fal references, two warmups, raw logs, exact prompts/seeds, per-video replay JSON, code and the pinned preparation source archive. Extract the entire archive and open `videos.html` to browse or search by request ID, scene, prompt or seed.
+- **Exact video inputs:** [CSV catalog](VIDEO_CATALOG.csv), [JSON catalog](VIDEO_CATALOG.json), [actual LTX manifest](../evidence/ltx/resident.json), [registered scenes and prompts](../ltx-sustained-scenes.json), and [fixed generation plan](../ltx-sustained-plan.json). Catalog media paths are relative to the extracted archive.
+- **Raw LTX evidence:** [all exported logs](../evidence/ltx), [request event journal](../evidence/ltx/events.jsonl), [download/decode receipts](../evidence/ltx/delivery.json), [worker log](../evidence/ltx/duration.log), [GPU telemetry](../evidence/ltx/gpu-samples.csv), and [hardware inventory](../evidence/ltx/hardware.json).
+- **API evidence:** [all twenty fal attempts, statuses and billing units](fal-attempts.json), [summary and controller-error disclosure](FAL_RESULTS.md), and [download the twenty original fal videos (119 MB)](https://github.com/Frozen/video-generation-cost-benchmark/releases/download/ltx-sustained-2026-09-21/fal-twenty-original-videos-20260921.zip).
+- **Quality comparison:** [download the forty-video randomized A/B review (175 MB)](https://github.com/Frozen/video-generation-cost-benchmark/releases/download/ltx-sustained-2026-09-21/ltx-fal-quality-review-20260921.zip), [review instructions](QUALITY_REVIEW.md), [frozen evaluation criteria](../ltx-sustained-criteria.json), and [limited sampled-frame screen](VISUAL_SCREEN.md).
+- **Repeat or verify:** [execution and offline recomputation instructions](../REPRODUCE.md), [complete benchmark code](../scripts), [seed/warmup/cache controls](../WARMUP_AND_SEEDS.md), [archive SHA-256 hashes](ARTIFACTS.md), and [protocol file hashes](../SHA256SUMS.json). After extraction, `python3 verify_evidence.py` checks all 484 archived files.
+- **Limitations and accounting:** [all disclosed deviations](../DEVIATIONS.md), [full lease accounting](lifecycle-costs.json), and [incomplete provider billing snapshot](runpod-billing-partial.json). Repeating a seed preserves the input conditions; bit-identical output on another runtime or a changed hosted model is not guaranteed.
+
 ## Cost and throughput
 
 | Scope | Elapsed seconds | Cost per requested video-second | What is included |
