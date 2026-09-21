@@ -1,0 +1,7 @@
+case,warmup,status,processing_seconds,end_to_end_seconds,compute_usd_per_requested_video_second,build_count,requested_video_seconds
+BASE_WARMUP,True,not_exported,,,,,5
+BASE_WARM_5S,False,not_exported,,,,,5
+BASE_WARM_20S,False,not_exported,,,,,20
+REUSE_WARMUP,True,not_exported,,,,,5
+REUSE_WARM_5S,False,not_exported,,,,,5
+REUSE_WARM_20S,False,not_exported,,,,,20

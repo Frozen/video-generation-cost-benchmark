@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import time
 import traceback
@@ -51,23 +52,62 @@ def download_file(item):
     config = "url = " + json.dumps(url) + "\n"
     r = subprocess.run(["curl", "-q", "--config", "-", "--fail", "--silent", "--show-error",
                         "--proto", "=https", "--max-redirs", "0", "--connect-timeout", "20",
-                        "--max-time", "900", "--output", str(temporary)],
+                        "--max-time", "900", "--max-filesize", str(FILES[name][0]), "--output", str(temporary)],
                        input=config, text=True, capture_output=True, timeout=910)
     if r.returncode:
         raise RuntimeError("Object download failed for " + name + "; curl exit " + str(r.returncode))
     os.replace(temporary, path)
 
 
-def prepare():
+def frozen_natten_requirement(lock_path):
+    import tomllib
+    packages = tomllib.loads(lock_path.read_text()).get("package", [])
+    matches = [package for package in packages if package.get("name") == "natten"]
+    if len(matches) != 1 or matches[0].get("version") != "0.21.7+torch2130cu132":
+        raise ValueError("Frozen NATTEN version mismatch")
+    package = matches[0]
+    if package.get("source") != {"registry": "https://whl.natten.org/"}:
+        raise ValueError("Frozen NATTEN registry mismatch")
+    url = ("https://github.com/SHI-Labs/NATTEN/releases/download/v0.21.7/"
+           "natten-0.21.7%2Btorch2130cu132-cp312-cp312-linux_x86_64.whl")
+    wheels = [wheel for wheel in package.get("wheels", []) if wheel.get("url") == url]
+    manifest = json.loads((lock_path.parent / ".natten-wheel.json").read_text())
+    if (manifest.get("name"), manifest.get("version"), manifest.get("url"), manifest.get("size")) != (
+            "natten", "0.21.7+torch2130cu132", url, 203625872):
+        raise ValueError("Reviewed NATTEN wheel manifest mismatch")
+    sha = manifest.get("sha256", "")
+    if len(wheels) != 1 or not isinstance(sha, str) or not re.fullmatch(r"[0-9a-f]{64}", sha):
+        raise ValueError("Missing reviewed CPython 3.12 Linux x86_64 NATTEN wheel hash")
+    if wheels[0].get("hash") not in (None, "sha256:" + sha):
+        raise ValueError("NATTEN lock and reviewed manifest hash disagree")
+    return "natten @ " + url + " --hash=sha256:" + sha + "\n"
+
+
+def prepare(frozen=False):
+    if frozen and not (SRC / "uv.lock").is_file():
+        raise ValueError("Frozen preparation requires the supplied uv.lock")
+    requirement = frozen_natten_requirement(SRC / "uv.lock") if frozen else None
+    if frozen and subprocess.check_output(["uv", "--version"], text=True).split()[:2] != ["uv", "0.12.17"]:
+        raise ValueError("Frozen preparation requires uv 0.12.17")
     started = time.time()
     save("prepare-status.json", {"phase": "installing", "started_at": started})
     env = dict(os.environ, UV_CACHE_DIR=str(BASE / "uv-cache"), HF_HOME=str(BASE / "hf-cache"),
                HF_HUB_DISABLE_PROGRESS_BARS="1", HF_HUB_DOWNLOAD_TIMEOUT="60")
-    subprocess.run(["uv", "sync", "--no-dev", "--package", "ltx-pipelines"], cwd=SRC, env=env, check=True)
+    sync = ["uv", "sync", "--no-dev", "--package", "ltx-pipelines"]
+    if frozen:
+        env["UV_PYTHON"] = "3.12"
+        sync.append("--frozen")
+    subprocess.run(sync, cwd=SRC, env=env, check=True)
     python = str(SRC / ".venv/bin/python")
     subprocess.run([python, "-c", "import torch; assert torch.__version__.startswith('2.13.0'); assert torch.cuda.device_count()==1; print(torch.__version__)"], check=True)
-    subprocess.run(["uv", "pip", "install", "--python", python, "--no-deps", "--find-links",
-                    "https://whl.natten.org", "natten==0.21.7+torch2130cu132"], env=env, check=True)
+    if frozen:
+        subprocess.run([python, "-c", "import sys; assert sys.version_info[:2] == (3, 12)"], check=True)
+        subprocess.run(["uv", "pip", "install", "--python", python, "--no-deps", "--require-hashes",
+                        "--reinstall-package", "natten", "--requirement", "-"],
+                       input=requirement, text=True, env=env, check=True)
+    else:
+        subprocess.run(["uv", "pip", "install", "--python", python, "--no-deps", "--find-links",
+                        "https://whl.natten.org", "natten==0.21.7+torch2130cu132"], env=env, check=True)
     with (BASE / "dependencies.txt").open("w") as out:
         subprocess.run(["uv", "pip", "freeze", "--python", python], stdout=out, check=True)
     save("prepare-status.json", {"phase": "downloading", "started_at": started, "download_started_at": time.time()})
@@ -94,7 +134,9 @@ def prepare():
     subprocess.run([python, "-c", "from ltx_pipelines.distilled import DistilledPipeline; import natten; print(natten.__version__)"], check=True)
     save("prepare-status.json", {"phase": "ready", "started_at": started, "ready_at": time.time(),
                                 "download_seconds": download_seconds, "verified_files": verified,
-                                "source_revision": SOURCE, "model_revision": REVISION})
+                                "source_revision": SOURCE, "model_revision": REVISION,
+                                "frozen": frozen, "uv_lock_sha256": digest(SRC / "uv.lock") if frozen else None,
+                                "natten_wheel_manifest_sha256": digest(SRC / ".natten-wheel.json") if frozen else None})
 
 
 def generate():
@@ -167,9 +209,13 @@ def generate():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("prepare", "generate"))
-    action = parser.parse_args().action
+    parser.add_argument("--frozen", action="store_true", help="Require the supplied lock for preparation")
+    args = parser.parse_args()
+    action = args.action
+    if args.frozen and action != "prepare":
+        parser.error("--frozen applies only to prepare")
     try:
-        prepare() if action == "prepare" else generate()
+        prepare(frozen=args.frozen) if action == "prepare" else generate()
     except Exception as exc:
         save(action + "-failure.json", {"phase": "failed", "error_type": type(exc).__name__, "at": time.time()})
         traceback.print_exc()

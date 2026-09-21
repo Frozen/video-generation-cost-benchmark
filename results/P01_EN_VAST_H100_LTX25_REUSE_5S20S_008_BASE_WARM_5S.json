@@ -1,0 +1,122 @@
+{
+  "provider": "vast.ai",
+  "run_id": "P01_EN_VAST_H100_LTX25_REUSE_5S20S_008_BASE_WARM_5S",
+  "lease_run_id": "P01_EN_VAST_H100_LTX25_REUSE_5S20S_008",
+  "model": "Lightricks/LTX-2.5",
+  "runtime": {
+    "run_id": "P01_EN_VAST_H100_LTX25_REUSE_5S20S_008",
+    "case": "BASE_WARM_5S",
+    "mode": "baseline",
+    "warmup": false,
+    "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+    "model_revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+    "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+    "width": 1344,
+    "height": 768,
+    "frames": 121,
+    "fps": 24,
+    "seed": 42,
+    "stage_1_sigmas": [
+      1.0,
+      0.99375,
+      0.9875,
+      0.98125,
+      0.975,
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "stage_2_sigmas": [
+      0.909375,
+      0.725,
+      0.421875,
+      0.0
+    ],
+    "precision": "BF16",
+    "compile": false,
+    "quantization": null,
+    "offload": "none",
+    "prompt_enhancement": false,
+    "output_cache": false,
+    "embedding_cache": false,
+    "diffvae_mode": "chunked_eager",
+    "torch": "2.13.0+cu132",
+    "cuda": "13.2",
+    "natten": "0.21.7+torch2130cu132",
+    "gpu_count": 1,
+    "transformer_build_count": 2,
+    "resident_total_build_count": null,
+    "requested_video_seconds": 5,
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "gpu_total_memory_bytes": 85017493504,
+    "processing_seconds": 46.40657615708187,
+    "pipeline_return_seconds": 37.64039026480168,
+    "lazy_video_decode_and_encode_seconds": 8.766185892280191,
+    "completed_at": 1789948033.4598236,
+    "peak_allocated_bytes": 42101547008,
+    "peak_reserved_bytes": 46537900032,
+    "output_bytes": 2433325,
+    "output_sha256": "18eaa1565c677ba8b43960f0b2bb71220bba81acca59775e9c0bc0ec42b197ca",
+    "resolved_tiling": "TileSizeConfig(frames=DimensionSizeConfig(tile_size=128, overlap=40), height=DimensionSizeConfig(tile_size=768, overlap=160), width=DimensionSizeConfig(tile_size=1344, overlap=160))",
+    "stages_including_weight_loading": [
+      {
+        "stage": "prompt_encoder",
+        "seconds": 9.217273966874927
+      },
+      {
+        "stage": "stage",
+        "seconds": 12.201080505270511
+      },
+      {
+        "stage": "upsampler",
+        "seconds": 0.8373183161020279
+      },
+      {
+        "stage": "stage",
+        "seconds": 13.852425168734044
+      },
+      {
+        "stage": "audio_decoder",
+        "seconds": 0.5159101039171219
+      }
+    ],
+    "transformer_build_seconds": [
+      9.132696610875428,
+      9.147890998981893
+    ]
+  },
+  "container_image": "runpod/pytorch@sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851",
+  "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+  "prompt_variant": "P01_EN",
+  "requested_video_seconds": 5,
+  "native_video_seconds": 5.041667,
+  "client_end_to_end_seconds": 51.30097120802384,
+  "latency_target_seconds": 15,
+  "latency_pass": false,
+  "cost": {
+    "compute_hourly_usd": 4.953333333333333,
+    "pipeline_compute_usd": 0.06385201126798487,
+    "compute_usd_per_requested_video_second": 0.012770402253596973,
+    "boundary": "Pipeline through encoded MP4; excludes preparation, warmups, idle, disk and network; a subset of lease cost, never added to it"
+  },
+  "artifact": "P01_EN_VAST_H100_LTX25_REUSE_5S20S_008_BASE_WARM_5S.mp4",
+  "artifact_validation": {
+    "width": 1344,
+    "height": 768,
+    "frames": 121,
+    "fps": 24,
+    "duration_seconds": 5.041667,
+    "audio_duration_seconds": 5.01,
+    "audio_channels": 2,
+    "audio_sample_rate": 48000,
+    "output_sha256": "18eaa1565c677ba8b43960f0b2bb71220bba81acca59775e9c0bc0ec42b197ca",
+    "output_bytes": 2433325,
+    "decoded_stream_sha256": {
+      "video": "79ef079c576eb5701ce251c61032592e78ad631c94367b8f48a8d928f53901d7",
+      "audio": "2e5aec8c6bd62770e6672097074434f422478aa875008e57da468700d9f32038"
+    },
+    "full_decode_verified": true
+  },
+  "quality_acceptance": "Pending human motion/audio and prompt-adherence review"
+}

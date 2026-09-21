@@ -5,6 +5,26 @@ the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
 **Original API reference pilot: H3, H3 Max and H3 Max Turbo completed under a USD 25 cap.**
+**Vast stage closed: no price improvement.** The lowest published LTX cost
+reference is now the [RTX PRO 6000 warmed queue](benchmarks/ltx-rtx-2026-09-20/README.md):
+**USD 0.003287 per requested video-second, including GPU and temporary disk**.
+That ten-request queue is not the same measurement boundary as the single-request
+H100 processing estimates below, and neither is an all-in service price.
+
+The [Vast result](VAST_LTX_RESULTS.md) was USD 0.007488/s of GPU processing for
+5-second clips and USD 0.006113/s for 20-second clips. Against the earlier
+same-model, one-H100 Runpod 5-second result (USD 0.005525/s), the matched
+5-second case was **35.5% more expensive**. The 20-second case has no matched
+historical 20-second sample. The newly published RTX evidence is preserved;
+the older H100 result is no longer described as the overall cheapest.
+
+**Price is the current selection criterion, not speed.** Historical latency
+targets remain recorded, but do not decide which provider to pursue now.
+All six native outputs are retained. Whole Vast-stage observed spending,
+including seven failed rentals: **USD 5.585450**, below the USD 9.99 allowance;
+final invoice pending. All rented instances and temporary SSH keys were deleted.
+Vast testing is finished. Next work moves to another provider; none has been
+selected or provisioned by this closeout, and no further Vast run is scheduled.
 All public content is in English.
 
 ## Watch the benchmark videos
@@ -35,6 +55,33 @@ videos and an offline verification script are included. The comparison with
 fal's published API tariffs is a cost reference across different models;
 quality parity and equivalent service performance have not been established.
 
+[Vast price comparison and complete measurements](VAST_LTX_RESULTS.md):
+
+| Resident transformer configuration | Requested clip | GPU-processing USD / requested video-second | Original video |
+|---|---:|---:|---|
+| **Previous Runpod, 1 × H100** | 5 s | **0.005525** | [Watch](results/P01_EN_RUNPOD_H100_LTX25_REUSE_5S_001_REUSE_WARM.mp4) |
+| Current Vast, 1 × H100 | 5 s | 0.007488 | [Watch](results/P01_EN_VAST_H100_LTX25_REUSE_5S20S_008_REUSE_WARM_5S.mp4) |
+| Current Vast, 1 × H100 | 20 s | 0.006113 | [Watch](results/P01_EN_VAST_H100_LTX25_REUSE_5S20S_008_REUSE_WARM_20S.mp4) |
+
+The 5-second pair uses the same model, resident mode and GPU count. Both quoted
+Vast unit costs are higher; comparing the 20-second rate with the earlier
+5-second rate is not a matched-duration experiment. These estimates exclude
+preparation, warmups, idle time, storage, transfer and failed rentals.
+
+For completeness, retaining the transformer reduced within-Vast request-to-download
+time from 51.301 to 31.807 s at 5 seconds and 120.332 to 98.859 s at 20 seconds.
+Those improvements are against Vast's ordinary pipeline, not against the
+previous best result. Speed does not offset the price increase under the current
+decision rule. The four-GPU H3 result is not a hardware-controlled comparison
+with this one-GPU LTX run.
+
+All four measured outputs and two technical warmups were fully decoded and
+exported without re-encoding. Both 20-second requests fit the H100; resident
+peak reserved memory was 76.375 GiB. Quality acceptance, final billing and
+matched-volume all-in service economics remain unestablished.
+[Measurements CSV](results/VAST_LTX_REUSE_ALTERNATE_MEASUREMENTS.csv);
+[dated all-attempt cost reconciliation](results/VAST_LTX_STAGE_RECONCILIATION_2026-09-21.json).
+
 [Warmed LTX-2.5 comparison](LTX_REUSE_RESULTS.md): **retaining transformer weights
 on one H100 reduced processing from 46.459 to 28.496 s (1.63x)**, with identical
 decoded video frames for this pair; decoded audio differs and quality review is
@@ -51,7 +98,6 @@ Whole rental, including preparation, both warmups and temporary disk:
 and absence independently verified. H3 logs also confirm short built-in warmup;
 the [report](LTX_REUSE_RESULTS.md#comparison-with-our-warmed-h3-measurements)
 compares the warmed samples while disclosing hardware and pipeline differences.
-No additional paid tests are scheduled.
 
 [LTX-2.5 result](LTX_RESULTS.md): **one H100 SXM successfully produced
 [video and audio](results/P01_EN_RUNPOD_H100_LTX25_5S_003.mp4).** Cold first request:
