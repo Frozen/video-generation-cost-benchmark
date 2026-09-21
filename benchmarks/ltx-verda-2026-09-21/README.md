@@ -1,6 +1,8 @@
 # Verda RTX PRO 6000 spot: matched LTX-2.5 queue
 
-**Measured result: USD 0.001463 per requested video-second, GPU plus disk — 55.5% below the matched ten-request Runpod reference.** This is a **spot, warmed-queue** result, not an all-in service price or a demonstrated production saving.
+**Conservative comparison: at Verda's ordinary on-demand tariff, the measured runtime implies approximately 13.5% lower warmed-queue GPU/disk cost than the matched Runpod reference — $0.002844 versus $0.003287 per requested video-second.** This assumes the same runtime; **it is a tariff calculation, not a separate on-demand test**.
+
+**Separately measured spot result: USD 0.001463 per requested video-second, GPU plus disk — 55.5% below the matched ten-request Runpod reference.** This is a **spot, warmed-queue** result, not an all-in service price or a demonstrated production saving.
 
 | Measurement | Verda spot | Published Runpod reference |
 |---|---:|---:|

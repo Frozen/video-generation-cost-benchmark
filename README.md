@@ -5,13 +5,15 @@ the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
 **Original API reference pilot: H3, H3 Max and H3 Max Turbo completed under a USD 25 cap.**
-**Verda spot: USD 0.001463 per requested video-second, GPU plus disk — 55.5%
-below the matched [Runpod ten-request queue](benchmarks/ltx-rtx-2026-09-20/README.md).**
+**Verda's ordinary tariff gives an estimated 13.5% lower warmed-queue cost**
+than the matched [Runpod ten-request queue](benchmarks/ltx-rtx-2026-09-20/README.md),
+**assuming the same measured runtime. This is not a separate on-demand test.**
 The [Verda report and original videos](benchmarks/ltx-verda-2026-09-21/README.md)
 cover the same ten five-second LTX-2.5 requests after two full warmups.
-**This is a spot, warmed-queue result, not a production-service price.**
-At Verda's ordinary on-demand rate, the same runtime would imply approximately
-13.5% savings instead; that is a tariff calculation, not an on-demand run.
+The ordinary-tariff estimate is **USD 0.002844 per requested video-second**,
+including GPU and disk, versus Runpod's USD 0.003287.
+The actual run used **spot** and measured USD 0.001463/s, or 55.5% less.
+Neither figure is an all-in production-service price.
 Spot interruptions and repeated cold starts can materially change the economics.
 
 The [Vast result](VAST_LTX_RESULTS.md) was USD 0.007488/s of GPU processing for
