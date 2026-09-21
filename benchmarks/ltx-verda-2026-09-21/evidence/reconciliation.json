@@ -1,0 +1,86 @@
+{
+  "provider": "Verda",
+  "stage_cap_usd": 5,
+  "cumulative_credit_drawdown_usd": 0.68424,
+  "cost_scope": "Whole stage including every failed attempt, provisioning, setup, warmups, generation and export; not additive to the warmed queue estimate.",
+  "full_stage_usd_per_measured_requested_video_second": 0.013684799999999999,
+  "requested_measured_video_seconds": 50,
+  "attempts": [
+    {
+      "attempt": 1,
+      "gpu_instances_created": 0,
+      "measured_outputs": 0,
+      "outcome": "Precreate SSH response decoding failure; temporary key reconciled and removed."
+    },
+    {
+      "attempt": 2,
+      "gpu_instances_created": 1,
+      "measured_outputs": 0,
+      "outcome": "Create reply timed out; independent guard discovered and deleted the allocated VM and disk."
+    },
+    {
+      "attempt": 3,
+      "gpu_instances_created": 1,
+      "measured_outputs": 0,
+      "outcome": "Native GPU probe passed; a transient control API timeout triggered guard cleanup during model download."
+    },
+    {
+      "attempt": 4,
+      "gpu_instances_created": 1,
+      "measured_outputs": 10,
+      "technical_warmups": 2,
+      "outcome": "Complete frozen queue exported and fully decoded; VM, disk and SSH key deleted."
+    }
+  ],
+  "provider_invoice_final": false,
+  "observed_at": 1789960832.683975,
+  "read_only_observation_seconds_after_verified_deletion": 664.092738866806,
+  "billing_caveat": "Observed across one documented ten-minute refund interval. A final invoice may still reconcile later; do not add this credit drawdown to usage estimates.",
+  "credit_drawdown_observations": [
+    {
+      "epoch": 1789960208.673833,
+      "cumulative_drawdown_usd": 0.86219
+    },
+    {
+      "epoch": 1789960343.8121521,
+      "cumulative_drawdown_usd": 0.86219
+    },
+    {
+      "epoch": 1789960405.454999,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960470.590517,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960535.065044,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960595.853539,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960656.651998,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960717.564157,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960778.717887,
+      "cumulative_drawdown_usd": 0.68424
+    },
+    {
+      "epoch": 1789960832.683975,
+      "cumulative_drawdown_usd": 0.68424
+    }
+  ],
+  "owned_instances_remaining": 0,
+  "owned_volumes_remaining": 0,
+  "owned_ssh_keys_remaining": 0,
+  "absence_verified_at": 1789960838.013003,
+  "redaction": "Account balances, credentials, resource identifiers, addresses and raw operator logs are not published."
+}

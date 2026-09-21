@@ -1,0 +1,28 @@
+{
+  "files": {
+    "verda_remote.py": "45a604fdd4f0268c1df76738c0866395718c9a0ee8eb266cdaf9a0a4c3faf370",
+    "ltx-source.tar.gz": "103362669cfc9f3f9fa81946e08e1590b17924112749cf9f01c30702bba13855",
+    "uv-linux.whl": "9e25bb39e1674799c408345a6397ebc2c7c719d498be0ce9d935466d36ceacf5",
+    "natten-0.21.7+torch2130cu132-cp312-cp312-linux_x86_64.whl": "99c504a0f190f8415ae04e4b55a4d145a54db3948718d07da4f0c1914a1e7396",
+    "reproduction/evidence/delivery-receipts.json": "e8647f483459272bc3dc7350f0f6ba7706b6b16315b2fecd1c5081edb6a50828",
+    "reproduction/evidence/dependencies.txt": "1fc5033e99069452423d19ac06f892fa8a4d3bb703062e50110dcec6d727d124",
+    "reproduction/evidence/events.jsonl": "0c692ba2f1ca93ae358879e1eb248e1e32900f8f0cd6a6925b97a63f8f8c1ed5",
+    "reproduction/evidence/host-inventory.json": "230f7b20455336e3aeddac5c54c6add1fbe88de6064bc90d5367d6a0b444a386",
+    "reproduction/evidence/measurements.csv": "114d207cb09a16839da7eba4ae831a383833104f09b513f2425580de81c428b7",
+    "reproduction/evidence/original-plan.json": "5000869fe6c74a605727caf5c4276c248d7dcf84f4096dfb1b60eb27dd92bcbd",
+    "reproduction/evidence/prices.json": "fb3de3353d3a2cdbc328a0fe13431473d4158323844091bea89ac61625bb5f08",
+    "reproduction/evidence/quality-criteria.json": "6dd716f97c9980bcaab24531b286642ed03e2d4543adc2b00c52092f0e8796bc",
+    "reproduction/evidence/resident.json": "a55d318419c1617c380074fc77f5f7c6b8f2b19f1a29586bcb813fb47ab28c25",
+    "reproduction/evidence/uv.lock": "dd5d9b68281ab8536e245cffe236388f4ed73c872442705718e3f3baf3a46bf1",
+    "reproduction/original-worker/load_window.py": "614912df9ada252216b7c5754f64c2792166883d0d8e704764557c448e1631ba",
+    "reproduction/original-worker/ltx_audio_off.py": "75b1c62dc91666ff6a5882809f05b8edce8e68fd527aecb351a72138da20de11",
+    "reproduction/original-worker/ltx_config.py": "971e84c692841b8c6dcc6f2b28e03ccaf3b6ec28dc7e515cf8bc5e6a7d4cd085",
+    "reproduction/original-worker/ltx_gpu_price_prepare.py": "8bb4889de8046223aeb637ffff5d636b8b12ed6c5066759cb37d22d0992820e9",
+    "reproduction/original-worker/ltx_gpu_price_worker.py": "3bfa14c06ea92e31501c9bbad9e40696d2318cec112bae91adf1aec7f30b28c7",
+    "reproduction/original-worker/ltx_reuse.py": "446eb07c923eda7b0666abe3b0cb0c233502dc784c8461949078d6190ebf5b9e",
+    "reproduction/original-worker/ltx_reuse_config.py": "8efa1fcbac31954d16aacf2bb30b5b83eae708d224050db21b080be437051209",
+    "reproduction/original-worker/ltx_worker.py": "01f53056daa0bc1f7051b09e809594b5d8f1c67b4b89634772d5157bb5efdf57",
+    "workload-manifest.json": "181cf425e4f0e7944f6440676905ca458b71462d9a4c64b27e97fd4cedeaa173",
+    "download-links.json": "0f12d1cb5e2d65677d67bce19aee981f36cfd5066ed0255ddd5ec42d4d270625"
+  }
+}

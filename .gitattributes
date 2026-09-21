@@ -11,3 +11,6 @@ benchmarks/ltx-sustained-2026-09-21/** -text
 
 # Preserve intentional trailing spaces inside verbatim multiline benchmark prompts.
 benchmarks/ltx-sustained-2026-09-21/results/VIDEO_CATALOG.csv whitespace=-blank-at-eol
+
+# Preserve original Verda worker evidence and native media byte-for-byte.
+benchmarks/ltx-verda-2026-09-21/** -text

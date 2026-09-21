@@ -1,0 +1,14 @@
+{
+  "phase": "ready",
+  "started_at": 1789958536.9049704,
+  "ready_at": 1789959445.259231,
+  "download_seconds": 817.3499596430001,
+  "verified_files": 6,
+  "dependency_lock_sha256": "dd5d9b68281ab8536e245cffe236388f4ed73c872442705718e3f3baf3a46bf1",
+  "transport_sha256": "304d3aae1bc8807ee41fa515307270e7bb4b032ffb34663b909f7d7adf35185e",
+  "manifest_sha256": "181cf425e4f0e7944f6440676905ca458b71462d9a4c64b27e97fd4cedeaa173",
+  "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+  "required_suite_seconds": 1230,
+  "preparation_margin_seconds": 60,
+  "host_ram_fit": "unproven_until_full_frozen_workload"
+}

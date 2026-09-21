@@ -1,0 +1,66 @@
+{
+  "outputs": [
+    {
+      "artifact": "R01.mp4",
+      "verda_sha256": "010d46a606057d6a6dc4ff21deb6c1200ddc1c5e13b1e3ed4ff2ce3ab655dcdf",
+      "runpod_sha256": "010d46a606057d6a6dc4ff21deb6c1200ddc1c5e13b1e3ed4ff2ce3ab655dcdf",
+      "byte_identical": true
+    },
+    {
+      "artifact": "R02.mp4",
+      "verda_sha256": "5a9446174c407de4b66545b7ef2a5e2ffac15628dfe1a40b12871b30fc0cecf6",
+      "runpod_sha256": "982ed123577a741f15094fedf93332e11a867527b0fff7bbe90376f3eff6cc56",
+      "byte_identical": false
+    },
+    {
+      "artifact": "R03.mp4",
+      "verda_sha256": "982ba66b1bd2c69788d95185bfbf0f6ad66583cb1bc6374dece833eb457b862f",
+      "runpod_sha256": "982ba66b1bd2c69788d95185bfbf0f6ad66583cb1bc6374dece833eb457b862f",
+      "byte_identical": true
+    },
+    {
+      "artifact": "R04.mp4",
+      "verda_sha256": "c21d24201a8b0d1cab09f440ba12769faa38ddcea16e614fd0cc23de0eb8b728",
+      "runpod_sha256": "4d5097bfbef2e81cce095dbb6a248cd5af21dc45d6cb7ab7924c71b4dd355ec4",
+      "byte_identical": false
+    },
+    {
+      "artifact": "R05.mp4",
+      "verda_sha256": "500852f3a4b6baa978999d23cb6332c7518637578e9c324c272cd1b2fc21c7d8",
+      "runpod_sha256": "500852f3a4b6baa978999d23cb6332c7518637578e9c324c272cd1b2fc21c7d8",
+      "byte_identical": true
+    },
+    {
+      "artifact": "R06.mp4",
+      "verda_sha256": "5bbd19e14e2b25025bc71528324c059ee0f848310c2843563c38671951838cca",
+      "runpod_sha256": "9a20780c3f67c670630d4be842e59a7b469b2985229afb76a94d722e1c5a91bf",
+      "byte_identical": false
+    },
+    {
+      "artifact": "R07.mp4",
+      "verda_sha256": "fa83ded385249602c81abcb618c9b0b3c829c377492e21b5511333d41cefc430",
+      "runpod_sha256": "fa83ded385249602c81abcb618c9b0b3c829c377492e21b5511333d41cefc430",
+      "byte_identical": true
+    },
+    {
+      "artifact": "R08.mp4",
+      "verda_sha256": "1e02e9ec4612b9ae0dc9d29aebc1dbf3398dc500ca2cd8a1b6b93be667c328ec",
+      "runpod_sha256": "bf736dd0cdce5e448cda5fe3e424dc4a7cbfff8c889922c944b4e012c86037de",
+      "byte_identical": false
+    },
+    {
+      "artifact": "R09.mp4",
+      "verda_sha256": "83b32c736104b66381a2746fdf0315e5431bb8c8bd9d0ece29362ff2c2c48415",
+      "runpod_sha256": "5eba410eb2b9e2a65dbc06b41a10f855f51ad4a45727840b7243a25b17aca6f0",
+      "byte_identical": false
+    },
+    {
+      "artifact": "R10.mp4",
+      "verda_sha256": "d7fb36dd7cda74f938a22971f4cd7d17b5554b2ec0c04aa976e71262c7795999",
+      "runpod_sha256": "9dfa65bd02414503e319a926208306e9f529537c2e9b1fcfe12555256e90ecb8",
+      "byte_identical": false
+    }
+  ],
+  "byte_identical_count": 4,
+  "note": "Byte comparison only; differing encoded files do not by themselves establish quality differences."
+}

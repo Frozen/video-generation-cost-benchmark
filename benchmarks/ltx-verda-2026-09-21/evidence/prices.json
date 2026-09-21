@@ -1,0 +1,15 @@
+{
+  "provider": "Verda",
+  "pricing_mode": "spot",
+  "region": "FIN-03",
+  "instance_type": "1RTXPRO6000.30V",
+  "gpu_hourly_usd": "0.93",
+  "disk_hourly_usd": "0.0547945205479452",
+  "disk_gb": 200,
+  "disk_type": "NVMe",
+  "observed_at": 1789958384.563076,
+  "source": "Authenticated instance and volume API reads, resource identifiers omitted.",
+  "public_catalog": "https://api.verda.com/v1/instance-types?currency=usd",
+  "public_storage_pricing": "https://verda.com/pricing",
+  "quote_includes": "Instance CPU/RAM/GPU plus attached OS disk; not a production-service price."
+}

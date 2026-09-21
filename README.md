@@ -5,11 +5,14 @@ the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
 **Original API reference pilot: H3, H3 Max and H3 Max Turbo completed under a USD 25 cap.**
-**Vast stage closed: no price improvement.** The lowest published LTX cost
-reference is now the [RTX PRO 6000 warmed queue](benchmarks/ltx-rtx-2026-09-20/README.md):
-**USD 0.003287 per requested video-second, including GPU and temporary disk**.
-That ten-request queue is not the same measurement boundary as the single-request
-H100 processing estimates below, and neither is an all-in service price.
+**Verda spot: USD 0.001463 per requested video-second, GPU plus disk — 55.5%
+below the matched [Runpod ten-request queue](benchmarks/ltx-rtx-2026-09-20/README.md).**
+The [Verda report and original videos](benchmarks/ltx-verda-2026-09-21/README.md)
+cover the same ten five-second LTX-2.5 requests after two full warmups.
+**This is a spot, warmed-queue result, not a production-service price.**
+At Verda's ordinary on-demand rate, the same runtime would imply approximately
+13.5% savings instead; that is a tariff calculation, not an on-demand run.
+Spot interruptions and repeated cold starts can materially change the economics.
 
 The [Vast result](VAST_LTX_RESULTS.md) was USD 0.007488/s of GPU processing for
 5-second clips and USD 0.006113/s for 20-second clips. Against the earlier
@@ -20,11 +23,13 @@ the older H100 result is no longer described as the overall cheapest.
 
 **Price is the current selection criterion, not speed.** Historical latency
 targets remain recorded, but do not decide which provider to pursue now.
-All six native outputs are retained. Whole Vast-stage observed spending,
+All six Vast outputs are retained. Whole Vast-stage observed spending,
 including seven failed rentals: **USD 5.585450**, below the USD 9.99 allowance;
 final invoice pending. All rented instances and temporary SSH keys were deleted.
-Vast testing is finished. Next work moves to another provider; none has been
-selected or provisioned by this closeout, and no further Vast run is scheduled.
+Vast testing is finished. The subsequent Verda stage completed under a separate
+USD 5 cumulative cap: observed credit drawdown including all failures and setup
+was **USD 0.68424** after refund, not a final provider invoice. All stage resources
+were deleted. No further paid run is scheduled by this publication.
 All public content is in English.
 
 ## Watch the benchmark videos
@@ -45,6 +50,14 @@ The fal samples use P01; self-hosted samples use the English-requested P01_EN
 variant. This is not an exact-prompt six-way comparison.
 
 ## Latest results
+
+[September 21: Verda RTX PRO 6000 spot comparison](benchmarks/ltx-verda-2026-09-21/README.md):
+**USD 0.001463 per requested video-second**, including GPU and disk for the warmed
+ten-request queue, versus USD 0.003287 for the directly matched Runpod reference.
+Twelve native videos (ten measured, two warmups), original events, exact input
+hashes, hardware differences, all-attempt spending and an offline verifier are
+published. The **55.5% saving is conditional on spot pricing**; interruption
+economics and human quality parity have not been established.
 
 [September 20: RTX PRO 6000 reproducibility package](benchmarks/ltx-rtx-2026-09-20/README.md):
 ten consecutive five-second LTX-2.5 requests with native audio, after two full

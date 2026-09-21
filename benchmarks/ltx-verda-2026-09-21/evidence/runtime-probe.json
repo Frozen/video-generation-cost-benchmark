@@ -1,0 +1,1 @@
+{"python": "3.12.3", "torch": "2.13.0+cu132", "cuda": "13.2", "natten": "0.21.7", "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition", "capability": [12, 0], "gpu_total_memory_bytes": 101973819392, "native_natten_gpu_probe_passed": true}

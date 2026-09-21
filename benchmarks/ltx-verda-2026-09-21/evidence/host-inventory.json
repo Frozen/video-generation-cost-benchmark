@@ -1,0 +1,1 @@
+{"epoch": 1789958388.685083, "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39", "cpu_count": 30, "ram_bytes": 94879367168, "disk": {"total": 206900281344, "used": 13498867712, "free": 171910152192}, "gpu_csv": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 580.178.04, 600.00, 600.00\n", "docker": "Docker version 29.8.1, build 4a63305\n"}

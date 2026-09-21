@@ -1,0 +1,8 @@
+{
+  "reference": "../../ltx-rtx-2026-09-20/evidence/resident.json",
+  "run_id": "LTX25_VERDA_RTX_SPOT_004",
+  "shutdown_deadline_epoch": 1789960994.943111,
+  "admission_deadline_epoch": 1789960739.943111,
+  "original_manifest_sha256": "181cf425e4f0e7944f6440676905ca458b71462d9a4c64b27e97fd4cedeaa173",
+  "serialization": "json.dumps(manifest, indent=2) + newline; original reference field order retained"
+}
