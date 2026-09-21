@@ -31,7 +31,8 @@ final invoice pending. All rented instances and temporary SSH keys were deleted.
 Vast testing is finished. The subsequent Verda stage completed under a separate
 USD 5 cumulative cap: observed credit drawdown including all failures and setup
 was **USD 0.68424** after refund, not a final provider invoice. All stage resources
-were deleted. No further paid run is scheduled by this publication.
+were deleted. The next provider, HyperAI, was blocked at the capacity check;
+no payment or GPU allocation was submitted.
 All public content is in English.
 
 ## Watch the benchmark videos
@@ -52,6 +53,12 @@ The fal samples use P01; self-hosted samples use the English-requested P01_EN
 variant. This is not an exact-prompt six-way comparison.
 
 ## Latest results
+
+[September 21: HyperAI capacity preflight](benchmarks/hyperai-preflight-2026-09-21/README.md):
+the $0.80/h RTX PRO 6000 tier and all larger variants were marked **Full Load**
+in the authenticated console. Specifications and account-free screenshots are
+published. **No generation test ran, spending was $0, and no video-cost result
+or saving is claimed.**
 
 [September 21: Verda RTX PRO 6000 spot comparison](benchmarks/ltx-verda-2026-09-21/README.md):
 **USD 0.001463 per requested video-second**, including GPU and disk for the warmed
