@@ -2,7 +2,7 @@
 
 **131 clips. 20 scenes. 131 unique seeds. Zero failures. No meaningful slowdown.**
 
-LTX generated five-second videos with sound for **$0.003253 per video-second**, compared with **$0.02** for fal H3 Max Turbo at the measured API price. The run lasted **60 minutes 22 seconds** on one RTX PRO 6000 96 GB. Every video is saved, along with its prompt, seed and generation settings.
+LTX generated five-second videos with sound for **$0.003253 per video-second**, compared with **$0.02** for fal H3 Max Turbo at the measured API price. The run lasted **60 minutes 22 seconds** on one RTX PRO 6000 96 GB at Runpod (EUR-IS-1). Every video is saved, along with its prompt, seed and generation settings.
 
 ## Downloads, exact inputs and reproduction
 

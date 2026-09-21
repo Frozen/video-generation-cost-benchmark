@@ -26,7 +26,7 @@ def render(root):
 
 **{s['technically_delivered']} clips. 20 scenes. {v['observed_distinct_primary_seeds']} unique seeds. Zero failures. No meaningful slowdown.**
 
-LTX generated five-second videos with sound for **${unit:.6f} per video-second**, compared with **${fal:.2f}** for fal H3 Max Turbo at the measured API price. The run lasted **60 minutes 22 seconds** on one RTX PRO 6000 96 GB. Every video is saved, along with its prompt, seed and generation settings.
+LTX generated five-second videos with sound for **${unit:.6f} per video-second**, compared with **${fal:.2f}** for fal H3 Max Turbo at the measured API price. The run lasted **60 minutes 22 seconds** on one RTX PRO 6000 96 GB at Runpod (EUR-IS-1). Every video is saved, along with its prompt, seed and generation settings.
 
 ## Downloads, exact inputs and reproduction
 
