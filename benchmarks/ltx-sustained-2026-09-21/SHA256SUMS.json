@@ -29,11 +29,12 @@
   "tests/test_sustained_queue.py": "389f06ab069b06a810c949972ed1d085fb1be08008283d320259a337cfc85bcd",
   "DEVIATIONS.md": "12267964dc84406837562e449feb8f6beff0d2f0f289bfc71bf0ded402a74fd7",
   "results/fal-summary.json": "e998dc1fa78e5b4e2a628844ec09493a665087f8fbc976d59daad8d9ea4c1cda",
-  "results/fal-client-latency.png": "084b2b11ad508cf9e7470f455200b9adf41e168c02b2d3a9ea4241e229a8bb4c",
+  "results/fal-client-latency.png": "2ad37dcea88e2a50cca8af061a6fb062a3df31a0b93c4cc34570b97488a9c490",
   "results/FAL_RESULTS.md": "043e0b5b4ae3d35b9a9a1584213cfb0f9860f195b94e11da02edea5cc218e7de",
-  "results/fal-client-latency.svg": "81ab7c66e01c52d1204a2c06b1064a3754cd7bc94f37728b477859a54c9641f7",
+  "results/fal-client-latency.svg": "6f20fe3dd9049439fb9ae02a41d405a6bc56f4b81189e909b88dcf06777e8891",
   "results/fal-attempts.json": "c8d7a622683ac2db5c501b8912dec96e9d6c17ab9c604daf3a99e0262eb8ced7",
   "scripts/summarize_sustained.py": "09cbcb4f452ccadbaadcbaacb5ca6c27ddb8af4913b302800c7acba69fbddcf9",
   "scripts/export_fal_evidence.py": "74532bcc4ab8d9969f28b6669c5a5a1baa33e7f61a03ef51a8e33df812711d22",
-  "scripts/build_review.py": "30afc64de170e95cb3dc4d4f32288b59e02d5bf38cea2cefd101fbb92b51829b"
+  "scripts/build_review.py": "30afc64de170e95cb3dc4d4f32288b59e02d5bf38cea2cefd101fbb92b51829b",
+  "scripts/plot_sustained.py": "7a1fee54eeabc6f9c6e595c297f9147488bd05cf5ed95fc0da89c09698286da8"
 }
