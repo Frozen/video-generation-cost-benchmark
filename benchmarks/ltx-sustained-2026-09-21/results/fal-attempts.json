@@ -1,0 +1,1158 @@
+[
+  {
+    "attempt_id": "R0001",
+    "pair_id": "R0001",
+    "scene_id": "P_PORTRAIT",
+    "seed": 673465439,
+    "prompt_sha256": "f63039c43175dde8cd3ab433ff9021df3f91a337d330bf8ea8efc1a9be5678ce",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954340.817216,
+    "completion_observed_epoch": 1789954416.011908,
+    "submit_to_completion_seconds": 75.19469213485718,
+    "submit_to_download_seconds": 78.7295789718628,
+    "timing_clock": "wall_clock_resumed_collection",
+    "video_sha256": "b17188dc4608bb2c319b15d0cbf0fcf43a72b6d6b9bcce8333c27776729df6bf",
+    "video_bytes": 6828481,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3949877168051898,
+    "provider_request_id": "01a0c197-b967-7e60-913f-82b9673635b4",
+    "status_observations": [
+      {
+        "epoch": 1789954416.011507,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0002",
+    "pair_id": "R0002",
+    "scene_id": "P_RAIN",
+    "seed": 810677805,
+    "prompt_sha256": "18eccf93cb3d7cc41c81003a3c5aa79946f51f4cc2096cb7f7b480bbe81a14ce",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954419.782597,
+    "completion_observed_epoch": 1789954422.511862,
+    "submit_to_completion_seconds": 2.7291376660577953,
+    "submit_to_download_seconds": 5.81178266601637,
+    "timing_clock": "monotonic",
+    "video_sha256": "2e63dde5bcee8ed540025f9957323d9ee79059f6fbbca6327a5d0b7b16f458a6",
+    "video_bytes": 5863666,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3962475480511785,
+    "provider_request_id": "01a0c198-ed28-79b0-9286-e5f42ea191d2",
+    "status_observations": [
+      {
+        "epoch": 1789954420.281659,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954422.511403,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0003",
+    "pair_id": "R0003",
+    "scene_id": "P_SKATE",
+    "seed": 476251187,
+    "prompt_sha256": "805d63405d48c81283bc230a7ca89bb877149326a946665e0cf6d8bdfeef7f5b",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954425.7103949,
+    "completion_observed_epoch": 1789954428.4283788,
+    "submit_to_completion_seconds": 2.7178199579939246,
+    "submit_to_download_seconds": 5.875785292009823,
+    "timing_clock": "monotonic",
+    "video_sha256": "55d1937a582f9fb94da338f691767126fc608cd5ebf96d005440310598f3adfa",
+    "video_bytes": 6270554,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.405203899834305,
+    "provider_request_id": "01a0c199-0437-7e30-af07-38c384292e87",
+    "status_observations": [
+      {
+        "epoch": 1789954426.1890612,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954428.4279191,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0004",
+    "pair_id": "R0004",
+    "scene_id": "P03_ALLEY",
+    "seed": 1217349242,
+    "prompt_sha256": "13bd78486caf4c94182a1c245e3adac336744bc747f0c9e2d06242855697c697",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954431.705427,
+    "completion_observed_epoch": 1789954434.40624,
+    "submit_to_completion_seconds": 2.7006427500164136,
+    "submit_to_download_seconds": 6.418389875092544,
+    "timing_clock": "monotonic",
+    "video_sha256": "2588ead469c803940b976a4bf71d04b5adece79d79b5c3c2d6a0c1a3b5786753",
+    "video_bytes": 7357059,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.5546237519993156,
+    "provider_request_id": "01a0c199-1b9c-7691-8a4b-99d0c0e48dfe",
+    "status_observations": [
+      {
+        "epoch": 1789954432.16657,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954434.405748,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0005",
+    "pair_id": "R0005",
+    "scene_id": "P_CLAY",
+    "seed": 2055268427,
+    "prompt_sha256": "7317092e933dd1c04572ce14ab4dbec3a1909d49c60816569f878d64d1859f56",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954438.242924,
+    "completion_observed_epoch": 1789954440.941609,
+    "submit_to_completion_seconds": 2.6985039999708533,
+    "submit_to_download_seconds": 5.131736541981809,
+    "timing_clock": "monotonic",
+    "video_sha256": "b89d0af894bc1b013760b50c9bc5b1ff8cabe6b8cc76cc077dd03ba64ee2a705",
+    "video_bytes": 4041886,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3744239010848105,
+    "provider_request_id": "01a0c199-3529-74c3-aacb-ccdf9567a4cc",
+    "status_observations": [
+      {
+        "epoch": 1789954438.7102752,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954440.941201,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0006",
+    "pair_id": "R0006",
+    "scene_id": "P_COFFEE",
+    "seed": 574688785,
+    "prompt_sha256": "2afd9890a21d7c9de362a4a8c06f2a363fe2a292def44fccede3fcd93f7ffee0",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954443.470783,
+    "completion_observed_epoch": 1789954448.3985999,
+    "submit_to_completion_seconds": 4.927538999938406,
+    "submit_to_download_seconds": 7.418767665978521,
+    "timing_clock": "monotonic",
+    "video_sha256": "39910d4fcc7576a3f6ab1104ca128b627866f256234f22a420bdfa0bad8b9c1b",
+    "video_bytes": 4557913,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3791576586663723,
+    "provider_request_id": "01a0c199-498e-7bf0-8d47-c30baa969765",
+    "status_observations": [
+      {
+        "epoch": 1789954443.929163,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954446.166954,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954448.3981838,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0007",
+    "pair_id": "R0007",
+    "scene_id": "P_DRONE",
+    "seed": 1598014044,
+    "prompt_sha256": "c78265ed71f8184c6c94c0a5675e1d93f3917917d1f57a6652f40c3b03770e1e",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954450.999208,
+    "completion_observed_epoch": 1789954453.738919,
+    "submit_to_completion_seconds": 2.7394931250019,
+    "submit_to_download_seconds": 6.326291415956803,
+    "timing_clock": "monotonic",
+    "video_sha256": "c03942014baf33465beff6c37ac596551a0b02a0c6748369ac468a6aa73ac9bc",
+    "video_bytes": 7219424,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.4846073720000277,
+    "provider_request_id": "01a0c199-6700-79f0-9203-873edc098070",
+    "status_observations": [
+      {
+        "epoch": 1789954451.501528,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954453.738493,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0008",
+    "pair_id": "R0008",
+    "scene_id": "P_POTTERY",
+    "seed": 1630369445,
+    "prompt_sha256": "617ec30cc94bd78f0f9444d2e8835309698cc9f5fd1df0fdc08c38005aedf232",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954457.439753,
+    "completion_observed_epoch": 1789954460.162196,
+    "submit_to_completion_seconds": 2.722255375003442,
+    "submit_to_download_seconds": 5.152385082910769,
+    "timing_clock": "monotonic",
+    "video_sha256": "438cc7cd1941e2bbdc570d4444b343efecf58057dff44b77c65ec6ee0f01087f",
+    "video_bytes": 4363193,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.4891327059995092,
+    "provider_request_id": "01a0c199-8024-7c21-bddd-80ea3ad4a37c",
+    "status_observations": [
+      {
+        "epoch": 1789954457.903918,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954460.161765,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0009",
+    "pair_id": "R0009",
+    "scene_id": "P_DOG",
+    "seed": 560210668,
+    "prompt_sha256": "f463371b0666c129b88ee25516b6e2276d961084257eaa5847aca42fa6b61607",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954462.699546,
+    "completion_observed_epoch": 1789954465.3972092,
+    "submit_to_completion_seconds": 2.697476709028706,
+    "submit_to_download_seconds": 5.858392334077507,
+    "timing_clock": "monotonic",
+    "video_sha256": "c152ffd4da15e5040ee3ea2ac5bc42066ae751b54bc9551d0414b3d03e3c394d",
+    "video_bytes": 6355785,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.4801469359999828,
+    "provider_request_id": "01a0c199-94b0-75b0-8b3a-67cc8cee02df",
+    "status_observations": [
+      {
+        "epoch": 1789954463.165781,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954465.396835,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0010",
+    "pair_id": "R0010",
+    "scene_id": "P_GUITAR",
+    "seed": 1542323104,
+    "prompt_sha256": "5f31dae19d3ddb12acc08edd06de8787e96a4a6ea9c37c70ebbeea8c38a5d680",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954468.6692832,
+    "completion_observed_epoch": 1789954473.595975,
+    "submit_to_completion_seconds": 4.926484665949829,
+    "submit_to_download_seconds": 7.587362040998414,
+    "timing_clock": "monotonic",
+    "video_sha256": "d92ddb173d1992cc8c9a9fac94a2fcf1aa2ed0cbac4405ba4d7f09f6bc7f8f00",
+    "video_bytes": 4892509,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.474342876999799,
+    "provider_request_id": "01a0c199-ac01-78e0-8ea7-53dbba267f1c",
+    "status_observations": [
+      {
+        "epoch": 1789954469.131594,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954471.3656619,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954473.595565,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0011",
+    "pair_id": "R0011",
+    "scene_id": "P_DANCE",
+    "seed": 2069578673,
+    "prompt_sha256": "f3c3f60e4d49697670116aabefa06a752358adce583a83519022363fef86accc",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954476.3714728,
+    "completion_observed_epoch": 1789954479.0668101,
+    "submit_to_completion_seconds": 2.695113916997798,
+    "submit_to_download_seconds": 5.248595249955542,
+    "timing_clock": "monotonic",
+    "video_sha256": "121588cf359710b54561603d9124b5b4e27e783513807a0a5861ab5acff551fa",
+    "video_bytes": 5048333,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.4779657149993,
+    "provider_request_id": "01a0c199-ca19-7522-9e8d-4d4d7e001c7f",
+    "status_observations": [
+      {
+        "epoch": 1789954476.835617,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954479.066419,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0012",
+    "pair_id": "R0012",
+    "scene_id": "P01_EN",
+    "seed": 927265203,
+    "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954481.725517,
+    "completion_observed_epoch": 1789954484.420869,
+    "submit_to_completion_seconds": 2.6951151669491082,
+    "submit_to_download_seconds": 5.2517734579741955,
+    "timing_clock": "monotonic",
+    "video_sha256": "23826b0c3eced1bf250974c5a16766c442ea3c076d73a1cf2adf57a8c72894b9",
+    "video_bytes": 4884816,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.487577613996109,
+    "provider_request_id": "01a0c199-defc-7f42-8b94-387f90288633",
+    "status_observations": [
+      {
+        "epoch": 1789954482.186472,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954484.420436,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0013",
+    "pair_id": "R0013",
+    "scene_id": "P_PERFUME",
+    "seed": 1200958113,
+    "prompt_sha256": "cd469710f8ef174e7e4a99ef440dbe231d95c138b1a16c3c26869e5f476029c9",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954487.088955,
+    "completion_observed_epoch": 1789954489.780083,
+    "submit_to_completion_seconds": 2.6909567499533296,
+    "submit_to_download_seconds": 4.258692082948983,
+    "timing_clock": "monotonic",
+    "video_sha256": "f7d1b55c1f4c1327d517a6738794236c8bbd1c3010845df67b7c3366a41ebea0",
+    "video_bytes": 2716884,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.4757463329997336,
+    "provider_request_id": "01a0c199-f3f4-7432-8a72-51b1629d53ce",
+    "status_observations": [
+      {
+        "epoch": 1789954487.5477881,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954489.77964,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0014",
+    "pair_id": "R0014",
+    "scene_id": "P02_TURTLE",
+    "seed": 1619013743,
+    "prompt_sha256": "e20142b0b4017c3a79a125c808a2068c5890fb7d04ddec169baa5ef9a41c366d",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954491.436092,
+    "completion_observed_epoch": 1789954496.380432,
+    "submit_to_completion_seconds": 4.944133208016865,
+    "submit_to_download_seconds": 8.42842916608788,
+    "timing_clock": "monotonic",
+    "video_sha256": "3691340dada23174d4e1d617ee42f7be95c61ad08b3a0590522e4d01f232e920",
+    "video_bytes": 6450442,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3882605470716953,
+    "provider_request_id": "01a0c19a-04ec-7f23-a30f-e8a403132c64",
+    "status_observations": [
+      {
+        "epoch": 1789954491.897743,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954494.132174,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954496.379649,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0015",
+    "pair_id": "R0015",
+    "scene_id": "P_GEARS",
+    "seed": 1727126203,
+    "prompt_sha256": "a21304a83ff9d2e9bdc6a67d9ae1d8cd5c384622e96f332b599c9c0b1a439271",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954499.980175,
+    "completion_observed_epoch": 1789954504.944708,
+    "submit_to_completion_seconds": 4.964326292043552,
+    "submit_to_download_seconds": 8.71392720809672,
+    "timing_clock": "monotonic",
+    "video_sha256": "339e819c670bbd9032c5231567dd211214ca2d7e105ab27b538a8fc5698b9c49",
+    "video_bytes": 6791231,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3622665023431182,
+    "provider_request_id": "01a0c19a-264c-7352-9513-dce058402042",
+    "status_observations": [
+      {
+        "epoch": 1789954500.451593,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954502.7030861,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954504.944233,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0016",
+    "pair_id": "R0016",
+    "scene_id": "P_REEF",
+    "seed": 489523228,
+    "prompt_sha256": "63f57f982c9b667a40640f2e968878c4d27c9e4ed75f60cec4cba7111dd82467",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954508.815254,
+    "completion_observed_epoch": 1789954511.523102,
+    "submit_to_completion_seconds": 2.7076707090018317,
+    "submit_to_download_seconds": 6.821153874974698,
+    "timing_clock": "monotonic",
+    "video_sha256": "6342734ca6aabcf54a980ca216ba3d435ac33025a04ba14e30010b95d2433650",
+    "video_bytes": 8842845,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3890767418779433,
+    "provider_request_id": "01a0c19a-48d2-74e1-ba5e-0afbab6c478c",
+    "status_observations": [
+      {
+        "epoch": 1789954509.281137,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954511.522423,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0017",
+    "pair_id": "R0017",
+    "scene_id": "P_WATERFALL",
+    "seed": 215102974,
+    "prompt_sha256": "9bac01b1a5034b7d19912dac4f312e129e7f723e4b0b254ffb6221d1cfc451b0",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954515.778404,
+    "completion_observed_epoch": 1789954518.484399,
+    "submit_to_completion_seconds": 2.7057780410395935,
+    "submit_to_download_seconds": 8.055199207970873,
+    "timing_clock": "monotonic",
+    "video_sha256": "040162155b6d37f958feebef3032a41c7112dc3dafa4d406c452b6af518bf7b4",
+    "video_bytes": 11425142,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3727346020750701,
+    "provider_request_id": "01a0c19a-6403-7831-a096-cd240639d423",
+    "status_observations": [
+      {
+        "epoch": 1789954516.244052,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954518.483624,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0018",
+    "pair_id": "R0018",
+    "scene_id": "P_CAR",
+    "seed": 755978352,
+    "prompt_sha256": "8a819d8e41cb3053412deafc9a74c0fb2a4dd9a3f596f71008bf474fb9602c99",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954523.971263,
+    "completion_observed_epoch": 1789954528.9247448,
+    "submit_to_completion_seconds": 4.953271791920997,
+    "submit_to_download_seconds": 8.255050499923527,
+    "timing_clock": "monotonic",
+    "video_sha256": "064759bd40ee3394d7d00ba2002f3c88c9f2375bec0e6c0e9e6930670678dec9",
+    "video_bytes": 6522636,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3845709771849215,
+    "provider_request_id": "01a0c19a-8406-7df3-9703-66c84ff98bf3",
+    "status_observations": [
+      {
+        "epoch": 1789954524.4395819,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954526.681403,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954528.923934,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0019",
+    "pair_id": "R0019",
+    "scene_id": "P_SIGN",
+    "seed": 448568235,
+    "prompt_sha256": "9391401985143d8d65fe4930e16eb5c7e03b394e235a2ce492bb2112a5d8a3b7",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954532.355521,
+    "completion_observed_epoch": 1789954535.0670562,
+    "submit_to_completion_seconds": 2.711362542002462,
+    "submit_to_download_seconds": 4.785509750014171,
+    "timing_clock": "monotonic",
+    "video_sha256": "46d6ae47ac1881b7479bb3b97545939d659bad94750f6884b8239a818aca94d1",
+    "video_bytes": 3563769,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.3746292819269001,
+    "provider_request_id": "01a0c19a-a4c3-76e3-a369-01ac7c7367b1",
+    "status_observations": [
+      {
+        "epoch": 1789954532.820884,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954535.0663612,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  },
+  {
+    "attempt_id": "R0020",
+    "pair_id": "R0020",
+    "scene_id": "P_FIRE",
+    "seed": 187875388,
+    "prompt_sha256": "a4b2fe69b1bda6a81ff22d3d0cc95906cb244766b7bd47adce75441059620e95",
+    "retry_of": null,
+    "endpoint": "minimax/h3-max-turbo/text-to-video",
+    "status": "download_complete",
+    "submitted_epoch": 1789954537.249964,
+    "completion_observed_epoch": 1789954539.964331,
+    "submit_to_completion_seconds": 2.7141455420060083,
+    "submit_to_download_seconds": 5.3143057089764625,
+    "timing_clock": "monotonic",
+    "video_sha256": "33686c04e784f926bc20091d69fb20c107c6a107085ed11adaaf94e07bdd49cd",
+    "video_bytes": 4770993,
+    "decode_verified": true,
+    "provider_dit_seconds": 1.409484236035496,
+    "provider_request_id": "01a0c19a-b7e5-7f60-acb2-812fbd95e399",
+    "status_observations": [
+      {
+        "epoch": 1789954537.7233238,
+        "status": "IN_PROGRESS"
+      },
+      {
+        "epoch": 1789954539.96359,
+        "status": "COMPLETED"
+      }
+    ],
+    "provider_reported_billable_units": "8.0",
+    "provider_reported_cost_usd": "0.10000",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1344,
+        "height": 768,
+        "nb_frames": "124",
+        "r_frame_rate": "24/1",
+        "duration": "5.166667",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "width": null,
+        "height": null,
+        "nb_frames": "163",
+        "r_frame_rate": "0/0",
+        "duration": "5.184000",
+        "sample_rate": "32000",
+        "channels": 2
+      }
+    ],
+    "container_duration_seconds": 5.184
+  }
+]

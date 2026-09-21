@@ -1,0 +1,43 @@
+{
+  "endpoint": "minimax/h3-max-turbo/text-to-video",
+  "primary_attempts": 20,
+  "retry_attempts": 0,
+  "downloaded": 20,
+  "fully_decoded": 20,
+  "generation_failures": 0,
+  "controller_errors": 1,
+  "controller_error_note": "Initial HTTP 202 IN_PROGRESS observation rejection; original request resumed without resubmission.",
+  "uninterrupted_submit_to_completion_seconds": {
+    "count": 19,
+    "mean": 3.296906695204885,
+    "stddev_population": 0.9839189156218713,
+    "min": 2.6909567499533296,
+    "max": 4.964326292043552,
+    "p50": 2.7141455420060083,
+    "p90": 4.953271791920997,
+    "p95": 4.964326292043552,
+    "p99": 4.964326292043552,
+    "percentile_method": "nearest rank; descriptive, not an SLA"
+  },
+  "uninterrupted_submit_to_download_seconds": {
+    "count": 19,
+    "mean": 6.3533436379971375,
+    "stddev_population": 1.3245261607783572,
+    "min": 4.258692082948983,
+    "max": 8.71392720809672,
+    "p50": 5.875785292009823,
+    "p90": 8.42842916608788,
+    "p95": 8.71392720809672,
+    "p99": 8.71392720809672,
+    "percentile_method": "nearest rank; descriptive, not an SLA"
+  },
+  "observation_gap_pairs_excluded_from_latency": [
+    "R0001"
+  ],
+  "reported_billable_units": "160.0",
+  "authenticated_base_rate_usd_per_unit": "0.0125",
+  "provider_reported_cost_usd": "2.00000",
+  "billing_scope": "Per-response billable units times authenticated pricing; no account invoice retrieved.",
+  "human_quality_accepted": null,
+  "api_timing_note": "timings.inference is denoising only, never client end-to-end latency"
+}
