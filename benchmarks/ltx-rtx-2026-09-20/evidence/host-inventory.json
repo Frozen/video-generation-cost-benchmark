@@ -1,0 +1,12 @@
+{
+  "meminfo": "MemTotal:       1584626100 kB\nMemFree:        327544552 kB\nMemAvailable:   1333609892 kB\nBuffers:          397148 kB\nCached:         992954616 kB\nSwapCached:            0 kB\nActive:         522327892 kB\nInactive:       688813484 kB\nActive(anon):   167321888 kB\nInactive(anon): 50759568 kB\nActive(file):   355006004 kB\nInactive(file): 638053916 kB\nUnevictable:       53768 kB\nMlocked:           44768 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:            341600 kB\nWriteback:             0 kB\nAnonPages:      217783920 kB\nMapped:         38336752 kB\nShmem:            279956 kB\nKReclaimable:   22194816 kB\nSlab:           28899948 kB\nSReclaimable:   21570244 kB\nSUnreclaim:      7329704 kB\nKernelStack:      164080 kB\nPageTables:       580416 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    792313048 kB\nCommitted_AS:   349939492 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:     3476380 kB\nVmallocChunk:          0 kB\nPercpu:          1039360 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:  15931392 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:     43008 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:    784243844 kB\nDirectMap2M:    800591872 kB\nDirectMap1G:    25165824 kB\n",
+  "cpu_model": [
+    "model name\t: AMD EPYC 9555 64-Core Processor"
+  ],
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.91.07, 97887 MiB, 600.00 W\n",
+  "cgroup": {
+    "memory.max": "187999997952\n",
+    "cpu.max": "2720000 100000\n",
+    "cpuset.cpus.effective": "0-255\n"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "observed_date": "2026-09-20",
+  "gpu_hourly_usd": "2.09",
+  "disk_gb": 200,
+  "disk_usd_per_gb_month": "0.10",
+  "month_hours": 720,
+  "gpu_price_basis": "Observed allocated Runpod RTX PRO 6000 Blackwell Server GPU hourly quote; excludes account identifiers and billing exports.",
+  "disk_source": "https://www.runpod.io/pricing",
+  "fal_comparison": "Published API tariffs, not an independently executed fal request or matched-quality comparison.",
+  "fal_768p_h3_max_usd_per_video_second": "0.04",
+  "fal_768p_h3_max_url": "https://fal.ai/models/minimax/h3-max/text-to-video",
+  "fal_768p_h3_max_turbo_usd_per_video_second": "0.02",
+  "fal_768p_h3_max_turbo_url": "https://fal.ai/models/minimax/h3-max-turbo/text-to-video",
+  "fal_promotion_end": "2026-09-30",
+  "fal_prices_are_time_sensitive": true
+}

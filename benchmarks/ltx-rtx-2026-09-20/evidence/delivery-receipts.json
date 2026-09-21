@@ -1,0 +1,77 @@
+{
+  "run_id": "LTX25_GPU_PRICE_PAIRED_001_RTX6000_RESIDENT",
+  "window_seconds": 285.5682991249487,
+  "receipts": [
+    {
+      "request_id": "R01",
+      "artifact_sha256": "010d46a606057d6a6dc4ff21deb6c1200ddc1c5e13b1e3ed4ff2ce3ab655dcdf",
+      "delivered_at_seconds": 32.35635595791973,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R02",
+      "artifact_sha256": "982ed123577a741f15094fedf93332e11a867527b0fff7bbe90376f3eff6cc56",
+      "delivered_at_seconds": 59.06430508301128,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R03",
+      "artifact_sha256": "982ba66b1bd2c69788d95185bfbf0f6ad66583cb1bc6374dece833eb457b862f",
+      "delivered_at_seconds": 86.45865687495098,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R04",
+      "artifact_sha256": "4d5097bfbef2e81cce095dbb6a248cd5af21dc45d6cb7ab7924c71b4dd355ec4",
+      "delivered_at_seconds": 113.82738999999128,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R05",
+      "artifact_sha256": "500852f3a4b6baa978999d23cb6332c7518637578e9c324c272cd1b2fc21c7d8",
+      "delivered_at_seconds": 141.69730370794423,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R06",
+      "artifact_sha256": "9a20780c3f67c670630d4be842e59a7b469b2985229afb76a94d722e1c5a91bf",
+      "delivered_at_seconds": 169.38920374994632,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R07",
+      "artifact_sha256": "fa83ded385249602c81abcb618c9b0b3c829c377492e21b5511333d41cefc430",
+      "delivered_at_seconds": 198.18797562492546,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R08",
+      "artifact_sha256": "bf736dd0cdce5e448cda5fe3e424dc4a7cbfff8c889922c944b4e012c86037de",
+      "delivered_at_seconds": 233.60737824998796,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R09",
+      "artifact_sha256": "5eba410eb2b9e2a65dbc06b41a10f855f51ad4a45727840b7243a25b17aca6f0",
+      "delivered_at_seconds": 258.59029687498696,
+      "decode_verified": true,
+      "output_contract_pass": true
+    },
+    {
+      "request_id": "R10",
+      "artifact_sha256": "9dfa65bd02414503e319a926208306e9f529537c2e9b1fcfe12555256e90ecb8",
+      "delivered_at_seconds": 285.4077956249239,
+      "decode_verified": true,
+      "output_contract_pass": true
+    }
+  ],
+  "controller_complete": true
+}

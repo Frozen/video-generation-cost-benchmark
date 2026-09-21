@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "visual": "Coherent subjects and motion without severe visual defects.",
+  "prompt": "Required visible subjects, actions and ordering match each frozen prompt within five requested seconds.",
+  "audio": "Required sound is present and appropriate; required speech is intelligible and English-only; inspect audiovisual synchronization.",
+  "method": "Watch each original twice at normal speed, blinded to mode and price. Record visual, prompt and audio judgments independently.",
+  "contracts": {
+    "video_only": "Pass visual and prompt requirements; ignore sound requirements while retaining all incurred costs.",
+    "audiovisual": "Pass visual, prompt and audio requirements."
+  },
+  "timing": "No interactive latency acceptance gate; continuous finite requests with observed activity and all failures retained."
+}

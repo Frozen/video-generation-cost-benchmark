@@ -4,7 +4,7 @@
 the service of a specific fal.ai endpoint at a lower fully accounted cost, with
 acceptable quality and response time. [Testing methodology](METHODOLOGY.md).
 
-**Three API references completed: H3, H3 Max and H3 Max Turbo. Total cap: USD 25.**
+**Original API reference pilot: H3, H3 Max and H3 Max Turbo completed under a USD 25 cap.**
 All public content is in English.
 
 ## Watch the benchmark videos
@@ -25,6 +25,15 @@ The fal samples use P01; self-hosted samples use the English-requested P01_EN
 variant. This is not an exact-prompt six-way comparison.
 
 ## Latest results
+
+[September 20: RTX PRO 6000 reproducibility package](benchmarks/ltx-rtx-2026-09-20/README.md):
+ten consecutive five-second LTX-2.5 requests with native audio, after two full
+warmups, produced 50 requested video-seconds in 279.402 seconds. The observed
+GPU and temporary-disk rates give **USD 0.003287 per video-second** for this
+warmed queue. Original logs, exact settings, seeds, worker source, ten original
+videos and an offline verification script are included. The comparison with
+fal's published API tariffs is a cost reference across different models;
+quality parity and equivalent service performance have not been established.
 
 [Warmed LTX-2.5 comparison](LTX_REUSE_RESULTS.md): **retaining transformer weights
 on one H100 reduced processing from 46.459 to 28.496 s (1.63x)**, with identical

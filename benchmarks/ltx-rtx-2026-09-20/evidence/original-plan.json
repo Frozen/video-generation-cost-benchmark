@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "run_id": "LTX25_GPU_PRICE_PAIRED_001_RTX6000",
+  "purpose": "Test whether more expensive GPUs offset rental price through higher matched LTX throughput",
+  "gpu_id": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_count": 1,
+  "region": "EUR-IS-1",
+  "min_cuda_version": "13.2",
+  "min_ram_per_gpu_gb": 128,
+  "disk_gb": 200,
+  "compute_hourly_usd": "2.09",
+  "disk_monthly_usd_per_gb": "0.10",
+  "reservation_usd": "1.35",
+  "max_lease_seconds": 2100,
+  "request_bound_seconds": 75,
+  "export_reserve_seconds": 180,
+  "minimum_after_prepare_seconds": 1290,
+  "requests_per_window": 10,
+  "window_order": [
+    "resident"
+  ],
+  "seeds": null,
+  "source_revision": "a95ab856bf29407b6b066ede0abe1846050db56c",
+  "image": "runpod/pytorch@sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851",
+  "preparation_files": {
+    "ltx-audio-source.tar.gz": "df4c0e009c0dc184d3605179e3d505aef97ad1848089f46cc4eb387d965af969",
+    "ltx-audio-uv-linux.whl": "9e25bb39e1674799c408345a6397ebc2c7c719d498be0ce9d935466d36ceacf5"
+  },
+  "dependency_lock_sha256": "dd5d9b68281ab8536e245cffe236388f4ed73c872442705718e3f3baf3a46bf1",
+  "natten": {
+    "name": "natten-0.21.7+torch2130cu132-cp312-cp312-linux_x86_64.whl",
+    "size": 203625872,
+    "digest": "sha256:99c504a0f190f8415ae04e4b55a4d145a54db3948718d07da4f0c1914a1e7396",
+    "browser_download_url": "https://github.com/SHI-Labs/NATTEN/releases/download/v0.21.7/natten-0.21.7%2Btorch2130cu132-cp312-cp312-linux_x86_64.whl"
+  },
+  "scene_sources": [
+    "P01_EN unchanged"
+  ],
+  "evaluation_contracts": {
+    "long": [
+      "video_only",
+      "audiovisual"
+    ],
+    "short": [
+      "video_only",
+      "audiovisual"
+    ]
+  },
+  "comparison_limits": [
+    "Shared ten-request one-scene paired screen; human quality acceptance required",
+    "Full collection boundary is measured uniformly; GPU-only processing thresholds remain separate",
+    "Actual runtime dispatch/kernel names and host differences must be retained"
+  ],
+  "shared_lifecycle_allocation": "All lease preparation, warmup, requests, failed work, storage and export costs belong to this candidate; no amortization is hidden",
+  "quality_criteria_sha256": "6dd716f97c9980bcaab24531b286642ed03e2d4543adc2b00c52092f0e8796bc",
+  "scene_prompt_sha256": [
+    "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7"
+  ],
+  "worker_sha256": {
+    "load_window.py": "614912df9ada252216b7c5754f64c2792166883d0d8e704764557c448e1631ba",
+    "ltx_audio_off.py": "75b1c62dc91666ff6a5882809f05b8edce8e68fd527aecb351a72138da20de11",
+    "ltx_config.py": "971e84c692841b8c6dcc6f2b28e03ccaf3b6ec28dc7e515cf8bc5e6a7d4cd085",
+    "ltx_reuse.py": "446eb07c923eda7b0666abe3b0cb0c233502dc784c8461949078d6190ebf5b9e",
+    "ltx_reuse_config.py": "8efa1fcbac31954d16aacf2bb30b5b83eae708d224050db21b080be437051209",
+    "ltx_worker.py": "01f53056daa0bc1f7051b09e809594b5d8f1c67b4b89634772d5157bb5efdf57",
+    "ltx_gpu_price_worker.py": "3bfa14c06ea92e31501c9bbad9e40696d2318cec112bae91adf1aec7f30b28c7",
+    "ltx_gpu_price_prepare.py": "8bb4889de8046223aeb637ffff5d636b8b12ed6c5066759cb37d22d0992820e9"
+  },
+  "five_second_reference_processing_seconds": 28.202341259922832,
+  "twenty_second_processing_parity_seconds": 112.80936503969133,
+  "warmup_bound_seconds": 150,
+  "candidate_id": "RTX6000",
+  "cloud": "SECURE",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "requests": [
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R01",
+      "seed": 532136090,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R02",
+      "seed": 816554692,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R03",
+      "seed": 1109996610,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R04",
+      "seed": 1521396091,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R05",
+      "seed": 699855493,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R06",
+      "seed": 2819968705,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R07",
+      "seed": 922960524,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R08",
+      "seed": 3238786465,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R09",
+      "seed": 920085995,
+      "requested_video_seconds": 5
+    },
+    {
+      "scene_id": "P01_EN",
+      "source_url": "https://awesomevideoprompts.com/en/prompts/2085162073810739210-chef-slicing-cartoon-onion",
+      "prompt": "A cinematic live-action cooking scene in a bright professional kitchen. A serious human chef places a normal-looking onion on a cutting board. The instant the knife comes down, the onion transforms into a hand-drawn cartoon character, screams, stretches like rubber. It dives into a pile of real vegetables and disguises itself as an ordinary onion. The chef pauses, studies the pile, then casually grabs a different onion--only for every vegetable to suddenly open cartoon eyes and scream. Photorealistic kitchen, expressive 2D animation, accurate shadows and physical interaction, fast comedic timing, dramatic cooking sounds.\n\nAny spoken words, dialogue, narration, or on-screen text must be in English only. Do not use Spanish, Russian, or other languages.",
+      "prompt_sha256": "9c924c21f39702c03de5287bb3307e1b6df82303b9e6d352704e7fa7a91a96a7",
+      "request_id": "R10",
+      "seed": 4209735861,
+      "requested_video_seconds": 5
+    }
+  ],
+  "technical_warmup_seeds": [
+    2120976928,
+    535201808
+  ],
+  "controller_sha256": "0e7ef1b2dd799e8b4a43c190d034147f138ce92eff007b2f45bdc374dc306143",
+  "local_runner_sha256": {
+    "ltx_gpu_price_trial.py": "0e7ef1b2dd799e8b4a43c190d034147f138ce92eff007b2f45bdc374dc306143",
+    "ltx_trial.py": "4aa0aaf05e49a543e0e2d012f758d479255f91a5700369d36555aa2093dd3137",
+    "runpod_trial.py": "8a0ea6246492f0eb68e3dd5613269af26379d2c82f9747c593e028b976742bcd",
+    "runpod_deadline.py": "d2eb2d45ee5dad9e32322a9b821dce69df05fb88a75f55bee6c41722fa1eb326",
+    "wan_smoke.py": "755dd88fa79ec2e6d6468ba4f342574cab2873a33b82acb04097077995eb5e09",
+    "load_collect.py": "c90f6df6fe2bae4186eeb37c189a6df395aa9687fd53827dfbbaa8c625c19990",
+    "budget.py": "965c69988d055b47462539c444f5866f3225f0cc91c0f679655bb8512c0d5b1e"
+  }
+}
