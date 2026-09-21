@@ -92,6 +92,6 @@ python3.12 -B scripts/analyze_telemetry.py \
   --output /tmp/recomputed-ltx
 ```
 
-`state.json` and `allocation-observation.json` in the evidence contain only the fields needed for this accounting; SSH connection metadata and credentials are excluded. Full-lease cost remains a quoted-rate estimate unless independently reconciled with final provider billing.
+`state.json` and `allocation-observation.json` in the evidence contain only the fields needed for this accounting; SSH connection metadata and credentials are excluded. The lifecycle analyzer preserves the original quoted-rate estimate. Complete provider-reported usage is recorded separately in [the billing reconciliation](results/runpod-billing-reconciled.json); it does not rewrite the archived measurements.
 
-For figures, install `analysis-requirements.txt` in a separate local environment, copy the public `fal-attempts.json` and `fal-summary.json` into the recomputed output directory, and run `python scripts/plot_sustained.py /tmp/recomputed-ltx`. Figures do not change the inference environment. `scripts/write_final_report.py` renders the report from those final JSON measurements.
+For figures, install `analysis-requirements.txt` in a separate local environment, copy the public `fal-attempts.json`, `fal-summary.json` and `runpod-billing-reconciled.json` into the recomputed output directory, and run `python scripts/plot_sustained.py /tmp/recomputed-ltx`. Figures do not change the inference environment. `scripts/write_final_report.py` renders the report from those final JSON measurements.

@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "query": {
+      "bucketSize": "hour",
+      "endTime": "2026-09-21T04:00:00Z",
+      "podId": "c80v7yuv1wjixt",
+      "startTime": "2026-09-21T01:00:00Z"
+    },
+    "recordCount": 2,
+    "totals": {
+      "cpuAmount": 0,
+      "diskAmount": 0.03009259281679988,
+      "gpuAmount": 2.505300998687744,
+      "totalAmount": 2.535393591504544
+    },
+    "uniquePodCount": 1
+  },
+  "records": [
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.011574074160307646,
+      "endTime": "2026-09-21T02:00:00Z",
+      "gpuAmount": 0.9625611007213593,
+      "podId": "c80v7yuv1wjixt",
+      "startTime": "2026-09-21T01:00:00Z",
+      "totalAmount": 0.9741351748816669
+    },
+    {
+      "cpuAmount": 0,
+      "diskAmount": 0.018518518656492233,
+      "endTime": "2026-09-21T03:00:00Z",
+      "gpuAmount": 1.5427398979663849,
+      "podId": "c80v7yuv1wjixt",
+      "startTime": "2026-09-21T02:00:00Z",
+      "totalAmount": 1.5612584166228771
+    }
+  ],
+  "observed_utc": "2026-09-21T10:10:17Z",
+  "status": "Provider-reported usage now covers both hourly buckets containing the full terminated lease.",
+  "run_id": "LTX25_SUSTAINED_RTX6000_001",
+  "supersedes_partial_snapshot": "runpod-billing-partial.json",
+  "fal_provider_reported_usd": "2.00000",
+  "combined_provider_reported_usd": "4.535393591504544",
+  "billing_scope": "Runpod GPU and temporary disk for the full lease; fal per-response billable units. Provider usage records, not a tax invoice."
+}
