@@ -1,5 +1,5 @@
 {
-  "README.md": "5bed303dc88ed914c0de4e0deaeb75d9ec77f8b5f80bf091a4c2c1521d4ba4dd",
+  "README.md": "9bf0d4f5a9e31a95dcd395942c346cba3047cde40b890adebc2cc103a669abf6",
   "ltx-sustained-criteria.json": "55d9cb5addac2f18d7b4e1911dfae6d1c2ee09630cfb6c7f43893fdc8e3fcdcd",
   "ltx-sustained-plan.json": "22230aa13e78a91d5d6575b1b9299ea8b9feb8f7cf874d77ec7a4d5c177222d9",
   "ltx-sustained-proposal.json": "d65ecbaf9049587f92db6faf1a7c1da6e8ed2c337fabd9241cb6001cd9758f62",
@@ -38,5 +38,11 @@
   "scripts/build_review.py": "30afc64de170e95cb3dc4d4f32288b59e02d5bf38cea2cefd101fbb92b51829b",
   "scripts/plot_sustained.py": "7a1fee54eeabc6f9c6e595c297f9147488bd05cf5ed95fc0da89c09698286da8",
   "REPRODUCE.md": "9017c8e617f0f1a44a502d30a6103fb203636ff8c6a1436f1fed872ddc18700f",
-  "tests/test_sustained_analysis.py": "c08ce15998113662ea31096fa64b95cc0a252c14f1fb99449798064cdb3b16df"
+  "tests/test_sustained_analysis.py": "c08ce15998113662ea31096fa64b95cc0a252c14f1fb99449798064cdb3b16df",
+  "scripts/analyze_telemetry.py": "3c67f0ddec81fe159cb325f0f4024d2f69434d248363f665fa2388617cc08d1e",
+  "scripts/build_contacts.py": "91c25f5ebe990d7014e960222258f6c8be6a9a19f3f046acae0e8908e57955e6",
+  "scripts/live_status.py": "6485a7ac89af95eca2d87103b0c92d70a94610f5630cf387a7584dcead3ae325",
+  "WARMUP_AND_SEEDS.md": "750298956be85ef8d8b41b1e0d2bf2335c9c313fbd9abdf6bb865335e87d7702",
+  "analysis-requirements.txt": "69dedca17d5517e2a3d67de23cb7fd1c7f37eba3bc41826860c28d51809828af",
+  "results/QUALITY_REVIEW.md": "0855d69fe0d3faad564f3671620b35e756b81d363296a363672bb8504335d799"
 }
